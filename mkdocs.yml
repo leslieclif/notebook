@@ -1,0 +1,48 @@
+# Project information
+site_name: Leslie's Online Notebook
+site_description:
+site_author: 'Leslie'
+site_url: 'https://leslieclif.github.io/notebook/'
+
+# Docs dir
+docs_dir: './docs/'
+
+# Repository
+repo_name: 'notebook'
+
+# Copyright
+copyright: 'Copyright &copy; 2018 - 2019 Leslie'
+
+nav:
+  - Home:
+      - Welcome: index.md
+  - Server:
+      - Introduction: server/index.md
+
+# Theme
+theme:
+  name: 'material'
+  language: 'en'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+  feature:
+    tabs: true
+  palette:
+    primary: 'indigo'
+    accent: 'indigo'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - footnotes
+  - meta
+  - pymdownx.arithmatex
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tilde
