@@ -19,8 +19,10 @@ nav:
   - Server:
       - Introduction: server/index.md
       - Installation: server/install.md
+      - Mobile: server/mobile.md
   - Kubernetes:
       - Introduction: k8s/index.md
+      - Installation: k8s/install.md
   - IDE:
       - Introduction: ide/index.md
 # Theme
