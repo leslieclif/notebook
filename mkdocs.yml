@@ -18,7 +18,9 @@ nav:
       - Welcome: index.md
   - Server:
       - Introduction: server/index.md
-
+      - Installation: server/install.md
+  - Kubernetes:
+      - Introduction: k8s/index.md
 # Theme
 theme:
   name: 'material'
