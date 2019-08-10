@@ -21,6 +21,8 @@ nav:
       - Installation: server/install.md
   - Kubernetes:
       - Introduction: k8s/index.md
+  - IDE:
+      - Introduction: ide/index.md
 # Theme
 theme:
   name: 'material'
