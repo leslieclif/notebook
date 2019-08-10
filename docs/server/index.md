@@ -1,1 +1,1 @@
-# Welcome to MkDocs
+# Server Details
