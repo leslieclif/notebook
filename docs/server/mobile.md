@@ -1,11 +1,11 @@
 # Converting Android Device Into Linux Server
 
-## Identifying Device
+#### Identifying Device
 
-## Installing Pre-requisites
+#### Installing Pre-requisites
 
-### Setting Up Mobile Device
+#### Setting Up Mobile Device
 
-### Configuring Ubuntu
+#### Configuring Ubuntu
 
-### Securing Server
+#### Securing Server

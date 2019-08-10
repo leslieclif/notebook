@@ -1,12 +1,12 @@
 # Installation
 
 ## Centos
-### Identifying Version
+#### Identifying Version
 
-### Creating Live USB
+#### Creating Live USB
 
-### Setting Up PC
+#### Setting Up PC
 
-### Configuring Centos
+#### Configuring Centos
 
-### Securing Server
+#### Securing Server
