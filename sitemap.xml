@@ -2,37 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://leslieclif.github.io/notebook/</loc>
-     <lastmod>2019-08-10</lastmod>
+     <lastmod>2019-08-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://leslieclif.github.io/notebook/server/</loc>
-     <lastmod>2019-08-10</lastmod>
+     <lastmod>2019-08-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://leslieclif.github.io/notebook/server/install/</loc>
-     <lastmod>2019-08-10</lastmod>
+     <lastmod>2019-08-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://leslieclif.github.io/notebook/server/mobile/</loc>
-     <lastmod>2019-08-10</lastmod>
+     <lastmod>2019-08-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://leslieclif.github.io/notebook/k8s/</loc>
-     <lastmod>2019-08-10</lastmod>
+     <lastmod>2019-08-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://leslieclif.github.io/notebook/k8s/install/</loc>
-     <lastmod>2019-08-10</lastmod>
+     <lastmod>2019-08-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://leslieclif.github.io/notebook/ide/</loc>
-     <lastmod>2019-08-10</lastmod>
+     <lastmod>2019-08-11</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://leslieclif.github.io/notebook/ide/markdown/</loc>
+     <lastmod>2019-08-11</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
