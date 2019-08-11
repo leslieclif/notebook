@@ -25,6 +25,7 @@ nav:
       - Installation: k8s/install.md
   - IDE:
       - Introduction: ide/index.md
+      - Markdown: ide/markdown.md
 # Theme
 theme:
   name: 'material'
