@@ -14,7 +14,7 @@
     
 1. Setting Up PC
   
-    * Format the HDD (optinal)
+    * Format the HDD (optional)
     * Ensure the Boot option has Boot from USB selected above HDD
     
 1. Configuring Centos
