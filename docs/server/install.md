@@ -19,11 +19,20 @@
     
 1. Configuring Centos
 
-    [Full Installation Steps](https://linoxide.com/how-tos/centos-7-step-by-step-screenshots/)
+    * [Full Installation Steps](https://linoxide.com/how-tos/centos-7-step-by-step-screenshots/)
     
-    [Adding Non Root User](https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-centos-quickstart)
+    * Update Centos with latest patches
+    ```yum install update -y && yum install upgrade -y```
     
-    [Add and Delete Users](https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-a-centos-7-server)
+    * Verify the OS Version
+        ```cat /etc/os-releases```
+    
+    * **net-tools** package provides the ifconfig command
+        ```yum install net-tools -y``` 
+        
+    * [Adding Non Root User](https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-centos-quickstart)
+    
+    * [Add and Delete Users](https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-a-centos-7-server)
 
 1. Securing Server
     
