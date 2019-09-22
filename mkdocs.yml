@@ -28,6 +28,7 @@ nav:
       - Markdown: ide/markdown.md
   - Learning:
       - Ansible: learning/ansible.md
+      - Python: learning/python.md
 # Theme
 theme:
   name: 'material'

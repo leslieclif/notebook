@@ -16,3 +16,4 @@
 | Ctrl + Space   | Code Completion |
 | Ctrl + Shift + /   | Comments selected lines of code |
 | Ctrl + N   | Navigate to any class by typing the name in the editor |
+| Ctrl + B   | Jump to declaration |
