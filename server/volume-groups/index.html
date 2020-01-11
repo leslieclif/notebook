@@ -11,7 +11,7 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
-        <link rel="canonical" href="https://leslieclif.github.io/notebook/server/install/">
+        <link rel="canonical" href="https://leslieclif.github.io/notebook/server/volume-groups/">
       
       
         <meta name="author" content="Leslie">
@@ -40,7 +40,7 @@
     
     
       
-        <title>Installation - Leslie's Online Notebook</title>
+        <title>Configuration - Leslie's Online Notebook</title>
       
     
     
@@ -87,7 +87,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#installation" tabindex="1" class="md-skip">
+      <a href="#configuration" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -113,7 +113,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Installation
+                Configuration
               
             </span>
           
@@ -159,9 +159,7 @@
       
         
 
-  
-
-<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+<nav class="md-tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
@@ -183,7 +181,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../" title="Server" class="md-tabs__link md-tabs__link--active">
+        <a href="../" title="Server" class="md-tabs__link">
           Server
         </a>
       
@@ -293,12 +291,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       Server
@@ -326,49 +322,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Installation
-      </label>
-    
-    <a href="./" title="Installation" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../install/" title="Installation" class="md-nav__link">
       Installation
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#centos" title="Centos" class="md-nav__link">
-    Centos
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -577,67 +535,68 @@
               
                 
                 
-                <h1 id="installation">Installation</h1>
+                <h1 id="configuration">Configuration</h1>
 <h2 id="centos">Centos</h2>
 <hr />
 <ol>
+<li>Prerequisites</li>
+<li>Install EPEL Packages <code>yum install epel-release</code></li>
+<li>Install ntfs-3g and fuse packages to support NTFS drives <code>yum install ntfs-3g fuse -y</code></li>
 <li>
-<p>Identifying Version</p>
-<p>Download the latest version of Centos from <a href="https://www.centos.org/download/">centos.org</a></p>
+<p>Format the new NTFS filestsystem to xfs <code>mkfs.xfs -f /dev/sda</code> </p>
 </li>
 <li>
-<p>Creating Live USB</p>
-<ul>
-<li>Format a USB as NTFS.</li>
-<li>Download Fedora LiveUSB Creator or read the supported software for Centos in the downloads page.</li>
-<li>See the instructions to write the ISO into the USB</li>
-</ul>
+<p>Identifying Additional HDD </p>
+</li>
+</ol>
+<p>Run <code>blkid</code> to verify if HDD is detected. On detection of HDD, follow the below steps to configure as XFS file system.
+* Run <code>fdisk -l</code> to list the devices, partitions and volume groups
+* <a href="https://www.linuxtechi.com/check-hard-drive-for-bad-sector-linux/">Scan your hard drive for Bad Sectors or Bad Blocks</a>
+1. Partitioning HDD (Optional and for Primary HDD)
+* On identifying the device(HDD), say /dev/sda as the target device to partition, run <code>fdisk /dev/sda</code>
+* These steps below are not for secondary HDD as partitioning will not utilize the entire space
+* Option <code>m</code> to list the operations, Option <code>p</code> to print the current partitions
+* Note the start and end block ids of the current partitions
+* Option <code>d</code> to delete the current partitions, select the partition to delete <code>2</code>
+* Option <code>n</code> to create new partition, select only <code>1</code> partition for the HDD, select default start and end block id, it should match the one printed above
+* Option <code>t</code> to select the type of partition, followed by <code>8e</code> to select as Linux LVM 
+* Format the new partition to xfs <code>mkfs.xfs -f /dev/sda1</code> as only one partition was created
+* Mount the new partition to test <code>mount -t xfs /dev/sda1 /data</code>
+* Make entry in <code>/etc/fstab</code> to make it permanent
+* Verify the mounted partition by running <code>df -Th</code> to see free and used space</p>
+<ol>
+<li>Securing Drive and adding Redundancy</li>
+<li><a href="https://wiki.archlinux.org/index.php/Software_RAID_and_LVM#Installation">Software RAID and LVM</a></li>
+<li>For the partitions that are needed as Raid 1, use <code>fdsik /dev/sdb3</code>,Press ‘t’ to change the partition type.</li>
+<li>Press ‘fd’ to choose Linux Raid Auto.</li>
+<li>Install Raid 1 on <code>/dev/sdb3</code> and <code>/dev/sda1</code> using <code>mdadm --create /dev/data --level=1 --raid-devices=2 /dev/sdb3 /dev/sda1</code></li>
+<li>
+<p><a href="https://linuxgazette.net/140/pfeiffer.html">Encrypting Raid devices</a></p>
 </li>
 <li>
-<p>Setting Up PC</p>
-<ul>
-<li>Format the HDD (optional)</li>
-<li>Ensure - Advanced Option, Legacy USB Support is Enabled</li>
-<li>In Boot priority, USB is the first drive</li>
-<li>Ensure the Boot option has Boot from USB selected above HDD</li>
-</ul>
+<p>Volume Group Setup</p>
 </li>
-<li>
-<p>Configuring Centos</p>
-<ul>
-<li><a href="https://linoxide.com/how-tos/centos-7-step-by-step-screenshots/">Full Installation Steps</a></li>
-<li>Create Custom partitions for /boot, /, /var, /tmp, /home</li>
-<li>
-<p><a href="https://www.tecmint.com/initial-server-setup-with-centos-rhel-8/">Initial Server Setup</a></p>
-</li>
-<li>
-<p>Update Centos with latest patches
-<code>yum update -y &amp;&amp; yum upgrade -y</code>
-<code>yum clean all</code> # To clean downloaded packages in /var/cache/yum</p>
-</li>
-<li>
-<p>Verify the OS Version
-    <code>cat /etc/os-releases</code></p>
-</li>
-<li>
-<p><strong>net-tools</strong> package provides the ifconfig command
-    <code>yum install net-tools -y</code> </p>
-</li>
-<li>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-centos-quickstart">Adding Non Root User</a></p>
-</li>
-<li>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-a-centos-7-server">Add and Delete Users</a></p>
-</li>
-<li>
-<p><a href="../volume-groups/">Creating Volume Groups</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>Securing Server</p>
-<p>Security based on articles mentioned <a href="https://medium.com/viithiisys/10-steps-to-secure-linux-server-for-production-environment-a135109a57c5">here</a> or <a href="https://www.cyberciti.biz/tips/linux-security.html">here</a> or <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-securing-your-linux-vps">DigitalOcean</a></p>
-</li>
+</ol>
+<p>Logical Volume Manager (LVM) is a software-based RAID-like system that lets you create "pools" of storage and add hard drive space to those pools as needed.
+* <a href="https://opensource.com/business/16/9/linux-users-guide-lvm">LVM Basic</a>
+* <a href="https://opensource.com/article/18/11/manage-storage-lvm">Create, expand, and encrypt storage pools</a></p>
+<ol>
+<li>Volume Group Lifecycle</li>
+<li><a href="https://www.golinuxhub.com/2018/04/how-to-migrate-move-logical-volumes-and-volume-group-disk.html">Migrate Data from one LV to another</a></li>
+<li>Identify the current Physical Volume and Volume Group mapping <code>pvscan</code> or <code>pvs</code></li>
+<li>List the partitions and volumes in the Volume Groups <code>vgdisplay centos-digital -v</code></li>
+<li>Logical volume and device mapping <code>lvs -o+devices</code></li>
+<li>List all devices and device mapping <code>lsscsi</code></li>
+<li>Before Reducing logical volume, move to another drive</li>
+<li>Format /dev/sdb3 to a physical volume: <code>pvcreate /dev/sdb3</code></li>
+<li>Give /dev/sdb3 to the volume group centos-digital: <code>vgextend centos-digital /dev/sdb3</code></li>
+<li>Migrate our logical volume Users from /dev/sdb2 to /dev/sdb3, <code>pvmove -n Users /dev/sdb2 /dev/sdb3</code></li>
+<li>Verify if the data is migrated <code>lsblk</code> </li>
+<li>Reduce your logical volume to make place for your new partition <code>lvresize -L 25G /dev/centos-digital/home</code></li>
+<li>Use fdisk to reduce the size of /dev/sdb2 to 80G as total for volume group centos-digital was 75G (yes, a little bit bigger as we used in lvresize!)</li>
+<li>Use fdisk to create a new LVM partition, /dev/sdb3, with the new available space (it will be around 400G).</li>
+<li>Check if the kernel could automatically detect the partition change. See if /proc/partition matches the new state (thus, /dev/sdb3 is visible). If not, you need to reboot. (Probably it will.)</li>
+<li>Make /dev/sdb2 to be as big again <code>pvresize /dev/sdb2</code></li>
 </ol>
                 
                   
@@ -655,41 +614,6 @@
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="../" title="Introduction" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Introduction
-              </span>
-            </div>
-          </a>
-        
-        
-          <a href="../mobile/" title="Mobile" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Mobile
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
