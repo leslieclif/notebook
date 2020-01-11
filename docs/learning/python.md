@@ -1,9 +1,9 @@
-```
+````python
 # Range and For
 for index in range(6):
     print(index)
 # Range function is used generate a sequence of integers
-index = range(10, -1, -1) # start, stop and setp, stops at 0 not including -1
+index = range(10, -1, -1) # start, stop and step, stops at 0 not including -1
 # set class provides a mapping of unique immutable elements
 # One use of set is to remove duplicate elements
 dup_list = ('c', 'd', 'c', 'e')
@@ -822,4 +822,4 @@ First Name: John
 
 
 
-```
+````
