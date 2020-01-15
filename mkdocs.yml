@@ -29,6 +29,7 @@ nav:
   - Learning:
       - Ansible: learning/ansible.md
       - Python: learning/python.md
+      - Terraform: learning/terraform.md
 # Theme
 theme:
   name: 'material'
