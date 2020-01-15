@@ -40,7 +40,7 @@
     
     
       
-        <title>Terraform - Leslie's Online Notebook</title>
+        <title>Infrastructure as Code - Leslie's Online Notebook</title>
       
     
     
@@ -87,6 +87,10 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
+      <a href="#infrastructure-as-code" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid">
@@ -109,7 +113,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Terraform
+                Infrastructure as Code
               
             </span>
           
@@ -494,74 +498,688 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                  <h1>Terraform</h1>
-                
-                <div class="highlight"><pre><span></span># Infrastructure as Code
-* IaC is an important **DevOps cornerstone** that enables you to define, automatically manage, and provision infrastructure through source code.
-* Infrastructure is managed as a **software system**.
-* IaC is frequently referred to as **Programmable Infrastructure**.
-# Benefits of Iac
-* In IaC,
-+ A tool will monitor the **state of the infrastructure**.
-+ A script will be sent **automatically to fix the issue**.
-+ A script can be written to add new instances, and **it can be reused**.
-+ **Faster process**, no/less human involvement.
-# IaC Implemetation Approaches
-##Declarative
-+ Focuses on the **desired end state of infrastructure (Functional)**.
-+ **Tools** perform the **necessary actions to reach that state**.
-+ Automatically takes care of the **order and executes it**.
-+ Examples are Terraform and CloudFormation.
-## Imperative
-+ Focuses on how to **achieve the desired state (Procedural)**.
-+ Follows the **order of tasks and it executes in that order**.
-+ Examples are Chef and Ansible.
-# Configuration Management
-* It is a **system that keeps the track** of organization&#39;s hardware, software, and other related information.
-* It includes the software updates and versions present in the system.
-* Configuration management is also called as **configuration control**.
-* E.g.: Chef and Ansible
-# Orchestration:
-* It **automates the coordination, management, and configuration** of systems and hardware.
-* E.g.: Terraform and Nomad
-# Installing Terraform 
-sudo apt-get install unzip
-wget https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip
+                <h1 id="infrastructure-as-code">Infrastructure as Code</h1>
+<ul>
+<li>IaC is an important <strong>DevOps cornerstone</strong> that enables you to define, automatically manage, and provision infrastructure through source code.</li>
+<li>Infrastructure is managed as a <strong>software system</strong>.</li>
+<li>IaC is frequently referred to as <strong>Programmable Infrastructure</strong>.</li>
+</ul>
+<h1 id="benefits-of-iac">Benefits of Iac</h1>
+<ul>
+<li>In IaC,</li>
+<li>A tool will monitor the <strong>state of the infrastructure</strong>.</li>
+<li>A script will be sent <strong>automatically to fix the issue</strong>.</li>
+<li>A script can be written to add new instances, and <strong>it can be reused</strong>.</li>
+<li><strong>Faster process</strong>, no/less human involvement.</li>
+</ul>
+<h1 id="iac-implemetation-approaches">IaC Implemetation Approaches</h1>
+<h2 id="declarative">Declarative</h2>
+<ul>
+<li>Focuses on the <strong>desired end state of infrastructure (Functional)</strong>.</li>
+<li><strong>Tools</strong> perform the <strong>necessary actions to reach that state</strong>.</li>
+<li>Automatically takes care of the <strong>order and executes it</strong>.</li>
+<li>Examples are Terraform and CloudFormation.</li>
+</ul>
+<h2 id="imperative">Imperative</h2>
+<ul>
+<li>Focuses on how to <strong>achieve the desired state (Procedural)</strong>.</li>
+<li>Follows the <strong>order of tasks and it executes in that order</strong>.</li>
+<li>Examples are Chef and Ansible.</li>
+</ul>
+<h1 id="configuration-management">Configuration Management</h1>
+<ul>
+<li>It is a <strong>system that keeps the track</strong> of organization's hardware, software, and other related information.</li>
+<li>It includes the software updates and versions present in the system.</li>
+<li>Configuration management is also called as <strong>configuration control</strong>.</li>
+<li>E.g.: Chef and Ansible</li>
+</ul>
+<h1 id="orchestration">Orchestration:</h1>
+<ul>
+<li>It <strong>automates the coordination, management, and configuration</strong> of systems and hardware.</li>
+<li>E.g.: Terraform and Nomad</li>
+</ul>
+<h1 id="installing-terraform">Installing Terraform</h1>
+<p>sudo apt-get install unzip
+wget <a href="https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip">https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip</a>
 unzip terraform_0.11.11_linux_amd64.zip
 sudo mv terraform /usr/local/bin/
-terraform --version
-# Terraform Lifecycle
-* Terraform init - Initializes the working directory having Terraform configuration files.
-* Terraform plan - Creates an execution plan and it mentions the changes it is going to make.
-* Terraform apply - When you are not amazed by seeing the results of the terraform plan, you can go ahead and run terraform apply to apply the changes.
-* The main difference between plan and apply is - apply asks for a prompt like Do you want to perform these actions? and then implement the changes, whereas, plan shows the possible end state of your infrastructure without actually implementing them.
-* Terraform destroy - Destroys the created infrastructure.
-# Terraform Configuration
-* A set of files that describe the infrastructure in Terraform is called as Terraform Configuration.
-* The entire configuration file is saved with **.tf** extension. Make sure to have all the configurations maintained in a single .tf file instead of many. Terraform loads all the .tf files present in the working directory.
-# Creating Virtual Network
-* create a virtual network without using the Azure portal and azure CLI commands.
-resource &quot;azurerm_virtual_network&quot;&quot;myterraformnetwork&quot;
+terraform --version</p>
+<h1 id="terraform-lifecycle">Terraform Lifecycle</h1>
+<ul>
+<li>Terraform init - Initializes the working directory having Terraform configuration files.</li>
+<li>Terraform plan - Creates an execution plan and it mentions the changes it is going to make.</li>
+<li>Terraform apply - When you are not amazed by seeing the results of the terraform plan, you can go ahead and run terraform apply to apply the changes.</li>
+<li>The main difference between plan and apply is - apply asks for a prompt like Do you want to perform these actions? and then implement the changes, whereas, plan shows the possible end state of your infrastructure without actually implementing them.</li>
+<li>Terraform destroy - Destroys the created infrastructure.</li>
+</ul>
+<h1 id="terraform-configuration">Terraform Configuration</h1>
+<ul>
+<li>A set of files that describe the infrastructure in Terraform is called as Terraform Configuration.</li>
+<li>The entire configuration file is saved with <strong>.tf</strong> extension. Make sure to have all the configurations maintained in a single .tf file instead of many. Terraform loads all the .tf files present in the working directory.</li>
+</ul>
+<h1 id="creating-virtual-network">Creating Virtual Network</h1>
+<ul>
+<li>create a virtual network without using the Azure portal and azure CLI commands.
+<div class="highlight"><pre><span></span>resource &quot;azurerm_virtual_network&quot;&quot;myterraformnetwork&quot;
   {
      name = &quot;myvnet&quot;
      address_space = [&quot;10.0.0.0/16&quot;]
      location=&quot;East US&quot;
      resource_group_name=&quot;er-tyjy&quot;
   }
-* Resource blocks define the infrastructure (resource &quot;azurerm_virtual_network&quot; &quot;myterraformnetwork&quot;). It contains the two strings - type of the resource(azurerm_virtualnetwork) and name of the resource(myterraformnetwork).
-* Terraform uses **plugin based architecture** to support the various services providers and infrastructure available.
-* When you run Terraform init command, it downloads and installs provider binary for the corresponding providers. In this case, it is Azure.
-* Now, you can run the terraform plan command. It shows all the changes it is going to make.
-* If the output is as you expected and there are no errors, then you can run Terraform apply.
-# Terraform Validate
-* You can run this command whenever you like to check whether the code is correct. Once you run this command, if there is no output, it means that there are no errors in the code.
+</pre></div></li>
+<li>Resource blocks define the infrastructure (resource "azurerm_virtual_network" "myterraformnetwork"). It contains the two strings - type of the resource(azurerm_virtualnetwork) and name of the resource(myterraformnetwork).</li>
+<li>Terraform uses <strong>plugin based architecture</strong> to support the various services providers and infrastructure available.</li>
+<li>When you run Terraform init command, it downloads and installs provider binary for the corresponding providers. In this case, it is Azure.</li>
+<li>Now, you can run the terraform plan command. It shows all the changes it is going to make.</li>
+<li>If the output is as you expected and there are no errors, then you can run Terraform apply.</li>
+</ul>
+<h1 id="terraform-validate">Terraform Validate</h1>
+<ul>
+<li>You can run this command whenever you like to check whether the code is correct. Once you run this command, if there is no output, it means that there are no errors in the code.</li>
+</ul>
+<h1 id="variables">Variables</h1>
+<ul>
+<li>Terraform provides the following variable types:</li>
+<li>Strings - The default data type is a <strong>string</strong>.</li>
+<li>List - A list is like <strong>simple arrays</strong></li>
+<li>
+<p>Map - A map value is nothing but a <strong>lookup table for string keys</strong> to get the string values. </p>
+</li>
+<li>
+<p>In terraform, to <strong>reduce the complexity of code and for easiness</strong>, all the variables are created in the <strong>variables.tf</strong> file.
+<strong>variables.tf</strong>
+<div class="highlight"><pre><span></span>variable &quot;rg&quot;
+{
+default = &quot;terraform-lab2&quot;
+}
+variable &quot;locations&quot;
+{ 
+default = [&quot;ap-southeast-1&quot; , &quot;ap-southeast-2&quot;]
+}
+variable &quot;tags&quot;
+{
+  type = &quot;map&quot;
+  default = 
+        {
+         environment = &quot;training&quot;
+         source=&quot;citadel&quot;
+        }
+ }
+variable &quot;images&quot;
+{
+type = &quot;map&quot;
+default = 
+  {
+   us-east-1 = &quot;image-1234&quot;
+   us-east-2 = &quot;image-4321&quot;
+  }
+}
+</pre></div></p>
+</li>
+<li>For example, you have defined resource_group name in the variable.tf file. you can call them in main.tf file like this
+<code>"${var.resource_group}"</code></li>
+</ul>
+<h1 id="sensitive-parameters">Sensitive Parameters</h1>
+<ul>
+<li>There may be sensitive parameters which should be shown only when running the terraform plan but not terraform apply.
+<div class="highlight"><pre><span></span>output &quot;sensitiveoutput&quot; {
+  sensitive = true
+  value     = VALUE
+}
+</pre></div></li>
+<li>When you run terraform apply, the output is labeled as sensitive. If there is any sensitive information, then you can protect it by using a sensitive parameter.</li>
+</ul>
+<h1 id="terraformtfvars-file">terraform.tfvars File</h1>
+<ul>
+<li>In terraform.tfvars file, we mention the "key/value" pair.</li>
+<li>The main.tf file takes the input from a terraform. tfvars file. If it is not present, it gets the input from variables.tf file.
+<div class="highlight"><pre><span></span>resource_group = &quot;user-ybje&quot;
+location = &quot;East US&quot;
+</pre></div></li>
+</ul>
+<h1 id="terraform-fmt">terraform fmt</h1>
+<ul>
+<li>It rewrites the confguration files to canonical style and format.</li>
+</ul>
+<h1 id="state-file-terraformtfstate">State File - terraform.tfstate</h1>
+<ul>
+<li>It is a <strong>JSON file</strong> that maps the real world resources to the configuration files. </li>
+<li>In terraform, there are three states.</li>
+<li><strong>Desired state</strong> - Represents how the infrastructure to be present.</li>
+<li><strong>Actual state</strong> - Represents the current state of infrastructure.</li>
+<li><strong>Known state</strong> - To bridge desired state and actual state, there is a known state. You can get the details of known state from a tfstate file.</li>
+<li>When you run terraform <strong>plan command</strong>, terraform performs a quick refresh and lists the actions needed to achieve the desired state.</li>
+<li>When terraform <strong>apply command</strong> is run, it applies the changes and updates the actual state.</li>
+</ul>
+<h1 id="modules">Modules</h1>
+<ul>
+<li>A module is like a reusable <strong>blueprint of infrastructure</strong>.</li>
+<li>A module is nothing but a folder of Terraform files.</li>
+<li>In terraform the modules are categorized into two types:</li>
+<li>Root modules - The current directory of Terraform files on which you are running the commands.</li>
+<li>Child modules - The modules sourced by the root module. To create a child module, add resources to it.
+<strong>Module syntax:</strong>
+<div class="highlight"><pre><span></span>module &quot;child&quot;
+{
+source = &quot;../child&quot;
+}
+</pre></div></li>
+<li>The difference between adding the resources and module is <strong>for adding the resource</strong> (Eg: resource "azurerm_virtual_network" 'test") you need type and name but for adding a module (Eg: module "child") only the name is enough.</li>
+<li>
+<p>The name of the module should be <strong>unique</strong> within configurations because it is used as a reference to the module and outputs.</p>
+</li>
+<li>
+<p>main.tf file so that it creates three virtual networks at a time.
+<div class="highlight"><pre><span></span>resource &quot;azurerm_virtual_network&quot;&quot;multiplevnets&quot; {
+   name = &quot;multiplevnets-${count.index}&quot;
+   resource_group_name=&quot;${var.resource_group&quot;}
+   location=&quot;${var.location}&quot;
+   address_space=[&quot;10.0.0.0/16&quot;]
+   count = 3
+}
+</pre></div></p>
+</li>
+</ul>
+<h1 id="updates">Updates</h1>
+<ul>
+<li><strong>terraform get</strong> - This command is used to download and install the modules for that configuration.</li>
+<li><strong>terraform get -update</strong> - It checks the downloaded modules and checks for the recent versions if any.</li>
+</ul>
+<h1 id="module-outputs">Module Outputs</h1>
+<p>If you need output from any module, you can get it by passing the required parameter.</p>
+<p>For example, the output of virtual network location can be found by following the below syntax. You can add this syntax to <strong>.tf file(main.tf or variables.tf)</strong>.
+<div class="highlight"><pre><span></span>output &quot;virtual_network_id&quot; {
+value = &quot;${azurerm_virtual_network.test.location}&quot;
+}  
 </pre></div>
+Where virtual_network_id is a unique name and "${azurerm_virtual_network.test.location}" is the location of the virtual network using string interpolation.</p>
+<h1 id="benefits-of-modules">Benefits of Modules</h1>
+<ul>
+<li><strong>Code reuse</strong>: When there is a need to provision the group of resources on another resource at the same time, a module can be used instead of copying the same code. It helps in resolving the bugs easily. If you want to make changes, changing the code in one place is enough.</li>
+<li><strong>Abstraction layer</strong>: It makes complex configurations easier to conceptualize.
+For example, if you like to add vault(Another harshicop's tool for managing secrets) cluster to the environment, it requires dozens of components. Instead of worrying about individual components, it gives ready-to-use vault cluster.</li>
+<li><strong>Black box</strong>: To create a vault, you only need some configuration parameters without worrying about the complexity. You don't need any knowledge on how to install vault, configuring vault cluster and working of the vault. You can create a working cluster in a few minutes.</li>
+<li><strong>Best practices in organization</strong>: When a module is created, you can give it to the other teams. It helps in easily developing the infrastructure.</li>
+<li>**Versioned artifacts: They are immutable artifacts and can be promoted from one environment to others.</li>
+</ul>
+<h1 id="introduction-to-meta-parameters">Introduction to Meta Parameters</h1>
+<p>There are some difficulties with the declarative language. For example, since it is a declarative language, there is no concept of for loops. How do you repeat a piece of code without copy paste?
+* Terraform provides primitives like meta parameter called as <strong>count, life cycle blocks like create_before_destroy, ternary operator and a large number of interpolation functions</strong>.
+This helps in performing certain types of loops, if statements and zero downtime deployments.</p>
+<h1 id="count">Count</h1>
+<ul>
+<li>
+<p>Count - It defines how many parameters you like to create.</p>
+</li>
+<li>
+<p>Modify main.tf file so that it creates three virtual networks at a time.
+<div class="highlight"><pre><span></span>resource &quot;azurerm_virtual_network&quot;&quot;multiplevnets&quot; {
+   name = &quot;multiplevnets-${count.index}&quot;
+   resource_group_name=&quot;${var.resource_group&quot;}
+   location=&quot;${var.location}&quot;
+   address_space=[&quot;10.0.0.0/16&quot;]
+   count = 3
+}
+</pre></div></p>
+</li>
+<li>To increase Vnets to 5, update <strong>count = 5</strong>.</li>
+<li>To decrease Vnets to 2, update <strong>count = 2</strong>, last 3 Vnets will get deleted.</li>
+</ul>
+<h1 id="elements">Elements</h1>
+<ul>
+<li>Suppose you like to create the three virtual networks with names vnet-A, vnet-B and vnet-C, you can do this easily with the help of <strong>list</strong>.</li>
+<li>Mention how many vnets you are going to create with the help of list and define it in variables.tf file
+<div class="highlight"><pre><span></span>variable &quot;name&quot; {
+  type= &quot;list&quot;
+  default = [&quot;A&quot;,&quot;B&quot;,&quot;C&quot;]
+}
+</pre></div></li>
+<li>You can call this variable in the main.tf file in the following way</li>
+<li><strong>count = "${length(var.name)}"</strong> - It returns number of elements present in the list. you should store it in meta parameter count.</li>
+<li><strong>"${element(var.name,count.index)}"</strong> - It acts as a loop, it takes the input from list and repeats until there are no elements in list.
+<strong>variables.tf </strong>
+<div class="highlight"><pre><span></span>variable &quot;resource_group&quot; {
+ default = &quot;user-nuqo&quot;
+  } 
+ variable &quot;location&quot; { 
+ default = &quot;East US&quot;
+  }  
+  variable &quot;name&quot; {
+   type = &quot;list&quot;
+   default = [&quot;A&quot;,&quot;B&quot;,&quot;C&quot;]
+  }
+</pre></div>
+<strong>main.tf</strong>
+<div class="highlight"><pre><span></span>resource &quot;azurerm_virtual_network&quot;&quot;multiple&quot; {
+name = &quot;vnet-${element(var.name,count.index)}&quot;
+resource_group_name = &quot;${var.resource_group}&quot;
+location = &quot;${var.location}&quot;
+address_space=[&quot;10.0.0.0/16&quot;]
+count=&quot;${length(var.name)}&quot; 
+}
+</pre></div></li>
+</ul>
+<h1 id="conditions">Conditions</h1>
+<p>For example, a vnet has to be created only, if the variable number of vnets is 3 or else no. You can do this by using the ternary operator.
+<strong>variables.tf</strong>
+<div class="highlight"><pre><span></span>variable &quot;no_of_vnets&quot; {
+   default= 3
+}
+</pre></div>
+<strong>main.tf</strong>
+<div class="highlight"><pre><span></span>count = &quot;${var.no_of_vnets ==3 ?1  : 0}&quot;
+</pre></div>
+* First, it will execute the ternary operator. If it is true, it takes the output as 1 or else 0.
+* Now, in the above case, the output is 1, the count becomes one, and the vnet is created.</p>
+<h1 id="inheriting-variables">Inheriting Variables</h1>
+<ul>
+<li>Inheriting the variables between modules keeps your Terraform code DRY.</li>
+<li><strong>Don't Repeat Yourself (DRY)</strong></li>
+<li>It aims at <strong>reducing repeating</strong> patterns and code.</li>
+<li>There is no need to write the <strong>duplicate code</strong> for each environment you are deploying.</li>
+<li>You can write the <strong>minimum code and achieve the goal</strong> by having maximum re-usability.</li>
+</ul>
+<h1 id="module-file-structure">Module File Structure</h1>
+<ul>
+<li>You will follow the <strong>below file structure to inherit</strong> the variables between modules.
+<div class="highlight"><pre><span></span> modules
+         |
+         |___mod
+         |    |__mod.tf
+         |
+         |___vnet
+              |__vnet.tf
+              |__vars.tf
+</pre></div></li>
+<li>There is one vnet and you can <strong>configure the vnet</strong> by passing the parameters from module.</li>
+<li>The variables in the vnet are <strong>overriden</strong> by the values provided in mod.tf file.</li>
+<li>Create a folder with name Modules</li>
+<li>Create two subfolders of names vnet and mod in the nested_modules folder.</li>
+<li>In the vnet folder, create a virtual network using Terraform configuration. Maintain two files one for <strong>main configuration(vnet.tf) and other for declaring variables(vars.tf)</strong>.</li>
+<li>Now, create main.tf file like this
+<div class="highlight"><pre><span></span>resource &quot;azurerm_virtual_network&quot;&quot;vnet&quot; {
+name = &quot;${var.name}&quot;
+address_space = [&quot;10.0.0.0/16&quot;]
+resource_group_name = &quot;${var.resourcegroup}&quot;
+location = &quot;${var.location}&quot;
+}
+</pre></div></li>
+<li>Now, vars.tf file looks like this
+<div class="highlight"><pre><span></span>variable &quot;name&quot; {
+description = &quot;name of the vnet&quot;
+}
+
+variable &quot;resourcegroup&quot; {
+description = &quot;name of the resource group&quot;
+}
+
+variable &quot;location&quot; {
+description =&quot;name of the location&quot;
+}
+
+variable &quot;address&quot; {
+type =&quot;list&quot;
+description = &quot;specify the address&quot;
+}
+</pre></div></li>
+<li>Create a folder with name mod in the modules directory. Create a file with name <strong>mod.tf</strong> and write the below code in it.</li>
+<li>We are passing the variables from the root module (mod) to the child module (vnet) using <strong>source path</strong>.
+<div class="highlight"><pre><span></span>module &quot;child&quot; {
+source = &quot;../vnet&quot;
+name = &quot;modvnet&quot;
+resourcegroup = &quot;user-vcom&quot;
+location  = &quot;eastus&quot;
+address = &quot;10.0.1.0/16&quot;
+}
+</pre></div></li>
+<li>Run terraform plan to visualize how the directories will be created. You can see the name of the vnet is taken from the module file instead of getting it from vars.tf</li>
+</ul>
+<h1 id="nested-modules">Nested Modules</h1>
+<ul>
+<li>For any module, root module should exist.</li>
+<li>Root module is basically a directory that holds the terraform configuration files for the desired infrastructure.</li>
+<li>They also provide the <strong>entry point</strong> to the nested modules you are going to utilize.</li>
+<li>For any module main.tf, vars.tf, and outputs.tf naming conventions are recommended.</li>
+<li>If you are using nested modules, create them under the <strong>subdirectory with name modules</strong>.
+<div class="highlight"><pre><span></span>checking_modules
+    |__modules
+    |      |____main.tf
+    |   
+    |______virtual_network 
+    |              |_main.tf
+    |              |_vars.tf
+    |
+    |______storage_account
+                      |_main.tf
+                      |_vars.tf
+</pre></div></li>
+<li>You will create three folders with names modules, virtual_network, and storage account.</li>
+<li>Make sure that you are following the terraform standards like writing the terraform configuration in the main file and defining the variables alone in the variables(vars.tf) file.
+<strong>stoacctmain.tf</strong>
+<div class="highlight"><pre><span></span>resource &quot;azurerm_storage_account&quot;&quot;storageacct&quot; {
+name = &quot;${var.name}&quot;
+resource_group_name = &quot;${var.rg}&quot;
+location = &quot;${var.loc}&quot;
+account_replication_type = &quot;${var.account_replication}&quot;
+account_tier = &quot;${var.account_tier}&quot;
+}
+</pre></div>
+<strong>stoacctvars.tf</strong>
+<div class="highlight"><pre><span></span>variable &quot;rg&quot; {
+    default = &quot;user-wmle&quot;
+}
+variable &quot;loc&quot; {
+    default = &quot;eastus&quot;
+}
+variable &quot;name&quot; {
+    default =&quot;storagegh&quot;
+}
+variable &quot;account_replication&quot; {  
+    default = &quot;LRS&quot;
+}
+variable &quot;account_tier&quot; {
+    default = &quot;Basic&quot;
+}
+</pre></div>
+<strong>Root Module (main.tf) file under checking_modules</strong>
+<div class="highlight"><pre><span></span>module &quot;vnet&quot; {
+source = &quot;../virtual_network&quot;
+name = &quot;mymodvnet&quot;
+}
+module &quot;stoacct&quot; {
+source = &quot;../storage_account&quot;
+name = &quot;mymodstorageaccount&quot;
+}
+</pre></div></li>
+<li>Not only the parameters mentioned above, but you can also pass any parameter from root module to the child modules.</li>
+<li>You can pass the parameters from the module to avoid the duplicity between them.</li>
+</ul>
+<h1 id="remote-backends">Remote Backends</h1>
+<ul>
+<li>It is better to store the code in a <strong>central repository</strong>.</li>
+<li>However, is having some disadvantages of doing so:</li>
+<li>You have to <strong>maintain push, pull configurations</strong>. If one pushes the wrong configuration and commits it, it becomes a problem.</li>
+<li>State file consists of <strong>sensitive information</strong>. So state files are non-editable.</li>
+<li>Backend in terraform explains how the state file is loaded and operations are executed.</li>
+<li>Backend can get initialize only after running terraform init command. So, terraform init is required to be run every time</li>
+<li>when backend is configured</li>
+<li>when any changes made to the backend</li>
+<li>when the backend configuration is removed completely</li>
+<li>Terraform <strong>cannot perform auto-initialize</strong> because it may require additional info from the user, to perform state migrations, etc..</li>
+<li>Below are the steps which you will be maintaining for creating <strong>remote backend</strong> in Azure.</li>
+<li>Create a storage account</li>
+<li>Create a storage container</li>
+<li>Create a backend</li>
+<li>Get the storage account access key and resource group name, give it as a parameter to the backend.</li>
+<li>Below is the complete file structure for sample backend. 
+<div class="highlight"><pre><span></span>Backend
+   |____stoacct.tf
+   |____stocontainer.tf
+   |____backend.tf
+   |____vars.tf
+   |____output.tf
+</pre></div></li>
+<li>stoacct.tf
+<div class="highlight"><pre><span></span>resource &quot;azurerm_storage_account&quot; &quot;storageaccount&quot; {
+  name                     = &quot;storageaccountname&quot;
+  resource_group_name      = &quot;${var.resourcegroup}&quot;
+  location                 = &quot;${var.location}&quot;
+  account_tier             = &quot;${var.accounttier}&quot;
+  account_replication_type = &quot;GRS&quot;
+
+  tags {
+    environment = &quot;staging&quot;
+  }
+}
+</pre></div></li>
+<li>stocontainer.tf
+<div class="highlight"><pre><span></span>resource &quot;azurerm_storage_container&quot; &quot;storagecontainer&quot; {
+  name                  = &quot;vhds&quot;
+  resource_group_name   = &quot;${var.resourcegroup}&quot;
+  storage_account_name  = &quot;${azurerm_storage_account.storageaccount.name}&quot;
+  container_access_type = &quot;private&quot;
+}
+</pre></div></li>
+<li>vars.tf
+<div class="highlight"><pre><span></span>variable &quot;resourcegroup&quot; {
+default = &quot;user-abcd&quot;
+}
+variable &quot;location&quot; {
+default = &quot;eastus&quot;
+}
+variable &quot;accounttier&quot; {
+default = &quot;Basic&quot;
+}
+</pre></div></li>
+<li>output.tf
+<div class="highlight"><pre><span></span>output &quot;storageacctname&quot; {
+value = &quot;${azurerm_storage_account.storageaccount.name}&quot;
+}
+
+output &quot;storageacctcontainer&quot; {
+value = &quot;${azurerm_storage_account.storagecontainer.name}&quot;
+}
+
+output &quot;access_key&quot; {
+value = &quot;${azurerm_storage_account.storageaccount.primary_access_key&quot;
+}
+</pre></div></li>
+<li>Before creating backend, run the command to get the storage account keys list(<strong>az storage account keys list --account-name storageacctname</strong>) 
+and copy one of the key somewhere. It is useful for configuring the backend.</li>
+<li>backend.tf
+<div class="highlight"><pre><span></span>terraform{
+    backend   &quot;azurerm&quot; {
+    storage_account_name = &quot;storageacct21&quot;
+    container_name = &quot;mycontainer&quot;
+    key = &quot;terraform.tfstate.change&quot;
+    resource_group_name = &quot;user-okvt&quot;
+    access_key = &quot;aJlf+XjZhxwRp4gsU4hkGrQJzO7xBzz7B9rSzMLB/ozwcM6k/1N.......==&quot; 
+    }
+}
+</pre></div></li>
+<li>where Parameters:</li>
+<li>storage_account_name - name of the storage account.</li>
+<li>container_name - name of the container.</li>
+<li>key- name of the tfstate blob.</li>
+<li>resource_group_name - name of the resource group.</li>
+<li>access_key - Storage account access key(any one).</li>
+</ul>
+<h1 id="points-to-remember">Points to Remember</h1>
+<ul>
+<li>You cannot use interpolation syntax to configure backends.</li>
+<li>After creating backend run terraform init, it will be in the locked state.</li>
+<li>By running terraform apply command automatically, the lease status is changed to locked.</li>
+<li>After it is applied, it will come to an unlocked state.</li>
+<li>This backend supports consistency checking and state locking using the native capabilities of the Azure storage account.</li>
+</ul>
+<h1 id="terragrunt">Terragrunt</h1>
+<ul>
+<li>Terragrunt is referred to as a thin wrapper for Terraform which provides extra tools to keep the terraform configurations DRY, 
+manage remote state and to work with multiple terraform modules.</li>
+</ul>
+<h1 id="terragrunt-commands">Terragrunt Commands</h1>
+<ul>
+<li>terragrunt get</li>
+<li>terragrunt plan</li>
+<li>terragrunt apply</li>
+<li>terragrunt output</li>
+<li>
+<p>terragrunt destroy</p>
+</li>
+<li>
+<p>Terragrunt supports the following use cases:</p>
+</li>
+<li>Keeps terraform code DRY.</li>
+<li>Remote state configuration DRY.</li>
+<li>CLI flags DRY.</li>
+<li>
+<p>Executing terraform commands on multiple modules at a time.</p>
+</li>
+<li>
+<p>Advantages of using terragrunt:</p>
+</li>
+<li>Provides locking mechanism.</li>
+<li>Allows you to use remote state always.</li>
+</ul>
+<h1 id="build-in-functions">Build-In Functions</h1>
+<h1 id="lookup">lookup</h1>
+<ul>
+<li>
+<p>This helps in performing a <strong>dynamic lookup</strong> into a map variable.</p>
+</li>
+<li>
+<p>The syntax for lookup variable is <code>lookup(map,key, [default])</code>.</p>
+</li>
+<li>map: The map parameter is a variable like var.name.</li>
+<li>key: The key parameter includes the key from where it should find the environment.</li>
+<li>
+<p>If the key doesn't exist in the map, interpolation will fail, if it doesn't find a third argument (default).</p>
+</li>
+<li>
+<p>The lookup will not work on nested lists or maps. It only works on flat maps.</p>
+</li>
+</ul>
+<h1 id="local-values">Local Values</h1>
+<ul>
+<li>Local values help in <strong>assigning names to the expressions</strong>, which can be used multiple times within a module without rewriting it.</li>
+<li>Local values are defined in the local blocks.</li>
+<li>It is recommended to group the logically related local values together as a single block, if there is a dependency between them.
+<div class="highlight"><pre><span></span>locals {
+service_name = &quot;Fresco&quot;
+owner = &quot;Team&quot;
+}
+</pre></div></li>
+<li>Example
+<div class="highlight"><pre><span></span>locals {
+  instance_ids = &quot;${concat(aws_instance.blue.*.id, aws_instance.green.*.id)}&quot;
+}
+</pre></div></li>
+<li>If a single value or a result is used in many places and it is likely to be changed in the future, then you can go with locals.</li>
+<li>It is recommended to <strong>not use many local values</strong> because it makes the read configurations hard to the future maintainers.</li>
+</ul>
+<h1 id="data-source">Data Source</h1>
+<ul>
+<li>Data source allows the data to be computed or fetched for use in Terraform configuration.</li>
+<li>Data sources allow the terraform configurations to build on the information defined outside the Terraform or by another Terraform configuration.</li>
+<li>Providers play a major role in implementing and defining data sources.</li>
+<li>Data source helps in two major ways:</li>
+<li>It provides a <strong>read-only</strong> view for the pre-existing data.</li>
+<li>
+<p>It can <strong>compute new values</strong> on the fly.</p>
+</li>
+<li>
+<p>Every data source in the Terraform is mapped to the provider depending on the <strong>longest-prefix-matching</strong>.
+<div class="highlight"><pre><span></span>data &quot;azurerm_resource_group&quot; &quot;passed&quot; {
+  name = &quot;${var.resource_group_name}&quot;
+}
+</pre></div></p>
+</li>
+</ul>
+<h1 id="concat-and-contains">Concat and Contains</h1>
+<p><code>concat(list1,list2)</code>
+* It combines two or more lists into a single list.
+<code>contains(list, element)</code>
+* It returns true if the element is present in the list or else false.
+E.g. <code>contains(var.list_of_strings, "an_element")</code></p>
+<h1 id="workspaces">Workspaces</h1>
+<ul>
+<li>Every terraform configurations has <strong>associate backends</strong> which defines how the operations are executed and where the persistent data like terraform state are stored.</li>
+<li>Persistent data stored in backend belongs to a workspace.</li>
+<li>Previously, the backend has only one workspace which is called as <strong>default</strong> and there will be only one state file associated with the configuration.</li>
+<li>Some of the backends support multiple workspaces, i.e. It allows multiple state files to be stored within a single configuration.</li>
+<li>The configuration is still having only one backend, and the multiple distinct instances can be deployed without configuring to a new backend or by changing authentication credentials.</li>
+<li>default workspace is special because you can't delete the default workspace.</li>
+<li>You cannot delete your active workspace (the workspace in which you are currently working).</li>
+<li>If you haven't created the workspace before, then you are working on the default workspace.</li>
+</ul>
+<h1 id="workspace-commands">Workspace Commands</h1>
+<ul>
+<li>terraform workspace new <name> - It creates the workspace with specified name and switches to it.</li>
+<li>terraform workspace list - It lists the workspaces available.</li>
+<li>terraform workspace select <name> - It switches to the specified workspace.</li>
+<li>terraform workspace delete <name> - It deletes the mentioned workspace.</li>
+</ul>
+<h1 id="configuring-multiple-providers">Configuring Multiple Providers</h1>
+<ul>
+<li>Below is the file structure that you will maintain for working with multiple providers.
+<div class="highlight"><pre><span></span>      multiple_providers
+       |
+       |___awsmain.tf
+       |
+       |___azuremain.tf
+       |
+       |___vars.tf
+       |
+       |___out.tf
+</pre></div></li>
+<li>Create an S3 bucket in Azure which helps in storing the file in AWS.</li>
+<li>awsmain.tf
+<div class="highlight"><pre><span></span>resource &quot;aws_s3_bucket&quot; &quot;b&quot; {
+  bucket = &quot;my-tf-test-bucket-21&quot;
+  acl    = &quot;private&quot;
+
+  tags = {
+    Name        = &quot;My bucket test&quot;
+    Environment = &quot;Dev&quot;
+  }
+}
+</pre></div></li>
+<li>Resource has two parameters: name(aws_s3_bucket) and type("b").</li>
+<li>Name of the resource may vary from provider to provider. Type of the resource depends on the user.</li>
+<li>Bucket indicates the name of the bucket. If it is not assigned, terraform assigns a random unique name.</li>
+<li>acl (access control list) - It helps to manage access to the buckets and objects.</li>
+<li>tag - It is a label which is assigned to the AWS resource by you or AWS.</li>
+<li>
+<p>Environment - On which environment do you like to deploy S3 bucket (Dev, Prod or Stage).     </p>
+</li>
+<li>
+<p>azuremain.tf
+<div class="highlight"><pre><span></span>resource &quot;azurerm_storage_account&quot;&quot;storageacct&quot; {
+name = &quot;storageacct21&quot;
+resource_group_name = &quot;${var.rg}&quot;
+location = &quot;${var.loc}&quot;
+account_replication_type = &quot;LRS&quot;
+account_tier = &quot;Standard&quot;
+}
+</pre></div></p>
+</li>
+<li>Parameters </li>
+<li>name - It indicates the name of the storage account.</li>
+<li>resource_group_name and location- name of the resource group and location.</li>
+<li>account_replication_type - Type of the account replication.</li>
+<li>
+<p>account_tier - Account tier type</p>
+</li>
+<li>
+<p>out.tf
+<div class="highlight"><pre><span></span>output &quot;account_tier&quot; {
+value = &quot;azurerm_storage_Account.storagecct.account_tier&quot;
+}
+</pre></div></p>
+</li>
+</ul>
                 
                   
                 
