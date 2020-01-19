@@ -1,3 +1,6 @@
+# Introduction
+* [Ansible 101](https://www.digitalocean.com/community/tutorials/configuration-management-101-writing-ansible-playbooks)
+* [Ansible Cheat Sheet](https://www.digitalocean.com/community/cheatsheets/how-to-use-ansible-cheat-sheet-guide)
 ``` yaml
 - hosts: host01
 ---
