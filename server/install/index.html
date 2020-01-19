@@ -649,6 +649,31 @@
 <li>
 <p>Securing Server</p>
 <p>Security based on articles mentioned <a href="https://medium.com/viithiisys/10-steps-to-secure-linux-server-for-production-environment-a135109a57c5">here</a> or <a href="https://www.cyberciti.biz/tips/linux-security.html">here</a> or <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-securing-your-linux-vps">DigitalOcean</a></p>
+<ul>
+<li><code>ssh-keygen -t rsa -b 4096</code> It will create two files: id_rsa and id_rsa.pub in the ~/.ssh directory.</li>
+<li>When you add a passphrase to your SSH key, it encrypts the private key using 128-bit AES so that the private key is useless without the passphrase to decrypt it.</li>
+<li><code>cat ~/.ssh/id_rsa.pub</code></li>
+<li>For example, if we had a Linux VM named myserver with a user azureuser, we could use the following command to install the public key file and authorize the user with the key:
+<code>ssh-copy-id -i ~/.ssh/id_rsa.pub azureuser@myserver</code></li>
+<li>Connect with SSH <code>ssh jim@137.117.101.249</code></li>
+<li>Try executing a few Linux commands
+<div class="highlight"><pre><span></span>ls -la / to show the root of the disk
+ps -l to show all the running processes
+dmesg to list all the kernel messages
+lsblk to list all the block devices - here you will see your drives
+</pre></div></li>
+<li>Initialize data disks</li>
+<li>Any additional drives you create from scratch need to be initialized and formatted. </li>
+<li><code>dmesg | grep SCSI</code>  - list all the messages from the kernel for SCSI devices.</li>
+<li>Use <code>fdisk</code> to initialize the drive</li>
+<li>We can use the following command to create a new primary partition: <code>(echo n; echo p; echo 1; echo ; echo ; echo w) | sudo fdisk /dev/sdc</code></li>
+<li>We need to write a file system to the partition with the mkfs command. <code>sudo mkfs -t ext4 /dev/sdc1</code></li>
+<li>We need to mount the drive to the file system. <code>sudo mkdir /data &amp; sudo mount /dev/sdc1 /data</code></li>
+<li>Always make sure to lock down ports used for administrative access. 
+An even better approach is to create a VPN to link the virtual network to your private network and only allow RDP or SSH requests from that address range. You can also change the port used by SSH to be something other than the default. 
+Keep in mind that changing ports is not sufficient to stop attacks. 
+It simply makes it a little harder to discover. </li>
+</ul>
 </li>
 </ol>
                 
