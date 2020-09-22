@@ -27,9 +27,12 @@ nav:
       - Introduction: ide/index.md
       - Markdown: ide/markdown.md
   - Learning:
+      - Git: learning/git.md
       - Ansible: learning/ansible.md
       - Python: learning/python.md
       - Terraform: learning/terraform.md
+      - Vagrant: learning/vagrant.md
+
 # Theme
 theme:
   name: 'material'

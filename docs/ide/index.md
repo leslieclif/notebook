@@ -1,5 +1,8 @@
 # IDE Tips and Tricks
 
+# VS Code
+
+# Intellij
 * How to open multiple modules in the same workspace?
 
 > Open the first module / project.

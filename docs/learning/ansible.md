@@ -1,6 +1,16 @@
 # Introduction
 * [Ansible 101](https://www.digitalocean.com/community/tutorials/configuration-management-101-writing-ansible-playbooks)
 * [Ansible Cheat Sheet](https://www.digitalocean.com/community/cheatsheets/how-to-use-ansible-cheat-sheet-guide)
+
+# Launching situational commands
+* To check the inventory file `ansible-inventory --list -y`
+* Test Connection `ansible all -m ping -u root`
+* Check the disk usage of all servers `ansible all -a "df -h" -u root`
+* Check the time of `uptime` each host in a group **servers** 
+`ansible servers -a "uptime" -u root`
+* Specify multiple hosts by separating their names with colons
+`ansible server1:server2 -m ping -u root`
+
 ``` yaml
 - hosts: host01
 ---
