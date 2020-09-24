@@ -10,7 +10,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <link rel="canonical" href="https://leslieclif.github.io/notebook/ide/markdown/">
+        <link rel="canonical" href="https://leslieclif.github.io/notebook/learning/vagrant/">
       
       
         <meta name="author" content="Leslie">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Markdown - Leslie's Online Notebook</title>
+        <title>Vagrant - Leslie's Online Notebook</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#general-syntax" class="md-skip">
+        <a href="#vagrant" class="md-skip">
           Skip to content
         </a>
       
@@ -91,7 +91,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Markdown
+              Vagrant
             
           </span>
         </div>
@@ -313,12 +313,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       IDE
@@ -338,7 +336,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../" title="Introduction" class="md-nav__link">
+    <a href="../../ide/" title="Introduction" class="md-nav__link">
       Introduction
     </a>
   </li>
@@ -348,20 +346,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Markdown" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../ide/markdown/" title="Markdown" class="md-nav__link">
       Markdown
     </a>
-    
   </li>
 
         
@@ -374,10 +363,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
       Learning
@@ -397,7 +388,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../learning/git/" title="Git" class="md-nav__link">
+    <a href="../git/" title="Git" class="md-nav__link">
       Git
     </a>
   </li>
@@ -409,7 +400,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../learning/ansible/" title="Ansible" class="md-nav__link">
+    <a href="../ansible/" title="Ansible" class="md-nav__link">
       Ansible
     </a>
   </li>
@@ -421,7 +412,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../learning/python/" title="Python" class="md-nav__link">
+    <a href="../python/" title="Python" class="md-nav__link">
       Python
     </a>
   </li>
@@ -433,7 +424,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../learning/terraform/" title="Terraform" class="md-nav__link">
+    <a href="../terraform/" title="Terraform" class="md-nav__link">
       Terraform
     </a>
   </li>
@@ -443,11 +434,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../learning/vagrant/" title="Vagrant" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="Vagrant" class="md-nav__link md-nav__link--active">
       Vagrant
     </a>
+    
   </li>
 
         
@@ -487,53 +487,21 @@
                   
                 
                 
-                <h1 id="general-syntax">General Syntax</h1>
-<blockquote>
-<p><a href="http://assemble.io/docs/Cheatsheet-Markdown.html">MarkDown Cheat Sheet</a> </p>
-</blockquote>
-<ol>
-<li>Headings
-    <code># h1 Heading
-      ## h2 Heading
-      ### h3 Heading
-      #### h4 Heading
-      ##### h5 Heading
-      ###### h6 Heading</code></li>
-<li>Horizontal Rule
-     <code>___: three consecutive underscores
-    ---: three consecutive dashes
-    ***: three consecutive asterisks</code></li>
-<li>Emphasis<ul>
-<li>Bold <code>**rendered as bold text**</code></li>
-<li>Italics <code>_rendered as italicized text_</code></li>
-<li>BlockQuote <code>&gt; Blockquotes</code></li>
-<li>Nested BlockQuote <code>&gt; First Level
-                       &gt;&gt; Second Level
-                       &gt;&gt;&gt; Third Level</code></li>
-</ul>
-</li>
-<li>
-<p>List</p>
-<ul>
-<li>Unordered <code>* or + or -</code></li>
-<li>Ordered <code>1.</code></li>
-</ul>
-</li>
-<li>
-<p>Code Block <code>`</code> or [```html] (3 backticks and follwed by the language)</p>
-</li>
-<li>
-<p>Links</p>
-<ul>
-<li>Inline Links <code>[Text](http://text.io)</code></li>
-<li>Link titles <code>[Text](https://github.com/site/ "Visit Site!")</code></li>
-</ul>
-</li>
-<li>
-<p>Images
-    <code>![Minion](http://octodex.github.com/images/minion.png)</code></p>
-</li>
-</ol>
+                <h1 id="vagrant">Vagrant</h1>
+<h1 id="init-with-a-image-in-vagrant-cloud">Init with a image in vagrant cloud</h1>
+<p>vagrant init hashicorp/precise64</p>
+<h1 id="start-the-vm">Start the vm</h1>
+<p>vagrant up</p>
+<h1 id="ssh-into-the-vm">SSH into the vm</h1>
+<p>vagrant ssh</p>
+<h1 id="hibernate-the-vm">Hibernate the vm</h1>
+<p>vagrant suspend</p>
+<h1 id="check-the-status-of-vagrant-vm">Check the status of vagrant vm</h1>
+<p>vagrant status</p>
+<h1 id="stop-the-vm">Stop the vm</h1>
+<p>vagrant halt</p>
+<h1 id="clean-up-the-vm">Clean up the vm</h1>
+<p>vagrant destroy</p>
                 
               
               
@@ -552,7 +520,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../" title="Introduction" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../terraform/" title="Terraform" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -561,25 +529,11 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Introduction
+                Terraform
               </div>
             </div>
           </a>
         
-        
-          <a href="../../learning/git/" title="Git" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Git
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
         
       </nav>
     </div>

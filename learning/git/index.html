@@ -10,7 +10,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <link rel="canonical" href="https://leslieclif.github.io/notebook/ide/markdown/">
+        <link rel="canonical" href="https://leslieclif.github.io/notebook/learning/git/">
       
       
         <meta name="author" content="Leslie">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Markdown - Leslie's Online Notebook</title>
+        <title>Git - Leslie's Online Notebook</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#general-syntax" class="md-skip">
+        <a href="#create-a-new-repository-on-the-command-line" class="md-skip">
           Skip to content
         </a>
       
@@ -91,7 +91,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Markdown
+              Git
             
           </span>
         </div>
@@ -313,12 +313,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       IDE
@@ -338,7 +336,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../" title="Introduction" class="md-nav__link">
+    <a href="../../ide/" title="Introduction" class="md-nav__link">
       Introduction
     </a>
   </li>
@@ -348,20 +346,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Markdown" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../ide/markdown/" title="Markdown" class="md-nav__link">
       Markdown
     </a>
-    
   </li>
 
         
@@ -374,10 +363,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
       Learning
@@ -395,11 +386,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../learning/git/" title="Git" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="Git" class="md-nav__link md-nav__link--active">
       Git
     </a>
+    
   </li>
 
         
@@ -409,7 +409,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../learning/ansible/" title="Ansible" class="md-nav__link">
+    <a href="../ansible/" title="Ansible" class="md-nav__link">
       Ansible
     </a>
   </li>
@@ -421,7 +421,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../learning/python/" title="Python" class="md-nav__link">
+    <a href="../python/" title="Python" class="md-nav__link">
       Python
     </a>
   </li>
@@ -433,7 +433,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../learning/terraform/" title="Terraform" class="md-nav__link">
+    <a href="../terraform/" title="Terraform" class="md-nav__link">
       Terraform
     </a>
   </li>
@@ -445,7 +445,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../learning/vagrant/" title="Vagrant" class="md-nav__link">
+    <a href="../vagrant/" title="Vagrant" class="md-nav__link">
       Vagrant
     </a>
   </li>
@@ -487,53 +487,156 @@
                   
                 
                 
-                <h1 id="general-syntax">General Syntax</h1>
-<blockquote>
-<p><a href="http://assemble.io/docs/Cheatsheet-Markdown.html">MarkDown Cheat Sheet</a> </p>
-</blockquote>
-<ol>
-<li>Headings
-    <code># h1 Heading
-      ## h2 Heading
-      ### h3 Heading
-      #### h4 Heading
-      ##### h5 Heading
-      ###### h6 Heading</code></li>
-<li>Horizontal Rule
-     <code>___: three consecutive underscores
-    ---: three consecutive dashes
-    ***: three consecutive asterisks</code></li>
-<li>Emphasis<ul>
-<li>Bold <code>**rendered as bold text**</code></li>
-<li>Italics <code>_rendered as italicized text_</code></li>
-<li>BlockQuote <code>&gt; Blockquotes</code></li>
-<li>Nested BlockQuote <code>&gt; First Level
-                       &gt;&gt; Second Level
-                       &gt;&gt;&gt; Third Level</code></li>
-</ul>
-</li>
-<li>
-<p>List</p>
-<ul>
-<li>Unordered <code>* or + or -</code></li>
-<li>Ordered <code>1.</code></li>
-</ul>
-</li>
-<li>
-<p>Code Block <code>`</code> or [```html] (3 backticks and follwed by the language)</p>
-</li>
-<li>
-<p>Links</p>
-<ul>
-<li>Inline Links <code>[Text](http://text.io)</code></li>
-<li>Link titles <code>[Text](https://github.com/site/ "Visit Site!")</code></li>
-</ul>
-</li>
-<li>
-<p>Images
-    <code>![Minion](http://octodex.github.com/images/minion.png)</code></p>
-</li>
-</ol>
+                <h1 id="create-a-new-repository-on-the-command-line">Create a new repository on the command line</h1>
+<p>git init
+git add README.md
+git commit -m "first commit"
+git branch -M master
+git remote add origin <a href="https://github.com/leslieclif/dotfiles.git">https://github.com/leslieclif/dotfiles.git</a>
+git push -u origin master</p>
+<h1 id="git-commands">Git Commands</h1>
+<p>cd into git folder &rarr; ls -la &rarr; cd .git &rarr; ls -la</p>
+<h1 id="git-help">Git help</h1>
+<p>git help <command></p>
+<h1 id="to-quit-help-q">To quit help &rarr; q</h1>
+<h1 id="best-practise-always-do-a-pull-before-a-push-to-merge-changes-from-remote">Best practise: Always do a pull before a push to merge changes from remote</h1>
+<p>git pull origin master</p>
+<h1 id="to-git-add-and-git-commit-for-tracked-files-in-a-single-comand-use-a">To git add and git commit for tracked files in a single comand use -a</h1>
+<p>git commit -am "Commit message"</p>
+<h1 id="amend-commit-message">Amend Commit message</h1>
+<p>git commit --amend "New commit message"</p>
+<h1 id="check-for-tracked-files-in-git">Check for tracked files in git</h1>
+<p>git ls-files</p>
+<h1 id="back-out-changes-that-have-been-commited-but-not-pushed-to-remote-once-unstaged-you-can-remove-the-changes-using-checkout">Back out changes that have been commited, but not pushed to remote. Once unstaged, you can remove the changes using checkout</h1>
+<p>git reset HEAD <file-name> 
+git checkout -- <file-name></p>
+<h1 id="rename-file-name-it-also-automatically-stages-the-changes-so-need-to-do-git-add">Rename file-name. It also automatically stages the changes, so need to do git add</h1>
+<p>git mv level3--file.txt level3.txt</p>
+<h1 id="if-file-is-renamed-outside-git-it-will-delete-and-add-the-files-in-git-history-and-is-not-staged-to-add-new-file-and-stage-the-renamed-files-use-a">If file is renamed outside git, it will delete and add the files in git history and is not staged. To add new file and stage the renamed files use -A</h1>
+<p>git add -A</p>
+<h1 id="moving-files-and-staging-the-changes">Moving files and staging the changes</h1>
+<p>git mv level2.txt new-folder</p>
+<h1 id="if-file-is-moved-outside-git-it-will-delete-and-add-the-files-in-git-history-and-is-not-staged-to-add-new-file-and-stage-the-renamed-files-use-a">If file is moved outside git, it will delete and add the files in git history and is not staged. To add new file and stage the renamed files use -A</h1>
+<p>mv level2.txt ..
+git add -A</p>
+<h1 id="file-renamed-in-os-but-say-git-has-identifed-unwanted-files-during-git-status-and-you-dont-want-to-add-those-files-then-dont-use-a-use-u">file renamed in OS. But say, git has identifed unwanted files during git status and you dont want to add those files, then don't use -A, use -u</h1>
+<h1 id="individually-add-the-new-renamed-file-first-then-update-git">Individually add the new renamed file first then update git</h1>
+<p>git add level1.txt
+git add -u</p>
+<h1 id="delete-files-tracked-by-git">Delete files tracked by git</h1>
+<p>git rm doomed.txt</p>
+<h1 id="if-file-is-delete-outside-git-it-will-delete-and-is-not-staged-to-add-and-stage-the-deleted-file-use-a">If file is delete outside git, it will delete and is not staged. To add and stage the deleted file  use -A</h1>
+<p>git add -A</p>
+<h1 id="git-history">Git History</h1>
+<p>git log</p>
+<h1 id="to-quit-help-q_1">To quit help &rarr; q</h1>
+<h1 id="git-history-in-one-line">Git history in one line</h1>
+<p>git log --oneline --graph --decorate</p>
+<h1 id="git-history-using-duration">Git history using duration</h1>
+<p>git log --since="3 days ago"</p>
+<h1 id="show-all-user-actions">Show all user actions</h1>
+<p>git reflog</p>
+<h1 id="show-commit-history-do-git-log-get-commit-id">Show commit history &rarr; do git log get commit id</h1>
+<p>git show <full commit id></p>
+<h1 id="todo-get-a-git-diff-tool">TODO: Get a git diff tool</h1>
+<h1 id="show-git-config">Show git config</h1>
+<p>git config --global --list</p>
+<h1 id="compare-with-staging-and-current-changes">Compare with staging and current changes</h1>
+<p>git diff</p>
+<h1 id="compare-between-current-changes-and-remote-last-commit">Compare between current changes and remote last commit</h1>
+<p>git diff HEAD</p>
+<h1 id="compare-between-staging-and-remote-last-commit">Compare between staging and remote last commit</h1>
+<p>git diff --staged HEAD</p>
+<h1 id="compare-file-changes-with-staging-and-current-changes">Compare file changes with staging and current changes</h1>
+<p>git diff -- <path to file+filename></p>
+<h1 id="compare-between-commits-do-git-log-to-get-commits">Compare between commits (do git log to get commits)</h1>
+<p>git diff <commit 1> <commit 2 or HEAD></p>
+<h1 id="compare-local-and-remote-branches">Compare local and remote branches</h1>
+<p>git diff master origin/master</p>
+<h1 id="compare-local-branches">Compare local branches</h1>
+<p>git diff master test-branch</p>
+<h1 id="branching">Branching</h1>
+<h1 id="list-local-and-remote-branches">List local and remote branches</h1>
+<p>git branch -a</p>
+<h1 id="create-new-branch">Create new branch</h1>
+<p>git branch <new branch name></p>
+<h1 id="rename-local-branch">Rename local branch</h1>
+<p>git branch -m <old branch name> <new branch name></p>
+<h1 id="delete-a-branch-note-you-have-to-be-on-another-bracnh-before-you-can-delete-the-target-branch">Delete a branch. Note: You have to be on another bracnh before you can delete the target branch</h1>
+<p>git branch -d <branch name></p>
+<h1 id="create-new-branch-and-switch-to-it-in-single-command">Create new branch and switch to it in single command</h1>
+<p>git checkout -b <branch name></p>
+<h1 id="fash-forward-merges-first-switch-to-the-target-branches-do-a-git-diff-to-review-the-changes">Fash forward Merges  &rarr; First switch to the target branches, do a git diff to review the changes.</h1>
+<p>git merge <source branch></p>
+<h1 id="disable-fast-forward-merge-give-tracing-of-merge-by-giving-a-custom-merge-message-and-also-the-commit-history-of-the-branch">Disable fast forward merge &rarr; Give tracing of merge by giving a custom merge message and also the commit history of the branch</h1>
+<p>git merge <source branch> --no-ff</p>
+<h1 id="automatic-merge">Automatic merge</h1>
+<p>git merge <source branch> -m "<commit message>"</p>
+<h1 id="merge-conflict-and-resolution">Merge Conflict and Resolution</h1>
+<h1 id="inside-the-merging-workspace-incase-of-conflict-open-the-conflicting-file-in-editor-or-the-merge-diff-tool-resolve-conflict-and-close-the-file">Inside the merging workspace incase of conflict, open the conflicting file in editor or the merge-diff tool. Resolve conflict and close the file.</h1>
+<h1 id="rebase-feature-branch-from-master">Rebase feature branch from master</h1>
+<p>git checkout feature-branch
+git rebase master</p>
+<h1 id="abort-rebase">Abort rebase</h1>
+<p>git rebase --abort</p>
+<h1 id="rebase-conflict-resolution-use-merging-tool-to-fix-conflict-save-and-quit-add-file-to-git-staging-then-continue-rebase">Rebase conflict resolution &rarr; Use merging tool to fix conflict, save and quit. Add file to git staging, then continue rebase</h1>
+<p>git rebase --continue</p>
+<h1 id="pull-with-rebase-rebase-local-master-with-remote-master">Pull with Rebase (Rebase local master with remote master)</h1>
+<p>git fetch origin master (non destructive merge which only updates references)
+git pull --rebase origin master</p>
+<h1 id="stash">Stash</h1>
+<p>git stash</p>
+<h1 id="stash-saving-untracked-files-of-git-as-well">Stash + saving untracked files of git as well</h1>
+<p>git stash -u</p>
+<h1 id="get-the-stash-back-to-local">Get the stash back to local</h1>
+<p>git stash apply</p>
+<h1 id="list-the-stash">List the stash</h1>
+<p>git stash list</p>
+<h1 id="drop-the-stash">Drop the stash</h1>
+<p>git stash drop</p>
+<h1 id="combination-of-apply-and-drop-in-one-command-brings-the-last-saved-state">Combination of apply and drop in one command. Brings the last saved state</h1>
+<p>git stash pop</p>
+<h1 id="multiple-stashes">Multiple Stashes</h1>
+<p>git stash save "<commit message to identify stash>"</p>
+<h1 id="show-any-arbitary-stash-changes-whithout-popping-do-stash-list-first-to-get-the-stash-id">Show any arbitary stash changes whithout popping. Do stash list first to get the stash ID</h1>
+<p>git stash show stash@{1}</p>
+<h1 id="apply-any-arbitary-stash-changes-do-stash-list-first-to-get-the-stash-id">Apply any arbitary stash changes. Do stash list first to get the stash ID</h1>
+<p>git stash apply stash@{1}</p>
+<h1 id="drop-any-arbitary-stash-changes-that-was-applied-or-not-needed">Drop any arbitary stash changes that was applied or not needed.</h1>
+<p>git stash drop stash@{1}</p>
+<h1 id="stashing-changes-into-a-new-branch-first-see-if-you-have-any-untracked-files-that-also-needs-to-be-saved">Stashing changes into a new branch. First see if you have any untracked files that also needs to be saved</h1>
+<p>git stash -u 
+git stash branch newbranchName</p>
+<h1 id="tagging">Tagging</h1>
+<h1 id="create-lightweight-tag">Create Lightweight tag</h1>
+<p>git tag mytag</p>
+<h1 id="list-existing-tags">List existing tags</h1>
+<p>git tag --list</p>
+<h1 id="delete-tag">Delete tag</h1>
+<p>git tag --delete mytag</p>
+<h1 id="create-annotated-tags-it-has-additional-information-like-release-notes">Create Annotated tags (It has additional information like release notes)</h1>
+<p>git tag -a v1.0.0 -m "Release 1.0.0"</p>
+<h1 id="comparing-tags">Comparing tags</h1>
+<p>git diff v1.0.0 v1.0.1</p>
+<h1 id="tagging-a-specific-commit-id">Tagging a specific commit ID</h1>
+<p>git tag -a v0.0.9 <commit id> -m "Release 0.0.9"</p>
+<h1 id="updating-an-existing-tag-with-new-commit-id">Updating an existing tag with new commit id</h1>
+<p>git tag -a v0.0.9 -f <new commit id> -m "Correct Release 0.0.9"</p>
+<h1 id="pushing-tags-to-remote">Pushing tags to remote</h1>
+<p>git push origin v1.0.0</p>
+<h1 id="pushing-all-local-tags-to-remote">Pushing all local tags to remote</h1>
+<p>git push origin master --tags</p>
+<h1 id="deleting-tags-in-remote-puting-before-tag-name-will-delete-it-from-remote-does-not-delete-tag-from-local">Deleting tags in remote (puting :before tag name will delete it from remote). Does not delete tag from local</h1>
+<p>git push origin :v0.0.9</p>
+<h1 id="reset-head-position">Reset HEAD position</h1>
+<p>git reset <commit id></p>
+<h1 id="using-stash-and-branch-combination">Using Stash and Branch combination</h1>
+<h1 id="first-stash-the-changes-wip-in-one-brabch-then-checkout-a-new-test-branch-and-then-pop-the-changes-into-this-test-branch">First stash the changes (WIP) in one brabch, then checkout a new test branch and then pop the changes into this test branch</h1>
+<p>git stash
+git checkout -b test
+git stash pop</p>
+<h1 id="cherry-pick-hot-fix-scenario">Cherry Pick (Hot Fix scenario)</h1>
+<p>git cherry-pick <commit-id></p>
                 
               
               
@@ -552,7 +655,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../" title="Introduction" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../ide/markdown/" title="Markdown" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -561,19 +664,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Introduction
+                Markdown
               </div>
             </div>
           </a>
         
         
-          <a href="../../learning/git/" title="Git" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../ansible/" title="Ansible" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Git
+                Ansible
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

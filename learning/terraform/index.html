@@ -8,7 +8,6 @@
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
         <link rel="canonical" href="https://leslieclif.github.io/notebook/learning/terraform/">
@@ -16,27 +15,8 @@
       
         <meta name="author" content="Leslie">
       
-      
-        <meta name="lang:clipboard.copy" content="Copy to clipboard">
-      
-        <meta name="lang:clipboard.copied" content="Copied to clipboard">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No matching documents">
-      
-        <meta name="lang:search.result.one" content="1 matching document">
-      
-        <meta name="lang:search.result.other" content="# matching documents">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.14">
     
     
       
@@ -44,27 +24,24 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.d3202873.min.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ff0a5ce4.min.css">
       
       
         
         
-        <meta name="theme-color" content="#3f51b5">
+        <meta name="theme-color" content="#4051b5">
       
     
-    
-      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
-    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
     
@@ -73,71 +50,76 @@
     
   </head>
   
-    
-    
-    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
-    <svg class="md-svg">
-      <defs>
-        
-        
-      </defs>
-    </svg>
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#infrastructure-as-code" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
-    
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#infrastructure-as-code" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://leslieclif.github.io/notebook/" title="Leslie's Online Notebook" class="md-header-nav__button md-logo">
-          
-            <i class="md-icon"></i>
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
-              Leslie's Online Notebook
-            </span>
-            <span class="md-header-nav__topic">
-              
-                Terraform
-              
-            </span>
-          
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://leslieclif.github.io/notebook/" title="Leslie's Online Notebook" class="md-header-nav__button md-logo" aria-label="Leslie's Online Notebook">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Leslie's Online Notebook
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Terraform
+            
+          </span>
         </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
       </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Type to start searching
+            Initializing search
           </div>
           <ol class="md-search-result__list"></ol>
         </div>
@@ -145,108 +127,32 @@
     </div>
   </div>
 </div>
-        
-      </div>
-      
-    </div>
+    
+    
   </nav>
 </header>
     
-    <div class="md-container">
+    <div class="md-container" data-md-component="container">
       
         
       
       
         
-
-  
-
-<nav class="md-tabs md-tabs--active" data-md-component="tabs">
-  <div class="md-tabs__inner md-grid">
-    <ul class="md-tabs__list">
       
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../.." title="Home" class="md-tabs__link">
-          Home
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../server/" title="Server" class="md-tabs__link">
-          Server
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../k8s/" title="Kubernetes" class="md-tabs__link">
-          Kubernetes
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../ide/" title="IDE" class="md-tabs__link">
-          IDE
-        </a>
-      
-    </li>
-  
-
-      
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../ansible/" title="Learning" class="md-tabs__link md-tabs__link--active">
-          Learning
-        </a>
-      
-    </li>
-  
-
-      
-    </ul>
-  </div>
-</nav>
-      
-      <main class="md-main">
-        <div class="md-main__inner md-grid" data-md-component="container">
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
           
             
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://leslieclif.github.io/notebook/" title="Leslie's Online Notebook" class="md-nav__button md-logo">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://leslieclif.github.io/notebook/" title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook">
       
-        <i class="md-icon"></i>
-      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
     </a>
     Leslie's Online Notebook
   </label>
@@ -260,13 +166,15 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
     
     <label class="md-nav__link" for="nav-1">
       Home
+      <span class="md-nav__icon md-icon"></span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Home" data-md-level="1">
       <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon"></span>
         Home
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -296,13 +204,15 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       Server
+      <span class="md-nav__icon md-icon"></span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Server" data-md-level="1">
       <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
         Server
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -356,13 +266,15 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       Kubernetes
+      <span class="md-nav__icon md-icon"></span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Kubernetes" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
         Kubernetes
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -404,13 +316,15 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
     
     <label class="md-nav__link" for="nav-4">
       IDE
+      <span class="md-nav__icon md-icon"></span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="IDE" data-md-level="1">
       <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
         IDE
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -454,17 +368,31 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
     
     <label class="md-nav__link" for="nav-5">
       Learning
+      <span class="md-nav__icon md-icon"></span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Learning" data-md-level="1">
       <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
         Learning
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../git/" title="Git" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
         
           
           
@@ -499,7 +427,7 @@
 
   <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
       
     
@@ -508,6 +436,18 @@
       Terraform
     </a>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../vagrant/" title="Vagrant" class="md-nav__link">
+      Vagrant
+    </a>
   </li>
 
         
@@ -527,7 +467,7 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
     
@@ -542,6 +482,9 @@
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
+                
+                
+                  
                 
                 
                 <h1 id="infrastructure-as-code">Infrastructure as Code</h1>
@@ -606,14 +549,14 @@ terraform --version</p>
 <h1 id="creating-virtual-network">Creating Virtual Network</h1>
 <ul>
 <li>create a virtual network without using the Azure portal and azure CLI commands.
-<div class="highlight"><pre><span></span>resource &quot;azurerm_virtual_network&quot;&quot;myterraformnetwork&quot;
+<div class="highlight"><pre><span></span><code>resource &quot;azurerm_virtual_network&quot;&quot;myterraformnetwork&quot;
   {
      name = &quot;myvnet&quot;
      address_space = [&quot;10.0.0.0/16&quot;]
      location=&quot;East US&quot;
      resource_group_name=&quot;er-tyjy&quot;
   }
-</pre></div></li>
+</code></pre></div></li>
 <li>Resource blocks define the infrastructure (resource "azurerm_virtual_network" "myterraformnetwork"). It contains the two strings - type of the resource(azurerm_virtualnetwork) and name of the resource(myterraformnetwork).</li>
 <li>Terraform uses <strong>plugin based architecture</strong> to support the various services providers and infrastructure available.</li>
 <li>When you run Terraform init command, it downloads and installs provider binary for the corresponding providers. In this case, it is Azure.</li>
@@ -635,7 +578,7 @@ terraform --version</p>
 <li>
 <p>In terraform, to <strong>reduce the complexity of code and for easiness</strong>, all the variables are created in the <strong>variables.tf</strong> file.
 <strong>variables.tf</strong>
-<div class="highlight"><pre><span></span>variable &quot;rg&quot;
+<div class="highlight"><pre><span></span><code>variable &quot;rg&quot;
 {
 default = &quot;terraform-lab2&quot;
 }
@@ -661,7 +604,7 @@ default =
    us-east-2 = &quot;image-4321&quot;
   }
 }
-</pre></div></p>
+</code></pre></div></p>
 </li>
 <li>For example, you have defined resource_group name in the variable.tf file. you can call them in main.tf file like this
 <code>"${var.resource_group}"</code></li>
@@ -669,20 +612,20 @@ default =
 <h1 id="sensitive-parameters">Sensitive Parameters</h1>
 <ul>
 <li>There may be sensitive parameters which should be shown only when running the terraform plan but not terraform apply.
-<div class="highlight"><pre><span></span>output &quot;sensitiveoutput&quot; {
+<div class="highlight"><pre><span></span><code>output &quot;sensitiveoutput&quot; {
   sensitive = true
   value     = VALUE
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>When you run terraform apply, the output is labeled as sensitive. If there is any sensitive information, then you can protect it by using a sensitive parameter.</li>
 </ul>
 <h1 id="terraformtfvars-file">terraform.tfvars File</h1>
 <ul>
 <li>In terraform.tfvars file, we mention the "key/value" pair.</li>
 <li>The main.tf file takes the input from a terraform. tfvars file. If it is not present, it gets the input from variables.tf file.
-<div class="highlight"><pre><span></span>resource_group = &quot;user-ybje&quot;
+<div class="highlight"><pre><span></span><code>resource_group = &quot;user-ybje&quot;
 location = &quot;East US&quot;
-</pre></div></li>
+</code></pre></div></li>
 </ul>
 <h1 id="terraform-fmt">terraform fmt</h1>
 <ul>
@@ -706,25 +649,25 @@ location = &quot;East US&quot;
 <li>Root modules - The current directory of Terraform files on which you are running the commands.</li>
 <li>Child modules - The modules sourced by the root module. To create a child module, add resources to it.
 <strong>Module syntax:</strong>
-<div class="highlight"><pre><span></span>module &quot;child&quot;
+<div class="highlight"><pre><span></span><code>module &quot;child&quot;
 {
 source = &quot;../child&quot;
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>The difference between adding the resources and module is <strong>for adding the resource</strong> (Eg: resource "azurerm_virtual_network" 'test") you need type and name but for adding a module (Eg: module "child") only the name is enough.</li>
 <li>
 <p>The name of the module should be <strong>unique</strong> within configurations because it is used as a reference to the module and outputs.</p>
 </li>
 <li>
 <p>main.tf file so that it creates three virtual networks at a time.
-<div class="highlight"><pre><span></span>resource &quot;azurerm_virtual_network&quot;&quot;multiplevnets&quot; {
+<div class="highlight"><pre><span></span><code>resource &quot;azurerm_virtual_network&quot;&quot;multiplevnets&quot; {
    name = &quot;multiplevnets-${count.index}&quot;
    resource_group_name=&quot;${var.resource_group&quot;}
    location=&quot;${var.location}&quot;
    address_space=[&quot;10.0.0.0/16&quot;]
    count = 3
 }
-</pre></div></p>
+</code></pre></div></p>
 </li>
 </ul>
 <h1 id="updates">Updates</h1>
@@ -735,10 +678,10 @@ source = &quot;../child&quot;
 <h1 id="module-outputs">Module Outputs</h1>
 <p>If you need output from any module, you can get it by passing the required parameter.</p>
 <p>For example, the output of virtual network location can be found by following the below syntax. You can add this syntax to <strong>.tf file(main.tf or variables.tf)</strong>.
-<div class="highlight"><pre><span></span>output &quot;virtual_network_id&quot; {
+<div class="highlight"><pre><span></span><code>output &quot;virtual_network_id&quot; {
 value = &quot;${azurerm_virtual_network.test.location}&quot;
 }  
-</pre></div>
+</code></pre></div>
 Where virtual_network_id is a unique name and "${azurerm_virtual_network.test.location}" is the location of the virtual network using string interpolation.</p>
 <h1 id="benefits-of-modules">Benefits of Modules</h1>
 <ul>
@@ -760,14 +703,14 @@ This helps in performing certain types of loops, if statements and zero downtime
 </li>
 <li>
 <p>Modify main.tf file so that it creates three virtual networks at a time.
-<div class="highlight"><pre><span></span>resource &quot;azurerm_virtual_network&quot;&quot;multiplevnets&quot; {
+<div class="highlight"><pre><span></span><code>resource &quot;azurerm_virtual_network&quot;&quot;multiplevnets&quot; {
    name = &quot;multiplevnets-${count.index}&quot;
    resource_group_name=&quot;${var.resource_group&quot;}
    location=&quot;${var.location}&quot;
    address_space=[&quot;10.0.0.0/16&quot;]
    count = 3
 }
-</pre></div></p>
+</code></pre></div></p>
 </li>
 <li>To increase Vnets to 5, update <strong>count = 5</strong>.</li>
 <li>To decrease Vnets to 2, update <strong>count = 2</strong>, last 3 Vnets will get deleted.</li>
@@ -776,16 +719,16 @@ This helps in performing certain types of loops, if statements and zero downtime
 <ul>
 <li>Suppose you like to create the three virtual networks with names vnet-A, vnet-B and vnet-C, you can do this easily with the help of <strong>list</strong>.</li>
 <li>Mention how many vnets you are going to create with the help of list and define it in variables.tf file
-<div class="highlight"><pre><span></span>variable &quot;name&quot; {
+<div class="highlight"><pre><span></span><code>variable &quot;name&quot; {
   type= &quot;list&quot;
   default = [&quot;A&quot;,&quot;B&quot;,&quot;C&quot;]
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>You can call this variable in the main.tf file in the following way</li>
 <li><strong>count = "${length(var.name)}"</strong> - It returns number of elements present in the list. you should store it in meta parameter count.</li>
 <li><strong>"${element(var.name,count.index)}"</strong> - It acts as a loop, it takes the input from list and repeats until there are no elements in list.
 <strong>variables.tf </strong>
-<div class="highlight"><pre><span></span>variable &quot;resource_group&quot; {
+<div class="highlight"><pre><span></span><code>variable &quot;resource_group&quot; {
  default = &quot;user-nuqo&quot;
   } 
  variable &quot;location&quot; { 
@@ -795,27 +738,27 @@ This helps in performing certain types of loops, if statements and zero downtime
    type = &quot;list&quot;
    default = [&quot;A&quot;,&quot;B&quot;,&quot;C&quot;]
   }
-</pre></div>
+</code></pre></div>
 <strong>main.tf</strong>
-<div class="highlight"><pre><span></span>resource &quot;azurerm_virtual_network&quot;&quot;multiple&quot; {
+<div class="highlight"><pre><span></span><code>resource &quot;azurerm_virtual_network&quot;&quot;multiple&quot; {
 name = &quot;vnet-${element(var.name,count.index)}&quot;
 resource_group_name = &quot;${var.resource_group}&quot;
 location = &quot;${var.location}&quot;
 address_space=[&quot;10.0.0.0/16&quot;]
 count=&quot;${length(var.name)}&quot; 
 }
-</pre></div></li>
+</code></pre></div></li>
 </ul>
 <h1 id="conditions">Conditions</h1>
 <p>For example, a vnet has to be created only, if the variable number of vnets is 3 or else no. You can do this by using the ternary operator.
 <strong>variables.tf</strong>
-<div class="highlight"><pre><span></span>variable &quot;no_of_vnets&quot; {
+<div class="highlight"><pre><span></span><code>variable &quot;no_of_vnets&quot; {
    default= 3
 }
-</pre></div>
+</code></pre></div>
 <strong>main.tf</strong>
-<div class="highlight"><pre><span></span>count = &quot;${var.no_of_vnets ==3 ?1  : 0}&quot;
-</pre></div>
+<div class="highlight"><pre><span></span><code>count = &quot;${var.no_of_vnets ==3 ?1  : 0}&quot;
+</code></pre></div>
 * First, it will execute the ternary operator. If it is true, it takes the output as 1 or else 0.
 * Now, in the above case, the output is 1, the count becomes one, and the vnet is created.</p>
 <h1 id="inheriting-variables">Inheriting Variables</h1>
@@ -829,7 +772,7 @@ count=&quot;${length(var.name)}&quot;
 <h1 id="module-file-structure">Module File Structure</h1>
 <ul>
 <li>You will follow the <strong>below file structure to inherit</strong> the variables between modules.
-<div class="highlight"><pre><span></span> modules
+<div class="highlight"><pre><span></span><code> modules
          |
          |___mod
          |    |__mod.tf
@@ -837,22 +780,22 @@ count=&quot;${length(var.name)}&quot;
          |___vnet
               |__vnet.tf
               |__vars.tf
-</pre></div></li>
+</code></pre></div></li>
 <li>There is one vnet and you can <strong>configure the vnet</strong> by passing the parameters from module.</li>
 <li>The variables in the vnet are <strong>overriden</strong> by the values provided in mod.tf file.</li>
 <li>Create a folder with name Modules</li>
 <li>Create two subfolders of names vnet and mod in the nested_modules folder.</li>
 <li>In the vnet folder, create a virtual network using Terraform configuration. Maintain two files one for <strong>main configuration(vnet.tf) and other for declaring variables(vars.tf)</strong>.</li>
 <li>Now, create main.tf file like this
-<div class="highlight"><pre><span></span>resource &quot;azurerm_virtual_network&quot;&quot;vnet&quot; {
+<div class="highlight"><pre><span></span><code>resource &quot;azurerm_virtual_network&quot;&quot;vnet&quot; {
 name = &quot;${var.name}&quot;
 address_space = [&quot;10.0.0.0/16&quot;]
 resource_group_name = &quot;${var.resourcegroup}&quot;
 location = &quot;${var.location}&quot;
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>Now, vars.tf file looks like this
-<div class="highlight"><pre><span></span>variable &quot;name&quot; {
+<div class="highlight"><pre><span></span><code>variable &quot;name&quot; {
 description = &quot;name of the vnet&quot;
 }
 
@@ -868,17 +811,17 @@ variable &quot;address&quot; {
 type =&quot;list&quot;
 description = &quot;specify the address&quot;
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>Create a folder with name mod in the modules directory. Create a file with name <strong>mod.tf</strong> and write the below code in it.</li>
 <li>We are passing the variables from the root module (mod) to the child module (vnet) using <strong>source path</strong>.
-<div class="highlight"><pre><span></span>module &quot;child&quot; {
+<div class="highlight"><pre><span></span><code>module &quot;child&quot; {
 source = &quot;../vnet&quot;
 name = &quot;modvnet&quot;
 resourcegroup = &quot;user-vcom&quot;
 location  = &quot;eastus&quot;
 address = &quot;10.0.1.0/16&quot;
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>Run terraform plan to visualize how the directories will be created. You can see the name of the vnet is taken from the module file instead of getting it from vars.tf</li>
 </ul>
 <h1 id="nested-modules">Nested Modules</h1>
@@ -888,7 +831,7 @@ address = &quot;10.0.1.0/16&quot;
 <li>They also provide the <strong>entry point</strong> to the nested modules you are going to utilize.</li>
 <li>For any module main.tf, vars.tf, and outputs.tf naming conventions are recommended.</li>
 <li>If you are using nested modules, create them under the <strong>subdirectory with name modules</strong>.
-<div class="highlight"><pre><span></span>checking_modules
+<div class="highlight"><pre><span></span><code>checking_modules
     |__modules
     |      |____main.tf
     |   
@@ -899,20 +842,20 @@ address = &quot;10.0.1.0/16&quot;
     |______storage_account
                       |_main.tf
                       |_vars.tf
-</pre></div></li>
+</code></pre></div></li>
 <li>You will create three folders with names modules, virtual_network, and storage account.</li>
 <li>Make sure that you are following the terraform standards like writing the terraform configuration in the main file and defining the variables alone in the variables(vars.tf) file.
 <strong>stoacctmain.tf</strong>
-<div class="highlight"><pre><span></span>resource &quot;azurerm_storage_account&quot;&quot;storageacct&quot; {
+<div class="highlight"><pre><span></span><code>resource &quot;azurerm_storage_account&quot;&quot;storageacct&quot; {
 name = &quot;${var.name}&quot;
 resource_group_name = &quot;${var.rg}&quot;
 location = &quot;${var.loc}&quot;
 account_replication_type = &quot;${var.account_replication}&quot;
 account_tier = &quot;${var.account_tier}&quot;
 }
-</pre></div>
+</code></pre></div>
 <strong>stoacctvars.tf</strong>
-<div class="highlight"><pre><span></span>variable &quot;rg&quot; {
+<div class="highlight"><pre><span></span><code>variable &quot;rg&quot; {
     default = &quot;user-wmle&quot;
 }
 variable &quot;loc&quot; {
@@ -927,9 +870,9 @@ variable &quot;account_replication&quot; {
 variable &quot;account_tier&quot; {
     default = &quot;Basic&quot;
 }
-</pre></div>
+</code></pre></div>
 <strong>Root Module (main.tf) file under checking_modules</strong>
-<div class="highlight"><pre><span></span>module &quot;vnet&quot; {
+<div class="highlight"><pre><span></span><code>module &quot;vnet&quot; {
 source = &quot;../virtual_network&quot;
 name = &quot;mymodvnet&quot;
 }
@@ -937,7 +880,7 @@ module &quot;stoacct&quot; {
 source = &quot;../storage_account&quot;
 name = &quot;mymodstorageaccount&quot;
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>Not only the parameters mentioned above, but you can also pass any parameter from root module to the child modules.</li>
 <li>You can pass the parameters from the module to avoid the duplicity between them.</li>
 </ul>
@@ -959,15 +902,15 @@ name = &quot;mymodstorageaccount&quot;
 <li>Create a backend</li>
 <li>Get the storage account access key and resource group name, give it as a parameter to the backend.</li>
 <li>Below is the complete file structure for sample backend. 
-<div class="highlight"><pre><span></span>Backend
+<div class="highlight"><pre><span></span><code>Backend
    |____stoacct.tf
    |____stocontainer.tf
    |____backend.tf
    |____vars.tf
    |____output.tf
-</pre></div></li>
+</code></pre></div></li>
 <li>stoacct.tf
-<div class="highlight"><pre><span></span>resource &quot;azurerm_storage_account&quot; &quot;storageaccount&quot; {
+<div class="highlight"><pre><span></span><code>resource &quot;azurerm_storage_account&quot; &quot;storageaccount&quot; {
   name                     = &quot;storageaccountname&quot;
   resource_group_name      = &quot;${var.resourcegroup}&quot;
   location                 = &quot;${var.location}&quot;
@@ -978,17 +921,17 @@ name = &quot;mymodstorageaccount&quot;
     environment = &quot;staging&quot;
   }
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>stocontainer.tf
-<div class="highlight"><pre><span></span>resource &quot;azurerm_storage_container&quot; &quot;storagecontainer&quot; {
+<div class="highlight"><pre><span></span><code>resource &quot;azurerm_storage_container&quot; &quot;storagecontainer&quot; {
   name                  = &quot;vhds&quot;
   resource_group_name   = &quot;${var.resourcegroup}&quot;
   storage_account_name  = &quot;${azurerm_storage_account.storageaccount.name}&quot;
   container_access_type = &quot;private&quot;
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>vars.tf
-<div class="highlight"><pre><span></span>variable &quot;resourcegroup&quot; {
+<div class="highlight"><pre><span></span><code>variable &quot;resourcegroup&quot; {
 default = &quot;user-abcd&quot;
 }
 variable &quot;location&quot; {
@@ -997,9 +940,9 @@ default = &quot;eastus&quot;
 variable &quot;accounttier&quot; {
 default = &quot;Basic&quot;
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>output.tf
-<div class="highlight"><pre><span></span>output &quot;storageacctname&quot; {
+<div class="highlight"><pre><span></span><code>output &quot;storageacctname&quot; {
 value = &quot;${azurerm_storage_account.storageaccount.name}&quot;
 }
 
@@ -1010,11 +953,11 @@ value = &quot;${azurerm_storage_account.storagecontainer.name}&quot;
 output &quot;access_key&quot; {
 value = &quot;${azurerm_storage_account.storageaccount.primary_access_key&quot;
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>Before creating backend, run the command to get the storage account keys list(<strong>az storage account keys list --account-name storageacctname</strong>) 
 and copy one of the key somewhere. It is useful for configuring the backend.</li>
 <li>backend.tf
-<div class="highlight"><pre><span></span>terraform{
+<div class="highlight"><pre><span></span><code>terraform{
     backend   &quot;azurerm&quot; {
     storage_account_name = &quot;storageacct21&quot;
     container_name = &quot;mycontainer&quot;
@@ -1023,7 +966,7 @@ and copy one of the key somewhere. It is useful for configuring the backend.</li
     access_key = &quot;aJlf+XjZhxwRp4gsU4hkGrQJzO7xBzz7B9rSzMLB/ozwcM6k/1N.......==&quot; 
     }
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>where Parameters:</li>
 <li>storage_account_name - name of the storage account.</li>
 <li>container_name - name of the container.</li>
@@ -1091,16 +1034,16 @@ manage remote state and to work with multiple terraform modules.</li>
 <li>Local values help in <strong>assigning names to the expressions</strong>, which can be used multiple times within a module without rewriting it.</li>
 <li>Local values are defined in the local blocks.</li>
 <li>It is recommended to group the logically related local values together as a single block, if there is a dependency between them.
-<div class="highlight"><pre><span></span>locals {
+<div class="highlight"><pre><span></span><code>locals {
 service_name = &quot;Fresco&quot;
 owner = &quot;Team&quot;
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>Example
-<div class="highlight"><pre><span></span>locals {
+<div class="highlight"><pre><span></span><code>locals {
   instance_ids = &quot;${concat(aws_instance.blue.*.id, aws_instance.green.*.id)}&quot;
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>If a single value or a result is used in many places and it is likely to be changed in the future, then you can go with locals.</li>
 <li>It is recommended to <strong>not use many local values</strong> because it makes the read configurations hard to the future maintainers.</li>
 </ul>
@@ -1116,10 +1059,10 @@ owner = &quot;Team&quot;
 </li>
 <li>
 <p>Every data source in the Terraform is mapped to the provider depending on the <strong>longest-prefix-matching</strong>.
-<div class="highlight"><pre><span></span>data &quot;azurerm_resource_group&quot; &quot;passed&quot; {
+<div class="highlight"><pre><span></span><code>data &quot;azurerm_resource_group&quot; &quot;passed&quot; {
   name = &quot;${var.resource_group_name}&quot;
 }
-</pre></div></p>
+</code></pre></div></p>
 </li>
 </ul>
 <h1 id="concat-and-contains">Concat and Contains</h1>
@@ -1149,7 +1092,7 @@ E.g. <code>contains(var.list_of_strings, "an_element")</code></p>
 <h1 id="configuring-multiple-providers">Configuring Multiple Providers</h1>
 <ul>
 <li>Below is the file structure that you will maintain for working with multiple providers.
-<div class="highlight"><pre><span></span>      multiple_providers
+<div class="highlight"><pre><span></span><code>      multiple_providers
        |
        |___awsmain.tf
        |
@@ -1158,10 +1101,10 @@ E.g. <code>contains(var.list_of_strings, "an_element")</code></p>
        |___vars.tf
        |
        |___out.tf
-</pre></div></li>
+</code></pre></div></li>
 <li>Create an S3 bucket in Azure which helps in storing the file in AWS.</li>
 <li>awsmain.tf
-<div class="highlight"><pre><span></span>resource &quot;aws_s3_bucket&quot; &quot;b&quot; {
+<div class="highlight"><pre><span></span><code>resource &quot;aws_s3_bucket&quot; &quot;b&quot; {
   bucket = &quot;my-tf-test-bucket-21&quot;
   acl    = &quot;private&quot;
 
@@ -1170,7 +1113,7 @@ E.g. <code>contains(var.list_of_strings, "an_element")</code></p>
     Environment = &quot;Dev&quot;
   }
 }
-</pre></div></li>
+</code></pre></div></li>
 <li>Resource has two parameters: name(aws_s3_bucket) and type("b").</li>
 <li>Name of the resource may vary from provider to provider. Type of the resource depends on the user.</li>
 <li>Bucket indicates the name of the bucket. If it is not assigned, terraform assigns a random unique name.</li>
@@ -1181,14 +1124,14 @@ E.g. <code>contains(var.list_of_strings, "an_element")</code></p>
 </li>
 <li>
 <p>azuremain.tf
-<div class="highlight"><pre><span></span>resource &quot;azurerm_storage_account&quot;&quot;storageacct&quot; {
+<div class="highlight"><pre><span></span><code>resource &quot;azurerm_storage_account&quot;&quot;storageacct&quot; {
 name = &quot;storageacct21&quot;
 resource_group_name = &quot;${var.rg}&quot;
 location = &quot;${var.loc}&quot;
 account_replication_type = &quot;LRS&quot;
 account_tier = &quot;Standard&quot;
 }
-</pre></div></p>
+</code></pre></div></p>
 </li>
 <li>Parameters </li>
 <li>name - It indicates the name of the storage account.</li>
@@ -1199,14 +1142,12 @@ account_tier = &quot;Standard&quot;
 </li>
 <li>
 <p>out.tf
-<div class="highlight"><pre><span></span>output &quot;account_tier&quot; {
+<div class="highlight"><pre><span></span><code>output &quot;account_tier&quot; {
 value = &quot;azurerm_storage_Account.storagecct.account_tier&quot;
 }
-</pre></div></p>
+</code></pre></div></p>
 </li>
 </ul>
-                
-                  
                 
               
               
@@ -1223,22 +1164,36 @@ value = &quot;azurerm_storage_Account.storagecct.account_tier&quot;
 <footer class="md-footer">
   
     <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../python/" title="Python" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+          <a href="../python/" title="Python" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
                 Python
-              </span>
+              </div>
             </div>
           </a>
         
+        
+          <a href="../vagrant/" title="Vagrant" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Vagrant
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
         
       </nav>
     </div>
@@ -1251,11 +1206,10 @@ value = &quot;azurerm_storage_Account.storagecct.account_tier&quot;
             Copyright &copy; 2018 - 2019 Leslie
           </div>
         
-        powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
-          Material for MkDocs</a>
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
       </div>
       
     </div>
@@ -1264,9 +1218,18 @@ value = &quot;azurerm_storage_Account.storagecct.account_tier&quot;
       
     </div>
     
-      <script src="../../assets/javascripts/application.245445c6.js"></script>
+      <script src="../../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
     
   </body>
