@@ -16,6 +16,7 @@ copyright: 'Copyright &copy; 2018 - 2019 Leslie'
 nav:
   - Home:
       - Welcome: index.md
+      - Setup: developer.md
   - Server:
       - Introduction: server/index.md
       - Installation: server/install.md
@@ -28,10 +29,11 @@ nav:
       - Markdown: ide/markdown.md
   - Learning:
       - Git: learning/git.md
-      - Ansible: learning/ansible.md
       - Python: learning/python.md
+       - Vagrant: learning/vagrant.md
+      - Ansible: learning/ansible.md
       - Terraform: learning/terraform.md
-      - Vagrant: learning/vagrant.md
+     
 
 # Theme
 theme:
