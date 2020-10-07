@@ -30,7 +30,7 @@ nav:
   - Learning:
       - Git: learning/git.md
       - Python: learning/python.md
-       - Vagrant: learning/vagrant.md
+      - Vagrant: learning/vagrant.md
       - Ansible: learning/ansible.md
       - Terraform: learning/terraform.md
      
