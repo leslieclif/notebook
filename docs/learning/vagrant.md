@@ -2,7 +2,8 @@
 # Windows setup
 * vagrant plugin install vagrant-vbguest
 * Image should have guest additions or it will not share folder from windows inside the VM
-
+# Internal Network
+Go to VirtualBox --> File --> Host Network Manager --> Check the enabled network DHCP address
 
 # Windows Features Turn On Off 
 Disable "virtual machine platform" and "windows hypervisor platform
@@ -27,6 +28,21 @@ vagrant status
 vagrant halt
 # Clean up the vm
 vagrant destroy
+
+3. Get Status of Vagrant Machines on host
+``` shell
+vagrant global-status
+```
+
+4. Get SSH Settings
+``` shell
+vagrant ssh-config
+```
+
+5. Reload Virtual Machine
+``` shell
+vagrant reload
+```
 
 !!! warning "Make sure the ssh key you created is stored parallel to your Vagrantfile before you execute the vagrant up command."
 
@@ -96,7 +112,6 @@ config.vm.provision "shell",
 # Adding custom scripts not in the project folder to the vm
 config.vm.provision "shell",
     path: "~/vagrant/scripts/provision.sh"
-
 
 # To restart vm
 sudo shutdown -r now

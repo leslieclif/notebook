@@ -1,6 +1,114 @@
 # Introduction
 * [Ansible 101](https://www.digitalocean.com/community/tutorials/configuration-management-101-writing-ansible-playbooks)
 * [Ansible Cheat Sheet](https://www.digitalocean.com/community/cheatsheets/how-to-use-ansible-cheat-sheet-guide)
+# Default Configuration
+ansible.cfg and hosts files are present inside `/etc/ansible`
+Testing ansible on Ubuntu WSL `ansible localhost -m ping`
+# Enabling SSH on the VM
+If you need SSH enabled on the system, follow the below steps:
+
+Ensure the /etc/apt/sources.list file has been updated as per above
+
+Run the command: apt-get update 
+
+Run the command: apt-get install openssh-server
+
+Run the command: service sshd start
+
+```BASH
+ssh-keygen -t rsa -C "ansible"
+
+OR
+
+Generate an SSH key pair for future connections to the VM instances (run the command exactly as it is):
+$ ssh-keygen -t rsa -f ~/.ssh/raddit-user -C raddit-user -P ""
+
+Add the SSH private key to the ssh-agent:
+$ ssh-add ~/.ssh/raddit-user
+
+Verify that the key was added to the ssh-agent:
+$ ssh-add -l
+```
+# Access VM over SSH
+```BASH
+ssh vagrant@127.0.0.1 -p 2222 -i ~/.ssh/insecure_private_key
+```
+# Copy files recursively from local desktop to remote server
+```BASH
+scp -r ./scripts vagrant@127.0.0.1:/home/vagrant -p 2222 -i ~/.ssh/insecure_private_key
+```
+# Target Docker containers for Ansible controller
+The Docker file used to create the ubuntu-ssh-enabled Docker image is located here.
+
+https://github.com/mmumshad/ubuntu-ssh-enabled 
+
+# Issues installing Ansible and its dependencies
+Once the Debian VM is up and running make the following changes to the /etc/apt/sources.list file to get the Ansible installation working right.
+
+```BASH
+deb http://security.debian.org/ jessie/updates main contrib
+deb-src http://security.debian.org/ jessie/updates main contrib
+deb http://ftp.debian.org/debian/ jessie-updates main contrib
+deb-src http://ftp.debian.org/debian/ jessie-updates main contrib
+deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main
+deb http://ftp.de.debian.org/debian sid main
+```
+
+# Directory Structure as per Best Practises
+
+This is the directory layout of this repository with explanation.
+
+```YAML
+
+production.ini            # inventory file for production stage
+development.ini           # inventory file for development stage
+test.ini                  # inventory file for test stage
+vpass                     # ansible-vault password file
+                          # This file should not be committed into the repository
+                          # therefore file is in ignored by git
+group_vars/
+    all/                  # variables under this directory belongs all the groups
+        apt.yml           # ansible-apt role variable file for all groups
+    webservers/           # here we assign variables to webservers groups
+        apt.yml           # Each file will correspond to a role i.e. apt.yml
+        nginx.yml         # ""
+    postgresql/           # here we assign variables to postgresql groups
+        postgresql.yml    # Each file will correspond to a role i.e. postgresql
+        postgresql-password.yml   # Encrypted password file
+plays/
+    ansible.cfg           # Ansible.cfg file that holds all ansible config
+    webservers.yml        # playbook for webserver tier
+    postgresql.yml        # playbook for postgresql tier
+
+roles/
+    roles_requirements.yml# All the information about the roles
+    external/             # All the roles that are in git or ansible galaxy
+                          # Roles that are in roles_requirements.yml file will be downloaded into this directory
+    internal/             # All the roles that are not public
+
+scripts/
+    setup/                 # All the setup files for updating roles and ansible dependencies
+```
+# WebApp  Installation Instructions for Centos 7
+## Install Python Pip and dependencies on Centos 7
+```BASH
+sudo yum install -y epel-release python python-pip
+sudo pip install flask flask-mysql
+```
+If you come across a certification validation error while running the above command, please use the below command.
+`sudo pip install --trusted-host files.pythonhosted.org --trusted-host pypi.org --trusted-host pypi.python.org flask flask-mysql`
+
+## Install MySQL Server on Centos 7
+```BASH
+wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm
+sudo yum update
+sudo yum -y install mysql-server
+sudo service mysql start
+
+The complete playbook to get the same workin on CentOS is here:
+https://github.com/kodekloudhub/simple_web_application
+```
 
 # Launching situational commands
 * To check the inventory file `ansible-inventory --list -y`
@@ -10,6 +118,10 @@
 `ansible servers -a "uptime" -u root`
 * Specify multiple hosts by separating their names with colons
 `ansible server1:server2 -m ping -u root`
+
+# Dynamic Inventory
+You will need to set an environment variable with your API Personal Access Token in the provisioning machine
+export DO_API_TOKEN=YOUR_API_TOKEN_HERE
 
 ``` yaml
 - hosts: host01
@@ -217,7 +329,7 @@ ansible-playbook -i myhosts tag.yml --tags "tag1,mymessage" # executes only cert
     - include: content.yml
     - include: create_folder.yml
     - include: content.yml
-- include: nginx.yml  #  apache.yml will not hav hosts & tasks but nginx.yml as a separate play will have tasks and can run independently
+- include: nginx.yml  #  apache.yml will not have hosts & tasks but nginx.yml as a separate play will have tasks and can run independently
 #nginx.yml
 ---
 - name: installing nginx

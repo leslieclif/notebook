@@ -1,3 +1,21 @@
+# Example using Docker images
+```Terraform
+// Main.tf
+resource "docker_image" "nginx" {
+    name = "nginx:latest"
+    keep_locally = false
+}
+
+resource "docker_container" "nginx" {
+    image = docker_image.nginx.latest
+    name = "webserver"
+    ports {
+        internal = 80
+        external = 8050
+    }
+}
+```
+
 # Infrastructure as Code
 * IaC is an important **DevOps cornerstone** that enables you to define, automatically manage, and provision infrastructure through source code.
 * Infrastructure is managed as a **software system**.
