@@ -45,7 +45,7 @@
     
     Security based on articles mentioned [here](https://medium.com/viithiisys/10-steps-to-secure-linux-server-for-production-environment-a135109a57c5) or [here](https://www.cyberciti.biz/tips/linux-security.html) or [DigitalOcean](https://www.digitalocean.com/community/tutorials/an-introduction-to-securing-your-linux-vps)
     
-    * `ssh-keygen -t rsa -b 4096` It will create two files: id_rsa and id_rsa.pub in the ~/.ssh directory.
+    * `-keygen -t rsa -b 4096` It will create two files: id_rsa and id_rsa.pub in the ~/.ssh directory.
     * When you add a passphrase to your SSH key, it encrypts the private key using 128-bit AES so that the private key is useless without the passphrase to decrypt it.
     * `cat ~/.ssh/id_rsa.pub`
     * For example, if we had a Linux VM named myserver with a user azureuser, we could use the following command to install the public key file and authorize the user with the key:

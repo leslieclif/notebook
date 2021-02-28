@@ -21,7 +21,7 @@ ssh-keygen -t rsa -C "ansible"
 OR
 
 Generate an SSH key pair for future connections to the VM instances (run the command exactly as it is):
-$ ssh-keygen -t rsa -f ~/.ssh/raddit-user -C raddit-user -P ""
+$ ssh-keygen -t rsa  -b 4096 -f ~/.ssh/raddit-user -C raddit-user -P ""
 
 Add the SSH private key to the ssh-agent:
 $ ssh-add ~/.ssh/raddit-user
