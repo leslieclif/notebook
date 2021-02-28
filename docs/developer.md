@@ -72,7 +72,7 @@ Change your remote's URL from HTTPS to SSH with the git remote set-url command.
 ```BASH
 $ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 ```
-
+git remote set-url origin git@github.com:leslieclif/notebook.git
 # Inspirational dotfile repos
 https://www.freecodecamp.org/news/how-to-set-up-a-fresh-ubuntu-desktop-using-only-dotfiles-and-bash-scripts/
 https://github.com/victoriadrake/dotfiles/tree/ubuntu-19.10
