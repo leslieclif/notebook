@@ -1,0 +1,1028 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <meta name="author" content="Leslie">
+      
+      
+        <link rel="canonical" href="https://leslieclif.github.io/notebook/learning/docker/docker-notes/">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.3">
+    
+    
+      
+        <title>Docker notes - Leslie's Online Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.1655a90d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#creating-and-using-containers-like-a-boss" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://leslieclif.github.io/notebook/" title="Leslie&#39;s Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Leslie's Online Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Docker notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://leslieclif.github.io/notebook/" title="Leslie&#39;s Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Leslie's Online Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      <label class="md-nav__link" for="__nav_1">
+        Home
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Home" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Home
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../developer/" class="md-nav__link">
+        Setup
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Server
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Server" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Server
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../server/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../server/install/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../server/mobile/" class="md-nav__link">
+        Mobile
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Kubernetes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Kubernetes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Kubernetes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../k8s/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../k8s/install/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        IDE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="IDE" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          IDE
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ide/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ide/markdown/" class="md-nav__link">
+        Markdown
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Learning
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Learning" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Learning
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vagrant/" class="md-nav__link">
+        Vagrant
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ansible/" class="md-nav__link">
+        Ansible
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../terraform/" class="md-nav__link">
+        Terraform
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#check-our-docker-install-and-config" class="md-nav__link">
+    Check Our Docker Install and Config
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image-vs-container" class="md-nav__link">
+    Image vs. Container
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-vs-vm-its-just-a-process" class="md-nav__link">
+    Container VS. VM: It's Just a Process
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-mighty-hub-using-docker-hub-registry-images" class="md-nav__link">
+    The Mighty Hub: Using Docker Hub Registry Images
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#images-and-their-layers-discover-the-image-cache" class="md-nav__link">
+    Images and Their Layers: Discover the Image Cache
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image-tagging-and-pushing-to-docker-hub" class="md-nav__link">
+    Image Tagging and Pushing to Docker Hub
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-a-shell-inside-containers-no-need-for-ssh" class="md-nav__link">
+    Getting a Shell Inside Containers: No Need for SSH
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleaning-docker-images" class="md-nav__link">
+    Cleaning Docker images
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-networks-concepts-for-private-and-public-comms-in-containers" class="md-nav__link">
+    Docker Networks: Concepts for Private and Public Comms in Containers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-networks-cli-management-of-virtual-networks" class="md-nav__link">
+    Docker Networks: CLI Management of Virtual Networks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-networks-dns-and-how-containers-find-each-other" class="md-nav__link">
+    Docker Networks: DNS and How Containers Find Each Other
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dns-round-robin-testing" class="md-nav__link">
+    DNS Round Robin Testing
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <ul>
+<li><a href="https://github.com/bretfisher/udemy-docker-mastery">Docker Mastery</a></li>
+<li><a href="https://www.bretfisher.com/shell/">Docker Shell Config</a></li>
+<li>
+<p><a href="https://github.com/mikegcoleman/docker101/blob/master/Docker_eBook_Jan_2017.pdf">Containers vs VM ebook</a></p>
+</li>
+<li>
+<p>Docker Cgroup and Namespaces</p>
+</li>
+<li>
+<p><a href="https://www.digitalocean.com/community/tutorials/package-management-basics-apt-yum-dnf-pkg">Linux Package Management Basics</a></p>
+</li>
+<li>
+<p><a href="https://docs.docker.com/config/formatting/">Formatting Docker CLI Output</a></p>
+</li>
+<li>
+<p><a href="https://docs.docker.com/engine/reference/builder/">Dockerfile Reference</a></p>
+</li>
+<li>
+<p><a href="https://howdns.works/">DNS Basics</a></p>
+</li>
+<li>
+<p><a href="https://github.com/moby/moby/blob/master/image/spec/v1.md">Docker Image</a></p>
+</li>
+<li>
+<p><a href="https://www.oreilly.com/radar/an-introduction-to-immutable-infrastructure/">Immutable Software</a></p>
+</li>
+<li><a href="https://12factor.net/">12 factor App</a></li>
+<li><a href="https://medium.com/@kelseyhightower/12-fractured-apps-1080c73d481c#.cjvkgw4b3">12 Fractured Apps</a></li>
+<li>
+<p><a href="https://docs.docker.com/storage/">Docker Storage</a></p>
+</li>
+<li>
+<p><a href="https://yaml.org/refcard.html">YAML Spec Ref Card</a></p>
+</li>
+<li>
+<p><a href="https://docs.docker.com/engine/swarm/secrets/">Docker secrets</a></p>
+</li>
+<li>
+<p><a href="https://docs.docker.com/engine/reference/builder/#healthcheck">Healthcheck in Dockerfile</a></p>
+</li>
+<li>
+<p><a href="https://docs.docker.com/registry/configuration/">Docker Registry Config</a></p>
+</li>
+<li><a href="https://docs.docker.com/registry/garbage-collection/">Docker Registry Garbage Collection</a></li>
+<li>
+<p><a href="https://docs.docker.com/registry/recipes/mirror/">Docker Registry as cache</a></p>
+</li>
+<li>
+<p><a href="https://kubernetes.io/docs/reference/kubectl/docker-cli-to-kubectl/">Docker CLI to kubectl</a></p>
+</li>
+<li><a href="https://kubernetes.io/docs/reference/kubectl/conventions/#best-practices">kubectl best practises</a></li>
+<li>
+<p><a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/object-management/">k8s Management techniques</a></p>
+</li>
+<li>
+<p><a href="https://github.com/BretFisher/ama/issues/17">Docker Security</a></p>
+</li>
+<li><a href="https://docs.docker.com/engine/security/">Docker Engine Security</a></li>
+<li><a href="https://sysdig.com/blog/20-docker-security-tools/">Docker Security Tools</a></li>
+<li><a href="https://docs.docker.com/engine/security/seccomp/">Seccomp</a></li>
+<li><a href="https://docs.docker.com/engine/security/apparmor/">App Armor</a></li>
+<li><a href="https://github.com/docker/docker-bench-security">Docker Bench</a></li>
+<li><a href="https://www.cisecurity.org/benchmark/docker/">CIS Docker checklist</a></li>
+<li><a href="https://integratedcode.us/2015/10/13/user-namespaces-have-arrived-in-docker/">User Namespaces</a></li>
+<li><a href="https://sysdig.com/opensource/falco/">Sysdig Falco</a></li>
+<li><a href="https://docs.docker.com/engine/security/apparmor/">Appamror Profiles</a></li>
+<li><a href="https://docs.docker.com/engine/security/seccomp/">Seccomp Profile</a></li>
+</ul>
+<div class="highlight"><pre><span></span><code>Starting container process caused <span class="s2">&quot;exec: \&quot;ping\&quot;: executable file not found in </span><span class="nv">$PATH</span><span class="s2">&quot;</span>: unknown
+
+apt-get update <span class="o">&amp;&amp;</span> apt-get install -y iputils-ping
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Starting mysql container and running ps causes <span class="s2">&quot;ps: command not found&quot;</span>
+apt-get update <span class="o">&amp;&amp;</span> apt-get install procps
+</code></pre></div>
+<p><a href="https://docs.docker.com/engine/reference/builder/">Dockerfile Reference</a></p>
+<h1 id="creating-and-using-containers-like-a-boss">Creating and Using Containers Like a Boss</h1>
+<h2 id="check-our-docker-install-and-config">Check Our Docker Install and Config</h2>
+<ul>
+<li><code>docker version</code> - verified cli can talk to engine</li>
+<li><code>docker info</code> - most config values of engine</li>
+</ul>
+<h2 id="image-vs-container">Image vs. Container</h2>
+<ul>
+<li>An Image is the application we want to run</li>
+<li>A Container is an instance of that image running as a process</li>
+<li>You can have many containers running off the same image</li>
+<li>Docker's default image "registry" is called <a href="hub.docker.com">Docker Hub</a></li>
+</ul>
+<div class="highlight"><pre><span></span><code>docker container run --publish <span class="m">80</span>:80 --detach --name webhost nginx
+docker container run -it - start new container interactively
+docker container <span class="nb">exec</span> -it - run additional <span class="nb">command</span> <span class="k">in</span>
+existing container
+docker container ls -a
+docker container logs webhost
+</code></pre></div>
+<h2 id="container-vs-vm-its-just-a-process">Container VS. VM: It's Just a Process</h2>
+<div class="highlight"><pre><span></span><code>docker run --name mongo -d mongo
+docker container top - process list <span class="k">in</span> one container
+docker stop mongo
+docker ps
+docker start mongo
+docker container inspect - details of one container config
+docker container stats - performance stats <span class="k">for</span> all containers
+</code></pre></div>
+<h2 id="the-mighty-hub-using-docker-hub-registry-images">The Mighty Hub: Using Docker Hub Registry Images</h2>
+<div class="highlight"><pre><span></span><code>docker pull nginx
+docker image ls
+</code></pre></div>
+<h2 id="images-and-their-layers-discover-the-image-cache">Images and Their Layers: Discover the Image Cache</h2>
+<div class="highlight"><pre><span></span><code>docker <span class="nb">history</span> nginx:latest
+docker image inspect nginx
+</code></pre></div>
+<h2 id="image-tagging-and-pushing-to-docker-hub">Image Tagging and Pushing to Docker Hub</h2>
+<div class="highlight"><pre><span></span><code>docker pull nginx:latest
+docker image ls
+docker image tag nginx bretfisher/nginx
+docker login
+cat .docker/config.json
+docker image push bretfisher/nginx
+docker image push bretfisher/nginx bretfisher/nginx:testing
+</code></pre></div>
+<h2 id="getting-a-shell-inside-containers-no-need-for-ssh">Getting a Shell Inside Containers: No Need for SSH</h2>
+<div class="highlight"><pre><span></span><code>docker container <span class="nb">exec</span> -it mysql -- bash
+docker container run -it alpine -- bash
+docker container run -it alpine -- sh
+</code></pre></div>
+<h2 id="cleaning-docker-images">Cleaning Docker images</h2>
+<ul>
+<li>Use <code>docker system df</code> to see space usage. </li>
+<li><code>docker image prune</code> to clean up just "dangling" images.</li>
+<li>The big one is usually <code>docker image prune -a</code> which will remove all images you're not using. </li>
+<li><code>docker volume prune</code> to remove unused volumes</li>
+<li><code>docker system prune</code> will clean up everything (Nuke everything that is not used currently).</li>
+<li><code>docker system prune -a</code> wipe everything.</li>
+</ul>
+<h2 id="docker-networks-concepts-for-private-and-public-comms-in-containers">Docker Networks: Concepts for Private and Public Comms in Containers</h2>
+<ul>
+<li>Each container connected to a private virtual network "bridge"</li>
+<li>Each virtual network routes through NAT firewall on host IP</li>
+<li>All containers on a virtual network can talk to each other
+without -p</li>
+<li>Best practice is to create a new virtual network for each app:</li>
+<li>network "my_web_app" for mysql and php/apache containers</li>
+<li>network "my_api" for mongo and nodejs containers
+<div class="highlight"><pre><span></span><code>docker container run -p <span class="m">80</span>:80 --name webhost -d nginx
+docker container port webhost
+docker container inspect --format <span class="s1">&#39;{{ .NetworkSettings.IPAddress }}&#39;</span> webhost
+</code></pre></div></li>
+</ul>
+<h2 id="docker-networks-cli-management-of-virtual-networks">Docker Networks: CLI Management of Virtual Networks</h2>
+<ul>
+<li>Show networks <code>docker network ls</code></li>
+<li>Inspect a network <code>docker network inspect</code></li>
+<li>Create a network <code>docker network create --driver</code></li>
+<li>Attach a network to container <code>docker network connect</code></li>
+<li>Detach a network from container <code>docker network disconnect</code>
+<div class="highlight"><pre><span></span><code>docker network ls
+docker network inspect bridge
+docker network create my_app_net
+docker container run -d --name new_nginx --network my_app_net nginx
+docker network inspect my_app_net
+docker network connect &lt;new network id&gt; &lt;container id&gt;
+docker container disconnect &lt;new network id&gt; &lt;container id&gt;
+</code></pre></div></li>
+</ul>
+<h2 id="docker-networks-dns-and-how-containers-find-each-other">Docker Networks: DNS and How Containers Find Each Other</h2>
+<ul>
+<li>Create your apps so frontend/backend sit on same Docker
+network</li>
+<li>Their inter-communication never leaves host</li>
+<li>All externally exposed ports closed by default</li>
+<li>You must manually expose via -p , which is better default
+security!</li>
+<li>Containers shouldn't rely on IP's for inter-communication</li>
+<li>DNS for friendly names is built-in if you use custom networks
+<div class="highlight"><pre><span></span><code>docker container run -d --name my_nginx --network my_app_net nginx
+docker container <span class="nb">exec</span> -it my_nginx ping new_nginx
+docker container <span class="nb">exec</span> -it new_nginx ping my_nginx
+</code></pre></div></li>
+</ul>
+<h2 id="dns-round-robin-testing">DNS Round Robin Testing</h2>
+<div class="highlight"><pre><span></span><code>docker network create dude
+docker container run -d --net dude --net-alias search elasticsearch:2
+docker container ls
+docker container run --rm -- net dude alpine nslookup search
+docker container run --rm --net dude centos curl -s search:9200
+</code></pre></div>
+<h1 id="container-lifetime-persistent-data-volumes-volumes-volumes">Container Lifetime &amp; Persistent Data: Volumes, Volumes, Volumes</h1>
+<h2 id="persistent-data-data-volumes">Persistent Data: Data Volumes</h2>
+<ul>
+<li>Containers are usually immutable and ephemeral</li>
+<li>"immutable infrastructure": only re-deploy containers, never change</li>
+<li>This is the ideal scenario, but what about databases, or unique
+data?</li>
+<li>Docker gives us features to ensure these "separation of concerns"</li>
+<li>This is known as "persistent data"</li>
+<li>Two ways: Volumes and Bind Mounts</li>
+<li><em>Volumes</em>: make special location outside of container UFS</li>
+<li><em>Bind Mounts</em>: link container path to host path
+<div class="highlight"><pre><span></span><code>docker container run -d --name mysql -e <span class="nv">MYSQL_ALLOW_EMPTY_PASSWORD</span><span class="o">=</span>True -v mysql-db:/var/lib/mysql mysql
+docker volume ls
+docker volume inspect mysql-db
+</code></pre></div></li>
+</ul>
+<h2 id="persistent-data-bind-mounting">Persistent Data: Bind Mounting</h2>
+<ul>
+<li>Used for local development</li>
+<li>Usecase: When you are changing files on laptop which you want to serve in the app</li>
+<li>It can be run only during <code>docker run</code> as there is no explicit volume command in the dockerfile</li>
+<li>the volume will be mounted in the working directory of the container
+<div class="highlight"><pre><span></span><code>docker container run -d --name nginx -p <span class="m">80</span>:80 -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/usr/share/nginx/html nginx
+docker container <span class="nb">exec</span> -it nginx -- bash
+<span class="nb">cd</span> /usr/share/nginx/html <span class="o">&amp;&amp;</span> ls -la
+</code></pre></div></li>
+<li>docker log streaming
+<div class="highlight"><pre><span></span><code>docker container logs -f &lt;container name&gt;
+</code></pre></div></li>
+</ul>
+<h2 id="database-passwords-in-containers">Database Passwords in Containers</h2>
+<ul>
+<li>When running postgres now, you'll need to either set a password, or tell it to allow any connection (which was the default before this change).
+-you need to either set a password with the environment variable:
+<code>POSTGRES_PASSWORD=mypasswd</code></li>
+<li>Or tell it to ignore passwords with the environment variable:
+<code>POSTGRES_HOST_AUTH_METHOD=trust</code></li>
+</ul>
+<h1 id="making-it-easier-with-docker-compose-the-multi-container-tool">Making It Easier with Docker Compose: The Multi-Container Tool</h1>
+<ul>
+<li>Why: configure relationships between containers</li>
+<li>Why: save our docker container run settings in easy-to-read file</li>
+<li>Why: create one-liner developer environment startups</li>
+<li>YAML-formatted file that describes our solution options for:
+  containers, networks, volumes</li>
+<li>A CLI tool <code>docker-compose</code> used for local dev/test
+automation with those YAML files</li>
+<li><code>docker-compose.yml</code> is default filename, but any can be
+used with <code>docker-compose -f</code></li>
+<li>Not a production-grade tool but ideal for local development and test</li>
+<li>Two most common commands are:
+<div class="highlight"><pre><span></span><code>docker-compose up # setup volumes/networks and start all containers
+docker-compose down # stop all containers and remove cont/vol/net
+</code></pre></div></li>
+</ul>
+<h2 id="trying-out-basic-compose-commands">Trying Out Basic Compose Commands</h2>
+<div class="highlight"><pre><span></span><code>docker-compose up
+docker-compose up -d  # Running compose <span class="k">in</span> bacground
+docker-compose down
+docker-compose down -v --rmi local/all # Removes images and volumes
+<span class="c"># Compose operations</span>
+docker-compose logs
+docker-compose ps
+docker-compose top
+
+docker-compose build # Build images or
+docker-compose up --build
+</code></pre></div>
+<h1 id="swarm-intro-and-creating-a-3-node-swarm-cluster">Swarm Intro and Creating a 3-Node Swarm Cluster</h1>
+<ul>
+<li>Swarm Mode is a clustering solution built inside Docker</li>
+<li>Not enabled by default</li>
+</ul>
+<h2 id="docker-swarm-init-what-just-happened">docker swarm init: What Just Happened?</h2>
+<ul>
+<li>Lots of PKI and security automation</li>
+<li>Root Signing Certificate created for our Swarm</li>
+<li>Certificate is issued for first Manager node</li>
+<li>Join tokens are created</li>
+<li>Raft database created to store root CA, configs and secrets</li>
+<li>Encrypted by default on disk (1.13+)</li>
+<li>No need for another key/value system to hold orchestration/secrets</li>
+<li>Replicates logs amongst Managers via mutual TLS in "control plane"</li>
+</ul>
+<h2 id="create-your-first-service-and-scale-it-locally">Create Your First Service and Scale it Locally</h2>
+<div class="highlight"><pre><span></span><code>docker info # swarm is down by default
+docker swarm init # start swarm
+docker node ls
+docker service create alpine ping <span class="m">8</span>.8.8.8 # creates service frosty_newton
+docker service ls
+docker service ps frosty_newton
+docker container ls
+docker service update frosty_newton --replicas <span class="m">3</span> # creates <span class="m">3</span> replicas
+docker service ls
+docker service rm frosty_newton # deletes the service
+docker service ls
+docker container ls
+</code></pre></div>
+<h2 id="creating-a-3-node-swarm-cluster">Creating a 3-Node Swarm Cluster</h2>
+<p><em>docker-machine + VirtualBox</em>
+- Free and runs locally, but requires a machine with 8GB memory
+<div class="highlight"><pre><span></span><code>docker-machine create node1
+docker-machine ssh node1
+docker-machine env node1
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>docker swarm init
+docker swarm init --advertise-addr node1
+docker node ls
+docker node update --role manager node2 # Update role to existing node
+docker swarm join-token manager # Shows join token <span class="k">for</span> manager role
+docker service create --replicas <span class="m">3</span> alpine ping <span class="m">8</span>.8.8.8 # Creates service with <span class="m">3</span> replicas and starts ping process
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>docker service ls
+docker service ps &lt;service name&gt;
+docker node ps
+docker node ps node2
+</code></pre></div></p>
+<h2 id="scaling-out-with-overlay-networking">Scaling Out with Overlay Networking</h2>
+<div class="highlight"><pre><span></span><code><span class="c"># Create Backend network</span>
+docker network create --driver overlay mydrupal
+docker network ls
+docker service create --name psql --netowrk mydrupal -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>mypass postgres
+docker service ls
+docker service ps psql
+docker container logs psql &lt;container name&gt;
+<span class="c"># Create Frontend network</span>
+docker service create --name drupal --network mydrupal -p <span class="m">80</span>:80 drupal
+docker service inspect drupal
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 - 2019 Leslie
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ca5457b8.min.js"></script>
+      
+    
+  </body>
+</html>
