@@ -221,85 +221,12 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+        
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Setup
-          <span class="md-nav__icon md-icon"></span>
-        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Setup
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#update-linux-packages" class="md-nav__link">
-    Update Linux packages
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#to-find-the-home-directory-in-ubuntu" class="md-nav__link">
-    To find the home directory in Ubuntu
-  </a>
-  
-    <nav class="md-nav" aria-label="To find the home directory in Ubuntu">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#using-the-ssh-config-files-sshconfig" class="md-nav__link">
-    Using the .ssh config files (~/.ssh/config)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#switching-remote-urls-from-https-to-ssh" class="md-nav__link">
-    Switching remote URLs from HTTPS to SSH
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#inspirational-dotfile-repos" class="md-nav__link">
-    Inspirational dotfile repos
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bashrc-automation" class="md-nav__link">
-    Bashrc Automation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vagrant-setup" class="md-nav__link">
-    Vagrant setup
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -656,69 +583,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+    
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#update-linux-packages" class="md-nav__link">
-    Update Linux packages
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#to-find-the-home-directory-in-ubuntu" class="md-nav__link">
-    To find the home directory in Ubuntu
-  </a>
-  
-    <nav class="md-nav" aria-label="To find the home directory in Ubuntu">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#using-the-ssh-config-files-sshconfig" class="md-nav__link">
-    Using the .ssh config files (~/.ssh/config)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#switching-remote-urls-from-https-to-ssh" class="md-nav__link">
-    Switching remote URLs from HTTPS to SSH
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#inspirational-dotfile-repos" class="md-nav__link">
-    Inspirational dotfile repos
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bashrc-automation" class="md-nav__link">
-    Bashrc Automation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vagrant-setup" class="md-nav__link">
-    Vagrant setup
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -731,18 +597,16 @@
               
                 
                 
-                  <h1>Setup</h1>
-                
                 <p>Update VS Code in Windows</p>
 <p>from dotfiles/programs - run ./vsc.sh. update chmod +x to make it executable in windows using Git Bash
 This will install vscode extensions</p>
 <p>Update WSL2 first (by default WLS1 is enabled)
 Install Ubuntu from Microsoft Stores
 Install Visual Studio Code</p>
-<h3 id="update-linux-packages">Update Linux packages<a class="headerlink" href="#update-linux-packages" title="Permanent link">&para;</a></h3>
+<h1 id="update-linux-packages">Update Linux packages<a class="headerlink" href="#update-linux-packages" title="Permanent link">&para;</a></h1>
 <p>sudo apt update
 sudo apt -y upgrade</p>
-<h3 id="to-find-the-home-directory-in-ubuntu">To find the home directory in Ubuntu<a class="headerlink" href="#to-find-the-home-directory-in-ubuntu" title="Permanent link">&para;</a></h3>
+<h1 id="to-find-the-home-directory-in-ubuntu">To find the home directory in Ubuntu<a class="headerlink" href="#to-find-the-home-directory-in-ubuntu" title="Permanent link">&para;</a></h1>
 <p>explorer.exe .</p>
 <p>Install Windows Terminal for Miscrosoft Store</p>
 <p>Install Menlo font (from Powerlevel10k site)</p>
@@ -758,7 +622,7 @@ sudo apt -y upgrade</p>
 <div class="highlight"><pre><span></span><code>ssh-keygen -t rsa  -b <span class="m">4096</span> -f ~/.ssh/raddit-user -C raddit-user
 </code></pre></div></p>
 <hr />
-<h4 id="using-the-ssh-config-files-sshconfig">Using the .ssh config files (~/.ssh/config)<a class="headerlink" href="#using-the-ssh-config-files-sshconfig" title="Permanent link">&para;</a></h4>
+<h2 id="using-the-ssh-config-files-sshconfig">Using the .ssh config files (~/.ssh/config)<a class="headerlink" href="#using-the-ssh-config-files-sshconfig" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Generate public &amp; private ssh keys:
@@ -792,7 +656,7 @@ server's <code>~/.ssh</code> directory. You can do a pipe via ssh:</p>
 <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-custom-connection-options-for-your-ssh-client">SSH Client Config</a></p>
 <p>Edit setings on the new terminal to make Ubuntu as the default terminal. Also set the fontFace and 
 <a href="https://www.the-digital-life.com/en/awesome-wsl-wsl2-terminal/">https://www.the-digital-life.com/en/awesome-wsl-wsl2-terminal/</a></p>
-<h3 id="switching-remote-urls-from-https-to-ssh">Switching remote URLs from HTTPS to SSH<a class="headerlink" href="#switching-remote-urls-from-https-to-ssh" title="Permanent link">&para;</a></h3>
+<h1 id="switching-remote-urls-from-https-to-ssh">Switching remote URLs from HTTPS to SSH<a class="headerlink" href="#switching-remote-urls-from-https-to-ssh" title="Permanent link">&para;</a></h1>
 <p>List your existing remotes in order to get the name of the remote you want to change.
 <div class="highlight"><pre><span></span><code>$ git remote -v
 &gt; origin  https://github.com/USERNAME/REPOSITORY.git <span class="o">(</span>fetch<span class="o">)</span>
@@ -802,15 +666,15 @@ Change your remote's URL from HTTPS to SSH with the git remote set-url command.
 <div class="highlight"><pre><span></span><code>$ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 </code></pre></div>
 git remote set-url origin <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#103;&#105;&#116;&#64;&#103;&#105;&#116;&#104;&#117;&#98;&#46;&#99;&#111;&#109;">&#103;&#105;&#116;&#64;&#103;&#105;&#116;&#104;&#117;&#98;&#46;&#99;&#111;&#109;</a>:leslieclif/notebook.git</p>
-<h3 id="inspirational-dotfile-repos">Inspirational dotfile repos<a class="headerlink" href="#inspirational-dotfile-repos" title="Permanent link">&para;</a></h3>
+<h1 id="inspirational-dotfile-repos">Inspirational dotfile repos<a class="headerlink" href="#inspirational-dotfile-repos" title="Permanent link">&para;</a></h1>
 <p><a href="https://www.freecodecamp.org/news/how-to-set-up-a-fresh-ubuntu-desktop-using-only-dotfiles-and-bash-scripts/">https://www.freecodecamp.org/news/how-to-set-up-a-fresh-ubuntu-desktop-using-only-dotfiles-and-bash-scripts/</a>
 <a href="https://github.com/victoriadrake/dotfiles/tree/ubuntu-19.10">https://github.com/victoriadrake/dotfiles/tree/ubuntu-19.10</a>
 <a href="https://github.com/georgijd/dotfiles">https://github.com/georgijd/dotfiles</a></p>
 <p><a href="https://github.com/jieverson/dotfiles-win/blob/master/install.sh">https://github.com/jieverson/dotfiles-win/blob/master/install.sh</a></p>
-<h3 id="bashrc-automation">Bashrc Automation<a class="headerlink" href="#bashrc-automation" title="Permanent link">&para;</a></h3>
+<h1 id="bashrc-automation">Bashrc Automation<a class="headerlink" href="#bashrc-automation" title="Permanent link">&para;</a></h1>
 <p><a href="https://victoria.dev/blog/how-to-do-twice-as-much-with-half-the-keystrokes-using-.bashrc/">https://victoria.dev/blog/how-to-do-twice-as-much-with-half-the-keystrokes-using-.bashrc/</a>
 <a href="https://victoria.dev/blog/how-to-write-bash-one-liners-for-cloning-and-managing-github-and-gitlab-repositories/">https://victoria.dev/blog/how-to-write-bash-one-liners-for-cloning-and-managing-github-and-gitlab-repositories/</a></p>
-<h3 id="vagrant-setup">Vagrant setup<a class="headerlink" href="#vagrant-setup" title="Permanent link">&para;</a></h3>
+<h1 id="vagrant-setup">Vagrant setup<a class="headerlink" href="#vagrant-setup" title="Permanent link">&para;</a></h1>
 <p><a href="https://www.techdrabble.com/ansible/36-install-ansible-molecule-vagrant-on-windows-wsl">https://www.techdrabble.com/ansible/36-install-ansible-molecule-vagrant-on-windows-wsl</a></p>
                 
               
