@@ -38,7 +38,6 @@ nav:
       - Docker: learning/docker/docker-notes.md
       - Kubernetes: learning/k8s/k8s-notes.md
      
-
 # Theme
 theme:
   name: 'material'
@@ -48,12 +47,15 @@ theme:
     code: 'Roboto Mono'
   feature:
     - navigation.tabs
-    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
     - navigation.indexes
     - navigation.top
     - toc.integrate
+    - search.suggest
+    - search.highlight
+    - header.autohide
   palette:
     #primary: 'indigo'
     #accent: 'indigo'
@@ -70,6 +72,9 @@ theme:
 hide:
   - navigation # Hide navigation
   - toc        # Hide table of contents
+# Footer
+extra:
+  generator: false
 # Extensions
 markdown_extensions:
   - toc:
