@@ -63,5 +63,9 @@
      <loc>https://leslieclif.github.io/notebook/learning/docker/docker-notes/</loc>
      <lastmod>2021-03-15</lastmod>
      <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://leslieclif.github.io/notebook/learning/k8s/k8s-notes/</loc>
+     <lastmod>2021-03-15</lastmod>
+     <changefreq>daily</changefreq>
     </url>
 </urlset>
