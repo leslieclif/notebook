@@ -14,20 +14,20 @@ repo_name: 'notebook'
 copyright: 'Copyright &copy; 2018 - 2019 Leslie'
 
 nav:
-  - Home:
-      - Welcome: index.md
+  - Home: 
+      - index.md
       - Setup: developer.md
   - Server:
-      - Introduction: server/index.md
+      - server/index.md
       - Installation: server/install.md
       - Mobile: server/mobile.md
   - Devops:
-      - Introduction: devops/index.md
+      - devops/index.md
   - Kubernetes:
-      - Introduction: k8s/index.md
+      - k8s/index.md
       - Installation: k8s/install.md
   - IDE:
-      - Introduction: ide/index.md
+      - ide/index.md
       - Markdown: ide/markdown.md
   - Learning:
       - Git: learning/git.md
@@ -47,16 +47,30 @@ theme:
     text: 'Roboto'
     code: 'Roboto Mono'
   feature:
-    tabs: true
+    - navigation.tabs
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - toc.integrate
   palette:
-    primary: 'indigo'
-    accent: 'indigo'
-
+    #primary: 'indigo'
+    #accent: 'indigo'
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 # Extensions
 markdown_extensions:
   - toc:
       permalink: True
       baselevel: "1"
+      slugify: !!python/name:pymdownx.slugs.uslugify_cased
   - admonition
   - footnotes
   - meta
