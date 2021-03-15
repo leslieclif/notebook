@@ -65,11 +65,15 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
+# Desirable to hide the navigation and/or table of contents sidebar,
+# especially when there's a single navigation item. 
+hide:
+  - navigation # Hide navigation
+  - toc        # Hide table of contents
 # Extensions
 markdown_extensions:
   - toc:
       permalink: True
-      baselevel: "1"
       toc_depth: 3
       slugify: !!python/name:pymdownx.slugs.uslugify_cased
   - admonition
