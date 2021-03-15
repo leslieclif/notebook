@@ -56,7 +56,7 @@ theme:
 markdown_extensions:
   - toc:
       permalink: True
-      baselevel: "3"
+      baselevel: "1"
   - admonition
   - footnotes
   - meta
