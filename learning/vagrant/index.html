@@ -27,10 +27,6 @@
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
         
-          
-          
-          <meta name="theme-color" content="#4051b5">
-        
       
     
     
@@ -53,10 +49,12 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue">
       
   
     
@@ -66,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#windows-setup" class="md-skip">
+        <a href="#Windows-setup" class="md-skip">
           Skip to content
         </a>
       
@@ -203,7 +201,7 @@
   
     <li class="md-nav__item">
       <a href="../.." class="md-nav__link">
-        Welcome
+        Welcome to Leslie's Notebook
       </a>
     </li>
   
@@ -257,7 +255,7 @@
   
     <li class="md-nav__item">
       <a href="../../server/" class="md-nav__link">
-        Introduction
+        Server Details
       </a>
     </li>
   
@@ -323,7 +321,7 @@
   
     <li class="md-nav__item">
       <a href="../../devops/" class="md-nav__link">
-        Introduction
+        Index
       </a>
     </li>
   
@@ -365,7 +363,7 @@
   
     <li class="md-nav__item">
       <a href="../../k8s/" class="md-nav__link">
-        Introduction
+        Kubernetes
       </a>
     </li>
   
@@ -419,7 +417,7 @@
   
     <li class="md-nav__item">
       <a href="../../ide/" class="md-nav__link">
-        Introduction
+        IDE Tips and Tricks
       </a>
     </li>
   
@@ -600,34 +598,34 @@
                 <div class="admonition info">
 <p class="admonition-title">Vagrant is not able to run on Windows 10 + WLS2</p>
 </div>
-<h1 id="windows-setup">Windows setup<a class="headerlink" href="#windows-setup" title="Permanent link">&para;</a></h1>
+<h1 id="Windows-setup">Windows setup<a class="headerlink" href="#Windows-setup" title="Permanent link">&para;</a></h1>
 <ul>
 <li>vagrant plugin install vagrant-vbguest</li>
 <li>Image should have guest additions or it will not share folder from windows inside the VM</li>
 </ul>
-<h1 id="internal-network">Internal Network<a class="headerlink" href="#internal-network" title="Permanent link">&para;</a></h1>
+<h1 id="Internal-Network">Internal Network<a class="headerlink" href="#Internal-Network" title="Permanent link">&para;</a></h1>
 <p>Go to VirtualBox &rarr; File &rarr; Host Network Manager &rarr; Check the enabled network DHCP address</p>
-<h1 id="windows-features-turn-on-off">Windows Features Turn On Off<a class="headerlink" href="#windows-features-turn-on-off" title="Permanent link">&para;</a></h1>
+<h1 id="Windows-Features-Turn-On-Off">Windows Features Turn On Off<a class="headerlink" href="#Windows-Features-Turn-On-Off" title="Permanent link">&para;</a></h1>
 <p>Disable "virtual machine platform" and "windows hypervisor platform</p>
-<h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
+<h1 id="Installation">Installation<a class="headerlink" href="#Installation" title="Permanent link">&para;</a></h1>
 <p>Install same version of Vagrant in Windows and WSL
 Verify <code>vagrant --version</code> in both to match
 In windows try downloading a box and start
 vagrant up --provider=virtualbox</p>
-<h1 id="vagrant">Vagrant<a class="headerlink" href="#vagrant" title="Permanent link">&para;</a></h1>
-<h1 id="init-with-a-image-in-vagrant-cloud">Init with a image in vagrant cloud<a class="headerlink" href="#init-with-a-image-in-vagrant-cloud" title="Permanent link">&para;</a></h1>
+<h1 id="Vagrant">Vagrant<a class="headerlink" href="#Vagrant" title="Permanent link">&para;</a></h1>
+<h1 id="Init-with-a-image-in-vagrant-cloud">Init with a image in vagrant cloud<a class="headerlink" href="#Init-with-a-image-in-vagrant-cloud" title="Permanent link">&para;</a></h1>
 <p>vagrant init hashicorp/precise64</p>
-<h1 id="start-the-vm">Start the vm<a class="headerlink" href="#start-the-vm" title="Permanent link">&para;</a></h1>
+<h1 id="Start-the-vm">Start the vm<a class="headerlink" href="#Start-the-vm" title="Permanent link">&para;</a></h1>
 <p>vagrant up</p>
-<h1 id="ssh-into-the-vm">SSH into the vm<a class="headerlink" href="#ssh-into-the-vm" title="Permanent link">&para;</a></h1>
+<h1 id="SSH-into-the-vm">SSH into the vm<a class="headerlink" href="#SSH-into-the-vm" title="Permanent link">&para;</a></h1>
 <p>vagrant ssh</p>
-<h1 id="hibernate-the-vm">Hibernate the vm<a class="headerlink" href="#hibernate-the-vm" title="Permanent link">&para;</a></h1>
+<h1 id="Hibernate-the-vm">Hibernate the vm<a class="headerlink" href="#Hibernate-the-vm" title="Permanent link">&para;</a></h1>
 <p>vagrant suspend</p>
-<h1 id="check-the-status-of-vagrant-vm">Check the status of vagrant vm<a class="headerlink" href="#check-the-status-of-vagrant-vm" title="Permanent link">&para;</a></h1>
+<h1 id="Check-the-status-of-vagrant-vm">Check the status of vagrant vm<a class="headerlink" href="#Check-the-status-of-vagrant-vm" title="Permanent link">&para;</a></h1>
 <p>vagrant status</p>
-<h1 id="stop-the-vm">Stop the vm<a class="headerlink" href="#stop-the-vm" title="Permanent link">&para;</a></h1>
+<h1 id="Stop-the-vm">Stop the vm<a class="headerlink" href="#Stop-the-vm" title="Permanent link">&para;</a></h1>
 <p>vagrant halt</p>
-<h1 id="clean-up-the-vm">Clean up the vm<a class="headerlink" href="#clean-up-the-vm" title="Permanent link">&para;</a></h1>
+<h1 id="Clean-up-the-vm">Clean up the vm<a class="headerlink" href="#Clean-up-the-vm" title="Permanent link">&para;</a></h1>
 <p>vagrant destroy</p>
 <ol>
 <li>
@@ -652,80 +650,80 @@ vagrant up --provider=virtualbox</p>
 <div class="admonition info">
 <p class="admonition-title">Vagrant commands</p>
 </div>
-<h1 id="managing-vagrant-boxes">Managing Vagrant boxes<a class="headerlink" href="#managing-vagrant-boxes" title="Permanent link">&para;</a></h1>
-<h1 id="download-a-box-to-a-machine">Download a box to a machine<a class="headerlink" href="#download-a-box-to-a-machine" title="Permanent link">&para;</a></h1>
+<h1 id="Managing-Vagrant-boxes">Managing Vagrant boxes<a class="headerlink" href="#Managing-Vagrant-boxes" title="Permanent link">&para;</a></h1>
+<h1 id="Download-a-box-to-a-machine">Download a box to a machine<a class="headerlink" href="#Download-a-box-to-a-machine" title="Permanent link">&para;</a></h1>
 <p>vagrant box add ubuntu/trusty64
 vagrant box add centos/8</p>
-<h1 id="list-boxes-on-machine">List boxes on machine<a class="headerlink" href="#list-boxes-on-machine" title="Permanent link">&para;</a></h1>
+<h1 id="List-boxes-on-machine">List boxes on machine<a class="headerlink" href="#List-boxes-on-machine" title="Permanent link">&para;</a></h1>
 <p>vagrant box list</p>
-<h1 id="update-an-existing-box-on-a-machine">Update an existing box on a machine<a class="headerlink" href="#update-an-existing-box-on-a-machine" title="Permanent link">&para;</a></h1>
+<h1 id="Update-an-existing-box-on-a-machine">Update an existing box on a machine<a class="headerlink" href="#Update-an-existing-box-on-a-machine" title="Permanent link">&para;</a></h1>
 <p>vagrant box outdated
 vagrant box update</p>
-<h1 id="run-a-downloaded-box-cd-into-a-folder">Run a downloaded box &rarr; cd into a folder<a class="headerlink" href="#run-a-downloaded-box-cd-into-a-folder" title="Permanent link">&para;</a></h1>
+<h1 id="Run-a-downloaded-box----cd-into-a-folder">Run a downloaded box &rarr; cd into a folder<a class="headerlink" href="#Run-a-downloaded-box----cd-into-a-folder" title="Permanent link">&para;</a></h1>
 <p>vagrant init ubuntu/trusty64
 vagrant up</p>
-<h1 id="remove-a-downloaded-box-from-a-machine">Remove a downloaded box  from a machine<a class="headerlink" href="#remove-a-downloaded-box-from-a-machine" title="Permanent link">&para;</a></h1>
+<h1 id="Remove-a-downloaded-box--from-a-machine">Remove a downloaded box  from a machine<a class="headerlink" href="#Remove-a-downloaded-box--from-a-machine" title="Permanent link">&para;</a></h1>
 <p>vagrant box remove ubuntu/trusty64</p>
-<h1 id="finding-boxes">Finding boxes<a class="headerlink" href="#finding-boxes" title="Permanent link">&para;</a></h1>
+<h1 id="Finding-boxes">Finding boxes<a class="headerlink" href="#Finding-boxes" title="Permanent link">&para;</a></h1>
 <p>vagrantboxes.es &amp; vagrantcloud &rarr; find a box and copy the url
 vagrant box add <custom name> <copy box url>
 vagrant init <custom name>
 vagrant up</p>
-<h1 id="using-plugins">Using Plugins<a class="headerlink" href="#using-plugins" title="Permanent link">&para;</a></h1>
-<h1 id="list-existing-plugins">List existing plugins<a class="headerlink" href="#list-existing-plugins" title="Permanent link">&para;</a></h1>
+<h1 id="Using-Plugins">Using Plugins<a class="headerlink" href="#Using-Plugins" title="Permanent link">&para;</a></h1>
+<h1 id="List-existing-plugins">List existing plugins<a class="headerlink" href="#List-existing-plugins" title="Permanent link">&para;</a></h1>
 <p>vagrant plugin list</p>
-<h1 id="install-plugins">Install Plugins<a class="headerlink" href="#install-plugins" title="Permanent link">&para;</a></h1>
+<h1 id="Install-Plugins">Install Plugins<a class="headerlink" href="#Install-Plugins" title="Permanent link">&para;</a></h1>
 <p>vagrant plugin install vagrant-vbguest</p>
-<h1 id="update-plugin-version">Update Plugin version<a class="headerlink" href="#update-plugin-version" title="Permanent link">&para;</a></h1>
+<h1 id="Update-Plugin-version">Update Plugin version<a class="headerlink" href="#Update-Plugin-version" title="Permanent link">&para;</a></h1>
 <p>vagrant plugin update vagrant-vbguest</p>
-<h1 id="update-all-plugins">Update all plugins<a class="headerlink" href="#update-all-plugins" title="Permanent link">&para;</a></h1>
+<h1 id="Update-all-plugins">Update all plugins<a class="headerlink" href="#Update-all-plugins" title="Permanent link">&para;</a></h1>
 <p>vagrant plugin update</p>
-<h1 id="remove-plugins">Remove Plugins<a class="headerlink" href="#remove-plugins" title="Permanent link">&para;</a></h1>
+<h1 id="Remove-Plugins">Remove Plugins<a class="headerlink" href="#Remove-Plugins" title="Permanent link">&para;</a></h1>
 <p>vagrant plugin uninstall vagrant-vbguest</p>
-<h1 id="adding-services-to-startup-boot">Adding services to startup boot<a class="headerlink" href="#adding-services-to-startup-boot" title="Permanent link">&para;</a></h1>
+<h1 id="Adding-services-to-startup-boot">Adding services to startup boot<a class="headerlink" href="#Adding-services-to-startup-boot" title="Permanent link">&para;</a></h1>
 <p>sudo chkconfig --add httpd
 sudo chkconfig httpd on
 sudo service httpd stop</p>
-<h2 id="create-symbolic-link-which-will-serve-file-from-local-on-vagrant-machine-ensure-index-html-file-is-there-in-local-root">Create symbolic link which will serve file from local on vagrant machine, ensure index html file is there in local root<a class="headerlink" href="#create-symbolic-link-which-will-serve-file-from-local-on-vagrant-machine-ensure-index-html-file-is-there-in-local-root" title="Permanent link">&para;</a></h2>
+<h2 id="Create-symbolic-link-which-will-serve-file-from-local-on-vagrant-machine-ensure-index-html-file-is-there-in-local-root">Create symbolic link which will serve file from local on vagrant machine, ensure index html file is there in local root<a class="headerlink" href="#Create-symbolic-link-which-will-serve-file-from-local-on-vagrant-machine-ensure-index-html-file-is-there-in-local-root" title="Permanent link">&para;</a></h2>
 <p>cd /var/www/html
 cd .. &amp;&amp; rm -rf html
 sudo ln -s /vagrant /var/www/html
 sudo service httpd start</p>
-<h1 id="packaging-vagrant-after-baking">Packaging Vagrant after baking<a class="headerlink" href="#packaging-vagrant-after-baking" title="Permanent link">&para;</a></h1>
-<h1 id="imp-that-vm-is-running-check-status">Imp that VM is running, check status<a class="headerlink" href="#imp-that-vm-is-running-check-status" title="Permanent link">&para;</a></h1>
+<h1 id="Packaging-Vagrant-after-baking">Packaging Vagrant after baking<a class="headerlink" href="#Packaging-Vagrant-after-baking" title="Permanent link">&para;</a></h1>
+<h1 id="Imp-that-VM-is-running-check-status">Imp that VM is running, check status<a class="headerlink" href="#Imp-that-VM-is-running-check-status" title="Permanent link">&para;</a></h1>
 <p>vagrant status
 vagrant package --output <custom-name>.box
 vagrant box add <custom name> <custom-name>.box</p>
-<h1 id="custom-base-box-packaging-after-customization-hardening">Custom base box packaging after customization / hardening<a class="headerlink" href="#custom-base-box-packaging-after-customization-hardening" title="Permanent link">&para;</a></h1>
+<h1 id="Custom-base-box-packaging-after-customization--hardening">Custom base box packaging after customization / hardening<a class="headerlink" href="#Custom-base-box-packaging-after-customization--hardening" title="Permanent link">&para;</a></h1>
 <p>vagrant package --base <vm name in Virtual box terminal></p>
-<h1 id="switching-of-guest-additions-checks-if-the-plugin-is-available-in-local">Switching of guest additions checks if the plugin is available in local<a class="headerlink" href="#switching-of-guest-additions-checks-if-the-plugin-is-available-in-local" title="Permanent link">&para;</a></h1>
-<h1 id="add-line-in-config">Add line in config<a class="headerlink" href="#add-line-in-config" title="Permanent link">&para;</a></h1>
+<h1 id="Switching-of-guest-additions-checks-if-the-plugin-is-available-in-local">Switching of guest additions checks if the plugin is available in local<a class="headerlink" href="#Switching-of-guest-additions-checks-if-the-plugin-is-available-in-local" title="Permanent link">&para;</a></h1>
+<h1 id="Add-line-in-config">Add line in config<a class="headerlink" href="#Add-line-in-config" title="Permanent link">&para;</a></h1>
 <p>config.vbguest.auto_update = false</p>
-<h1 id="adding-a-file-from-local-machine-not-in-the-project-folder-to-the-vm">Adding a file from local machine not in the project folder to the vm<a class="headerlink" href="#adding-a-file-from-local-machine-not-in-the-project-folder-to-the-vm" title="Permanent link">&para;</a></h1>
+<h1 id="Adding-a-file-from-local-machine-not-in-the-project-folder-to-the-vm">Adding a file from local machine not in the project folder to the vm<a class="headerlink" href="#Adding-a-file-from-local-machine-not-in-the-project-folder-to-the-vm" title="Permanent link">&para;</a></h1>
 <p>config.vm.provision "file",
     source: "~/vagrant/files/git-files",
     destination: "~/.gitconfig"</p>
-<h2 id="if-vm-is-running-when-above-provisioning-is-done-it-is-not-reflected">If VM is running when above provisioning is done, it is not reflected<a class="headerlink" href="#if-vm-is-running-when-above-provisioning-is-done-it-is-not-reflected" title="Permanent link">&para;</a></h2>
+<h2 id="If-VM-is-running-when-above-provisioning-is-done-it-is-not-reflected">If VM is running when above provisioning is done, it is not reflected<a class="headerlink" href="#If-VM-is-running-when-above-provisioning-is-done-it-is-not-reflected" title="Permanent link">&para;</a></h2>
 <p>vagrant provision</p>
-<h1 id="adding-software-at-provisioning">Adding software at provisioning<a class="headerlink" href="#adding-software-at-provisioning" title="Permanent link">&para;</a></h1>
+<h1 id="Adding-software-at-provisioning">Adding software at provisioning<a class="headerlink" href="#Adding-software-at-provisioning" title="Permanent link">&para;</a></h1>
 <p>config.vm.provision "shell",
     inline: "yum install -y git nano"</p>
-<h1 id="adding-custom-scripts-not-in-the-project-folder-to-the-vm">Adding custom scripts not in the project folder to the vm<a class="headerlink" href="#adding-custom-scripts-not-in-the-project-folder-to-the-vm" title="Permanent link">&para;</a></h1>
+<h1 id="Adding-custom-scripts-not-in-the-project-folder-to-the-vm">Adding custom scripts not in the project folder to the vm<a class="headerlink" href="#Adding-custom-scripts-not-in-the-project-folder-to-the-vm" title="Permanent link">&para;</a></h1>
 <p>config.vm.provision "shell",
     path: "~/vagrant/scripts/provision.sh"</p>
-<h1 id="to-restart-vm">To restart vm<a class="headerlink" href="#to-restart-vm" title="Permanent link">&para;</a></h1>
+<h1 id="To-restart-vm">To restart vm<a class="headerlink" href="#To-restart-vm" title="Permanent link">&para;</a></h1>
 <p>sudo shutdown -r now</p>
-<h1 id="restart-service">Restart service<a class="headerlink" href="#restart-service" title="Permanent link">&para;</a></h1>
+<h1 id="Restart-service">Restart service<a class="headerlink" href="#Restart-service" title="Permanent link">&para;</a></h1>
 <p>sudo systemctl restart sshd.service</p>
-<h1 id="update-centos-kernal">Update centos kernal<a class="headerlink" href="#update-centos-kernal" title="Permanent link">&para;</a></h1>
+<h1 id="Update-centos-kernal">Update centos kernal<a class="headerlink" href="#Update-centos-kernal" title="Permanent link">&para;</a></h1>
 <p>sudo yum update kernel*</p>
-<h1 id="check-and-delete-old-kernels">Check and delete old kernels<a class="headerlink" href="#check-and-delete-old-kernels" title="Permanent link">&para;</a></h1>
+<h1 id="Check-and-delete-old-kernels">Check and delete old kernels<a class="headerlink" href="#Check-and-delete-old-kernels" title="Permanent link">&para;</a></h1>
 <p>rpm -qa kernel
 sudo package-cleanup --old-kernels --count=2</p>
-<h1 id="debugging-vagrant">Debugging Vagrant<a class="headerlink" href="#debugging-vagrant" title="Permanent link">&para;</a></h1>
-<h1 id="during-vagrant-up-your-windows-system-tries-to-connect-to-ssh-if-you-type-on-your-command-line">During Vagrant Up your Windows system tries to connect to SSH. If you type on your command line:<a class="headerlink" href="#during-vagrant-up-your-windows-system-tries-to-connect-to-ssh-if-you-type-on-your-command-line" title="Permanent link">&para;</a></h1>
+<h1 id="Debugging-Vagrant">Debugging Vagrant<a class="headerlink" href="#Debugging-Vagrant" title="Permanent link">&para;</a></h1>
+<h1 id="During-Vagrant-Up-your-Windows-system-tries-to-connect-to-SSH-If-you-type-on-your-command-line">During Vagrant Up your Windows system tries to connect to SSH. If you type on your command line:<a class="headerlink" href="#During-Vagrant-Up-your-Windows-system-tries-to-connect-to-SSH-If-you-type-on-your-command-line" title="Permanent link">&para;</a></h1>
 <p>set VAGRANT_LOG=INFO</p>
-<h1 id="debug-ssh">Debug SSH<a class="headerlink" href="#debug-ssh" title="Permanent link">&para;</a></h1>
+<h1 id="Debug-SSH">Debug SSH<a class="headerlink" href="#Debug-SSH" title="Permanent link">&para;</a></h1>
 <p>set VAGRANT_PREFER_SYSTEM_BIN=0
 vagrant ssh --debug</p>
                 

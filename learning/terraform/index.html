@@ -27,10 +27,6 @@
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
         
-          
-          
-          <meta name="theme-color" content="#4051b5">
-        
       
     
     
@@ -53,10 +49,12 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue">
       
   
     
@@ -66,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#example-using-docker-images" class="md-skip">
+        <a href="#Example-using-Docker-images" class="md-skip">
           Skip to content
         </a>
       
@@ -203,7 +201,7 @@
   
     <li class="md-nav__item">
       <a href="../.." class="md-nav__link">
-        Welcome
+        Welcome to Leslie's Notebook
       </a>
     </li>
   
@@ -257,7 +255,7 @@
   
     <li class="md-nav__item">
       <a href="../../server/" class="md-nav__link">
-        Introduction
+        Server Details
       </a>
     </li>
   
@@ -323,7 +321,7 @@
   
     <li class="md-nav__item">
       <a href="../../devops/" class="md-nav__link">
-        Introduction
+        Index
       </a>
     </li>
   
@@ -365,7 +363,7 @@
   
     <li class="md-nav__item">
       <a href="../../k8s/" class="md-nav__link">
-        Introduction
+        Kubernetes
       </a>
     </li>
   
@@ -419,7 +417,7 @@
   
     <li class="md-nav__item">
       <a href="../../ide/" class="md-nav__link">
-        Introduction
+        IDE Tips and Tricks
       </a>
     </li>
   
@@ -597,7 +595,7 @@
               
                 
                 
-                <h1 id="example-using-docker-images">Example using Docker images<a class="headerlink" href="#example-using-docker-images" title="Permanent link">&para;</a></h1>
+                <h1 id="Example-using-Docker-images">Example using Docker images<a class="headerlink" href="#Example-using-Docker-images" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code><span class="err">//</span> <span class="err">Main</span><span class="p">.</span><span class="err">tf</span>
 <span class="kr">resource</span> <span class="s">&quot;docker_image&quot; &quot;nginx&quot;</span> <span class=" -Punctuation">{</span>
 <span class="na">    name</span> <span class="o">=</span> <span class="s2">&quot;nginx:latest&quot;</span>
@@ -613,13 +611,13 @@
     <span class=" -Punctuation">}</span>
 <span class=" -Punctuation">}</span>
 </code></pre></div>
-<h1 id="infrastructure-as-code">Infrastructure as Code<a class="headerlink" href="#infrastructure-as-code" title="Permanent link">&para;</a></h1>
+<h1 id="Infrastructure-as-Code">Infrastructure as Code<a class="headerlink" href="#Infrastructure-as-Code" title="Permanent link">&para;</a></h1>
 <ul>
 <li>IaC is an important <strong>DevOps cornerstone</strong> that enables you to define, automatically manage, and provision infrastructure through source code.</li>
 <li>Infrastructure is managed as a <strong>software system</strong>.</li>
 <li>IaC is frequently referred to as <strong>Programmable Infrastructure</strong>.</li>
 </ul>
-<h1 id="benefits-of-iac">Benefits of Iac<a class="headerlink" href="#benefits-of-iac" title="Permanent link">&para;</a></h1>
+<h1 id="Benefits-of-Iac">Benefits of Iac<a class="headerlink" href="#Benefits-of-Iac" title="Permanent link">&para;</a></h1>
 <ul>
 <li>In IaC,</li>
 <li>A tool will monitor the <strong>state of the infrastructure</strong>.</li>
@@ -627,39 +625,39 @@
 <li>A script can be written to add new instances, and <strong>it can be reused</strong>.</li>
 <li><strong>Faster process</strong>, no/less human involvement.</li>
 </ul>
-<h1 id="iac-implemetation-approaches">IaC Implemetation Approaches<a class="headerlink" href="#iac-implemetation-approaches" title="Permanent link">&para;</a></h1>
-<h2 id="declarative">Declarative<a class="headerlink" href="#declarative" title="Permanent link">&para;</a></h2>
+<h1 id="IaC-Implemetation-Approaches">IaC Implemetation Approaches<a class="headerlink" href="#IaC-Implemetation-Approaches" title="Permanent link">&para;</a></h1>
+<h2 id="Declarative">Declarative<a class="headerlink" href="#Declarative" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Focuses on the <strong>desired end state of infrastructure (Functional)</strong>.</li>
 <li><strong>Tools</strong> perform the <strong>necessary actions to reach that state</strong>.</li>
 <li>Automatically takes care of the <strong>order and executes it</strong>.</li>
 <li>Examples are Terraform and CloudFormation.</li>
 </ul>
-<h2 id="imperative">Imperative<a class="headerlink" href="#imperative" title="Permanent link">&para;</a></h2>
+<h2 id="Imperative">Imperative<a class="headerlink" href="#Imperative" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Focuses on how to <strong>achieve the desired state (Procedural)</strong>.</li>
 <li>Follows the <strong>order of tasks and it executes in that order</strong>.</li>
 <li>Examples are Chef and Ansible.</li>
 </ul>
-<h1 id="configuration-management">Configuration Management<a class="headerlink" href="#configuration-management" title="Permanent link">&para;</a></h1>
+<h1 id="Configuration-Management">Configuration Management<a class="headerlink" href="#Configuration-Management" title="Permanent link">&para;</a></h1>
 <ul>
 <li>It is a <strong>system that keeps the track</strong> of organization's hardware, software, and other related information.</li>
 <li>It includes the software updates and versions present in the system.</li>
 <li>Configuration management is also called as <strong>configuration control</strong>.</li>
 <li>E.g.: Chef and Ansible</li>
 </ul>
-<h1 id="orchestration">Orchestration:<a class="headerlink" href="#orchestration" title="Permanent link">&para;</a></h1>
+<h1 id="Orchestration">Orchestration:<a class="headerlink" href="#Orchestration" title="Permanent link">&para;</a></h1>
 <ul>
 <li>It <strong>automates the coordination, management, and configuration</strong> of systems and hardware.</li>
 <li>E.g.: Terraform and Nomad</li>
 </ul>
-<h1 id="installing-terraform">Installing Terraform<a class="headerlink" href="#installing-terraform" title="Permanent link">&para;</a></h1>
+<h1 id="Installing-Terraform">Installing Terraform<a class="headerlink" href="#Installing-Terraform" title="Permanent link">&para;</a></h1>
 <p>sudo apt-get install unzip
 wget <a href="https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip">https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip</a>
 unzip terraform_0.11.11_linux_amd64.zip
 sudo mv terraform /usr/local/bin/
 terraform --version</p>
-<h1 id="terraform-lifecycle">Terraform Lifecycle<a class="headerlink" href="#terraform-lifecycle" title="Permanent link">&para;</a></h1>
+<h1 id="Terraform-Lifecycle">Terraform Lifecycle<a class="headerlink" href="#Terraform-Lifecycle" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Terraform init - Initializes the working directory having Terraform configuration files.</li>
 <li>Terraform plan - Creates an execution plan and it mentions the changes it is going to make.</li>
@@ -667,12 +665,12 @@ terraform --version</p>
 <li>The main difference between plan and apply is - apply asks for a prompt like Do you want to perform these actions? and then implement the changes, whereas, plan shows the possible end state of your infrastructure without actually implementing them.</li>
 <li>Terraform destroy - Destroys the created infrastructure.</li>
 </ul>
-<h1 id="terraform-configuration">Terraform Configuration<a class="headerlink" href="#terraform-configuration" title="Permanent link">&para;</a></h1>
+<h1 id="Terraform-Configuration">Terraform Configuration<a class="headerlink" href="#Terraform-Configuration" title="Permanent link">&para;</a></h1>
 <ul>
 <li>A set of files that describe the infrastructure in Terraform is called as Terraform Configuration.</li>
 <li>The entire configuration file is saved with <strong>.tf</strong> extension. Make sure to have all the configurations maintained in a single .tf file instead of many. Terraform loads all the .tf files present in the working directory.</li>
 </ul>
-<h1 id="creating-virtual-network">Creating Virtual Network<a class="headerlink" href="#creating-virtual-network" title="Permanent link">&para;</a></h1>
+<h1 id="Creating-Virtual-Network">Creating Virtual Network<a class="headerlink" href="#Creating-Virtual-Network" title="Permanent link">&para;</a></h1>
 <ul>
 <li>create a virtual network without using the Azure portal and azure CLI commands.
 <div class="highlight"><pre><span></span><code>resource &quot;azurerm_virtual_network&quot;&quot;myterraformnetwork&quot;
@@ -689,11 +687,11 @@ terraform --version</p>
 <li>Now, you can run the terraform plan command. It shows all the changes it is going to make.</li>
 <li>If the output is as you expected and there are no errors, then you can run Terraform apply.</li>
 </ul>
-<h1 id="terraform-validate">Terraform Validate<a class="headerlink" href="#terraform-validate" title="Permanent link">&para;</a></h1>
+<h1 id="Terraform-Validate">Terraform Validate<a class="headerlink" href="#Terraform-Validate" title="Permanent link">&para;</a></h1>
 <ul>
 <li>You can run this command whenever you like to check whether the code is correct. Once you run this command, if there is no output, it means that there are no errors in the code.</li>
 </ul>
-<h1 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h1>
+<h1 id="Variables">Variables<a class="headerlink" href="#Variables" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Terraform provides the following variable types:</li>
 <li>Strings - The default data type is a <strong>string</strong>.</li>
@@ -735,7 +733,7 @@ default =
 <li>For example, you have defined resource_group name in the variable.tf file. you can call them in main.tf file like this
 <code>"${var.resource_group}"</code></li>
 </ul>
-<h1 id="sensitive-parameters">Sensitive Parameters<a class="headerlink" href="#sensitive-parameters" title="Permanent link">&para;</a></h1>
+<h1 id="Sensitive-Parameters">Sensitive Parameters<a class="headerlink" href="#Sensitive-Parameters" title="Permanent link">&para;</a></h1>
 <ul>
 <li>There may be sensitive parameters which should be shown only when running the terraform plan but not terraform apply.
 <div class="highlight"><pre><span></span><code>output &quot;sensitiveoutput&quot; {
@@ -745,7 +743,7 @@ default =
 </code></pre></div></li>
 <li>When you run terraform apply, the output is labeled as sensitive. If there is any sensitive information, then you can protect it by using a sensitive parameter.</li>
 </ul>
-<h1 id="terraformtfvars-file">terraform.tfvars File<a class="headerlink" href="#terraformtfvars-file" title="Permanent link">&para;</a></h1>
+<h1 id="terraformtfvars-File">terraform.tfvars File<a class="headerlink" href="#terraformtfvars-File" title="Permanent link">&para;</a></h1>
 <ul>
 <li>In terraform.tfvars file, we mention the "key/value" pair.</li>
 <li>The main.tf file takes the input from a terraform. tfvars file. If it is not present, it gets the input from variables.tf file.
@@ -757,7 +755,7 @@ location = &quot;East US&quot;
 <ul>
 <li>It rewrites the confguration files to canonical style and format.</li>
 </ul>
-<h1 id="state-file-terraformtfstate">State File - terraform.tfstate<a class="headerlink" href="#state-file-terraformtfstate" title="Permanent link">&para;</a></h1>
+<h1 id="State-File---terraformtfstate">State File - terraform.tfstate<a class="headerlink" href="#State-File---terraformtfstate" title="Permanent link">&para;</a></h1>
 <ul>
 <li>It is a <strong>JSON file</strong> that maps the real world resources to the configuration files. </li>
 <li>In terraform, there are three states.</li>
@@ -767,7 +765,7 @@ location = &quot;East US&quot;
 <li>When you run terraform <strong>plan command</strong>, terraform performs a quick refresh and lists the actions needed to achieve the desired state.</li>
 <li>When terraform <strong>apply command</strong> is run, it applies the changes and updates the actual state.</li>
 </ul>
-<h1 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h1>
+<h1 id="Modules">Modules<a class="headerlink" href="#Modules" title="Permanent link">&para;</a></h1>
 <ul>
 <li>A module is like a reusable <strong>blueprint of infrastructure</strong>.</li>
 <li>A module is nothing but a folder of Terraform files.</li>
@@ -796,12 +794,12 @@ source = &quot;../child&quot;
 </code></pre></div></p>
 </li>
 </ul>
-<h1 id="updates">Updates<a class="headerlink" href="#updates" title="Permanent link">&para;</a></h1>
+<h1 id="Updates">Updates<a class="headerlink" href="#Updates" title="Permanent link">&para;</a></h1>
 <ul>
 <li><strong>terraform get</strong> - This command is used to download and install the modules for that configuration.</li>
 <li><strong>terraform get -update</strong> - It checks the downloaded modules and checks for the recent versions if any.</li>
 </ul>
-<h1 id="module-outputs">Module Outputs<a class="headerlink" href="#module-outputs" title="Permanent link">&para;</a></h1>
+<h1 id="Module-Outputs">Module Outputs<a class="headerlink" href="#Module-Outputs" title="Permanent link">&para;</a></h1>
 <p>If you need output from any module, you can get it by passing the required parameter.</p>
 <p>For example, the output of virtual network location can be found by following the below syntax. You can add this syntax to <strong>.tf file(main.tf or variables.tf)</strong>.
 <div class="highlight"><pre><span></span><code>output &quot;virtual_network_id&quot; {
@@ -809,7 +807,7 @@ value = &quot;${azurerm_virtual_network.test.location}&quot;
 }  
 </code></pre></div>
 Where virtual_network_id is a unique name and "${azurerm_virtual_network.test.location}" is the location of the virtual network using string interpolation.</p>
-<h1 id="benefits-of-modules">Benefits of Modules<a class="headerlink" href="#benefits-of-modules" title="Permanent link">&para;</a></h1>
+<h1 id="Benefits-of-Modules">Benefits of Modules<a class="headerlink" href="#Benefits-of-Modules" title="Permanent link">&para;</a></h1>
 <ul>
 <li><strong>Code reuse</strong>: When there is a need to provision the group of resources on another resource at the same time, a module can be used instead of copying the same code. It helps in resolving the bugs easily. If you want to make changes, changing the code in one place is enough.</li>
 <li><strong>Abstraction layer</strong>: It makes complex configurations easier to conceptualize.
@@ -818,11 +816,11 @@ For example, if you like to add vault(Another harshicop's tool for managing secr
 <li><strong>Best practices in organization</strong>: When a module is created, you can give it to the other teams. It helps in easily developing the infrastructure.</li>
 <li>**Versioned artifacts: They are immutable artifacts and can be promoted from one environment to others.</li>
 </ul>
-<h1 id="introduction-to-meta-parameters">Introduction to Meta Parameters<a class="headerlink" href="#introduction-to-meta-parameters" title="Permanent link">&para;</a></h1>
+<h1 id="Introduction-to-Meta-Parameters">Introduction to Meta Parameters<a class="headerlink" href="#Introduction-to-Meta-Parameters" title="Permanent link">&para;</a></h1>
 <p>There are some difficulties with the declarative language. For example, since it is a declarative language, there is no concept of for loops. How do you repeat a piece of code without copy paste?
 * Terraform provides primitives like meta parameter called as <strong>count, life cycle blocks like create_before_destroy, ternary operator and a large number of interpolation functions</strong>.
 This helps in performing certain types of loops, if statements and zero downtime deployments.</p>
-<h1 id="count">Count<a class="headerlink" href="#count" title="Permanent link">&para;</a></h1>
+<h1 id="Count">Count<a class="headerlink" href="#Count" title="Permanent link">&para;</a></h1>
 <ul>
 <li>
 <p>Count - It defines how many parameters you like to create.</p>
@@ -841,7 +839,7 @@ This helps in performing certain types of loops, if statements and zero downtime
 <li>To increase Vnets to 5, update <strong>count = 5</strong>.</li>
 <li>To decrease Vnets to 2, update <strong>count = 2</strong>, last 3 Vnets will get deleted.</li>
 </ul>
-<h1 id="elements">Elements<a class="headerlink" href="#elements" title="Permanent link">&para;</a></h1>
+<h1 id="Elements">Elements<a class="headerlink" href="#Elements" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Suppose you like to create the three virtual networks with names vnet-A, vnet-B and vnet-C, you can do this easily with the help of <strong>list</strong>.</li>
 <li>Mention how many vnets you are going to create with the help of list and define it in variables.tf file
@@ -875,7 +873,7 @@ count=&quot;${length(var.name)}&quot;
 }
 </code></pre></div></li>
 </ul>
-<h1 id="conditions">Conditions<a class="headerlink" href="#conditions" title="Permanent link">&para;</a></h1>
+<h1 id="Conditions">Conditions<a class="headerlink" href="#Conditions" title="Permanent link">&para;</a></h1>
 <p>For example, a vnet has to be created only, if the variable number of vnets is 3 or else no. You can do this by using the ternary operator.
 <strong>variables.tf</strong>
 <div class="highlight"><pre><span></span><code>variable &quot;no_of_vnets&quot; {
@@ -887,7 +885,7 @@ count=&quot;${length(var.name)}&quot;
 </code></pre></div>
 * First, it will execute the ternary operator. If it is true, it takes the output as 1 or else 0.
 * Now, in the above case, the output is 1, the count becomes one, and the vnet is created.</p>
-<h1 id="inheriting-variables">Inheriting Variables<a class="headerlink" href="#inheriting-variables" title="Permanent link">&para;</a></h1>
+<h1 id="Inheriting-Variables">Inheriting Variables<a class="headerlink" href="#Inheriting-Variables" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Inheriting the variables between modules keeps your Terraform code DRY.</li>
 <li><strong>Don't Repeat Yourself (DRY)</strong></li>
@@ -895,7 +893,7 @@ count=&quot;${length(var.name)}&quot;
 <li>There is no need to write the <strong>duplicate code</strong> for each environment you are deploying.</li>
 <li>You can write the <strong>minimum code and achieve the goal</strong> by having maximum re-usability.</li>
 </ul>
-<h1 id="module-file-structure">Module File Structure<a class="headerlink" href="#module-file-structure" title="Permanent link">&para;</a></h1>
+<h1 id="Module-File-Structure">Module File Structure<a class="headerlink" href="#Module-File-Structure" title="Permanent link">&para;</a></h1>
 <ul>
 <li>You will follow the <strong>below file structure to inherit</strong> the variables between modules.
 <div class="highlight"><pre><span></span><code> modules
@@ -950,7 +948,7 @@ address = &quot;10.0.1.0/16&quot;
 </code></pre></div></li>
 <li>Run terraform plan to visualize how the directories will be created. You can see the name of the vnet is taken from the module file instead of getting it from vars.tf</li>
 </ul>
-<h1 id="nested-modules">Nested Modules<a class="headerlink" href="#nested-modules" title="Permanent link">&para;</a></h1>
+<h1 id="Nested-Modules">Nested Modules<a class="headerlink" href="#Nested-Modules" title="Permanent link">&para;</a></h1>
 <ul>
 <li>For any module, root module should exist.</li>
 <li>Root module is basically a directory that holds the terraform configuration files for the desired infrastructure.</li>
@@ -1010,7 +1008,7 @@ name = &quot;mymodstorageaccount&quot;
 <li>Not only the parameters mentioned above, but you can also pass any parameter from root module to the child modules.</li>
 <li>You can pass the parameters from the module to avoid the duplicity between them.</li>
 </ul>
-<h1 id="remote-backends">Remote Backends<a class="headerlink" href="#remote-backends" title="Permanent link">&para;</a></h1>
+<h1 id="Remote-Backends">Remote Backends<a class="headerlink" href="#Remote-Backends" title="Permanent link">&para;</a></h1>
 <ul>
 <li>It is better to store the code in a <strong>central repository</strong>.</li>
 <li>However, is having some disadvantages of doing so:</li>
@@ -1100,7 +1098,7 @@ and copy one of the key somewhere. It is useful for configuring the backend.</li
 <li>resource_group_name - name of the resource group.</li>
 <li>access_key - Storage account access key(any one).</li>
 </ul>
-<h1 id="points-to-remember">Points to Remember<a class="headerlink" href="#points-to-remember" title="Permanent link">&para;</a></h1>
+<h1 id="Points-to-Remember">Points to Remember<a class="headerlink" href="#Points-to-Remember" title="Permanent link">&para;</a></h1>
 <ul>
 <li>You cannot use interpolation syntax to configure backends.</li>
 <li>After creating backend run terraform init, it will be in the locked state.</li>
@@ -1108,12 +1106,12 @@ and copy one of the key somewhere. It is useful for configuring the backend.</li
 <li>After it is applied, it will come to an unlocked state.</li>
 <li>This backend supports consistency checking and state locking using the native capabilities of the Azure storage account.</li>
 </ul>
-<h1 id="terragrunt">Terragrunt<a class="headerlink" href="#terragrunt" title="Permanent link">&para;</a></h1>
+<h1 id="Terragrunt">Terragrunt<a class="headerlink" href="#Terragrunt" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Terragrunt is referred to as a thin wrapper for Terraform which provides extra tools to keep the terraform configurations DRY, 
 manage remote state and to work with multiple terraform modules.</li>
 </ul>
-<h1 id="terragrunt-commands">Terragrunt Commands<a class="headerlink" href="#terragrunt-commands" title="Permanent link">&para;</a></h1>
+<h1 id="Terragrunt-Commands">Terragrunt Commands<a class="headerlink" href="#Terragrunt-Commands" title="Permanent link">&para;</a></h1>
 <ul>
 <li>terragrunt get</li>
 <li>terragrunt plan</li>
@@ -1137,7 +1135,7 @@ manage remote state and to work with multiple terraform modules.</li>
 <li>Provides locking mechanism.</li>
 <li>Allows you to use remote state always.</li>
 </ul>
-<h1 id="build-in-functions">Build-In Functions<a class="headerlink" href="#build-in-functions" title="Permanent link">&para;</a></h1>
+<h1 id="Build-In-Functions">Build-In Functions<a class="headerlink" href="#Build-In-Functions" title="Permanent link">&para;</a></h1>
 <h1 id="lookup">lookup<a class="headerlink" href="#lookup" title="Permanent link">&para;</a></h1>
 <ul>
 <li>
@@ -1155,7 +1153,7 @@ manage remote state and to work with multiple terraform modules.</li>
 <p>The lookup will not work on nested lists or maps. It only works on flat maps.</p>
 </li>
 </ul>
-<h1 id="local-values">Local Values<a class="headerlink" href="#local-values" title="Permanent link">&para;</a></h1>
+<h1 id="Local-Values">Local Values<a class="headerlink" href="#Local-Values" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Local values help in <strong>assigning names to the expressions</strong>, which can be used multiple times within a module without rewriting it.</li>
 <li>Local values are defined in the local blocks.</li>
@@ -1173,7 +1171,7 @@ owner = &quot;Team&quot;
 <li>If a single value or a result is used in many places and it is likely to be changed in the future, then you can go with locals.</li>
 <li>It is recommended to <strong>not use many local values</strong> because it makes the read configurations hard to the future maintainers.</li>
 </ul>
-<h1 id="data-source">Data Source<a class="headerlink" href="#data-source" title="Permanent link">&para;</a></h1>
+<h1 id="Data-Source">Data Source<a class="headerlink" href="#Data-Source" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Data source allows the data to be computed or fetched for use in Terraform configuration.</li>
 <li>Data sources allow the terraform configurations to build on the information defined outside the Terraform or by another Terraform configuration.</li>
@@ -1191,13 +1189,13 @@ owner = &quot;Team&quot;
 </code></pre></div></p>
 </li>
 </ul>
-<h1 id="concat-and-contains">Concat and Contains<a class="headerlink" href="#concat-and-contains" title="Permanent link">&para;</a></h1>
+<h1 id="Concat-and-Contains">Concat and Contains<a class="headerlink" href="#Concat-and-Contains" title="Permanent link">&para;</a></h1>
 <p><code>concat(list1,list2)</code>
 * It combines two or more lists into a single list.
 <code>contains(list, element)</code>
 * It returns true if the element is present in the list or else false.
 E.g. <code>contains(var.list_of_strings, "an_element")</code></p>
-<h1 id="workspaces">Workspaces<a class="headerlink" href="#workspaces" title="Permanent link">&para;</a></h1>
+<h1 id="Workspaces">Workspaces<a class="headerlink" href="#Workspaces" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Every terraform configurations has <strong>associate backends</strong> which defines how the operations are executed and where the persistent data like terraform state are stored.</li>
 <li>Persistent data stored in backend belongs to a workspace.</li>
@@ -1208,14 +1206,14 @@ E.g. <code>contains(var.list_of_strings, "an_element")</code></p>
 <li>You cannot delete your active workspace (the workspace in which you are currently working).</li>
 <li>If you haven't created the workspace before, then you are working on the default workspace.</li>
 </ul>
-<h1 id="workspace-commands">Workspace Commands<a class="headerlink" href="#workspace-commands" title="Permanent link">&para;</a></h1>
+<h1 id="Workspace-Commands">Workspace Commands<a class="headerlink" href="#Workspace-Commands" title="Permanent link">&para;</a></h1>
 <ul>
 <li>terraform workspace new <name> - It creates the workspace with specified name and switches to it.</li>
 <li>terraform workspace list - It lists the workspaces available.</li>
 <li>terraform workspace select <name> - It switches to the specified workspace.</li>
 <li>terraform workspace delete <name> - It deletes the mentioned workspace.</li>
 </ul>
-<h1 id="configuring-multiple-providers">Configuring Multiple Providers<a class="headerlink" href="#configuring-multiple-providers" title="Permanent link">&para;</a></h1>
+<h1 id="Configuring-Multiple-Providers">Configuring Multiple Providers<a class="headerlink" href="#Configuring-Multiple-Providers" title="Permanent link">&para;</a></h1>
 <ul>
 <li>Below is the file structure that you will maintain for working with multiple providers.
 <div class="highlight"><pre><span></span><code>      multiple_providers

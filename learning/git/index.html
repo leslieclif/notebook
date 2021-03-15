@@ -27,10 +27,6 @@
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
         
-          
-          
-          <meta name="theme-color" content="#4051b5">
-        
       
     
     
@@ -53,10 +49,12 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue">
       
   
     
@@ -66,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#create-a-new-repository-on-the-command-line" class="md-skip">
+        <a href="#Create-a-new-repository-on-the-command-line" class="md-skip">
           Skip to content
         </a>
       
@@ -203,7 +201,7 @@
   
     <li class="md-nav__item">
       <a href="../.." class="md-nav__link">
-        Welcome
+        Welcome to Leslie's Notebook
       </a>
     </li>
   
@@ -257,7 +255,7 @@
   
     <li class="md-nav__item">
       <a href="../../server/" class="md-nav__link">
-        Introduction
+        Server Details
       </a>
     </li>
   
@@ -323,7 +321,7 @@
   
     <li class="md-nav__item">
       <a href="../../devops/" class="md-nav__link">
-        Introduction
+        Index
       </a>
     </li>
   
@@ -365,7 +363,7 @@
   
     <li class="md-nav__item">
       <a href="../../k8s/" class="md-nav__link">
-        Introduction
+        Kubernetes
       </a>
     </li>
   
@@ -419,7 +417,7 @@
   
     <li class="md-nav__item">
       <a href="../../ide/" class="md-nav__link">
-        Introduction
+        IDE Tips and Tricks
       </a>
     </li>
   
@@ -597,155 +595,155 @@
               
                 
                 
-                <h1 id="create-a-new-repository-on-the-command-line">Create a new repository on the command line<a class="headerlink" href="#create-a-new-repository-on-the-command-line" title="Permanent link">&para;</a></h1>
+                <h1 id="Create-a-new-repository-on-the-command-line">Create a new repository on the command line<a class="headerlink" href="#Create-a-new-repository-on-the-command-line" title="Permanent link">&para;</a></h1>
 <p>git init
 git add README.md
 git commit -m "first commit"
 git branch -M master
 git remote add origin <a href="https://github.com/leslieclif/dotfiles.git">https://github.com/leslieclif/dotfiles.git</a>
 git push -u origin master</p>
-<h1 id="git-commands">Git Commands<a class="headerlink" href="#git-commands" title="Permanent link">&para;</a></h1>
+<h1 id="Git-Commands">Git Commands<a class="headerlink" href="#Git-Commands" title="Permanent link">&para;</a></h1>
 <p>cd into git folder &rarr; ls -la &rarr; cd .git &rarr; ls -la</p>
-<h1 id="git-help">Git help<a class="headerlink" href="#git-help" title="Permanent link">&para;</a></h1>
+<h1 id="Git-help">Git help<a class="headerlink" href="#Git-help" title="Permanent link">&para;</a></h1>
 <p>git help <command></p>
-<h1 id="to-quit-help-q">To quit help &rarr; q<a class="headerlink" href="#to-quit-help-q" title="Permanent link">&para;</a></h1>
-<h1 id="best-practise-always-do-a-pull-before-a-push-to-merge-changes-from-remote">Best practise: Always do a pull before a push to merge changes from remote<a class="headerlink" href="#best-practise-always-do-a-pull-before-a-push-to-merge-changes-from-remote" title="Permanent link">&para;</a></h1>
+<h1 id="To-quit-help----q">To quit help &rarr; q<a class="headerlink" href="#To-quit-help----q" title="Permanent link">&para;</a></h1>
+<h1 id="Best-practise-Always-do-a-pull-before-a-push-to-merge-changes-from-remote">Best practise: Always do a pull before a push to merge changes from remote<a class="headerlink" href="#Best-practise-Always-do-a-pull-before-a-push-to-merge-changes-from-remote" title="Permanent link">&para;</a></h1>
 <p>git pull origin master</p>
-<h1 id="to-git-add-and-git-commit-for-tracked-files-in-a-single-comand-use-a">To git add and git commit for tracked files in a single comand use -a<a class="headerlink" href="#to-git-add-and-git-commit-for-tracked-files-in-a-single-comand-use-a" title="Permanent link">&para;</a></h1>
+<h1 id="To-git-add-and-git-commit-for-tracked-files-in-a-single-comand-use--a">To git add and git commit for tracked files in a single comand use -a<a class="headerlink" href="#To-git-add-and-git-commit-for-tracked-files-in-a-single-comand-use--a" title="Permanent link">&para;</a></h1>
 <p>git commit -am "Commit message"</p>
-<h1 id="amend-commit-message">Amend Commit message<a class="headerlink" href="#amend-commit-message" title="Permanent link">&para;</a></h1>
+<h1 id="Amend-Commit-message">Amend Commit message<a class="headerlink" href="#Amend-Commit-message" title="Permanent link">&para;</a></h1>
 <p>git commit --amend "New commit message"</p>
-<h1 id="check-for-tracked-files-in-git">Check for tracked files in git<a class="headerlink" href="#check-for-tracked-files-in-git" title="Permanent link">&para;</a></h1>
+<h1 id="Check-for-tracked-files-in-git">Check for tracked files in git<a class="headerlink" href="#Check-for-tracked-files-in-git" title="Permanent link">&para;</a></h1>
 <p>git ls-files</p>
-<h1 id="back-out-changes-that-have-been-commited-but-not-pushed-to-remote-once-unstaged-you-can-remove-the-changes-using-checkout">Back out changes that have been commited, but not pushed to remote. Once unstaged, you can remove the changes using checkout<a class="headerlink" href="#back-out-changes-that-have-been-commited-but-not-pushed-to-remote-once-unstaged-you-can-remove-the-changes-using-checkout" title="Permanent link">&para;</a></h1>
+<h1 id="Back-out-changes-that-have-been-commited-but-not-pushed-to-remote-Once-unstaged-you-can-remove-the-changes-using-checkout">Back out changes that have been commited, but not pushed to remote. Once unstaged, you can remove the changes using checkout<a class="headerlink" href="#Back-out-changes-that-have-been-commited-but-not-pushed-to-remote-Once-unstaged-you-can-remove-the-changes-using-checkout" title="Permanent link">&para;</a></h1>
 <p>git reset HEAD <file-name> 
 git checkout -- <file-name></p>
-<h1 id="rename-file-name-it-also-automatically-stages-the-changes-so-need-to-do-git-add">Rename file-name. It also automatically stages the changes, so need to do git add<a class="headerlink" href="#rename-file-name-it-also-automatically-stages-the-changes-so-need-to-do-git-add" title="Permanent link">&para;</a></h1>
+<h1 id="Rename-file-name-It-also-automatically-stages-the-changes-so-need-to-do-git-add">Rename file-name. It also automatically stages the changes, so need to do git add<a class="headerlink" href="#Rename-file-name-It-also-automatically-stages-the-changes-so-need-to-do-git-add" title="Permanent link">&para;</a></h1>
 <p>git mv level3--file.txt level3.txt</p>
-<h1 id="if-file-is-renamed-outside-git-it-will-delete-and-add-the-files-in-git-history-and-is-not-staged-to-add-new-file-and-stage-the-renamed-files-use-a">If file is renamed outside git, it will delete and add the files in git history and is not staged. To add new file and stage the renamed files use -A<a class="headerlink" href="#if-file-is-renamed-outside-git-it-will-delete-and-add-the-files-in-git-history-and-is-not-staged-to-add-new-file-and-stage-the-renamed-files-use-a" title="Permanent link">&para;</a></h1>
+<h1 id="If-file-is-renamed-outside-git-it-will-delete-and-add-the-files-in-git-history-and-is-not-staged-To-add-new-file-and-stage-the-renamed-files-use--A">If file is renamed outside git, it will delete and add the files in git history and is not staged. To add new file and stage the renamed files use -A<a class="headerlink" href="#If-file-is-renamed-outside-git-it-will-delete-and-add-the-files-in-git-history-and-is-not-staged-To-add-new-file-and-stage-the-renamed-files-use--A" title="Permanent link">&para;</a></h1>
 <p>git add -A</p>
-<h1 id="moving-files-and-staging-the-changes">Moving files and staging the changes<a class="headerlink" href="#moving-files-and-staging-the-changes" title="Permanent link">&para;</a></h1>
+<h1 id="Moving-files-and-staging-the-changes">Moving files and staging the changes<a class="headerlink" href="#Moving-files-and-staging-the-changes" title="Permanent link">&para;</a></h1>
 <p>git mv level2.txt new-folder</p>
-<h1 id="if-file-is-moved-outside-git-it-will-delete-and-add-the-files-in-git-history-and-is-not-staged-to-add-new-file-and-stage-the-renamed-files-use-a">If file is moved outside git, it will delete and add the files in git history and is not staged. To add new file and stage the renamed files use -A<a class="headerlink" href="#if-file-is-moved-outside-git-it-will-delete-and-add-the-files-in-git-history-and-is-not-staged-to-add-new-file-and-stage-the-renamed-files-use-a" title="Permanent link">&para;</a></h1>
+<h1 id="If-file-is-moved-outside-git-it-will-delete-and-add-the-files-in-git-history-and-is-not-staged-To-add-new-file-and-stage-the-renamed-files-use--A">If file is moved outside git, it will delete and add the files in git history and is not staged. To add new file and stage the renamed files use -A<a class="headerlink" href="#If-file-is-moved-outside-git-it-will-delete-and-add-the-files-in-git-history-and-is-not-staged-To-add-new-file-and-stage-the-renamed-files-use--A" title="Permanent link">&para;</a></h1>
 <p>mv level2.txt ..
 git add -A</p>
-<h1 id="file-renamed-in-os-but-say-git-has-identifed-unwanted-files-during-git-status-and-you-dont-want-to-add-those-files-then-dont-use-a-use-u">file renamed in OS. But say, git has identifed unwanted files during git status and you dont want to add those files, then don't use -A, use -u<a class="headerlink" href="#file-renamed-in-os-but-say-git-has-identifed-unwanted-files-during-git-status-and-you-dont-want-to-add-those-files-then-dont-use-a-use-u" title="Permanent link">&para;</a></h1>
-<h1 id="individually-add-the-new-renamed-file-first-then-update-git">Individually add the new renamed file first then update git<a class="headerlink" href="#individually-add-the-new-renamed-file-first-then-update-git" title="Permanent link">&para;</a></h1>
+<h1 id="file-renamed-in-OS-But-say-git-has-identifed-unwanted-files-during-git-status-and-you-dont-want-to-add-those-files-then-dont-use--A-use--u">file renamed in OS. But say, git has identifed unwanted files during git status and you dont want to add those files, then don't use -A, use -u<a class="headerlink" href="#file-renamed-in-OS-But-say-git-has-identifed-unwanted-files-during-git-status-and-you-dont-want-to-add-those-files-then-dont-use--A-use--u" title="Permanent link">&para;</a></h1>
+<h1 id="Individually-add-the-new-renamed-file-first-then-update-git">Individually add the new renamed file first then update git<a class="headerlink" href="#Individually-add-the-new-renamed-file-first-then-update-git" title="Permanent link">&para;</a></h1>
 <p>git add level1.txt
 git add -u</p>
-<h1 id="delete-files-tracked-by-git">Delete files tracked by git<a class="headerlink" href="#delete-files-tracked-by-git" title="Permanent link">&para;</a></h1>
+<h1 id="Delete-files-tracked-by-git">Delete files tracked by git<a class="headerlink" href="#Delete-files-tracked-by-git" title="Permanent link">&para;</a></h1>
 <p>git rm doomed.txt</p>
-<h1 id="if-file-is-delete-outside-git-it-will-delete-and-is-not-staged-to-add-and-stage-the-deleted-file-use-a">If file is delete outside git, it will delete and is not staged. To add and stage the deleted file  use -A<a class="headerlink" href="#if-file-is-delete-outside-git-it-will-delete-and-is-not-staged-to-add-and-stage-the-deleted-file-use-a" title="Permanent link">&para;</a></h1>
+<h1 id="If-file-is-delete-outside-git-it-will-delete-and-is-not-staged-To-add-and-stage-the-deleted-file--use--A">If file is delete outside git, it will delete and is not staged. To add and stage the deleted file  use -A<a class="headerlink" href="#If-file-is-delete-outside-git-it-will-delete-and-is-not-staged-To-add-and-stage-the-deleted-file--use--A" title="Permanent link">&para;</a></h1>
 <p>git add -A</p>
-<h1 id="git-history">Git History<a class="headerlink" href="#git-history" title="Permanent link">&para;</a></h1>
+<h1 id="Git-History">Git History<a class="headerlink" href="#Git-History" title="Permanent link">&para;</a></h1>
 <p>git log</p>
-<h1 id="to-quit-help-q_1">To quit help &rarr; q<a class="headerlink" href="#to-quit-help-q_1" title="Permanent link">&para;</a></h1>
-<h1 id="git-history-in-one-line">Git history in one line<a class="headerlink" href="#git-history-in-one-line" title="Permanent link">&para;</a></h1>
+<h1 id="To-quit-help----q_1">To quit help &rarr; q<a class="headerlink" href="#To-quit-help----q_1" title="Permanent link">&para;</a></h1>
+<h1 id="Git-history-in-one-line">Git history in one line<a class="headerlink" href="#Git-history-in-one-line" title="Permanent link">&para;</a></h1>
 <p>git log --oneline --graph --decorate</p>
-<h1 id="git-history-using-duration">Git history using duration<a class="headerlink" href="#git-history-using-duration" title="Permanent link">&para;</a></h1>
+<h1 id="Git-history-using-duration">Git history using duration<a class="headerlink" href="#Git-history-using-duration" title="Permanent link">&para;</a></h1>
 <p>git log --since="3 days ago"</p>
-<h1 id="show-all-user-actions">Show all user actions<a class="headerlink" href="#show-all-user-actions" title="Permanent link">&para;</a></h1>
+<h1 id="Show-all-user-actions">Show all user actions<a class="headerlink" href="#Show-all-user-actions" title="Permanent link">&para;</a></h1>
 <p>git reflog</p>
-<h1 id="show-commit-history-do-git-log-get-commit-id">Show commit history &rarr; do git log get commit id<a class="headerlink" href="#show-commit-history-do-git-log-get-commit-id" title="Permanent link">&para;</a></h1>
+<h1 id="Show-commit-history----do-git-log-get-commit-id">Show commit history &rarr; do git log get commit id<a class="headerlink" href="#Show-commit-history----do-git-log-get-commit-id" title="Permanent link">&para;</a></h1>
 <p>git show <full commit id></p>
-<h1 id="todo-get-a-git-diff-tool">TODO: Get a git diff tool<a class="headerlink" href="#todo-get-a-git-diff-tool" title="Permanent link">&para;</a></h1>
-<h1 id="show-git-config">Show git config<a class="headerlink" href="#show-git-config" title="Permanent link">&para;</a></h1>
+<h1 id="TODO-Get-a-git-diff-tool">TODO: Get a git diff tool<a class="headerlink" href="#TODO-Get-a-git-diff-tool" title="Permanent link">&para;</a></h1>
+<h1 id="Show-git-config">Show git config<a class="headerlink" href="#Show-git-config" title="Permanent link">&para;</a></h1>
 <p>git config --global --list</p>
-<h1 id="compare-with-staging-and-current-changes">Compare with staging and current changes<a class="headerlink" href="#compare-with-staging-and-current-changes" title="Permanent link">&para;</a></h1>
+<h1 id="Compare-with-staging-and-current-changes">Compare with staging and current changes<a class="headerlink" href="#Compare-with-staging-and-current-changes" title="Permanent link">&para;</a></h1>
 <p>git diff</p>
-<h1 id="compare-between-current-changes-and-remote-last-commit">Compare between current changes and remote last commit<a class="headerlink" href="#compare-between-current-changes-and-remote-last-commit" title="Permanent link">&para;</a></h1>
+<h1 id="Compare-between-current-changes-and-remote-last-commit">Compare between current changes and remote last commit<a class="headerlink" href="#Compare-between-current-changes-and-remote-last-commit" title="Permanent link">&para;</a></h1>
 <p>git diff HEAD</p>
-<h1 id="compare-between-staging-and-remote-last-commit">Compare between staging and remote last commit<a class="headerlink" href="#compare-between-staging-and-remote-last-commit" title="Permanent link">&para;</a></h1>
+<h1 id="Compare-between-staging-and-remote-last-commit">Compare between staging and remote last commit<a class="headerlink" href="#Compare-between-staging-and-remote-last-commit" title="Permanent link">&para;</a></h1>
 <p>git diff --staged HEAD</p>
-<h1 id="compare-file-changes-with-staging-and-current-changes">Compare file changes with staging and current changes<a class="headerlink" href="#compare-file-changes-with-staging-and-current-changes" title="Permanent link">&para;</a></h1>
+<h1 id="Compare-file-changes-with-staging-and-current-changes">Compare file changes with staging and current changes<a class="headerlink" href="#Compare-file-changes-with-staging-and-current-changes" title="Permanent link">&para;</a></h1>
 <p>git diff -- <path to file+filename></p>
-<h1 id="compare-between-commits-do-git-log-to-get-commits">Compare between commits (do git log to get commits)<a class="headerlink" href="#compare-between-commits-do-git-log-to-get-commits" title="Permanent link">&para;</a></h1>
+<h1 id="Compare-between-commits-do-git-log-to-get-commits">Compare between commits (do git log to get commits)<a class="headerlink" href="#Compare-between-commits-do-git-log-to-get-commits" title="Permanent link">&para;</a></h1>
 <p>git diff <commit 1> <commit 2 or HEAD></p>
-<h1 id="compare-local-and-remote-branches">Compare local and remote branches<a class="headerlink" href="#compare-local-and-remote-branches" title="Permanent link">&para;</a></h1>
+<h1 id="Compare-local-and-remote-branches">Compare local and remote branches<a class="headerlink" href="#Compare-local-and-remote-branches" title="Permanent link">&para;</a></h1>
 <p>git diff master origin/master</p>
-<h1 id="compare-local-branches">Compare local branches<a class="headerlink" href="#compare-local-branches" title="Permanent link">&para;</a></h1>
+<h1 id="Compare-local-branches">Compare local branches<a class="headerlink" href="#Compare-local-branches" title="Permanent link">&para;</a></h1>
 <p>git diff master test-branch</p>
-<h1 id="branching">Branching<a class="headerlink" href="#branching" title="Permanent link">&para;</a></h1>
-<h1 id="list-local-and-remote-branches">List local and remote branches<a class="headerlink" href="#list-local-and-remote-branches" title="Permanent link">&para;</a></h1>
+<h1 id="Branching">Branching<a class="headerlink" href="#Branching" title="Permanent link">&para;</a></h1>
+<h1 id="List-local-and-remote-branches">List local and remote branches<a class="headerlink" href="#List-local-and-remote-branches" title="Permanent link">&para;</a></h1>
 <p>git branch -a</p>
-<h1 id="create-new-branch">Create new branch<a class="headerlink" href="#create-new-branch" title="Permanent link">&para;</a></h1>
+<h1 id="Create-new-branch">Create new branch<a class="headerlink" href="#Create-new-branch" title="Permanent link">&para;</a></h1>
 <p>git branch <new branch name></p>
-<h1 id="rename-local-branch">Rename local branch<a class="headerlink" href="#rename-local-branch" title="Permanent link">&para;</a></h1>
+<h1 id="Rename-local-branch">Rename local branch<a class="headerlink" href="#Rename-local-branch" title="Permanent link">&para;</a></h1>
 <p>git branch -m <old branch name> <new branch name></p>
-<h1 id="delete-a-branch-note-you-have-to-be-on-another-bracnh-before-you-can-delete-the-target-branch">Delete a branch. Note: You have to be on another bracnh before you can delete the target branch<a class="headerlink" href="#delete-a-branch-note-you-have-to-be-on-another-bracnh-before-you-can-delete-the-target-branch" title="Permanent link">&para;</a></h1>
+<h1 id="Delete-a-branch-Note-You-have-to-be-on-another-bracnh-before-you-can-delete-the-target-branch">Delete a branch. Note: You have to be on another bracnh before you can delete the target branch<a class="headerlink" href="#Delete-a-branch-Note-You-have-to-be-on-another-bracnh-before-you-can-delete-the-target-branch" title="Permanent link">&para;</a></h1>
 <p>git branch -d <branch name></p>
-<h1 id="create-new-branch-and-switch-to-it-in-single-command">Create new branch and switch to it in single command<a class="headerlink" href="#create-new-branch-and-switch-to-it-in-single-command" title="Permanent link">&para;</a></h1>
+<h1 id="Create-new-branch-and-switch-to-it-in-single-command">Create new branch and switch to it in single command<a class="headerlink" href="#Create-new-branch-and-switch-to-it-in-single-command" title="Permanent link">&para;</a></h1>
 <p>git checkout -b <branch name></p>
-<h1 id="fash-forward-merges-first-switch-to-the-target-branches-do-a-git-diff-to-review-the-changes">Fash forward Merges  &rarr; First switch to the target branches, do a git diff to review the changes.<a class="headerlink" href="#fash-forward-merges-first-switch-to-the-target-branches-do-a-git-diff-to-review-the-changes" title="Permanent link">&para;</a></h1>
+<h1 id="Fash-forward-Merges-----First-switch-to-the-target-branches-do-a-git-diff-to-review-the-changes">Fash forward Merges  &rarr; First switch to the target branches, do a git diff to review the changes.<a class="headerlink" href="#Fash-forward-Merges-----First-switch-to-the-target-branches-do-a-git-diff-to-review-the-changes" title="Permanent link">&para;</a></h1>
 <p>git merge <source branch></p>
-<h1 id="disable-fast-forward-merge-give-tracing-of-merge-by-giving-a-custom-merge-message-and-also-the-commit-history-of-the-branch">Disable fast forward merge &rarr; Give tracing of merge by giving a custom merge message and also the commit history of the branch<a class="headerlink" href="#disable-fast-forward-merge-give-tracing-of-merge-by-giving-a-custom-merge-message-and-also-the-commit-history-of-the-branch" title="Permanent link">&para;</a></h1>
+<h1 id="Disable-fast-forward-merge----Give-tracing-of-merge-by-giving-a-custom-merge-message-and-also-the-commit-history-of-the-branch">Disable fast forward merge &rarr; Give tracing of merge by giving a custom merge message and also the commit history of the branch<a class="headerlink" href="#Disable-fast-forward-merge----Give-tracing-of-merge-by-giving-a-custom-merge-message-and-also-the-commit-history-of-the-branch" title="Permanent link">&para;</a></h1>
 <p>git merge <source branch> --no-ff</p>
-<h1 id="automatic-merge">Automatic merge<a class="headerlink" href="#automatic-merge" title="Permanent link">&para;</a></h1>
+<h1 id="Automatic-merge">Automatic merge<a class="headerlink" href="#Automatic-merge" title="Permanent link">&para;</a></h1>
 <p>git merge <source branch> -m "<commit message>"</p>
-<h1 id="merge-conflict-and-resolution">Merge Conflict and Resolution<a class="headerlink" href="#merge-conflict-and-resolution" title="Permanent link">&para;</a></h1>
-<h1 id="inside-the-merging-workspace-incase-of-conflict-open-the-conflicting-file-in-editor-or-the-merge-diff-tool-resolve-conflict-and-close-the-file">Inside the merging workspace incase of conflict, open the conflicting file in editor or the merge-diff tool. Resolve conflict and close the file.<a class="headerlink" href="#inside-the-merging-workspace-incase-of-conflict-open-the-conflicting-file-in-editor-or-the-merge-diff-tool-resolve-conflict-and-close-the-file" title="Permanent link">&para;</a></h1>
-<h1 id="rebase-feature-branch-from-master">Rebase feature branch from master<a class="headerlink" href="#rebase-feature-branch-from-master" title="Permanent link">&para;</a></h1>
+<h1 id="Merge-Conflict-and-Resolution">Merge Conflict and Resolution<a class="headerlink" href="#Merge-Conflict-and-Resolution" title="Permanent link">&para;</a></h1>
+<h1 id="Inside-the-merging-workspace-incase-of-conflict-open-the-conflicting-file-in-editor-or-the-merge-diff-tool-Resolve-conflict-and-close-the-file">Inside the merging workspace incase of conflict, open the conflicting file in editor or the merge-diff tool. Resolve conflict and close the file.<a class="headerlink" href="#Inside-the-merging-workspace-incase-of-conflict-open-the-conflicting-file-in-editor-or-the-merge-diff-tool-Resolve-conflict-and-close-the-file" title="Permanent link">&para;</a></h1>
+<h1 id="Rebase-feature-branch-from-master">Rebase feature branch from master<a class="headerlink" href="#Rebase-feature-branch-from-master" title="Permanent link">&para;</a></h1>
 <p>git checkout feature-branch
 git rebase master</p>
-<h1 id="abort-rebase">Abort rebase<a class="headerlink" href="#abort-rebase" title="Permanent link">&para;</a></h1>
+<h1 id="Abort-rebase">Abort rebase<a class="headerlink" href="#Abort-rebase" title="Permanent link">&para;</a></h1>
 <p>git rebase --abort</p>
-<h1 id="rebase-conflict-resolution-use-merging-tool-to-fix-conflict-save-and-quit-add-file-to-git-staging-then-continue-rebase">Rebase conflict resolution &rarr; Use merging tool to fix conflict, save and quit. Add file to git staging, then continue rebase<a class="headerlink" href="#rebase-conflict-resolution-use-merging-tool-to-fix-conflict-save-and-quit-add-file-to-git-staging-then-continue-rebase" title="Permanent link">&para;</a></h1>
+<h1 id="Rebase-conflict-resolution----Use-merging-tool-to-fix-conflict-save-and-quit-Add-file-to-git-staging-then-continue-rebase">Rebase conflict resolution &rarr; Use merging tool to fix conflict, save and quit. Add file to git staging, then continue rebase<a class="headerlink" href="#Rebase-conflict-resolution----Use-merging-tool-to-fix-conflict-save-and-quit-Add-file-to-git-staging-then-continue-rebase" title="Permanent link">&para;</a></h1>
 <p>git rebase --continue</p>
-<h1 id="pull-with-rebase-rebase-local-master-with-remote-master">Pull with Rebase (Rebase local master with remote master)<a class="headerlink" href="#pull-with-rebase-rebase-local-master-with-remote-master" title="Permanent link">&para;</a></h1>
+<h1 id="Pull-with-Rebase-Rebase-local-master-with-remote-master">Pull with Rebase (Rebase local master with remote master)<a class="headerlink" href="#Pull-with-Rebase-Rebase-local-master-with-remote-master" title="Permanent link">&para;</a></h1>
 <p>git fetch origin master (non destructive merge which only updates references)
 git pull --rebase origin master</p>
-<h1 id="stash">Stash<a class="headerlink" href="#stash" title="Permanent link">&para;</a></h1>
+<h1 id="Stash">Stash<a class="headerlink" href="#Stash" title="Permanent link">&para;</a></h1>
 <p>git stash</p>
-<h1 id="stash-saving-untracked-files-of-git-as-well">Stash + saving untracked files of git as well<a class="headerlink" href="#stash-saving-untracked-files-of-git-as-well" title="Permanent link">&para;</a></h1>
+<h1 id="Stash--saving-untracked-files-of-git-as-well">Stash + saving untracked files of git as well<a class="headerlink" href="#Stash--saving-untracked-files-of-git-as-well" title="Permanent link">&para;</a></h1>
 <p>git stash -u</p>
-<h1 id="get-the-stash-back-to-local">Get the stash back to local<a class="headerlink" href="#get-the-stash-back-to-local" title="Permanent link">&para;</a></h1>
+<h1 id="Get-the-stash-back-to-local">Get the stash back to local<a class="headerlink" href="#Get-the-stash-back-to-local" title="Permanent link">&para;</a></h1>
 <p>git stash apply</p>
-<h1 id="list-the-stash">List the stash<a class="headerlink" href="#list-the-stash" title="Permanent link">&para;</a></h1>
+<h1 id="List-the-stash">List the stash<a class="headerlink" href="#List-the-stash" title="Permanent link">&para;</a></h1>
 <p>git stash list</p>
-<h1 id="drop-the-stash">Drop the stash<a class="headerlink" href="#drop-the-stash" title="Permanent link">&para;</a></h1>
+<h1 id="Drop-the-stash">Drop the stash<a class="headerlink" href="#Drop-the-stash" title="Permanent link">&para;</a></h1>
 <p>git stash drop</p>
-<h1 id="combination-of-apply-and-drop-in-one-command-brings-the-last-saved-state">Combination of apply and drop in one command. Brings the last saved state<a class="headerlink" href="#combination-of-apply-and-drop-in-one-command-brings-the-last-saved-state" title="Permanent link">&para;</a></h1>
+<h1 id="Combination-of-apply-and-drop-in-one-command-Brings-the-last-saved-state">Combination of apply and drop in one command. Brings the last saved state<a class="headerlink" href="#Combination-of-apply-and-drop-in-one-command-Brings-the-last-saved-state" title="Permanent link">&para;</a></h1>
 <p>git stash pop</p>
-<h1 id="multiple-stashes">Multiple Stashes<a class="headerlink" href="#multiple-stashes" title="Permanent link">&para;</a></h1>
+<h1 id="Multiple-Stashes">Multiple Stashes<a class="headerlink" href="#Multiple-Stashes" title="Permanent link">&para;</a></h1>
 <p>git stash save "<commit message to identify stash>"</p>
-<h1 id="show-any-arbitary-stash-changes-whithout-popping-do-stash-list-first-to-get-the-stash-id">Show any arbitary stash changes whithout popping. Do stash list first to get the stash ID<a class="headerlink" href="#show-any-arbitary-stash-changes-whithout-popping-do-stash-list-first-to-get-the-stash-id" title="Permanent link">&para;</a></h1>
+<h1 id="Show-any-arbitary-stash-changes-whithout-popping-Do-stash-list-first-to-get-the-stash-ID">Show any arbitary stash changes whithout popping. Do stash list first to get the stash ID<a class="headerlink" href="#Show-any-arbitary-stash-changes-whithout-popping-Do-stash-list-first-to-get-the-stash-ID" title="Permanent link">&para;</a></h1>
 <p>git stash show stash@{1}</p>
-<h1 id="apply-any-arbitary-stash-changes-do-stash-list-first-to-get-the-stash-id">Apply any arbitary stash changes. Do stash list first to get the stash ID<a class="headerlink" href="#apply-any-arbitary-stash-changes-do-stash-list-first-to-get-the-stash-id" title="Permanent link">&para;</a></h1>
+<h1 id="Apply-any-arbitary-stash-changes-Do-stash-list-first-to-get-the-stash-ID">Apply any arbitary stash changes. Do stash list first to get the stash ID<a class="headerlink" href="#Apply-any-arbitary-stash-changes-Do-stash-list-first-to-get-the-stash-ID" title="Permanent link">&para;</a></h1>
 <p>git stash apply stash@{1}</p>
-<h1 id="drop-any-arbitary-stash-changes-that-was-applied-or-not-needed">Drop any arbitary stash changes that was applied or not needed.<a class="headerlink" href="#drop-any-arbitary-stash-changes-that-was-applied-or-not-needed" title="Permanent link">&para;</a></h1>
+<h1 id="Drop-any-arbitary-stash-changes-that-was-applied-or-not-needed">Drop any arbitary stash changes that was applied or not needed.<a class="headerlink" href="#Drop-any-arbitary-stash-changes-that-was-applied-or-not-needed" title="Permanent link">&para;</a></h1>
 <p>git stash drop stash@{1}</p>
-<h1 id="stashing-changes-into-a-new-branch-first-see-if-you-have-any-untracked-files-that-also-needs-to-be-saved">Stashing changes into a new branch. First see if you have any untracked files that also needs to be saved<a class="headerlink" href="#stashing-changes-into-a-new-branch-first-see-if-you-have-any-untracked-files-that-also-needs-to-be-saved" title="Permanent link">&para;</a></h1>
+<h1 id="Stashing-changes-into-a-new-branch-First-see-if-you-have-any-untracked-files-that-also-needs-to-be-saved">Stashing changes into a new branch. First see if you have any untracked files that also needs to be saved<a class="headerlink" href="#Stashing-changes-into-a-new-branch-First-see-if-you-have-any-untracked-files-that-also-needs-to-be-saved" title="Permanent link">&para;</a></h1>
 <p>git stash -u 
 git stash branch newbranchName</p>
-<h1 id="tagging">Tagging<a class="headerlink" href="#tagging" title="Permanent link">&para;</a></h1>
-<h1 id="create-lightweight-tag">Create Lightweight tag<a class="headerlink" href="#create-lightweight-tag" title="Permanent link">&para;</a></h1>
+<h1 id="Tagging">Tagging<a class="headerlink" href="#Tagging" title="Permanent link">&para;</a></h1>
+<h1 id="Create-Lightweight-tag">Create Lightweight tag<a class="headerlink" href="#Create-Lightweight-tag" title="Permanent link">&para;</a></h1>
 <p>git tag mytag</p>
-<h1 id="list-existing-tags">List existing tags<a class="headerlink" href="#list-existing-tags" title="Permanent link">&para;</a></h1>
+<h1 id="List-existing-tags">List existing tags<a class="headerlink" href="#List-existing-tags" title="Permanent link">&para;</a></h1>
 <p>git tag --list</p>
-<h1 id="delete-tag">Delete tag<a class="headerlink" href="#delete-tag" title="Permanent link">&para;</a></h1>
+<h1 id="Delete-tag">Delete tag<a class="headerlink" href="#Delete-tag" title="Permanent link">&para;</a></h1>
 <p>git tag --delete mytag</p>
-<h1 id="create-annotated-tags-it-has-additional-information-like-release-notes">Create Annotated tags (It has additional information like release notes)<a class="headerlink" href="#create-annotated-tags-it-has-additional-information-like-release-notes" title="Permanent link">&para;</a></h1>
+<h1 id="Create-Annotated-tags-It-has-additional-information-like-release-notes">Create Annotated tags (It has additional information like release notes)<a class="headerlink" href="#Create-Annotated-tags-It-has-additional-information-like-release-notes" title="Permanent link">&para;</a></h1>
 <p>git tag -a v1.0.0 -m "Release 1.0.0"</p>
-<h1 id="comparing-tags">Comparing tags<a class="headerlink" href="#comparing-tags" title="Permanent link">&para;</a></h1>
+<h1 id="Comparing-tags">Comparing tags<a class="headerlink" href="#Comparing-tags" title="Permanent link">&para;</a></h1>
 <p>git diff v1.0.0 v1.0.1</p>
-<h1 id="tagging-a-specific-commit-id">Tagging a specific commit ID<a class="headerlink" href="#tagging-a-specific-commit-id" title="Permanent link">&para;</a></h1>
+<h1 id="Tagging-a-specific-commit-ID">Tagging a specific commit ID<a class="headerlink" href="#Tagging-a-specific-commit-ID" title="Permanent link">&para;</a></h1>
 <p>git tag -a v0.0.9 <commit id> -m "Release 0.0.9"</p>
-<h1 id="updating-an-existing-tag-with-new-commit-id">Updating an existing tag with new commit id<a class="headerlink" href="#updating-an-existing-tag-with-new-commit-id" title="Permanent link">&para;</a></h1>
+<h1 id="Updating-an-existing-tag-with-new-commit-id">Updating an existing tag with new commit id<a class="headerlink" href="#Updating-an-existing-tag-with-new-commit-id" title="Permanent link">&para;</a></h1>
 <p>git tag -a v0.0.9 -f <new commit id> -m "Correct Release 0.0.9"</p>
-<h1 id="pushing-tags-to-remote">Pushing tags to remote<a class="headerlink" href="#pushing-tags-to-remote" title="Permanent link">&para;</a></h1>
+<h1 id="Pushing-tags-to-remote">Pushing tags to remote<a class="headerlink" href="#Pushing-tags-to-remote" title="Permanent link">&para;</a></h1>
 <p>git push origin v1.0.0</p>
-<h1 id="pushing-all-local-tags-to-remote">Pushing all local tags to remote<a class="headerlink" href="#pushing-all-local-tags-to-remote" title="Permanent link">&para;</a></h1>
+<h1 id="Pushing-all-local-tags-to-remote">Pushing all local tags to remote<a class="headerlink" href="#Pushing-all-local-tags-to-remote" title="Permanent link">&para;</a></h1>
 <p>git push origin master --tags</p>
-<h1 id="deleting-tags-in-remote-puting-before-tag-name-will-delete-it-from-remote-does-not-delete-tag-from-local">Deleting tags in remote (puting :before tag name will delete it from remote). Does not delete tag from local<a class="headerlink" href="#deleting-tags-in-remote-puting-before-tag-name-will-delete-it-from-remote-does-not-delete-tag-from-local" title="Permanent link">&para;</a></h1>
+<h1 id="Deleting-tags-in-remote-puting-before-tag-name-will-delete-it-from-remote-Does-not-delete-tag-from-local">Deleting tags in remote (puting :before tag name will delete it from remote). Does not delete tag from local<a class="headerlink" href="#Deleting-tags-in-remote-puting-before-tag-name-will-delete-it-from-remote-Does-not-delete-tag-from-local" title="Permanent link">&para;</a></h1>
 <p>git push origin :v0.0.9</p>
-<h1 id="reset-head-position">Reset HEAD position<a class="headerlink" href="#reset-head-position" title="Permanent link">&para;</a></h1>
+<h1 id="Reset-HEAD-position">Reset HEAD position<a class="headerlink" href="#Reset-HEAD-position" title="Permanent link">&para;</a></h1>
 <p>git reset <commit id></p>
-<h1 id="using-stash-and-branch-combination">Using Stash and Branch combination<a class="headerlink" href="#using-stash-and-branch-combination" title="Permanent link">&para;</a></h1>
-<h1 id="first-stash-the-changes-wip-in-one-brabch-then-checkout-a-new-test-branch-and-then-pop-the-changes-into-this-test-branch">First stash the changes (WIP) in one brabch, then checkout a new test branch and then pop the changes into this test branch<a class="headerlink" href="#first-stash-the-changes-wip-in-one-brabch-then-checkout-a-new-test-branch-and-then-pop-the-changes-into-this-test-branch" title="Permanent link">&para;</a></h1>
+<h1 id="Using-Stash-and-Branch-combination">Using Stash and Branch combination<a class="headerlink" href="#Using-Stash-and-Branch-combination" title="Permanent link">&para;</a></h1>
+<h1 id="First-stash-the-changes-WIP-in-one-brabch-then-checkout-a-new-test-branch-and-then-pop-the-changes-into-this-test-branch">First stash the changes (WIP) in one brabch, then checkout a new test branch and then pop the changes into this test branch<a class="headerlink" href="#First-stash-the-changes-WIP-in-one-brabch-then-checkout-a-new-test-branch-and-then-pop-the-changes-into-this-test-branch" title="Permanent link">&para;</a></h1>
 <p>git stash
 git checkout -b test
 git stash pop</p>
-<h1 id="cherry-pick-hot-fix-scenario">Cherry Pick (Hot Fix scenario)<a class="headerlink" href="#cherry-pick-hot-fix-scenario" title="Permanent link">&para;</a></h1>
+<h1 id="Cherry-Pick-Hot-Fix-scenario">Cherry Pick (Hot Fix scenario)<a class="headerlink" href="#Cherry-Pick-Hot-Fix-scenario" title="Permanent link">&para;</a></h1>
 <p>git cherry-pick <commit-id></p>
                 
               
