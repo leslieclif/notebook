@@ -21,6 +21,8 @@ nav:
       - Introduction: server/index.md
       - Installation: server/install.md
       - Mobile: server/mobile.md
+  - Devops:
+      - Introduction: devops/index.md
   - Kubernetes:
       - Introduction: k8s/index.md
       - Installation: k8s/install.md
@@ -33,6 +35,8 @@ nav:
       - Vagrant: learning/vagrant.md
       - Ansible: learning/ansible.md
       - Terraform: learning/terraform.md
+      - Docker: learning/docker/docker-notes.md
+      - Kubernetes: learning/k8s/k8s-notes.md
      
 
 # Theme

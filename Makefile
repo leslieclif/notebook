@@ -6,7 +6,6 @@ help: ## Display help
 
 all: deploy
 
-
 .PHONY: deploy
 install: ## Deploys Markdown files to Github pages
 	./gh-deploy.sh
