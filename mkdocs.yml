@@ -56,10 +56,12 @@ theme:
 markdown_extensions:
   - toc:
       permalink: True
+      baselevel: 3
   - admonition
   - footnotes
   - meta
   - codehilite
+  - 
   - pymdownx.arithmatex
   - pymdownx.caret
   - pymdownx.critic
