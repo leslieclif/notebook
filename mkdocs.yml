@@ -54,9 +54,12 @@ theme:
 
 # Extensions
 markdown_extensions:
+  - toc:
+      permalink: True
   - admonition
   - footnotes
   - meta
+  - codehilite
   - pymdownx.arithmatex
   - pymdownx.caret
   - pymdownx.critic
