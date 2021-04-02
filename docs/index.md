@@ -1,6 +1,10 @@
 # Welcome to Leslie's Notebook
 
-Install `mkdocs` using command `pip install mkdocs`
+Install `mkdocs` using command 
+
+```console 
+pip install mkdocs`
+```
 
 ## Topics
 

@@ -1,23 +1,22 @@
-Update VS Code in Windows
+# Windows
 
-from dotfiles/programs - run ./vsc.sh. update chmod +x to make it executable in windows using Git Bash
-This will install vscode extensions
-
-Update WSL2 first (by default WLS1 is enabled)
-Install Ubuntu from Microsoft Stores
-Install Visual Studio Code
-# Update Linux packages
+1. Update WSL2 first (by default WLS1 is enabled)
+1. Install Ubuntu from Microsoft Stores
+1. Install Visual Studio Code
+1. Update Linux packages
+```BASH
 sudo apt update
 sudo apt -y upgrade
-
-# To find the home directory in Ubuntu
+```
+1. To find the home directory in Ubuntu
+```BASH
 explorer.exe .
+```
+1. Install Windows Terminal for Miscrosoft Store
 
-Install Windows Terminal for Miscrosoft Store
+1. Install Menlo font (from Powerlevel10k site)
 
-Install Menlo font (from Powerlevel10k site)
-
-To test the terminal color output, run this code in the terminal
+1. To test the terminal color output, run this code in the terminal
 ```BASH
 for code in {30..37}; do \
 echo -en "\e[${code}m"'\\e['"$code"'m'"\e[0m"; \
@@ -27,33 +26,34 @@ echo -en "  \e[$code;4m"'\\e['"$code"';4m'"\e[0m"; \
 echo -e "  \e[$((code+60))m"'\\e['"$((code+60))"'m'"\e[0m"; \
 done
 ```
+1. Generate SSH keys
 ```BASH
 ssh-keygen -t rsa  -b 4096 -f ~/.ssh/raddit-user -C raddit-user
 ```
---------------------------------------------
-Using the .ssh config files (~/.ssh/config)
---------------------------
-1. Generate public & private ssh keys:
-          `ssh-keygen -t rsa`
-    Type in a name which will be put in `~/.ssh` directory
 
-2. To bypass password prompt, you should add the `foo.pub` file to the `authorized_keys` file on the
-server's `~/.ssh` directory. You can do a pipe via ssh:
+1. Using the .ssh config files (~/.ssh/config)
+```BASH
+# 1. Generate public & private ssh keys:
+          `ssh-keygen -t rsa`
+# Type in a name which will be put in `~/.ssh` directory
+
+# 2. To bypass password prompt, you should add the `foo.pub` file to the `authorized_keys` file on the
+# server's `~/.ssh` directory. You can do a pipe via ssh:
     
     `cat mykey.pub | ssh myuser@mysite.com -p 123 'cat >> .ssh/authorized_keys' `
 
-3. Add the publickey name to the `~/.ssh/config` file like this:
+# 3. Add the publickey name to the `~/.ssh/config` file like this:
 
         Host bitbucket.org
           IdentityFile ~/.ssh/myprivatekeyfile # the leading spaces are important!
           Port 123
 
-4. Verify and then SSH into the remote server. To check if your config is right type: `ssh -T git@github.com`
+# 4. Verify and then SSH into the remote server. To check if your config is right type: `ssh -T git@github.com`
       
         ssh root@mysite.com
         or
         ssh mysite.com # if you setup the User setting in config
---------------------------------------------
+```
 
 [Adding SSH Keys to servers](https://www.digitalocean.com/docs/droplets/how-to/add-ssh-keys/)
 [SSH Client Config](https://www.digitalocean.com/community/tutorials/how-to-configure-custom-connection-options-for-your-ssh-client)

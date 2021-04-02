@@ -4,4 +4,6 @@ pip3 install -r requirements.txt
 Commit in develop branch
 ./gh-deploy.sh
 
-Implement virtual machine host security in Azure
+- [Inspiration for MkDocs](https://chrieke.medium.com/documenting-a-python-package-with-code-reference-via-mkdocs-material-b4a45197f95b)
+- [Mkdocs Extensions](https://facelessuser.github.io/pymdown-extensions/)
+- [Plugins](https://chrieke.medium.com/the-best-mkdocs-plugins-and-customizations-fc820eb19759)

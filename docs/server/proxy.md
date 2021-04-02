@@ -1,0 +1,1 @@
+- [Nginx Reverse Proxy Setup](https://docs.docker.com/registry/recipes/nginx/)

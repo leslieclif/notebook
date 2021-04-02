@@ -1,6 +1,7 @@
 - [Master list of Docker Resources and Projects](https://github.com/veggiemonk/awesome-docker#hosting-images-registries)
 - [Play With Docker](http://training.play-with-docker.com/), a great resource for web-based docker testing and also has a library of labs built by Docker Captains and others, and supported by Docker Inc. 
 - [Play With Docker Labs](http://labs.play-with-docker.com/)
+- [DockerHub Recipes](https://docs.docker.com/registry/recipes/)
 - [Docker Cloud: CI/CD and Server Ops](https://cloud.docker.com)
 
 - [Docker Mastery](https://github.com/bretfisher/udemy-docker-mastery)
