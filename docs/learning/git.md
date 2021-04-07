@@ -1,3 +1,6 @@
+# Setting up multiple Github users have different ssh keys
+- https://gist.github.com/oanhnn/80a89405ab9023894df7
+- It has a solution to test ssh configuration
 # Create a new repository on the command line
 git init
 git add README.md

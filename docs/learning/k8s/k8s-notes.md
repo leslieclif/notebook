@@ -14,7 +14,7 @@
 
 ## K8s Learning Resources
 - [Play with k8s](http://play-with-k8s.com)
-- [Katacoda](katacoda.com)
+- [Katacoda](http://katacoda.com)
 
 ## Install Kubernetes
 - Linux - Microk8s

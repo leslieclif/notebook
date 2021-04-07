@@ -1,50 +1,39 @@
-- [Master list of Docker Resources and Projects](https://github.com/veggiemonk/awesome-docker#hosting-images-registries)
-- [Play With Docker](http://training.play-with-docker.com/), a great resource for web-based docker testing and also has a library of labs built by Docker Captains and others, and supported by Docker Inc. 
-- [Play With Docker Labs](http://labs.play-with-docker.com/)
-- [DockerHub Recipes](https://docs.docker.com/registry/recipes/)
-- [Docker Cloud: CI/CD and Server Ops](https://cloud.docker.com)
+???+ note "Important Links"
 
-- [Docker Mastery](https://github.com/bretfisher/udemy-docker-mastery)
-- [Bret's Podcast](https://podcast.bretfisher.com/episodes)
-- [Bret's Youtube](https://www.youtube.com/channel/UC0NErq0RhP51iXx64ZmyVfg)
-- [Dockerfile Best Practice](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
-- [Docker Devops](https://www.youtube.com/watch?v=yeZqoh3-cME)
-- [Docker Best practise inside a code repo](https://github.com/BretFisher/node-docker-good-defaults)
-- [Docker Certificated Associate](https://www.bretfisher.com/docker-certified-associate/)
-- [Docker Shell Config](https://www.bretfisher.com/shell/)
-- [Containers vs VM ebook](https://github.com/mikegcoleman/docker101/blob/master/Docker_eBook_Jan_2017.pdf)
-
-- Docker Cgroup and Namespaces
-
-- [Linux Package Management Basics](https://www.digitalocean.com/community/tutorials/package-management-basics-apt-yum-dnf-pkg)
-
-- [Formatting Docker CLI Output](https://docs.docker.com/config/formatting/)
-
-- [Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)
-
-- [DNS Basics](https://howdns.works/)
-
-- [Docker Image](https://github.com/moby/moby/blob/master/image/spec/v1.md)
-
-- [Immutable Software](https://www.oreilly.com/radar/an-introduction-to-immutable-infrastructure/)
-- [12 factor App](https://12factor.net/)
-- [12 Fractured Apps](https://medium.com/@kelseyhightower/12-fractured-apps-1080c73d481c#.cjvkgw4b3)
-
-- [Devops Roadmap](https://github.com/kamranahmedse/developer-roadmap#devops-roadmap)
-- [Docker Storage](https://docs.docker.com/storage/)
-
-- [YAML Spec Ref Card](https://yaml.org/refcard.html)
-
-- [Docker secrets](https://docs.docker.com/engine/swarm/secrets/)
-- [Healthcheck in Dockerfile](https://docs.docker.com/engine/reference/builder/#healthcheck)
-
-- [Docker Registry Config](https://docs.docker.com/registry/configuration/)
-- [Docker Registry Garbage Collection](https://docs.docker.com/registry/garbage-collection/)
-- [Docker Registry as cache](https://docs.docker.com/registry/recipes/mirror/)
-
-- [Docker CLI to kubectl](https://kubernetes.io/docs/reference/kubectl/docker-cli-to-kubectl/)
-
-- [Docker and Pi Projects](https://blog.alexellis.io/tag/raspberry-pi/)
+    ??? summary "Docker Projects"
+        - [Master list of Docker Resources and Projects](https://github.com/veggiemonk/awesome-docker#hosting-images-registries)
+        - [Play With Docker](http://training.play-with-docker.com/), a great resource for web-based docker testing and also has a library of labs built by Docker Captains and others, and supported by Docker Inc. 
+        - [Play With Docker Labs](http://labs.play-with-docker.com/)
+        - [DockerHub Recipes](https://docs.docker.com/registry/recipes/)
+        - [Docker Cloud: CI/CD and Server Ops](https://cloud.docker.com)
+        - [Docker and Pi Projects](https://blog.alexellis.io/tag/raspberry-pi/)
+    ??? summary "Docker Training Content"
+        - [Docker Mastery](https://github.com/bretfisher/udemy-docker-mastery)
+        - [Bret's Podcast](https://podcast.bretfisher.com/episodes)
+        - [Bret's Youtube](https://www.youtube.com/channel/UC0NErq0RhP51iXx64ZmyVfg)
+        - [Docker Shell Config](https://www.bretfisher.com/shell/)
+        - [Docker Devops](https://www.youtube.com/watch?v=yeZqoh3-cME)
+        - [Containers vs VM ebook](https://github.com/mikegcoleman/docker101/blob/master/Docker_eBook_Jan_2017.pdf)
+    ??? summary "Docker Refernce"
+        - [Docker Certificated Associate](https://www.bretfisher.com/docker-certified-associate/)
+        - [Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)
+        - [Dockerfile Best Practice](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+        - [Formatting Docker CLI Output](https://docs.docker.com/config/formatting/)
+        - [Docker Image](https://github.com/moby/moby/blob/master/image/spec/v1.md)
+        - [Docker Registry Config](https://docs.docker.com/registry/configuration/)
+        - [Docker Registry Garbage Collection](https://docs.docker.com/registry/garbage-collection/)
+        - [Docker Registry as cache](https://docs.docker.com/registry/recipes/mirror/)
+        - [Docker Storage](https://docs.docker.com/storage/)
+        - [Docker secrets](https://docs.docker.com/engine/swarm/secrets/)
+        - [Docker CLI to kubectl](https://kubernetes.io/docs/reference/kubectl/docker-cli-to-kubectl/)
+    ??? summary "Software Design"
+        - [Immutable Software](https://www.oreilly.com/radar/an-introduction-to-immutable-infrastructure/)
+        - [12 factor App](https://12factor.net/)
+        - [12 Fractured Apps](https://medium.com/@kelseyhightower/12-fractured-apps-1080c73d481c#.cjvkgw4b3)
+        - [Devops Roadmap](https://github.com/kamranahmedse/developer-roadmap#devops-roadmap)
+    ??? summary "Docker Best Practises" 
+        - [Docker Best practise inside a code repo](https://github.com/BretFisher/node-docker-good-defaults)
+        - [Healthcheck in Dockerfile](https://docs.docker.com/engine/reference/builder/#healthcheck)
 
 ```BASH
 Starting container process caused "exec: \"ping\": executable file not found in $PATH": unknown
@@ -57,8 +46,6 @@ Starting mysql container and running ps causes "ps: command not found"
 apt-get update && apt-get install procps
 ```
 
-[Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)
-
 # Creating and Using Containers Like a Boss
 
 ## Check Our Docker Install and Config
@@ -69,13 +56,12 @@ apt-get update && apt-get install procps
 - An Image is the application we want to run
 - A Container is an instance of that image running as a process
 - You can have many containers running off the same image
-- Docker's default image "registry" is called [Docker Hub](hub.docker.com)
+- Docker's default image "registry" is called **Docker Hub**
 
 ```DOCKER
 docker container run --publish 80:80 --detach --name webhost nginx
-docker container run -it - start new container interactively
-docker container exec -it - run additional command in
-existing container
+docker container run -it # start new container interactively
+docker container exec -it # run additional command in existing container
 docker container ls -a
 docker container logs webhost
 ```
@@ -528,35 +514,4 @@ for c in `docker context ls -q`; do `docker -c $c run hello-world`; done
 - Use DNS RoundRobin for Database inside Compose file so it switches of Virtual IP on the Overlay network and gives direct access from FrontEnd Service to Backend container.
 - Setting resource limits inside Compose file
 - DRY your compose files using templates
-- 
-```DOCKER
-```
-```DOCKER
-```
-```DOCKER
-```
-```DOCKER
-```
-```DOCKER
-```
-```DOCKER
-```
-```DOCKER
-```
-```DOCKER
-```
-```DOCKER
-```
-```DOCKER
-```
-```DOCKER
-```
-```DOCKER
-```
-```DOCKER
-```
-```DOCKER
-```
-```DOCKER
-```
 

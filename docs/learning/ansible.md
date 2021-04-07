@@ -1,6 +1,7 @@
 # Introduction
 * [Ansible 101](https://www.digitalocean.com/community/tutorials/configuration-management-101-writing-ansible-playbooks)
 * [Ansible Cheat Sheet](https://www.digitalocean.com/community/cheatsheets/how-to-use-ansible-cheat-sheet-guide)
+* [YAML Spec Ref Card](https://yaml.org/refcard.html)
 # Default Configuration
 ansible.cfg and hosts files are present inside `/etc/ansible`
 Testing ansible on Ubuntu WSL `ansible localhost -m ping`
