@@ -30,6 +30,7 @@ done
 ```BASH
 ssh-keygen -t rsa  -b 4096 -f ~/.ssh/raddit-user -C raddit-user
 ```
+ssh-keygen -t rsa  -b 4096 -f ~/.ssh/ansible-user -C ansible-user
 
 1. Using the .ssh config files (~/.ssh/config)
 ```BASH
@@ -54,13 +55,26 @@ ssh-keygen -t rsa  -b 4096 -f ~/.ssh/raddit-user -C raddit-user
         or
         ssh mysite.com # if you setup the User setting in config
 ```
+# Ubuntu
+1. Use bootable USB created using ventoy
+1. Press F12 at startup and select the bootable USB, select Ubuntu is image to begin installation
+1. [Configure linux partitions as encrypted](https://www.youtube.com/watch?v=gvYM6hqTkQo)
+1. Add swap partion instead of efi as we will dual boot into same system. [Part 2](https://askubuntu.com/questions/1033497/dual-boot-windows-10-and-linux-ubuntu-on-separate-ssd)
+1. Change root password. `sudo passwd root`
+1. Move Windows above Ubuntu in boot menu. Use Grub Customizer [Part 3](https://askubuntu.com/questions/1033497/dual-boot-windows-10-and-linux-ubuntu-on-separate-ssd)
+1. Backup and restore data using rsync. Install programs using dotfiles.
 
-[Adding SSH Keys to servers](https://www.digitalocean.com/docs/droplets/how-to/add-ssh-keys/)
-[SSH Client Config](https://www.digitalocean.com/community/tutorials/how-to-configure-custom-connection-options-for-your-ssh-client)
+- [Adding SSH Keys to servers](https://www.digitalocean.com/docs/droplets/how-to/add-ssh-keys/)
+- [SSH Client Config](https://www.digitalocean.com/community/tutorials/how-to-configure-custom-connection-options-for-your-ssh-client)
 
 Edit setings on the new terminal to make Ubuntu as the default terminal. Also set the fontFace and 
 https://www.the-digital-life.com/en/awesome-wsl-wsl2-terminal/
-
+- [Create Sudo User](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-ubuntu-20-04-quickstart)
+- [Securing Sudoers](https://www.digitalocean.com/community/tutorials/how-to-edit-the-sudoers-file)
+```BASH
+#sudo visudo /etc/sudoers.d/leslie
+leslie  ALL=(ALL:ALL) NOPASSWD: /usr/bin/docker, /usr/sbin/reboot, /usr/sbin/shutdown, /usr/bin/apt-get, /usr/local/bin/docker-compose
+```
 # Switching remote URLs from HTTPS to SSH
 List your existing remotes in order to get the name of the remote you want to change.
 ```BASH
@@ -75,8 +89,9 @@ $ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 git remote set-url origin git@github.com:leslieclif/notebook.git
 # Inspirational dotfile repos
 https://www.freecodecamp.org/news/how-to-set-up-a-fresh-ubuntu-desktop-using-only-dotfiles-and-bash-scripts/
-https://github.com/victoriadrake/dotfiles/tree/ubuntu-19.10
-https://github.com/georgijd/dotfiles
+[Dotfiles Intial Automation](https://github.com/victoriadrake/dotfiles/tree/ubuntu-19.10)
+[Tmux and Otherconfig](https://github.com/georgijd/dotfiles)
+https://github.com/nickjj/dotfiles
 
 https://github.com/jieverson/dotfiles-win/blob/master/install.sh
 
@@ -86,3 +101,12 @@ https://victoria.dev/blog/how-to-write-bash-one-liners-for-cloning-and-managing-
 
 # Vagrant setup
 https://www.techdrabble.com/ansible/36-install-ansible-molecule-vagrant-on-windows-wsl
+
+# Tmux
+## Every Hacker should have a great terminal | TMUX - Medium
+[Tmux Basics](https://medium.com/@lanycrost/every-hacker-should-have-a-great-terminal-tmux-part-1-introduction-82b8f4fa5e79)
+[Tmux Config](https://medium.com/@lanycrost/every-hacker-should-have-a-great-terminal-tmux-part-2-configuration-abe57a8c082d)
+
+# VSCode
+[Key Shortcuts](https://github.com/microsoft/vscode-tips-and-tricks)
+[Mastering Terminal](https://www.growingwiththeweb.com/2017/03/mastering-vscodes-terminal.html)

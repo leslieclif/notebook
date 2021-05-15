@@ -3,7 +3,7 @@
 Install `mkdocs` using command 
 
 ```console 
-pip install mkdocs`
+pip install mkdocs
 ```
 
 ## Topics

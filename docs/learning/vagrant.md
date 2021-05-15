@@ -1,3 +1,4 @@
+
 !!! info "Vagrant is not able to run on Windows 10 + WLS2"
 # Windows setup
 * vagrant plugin install vagrant-vbguest
