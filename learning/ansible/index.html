@@ -1,29 +1,29 @@
-<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/learning/ansible/ rel=canonical><link rel="shortcut icon" href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-7.0.3"><title>Ansible - Leslie's Online Notebook</title><link rel=stylesheet href=../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#introduction class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Ansible </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../devops/ class=md-nav__link> Index </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../k8s/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../k8s/install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6 checked> <label class=md-nav__link for=__nav_6> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../vagrant/ class=md-nav__link> Vagrant </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> Ansible <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> Ansible </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#introduction class=md-nav__link> Introduction </a> </li> <li class=md-nav__item> <a href=#default-configuration class=md-nav__link> Default Configuration </a> </li> <li class=md-nav__item> <a href=#enabling-ssh-on-the-vm class=md-nav__link> Enabling SSH on the VM </a> </li> <li class=md-nav__item> <a href=#access-vm-over-ssh class=md-nav__link> Access VM over SSH </a> </li> <li class=md-nav__item> <a href=#copy-files-recursively-from-local-desktop-to-remote-server class=md-nav__link> Copy files recursively from local desktop to remote server </a> </li> <li class=md-nav__item> <a href=#target-docker-containers-for-ansible-controller class=md-nav__link> Target Docker containers for Ansible controller </a> </li> <li class=md-nav__item> <a href=#issues-installing-ansible-and-its-dependencies class=md-nav__link> Issues installing Ansible and its dependencies </a> </li> <li class=md-nav__item> <a href=#directory-structure-as-per-best-practises class=md-nav__link> Directory Structure as per Best Practises </a> </li> <li class=md-nav__item> <a href=#webapp--installation-instructions-for-centos-7 class=md-nav__link> WebApp Installation Instructions for Centos 7 </a> <nav class=md-nav aria-label="WebApp  Installation Instructions for Centos 7"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#install-python-pip-and-dependencies-on-centos-7 class=md-nav__link> Install Python Pip and dependencies on Centos 7 </a> </li> <li class=md-nav__item> <a href=#install-mysql-server-on-centos-7 class=md-nav__link> Install MySQL Server on Centos 7 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#launching-situational-commands class=md-nav__link> Launching situational commands </a> </li> <li class=md-nav__item> <a href=#dynamic-inventory class=md-nav__link> Dynamic Inventory </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#introduction class=md-nav__link> Introduction </a> </li> <li class=md-nav__item> <a href=#default-configuration class=md-nav__link> Default Configuration </a> </li> <li class=md-nav__item> <a href=#enabling-ssh-on-the-vm class=md-nav__link> Enabling SSH on the VM </a> </li> <li class=md-nav__item> <a href=#access-vm-over-ssh class=md-nav__link> Access VM over SSH </a> </li> <li class=md-nav__item> <a href=#copy-files-recursively-from-local-desktop-to-remote-server class=md-nav__link> Copy files recursively from local desktop to remote server </a> </li> <li class=md-nav__item> <a href=#target-docker-containers-for-ansible-controller class=md-nav__link> Target Docker containers for Ansible controller </a> </li> <li class=md-nav__item> <a href=#issues-installing-ansible-and-its-dependencies class=md-nav__link> Issues installing Ansible and its dependencies </a> </li> <li class=md-nav__item> <a href=#directory-structure-as-per-best-practises class=md-nav__link> Directory Structure as per Best Practises </a> </li> <li class=md-nav__item> <a href=#webapp--installation-instructions-for-centos-7 class=md-nav__link> WebApp Installation Instructions for Centos 7 </a> <nav class=md-nav aria-label="WebApp  Installation Instructions for Centos 7"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#install-python-pip-and-dependencies-on-centos-7 class=md-nav__link> Install Python Pip and dependencies on Centos 7 </a> </li> <li class=md-nav__item> <a href=#install-mysql-server-on-centos-7 class=md-nav__link> Install MySQL Server on Centos 7 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#launching-situational-commands class=md-nav__link> Launching situational commands </a> </li> <li class=md-nav__item> <a href=#dynamic-inventory class=md-nav__link> Dynamic Inventory </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>Ansible</h1> <h2 id=introduction>Introduction<a class=headerlink href=#introduction title="Permanent link">&para;</a></h2> <ul> <li><a href=https://www.digitalocean.com/community/tutorials/configuration-management-101-writing-ansible-playbooks>Ansible 101</a></li> <li><a href=https://www.digitalocean.com/community/cheatsheets/how-to-use-ansible-cheat-sheet-guide>Ansible Cheat Sheet</a></li> </ul> <h2 id=default-configuration>Default Configuration<a class=headerlink href=#default-configuration title="Permanent link">&para;</a></h2> <p>ansible.cfg and hosts files are present inside <code>/etc/ansible</code> Testing ansible on Ubuntu WSL <code>ansible localhost -m ping</code></p> <h2 id=enabling-ssh-on-the-vm>Enabling SSH on the VM<a class=headerlink href=#enabling-ssh-on-the-vm title="Permanent link">&para;</a></h2> <p>If you need SSH enabled on the system, follow the below steps:</p> <p>Ensure the /etc/apt/sources.list file has been updated as per above</p> <p>Run the command: apt-get update </p> <p>Run the command: apt-get install openssh-server</p> <p>Run the command: service sshd start</p> <div class=highlight><pre><span></span><code>ssh-keygen -t rsa -C <span class=s2>&quot;ansible&quot;</span>
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/learning/ansible/ rel=canonical><link rel="shortcut icon" href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-7.0.3"><title>Ansible - Leslie's Online Notebook</title><link rel=stylesheet href=../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#introduction class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Ansible </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../k8s/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../k8s/install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5 checked> <label class=md-nav__link for=__nav_5> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../linux/ class=md-nav__link> Linux </a> </li> <li class=md-nav__item> <a href=../git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../vagrant/ class=md-nav__link> Vagrant </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> Ansible <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> Ansible </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#introduction class=md-nav__link> Introduction </a> </li> <li class=md-nav__item> <a href=#documentation-on-cmdline class=md-nav__link> Documentation on cmdline </a> </li> <li class=md-nav__item> <a href=#setup-server class=md-nav__link> Setup Server </a> <nav class=md-nav aria-label="Setup Server"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#default-configuration class=md-nav__link> Default Configuration </a> </li> <li class=md-nav__item> <a href=#enabling-ssh-on-the-vm class=md-nav__link> Enabling SSH on the VM </a> </li> <li class=md-nav__item> <a href=#access-vm-over-ssh class=md-nav__link> Access VM over SSH </a> </li> <li class=md-nav__item> <a href=#copy-files-recursively-from-local-desktop-to-remote-server class=md-nav__link> Copy files recursively from local desktop to remote server </a> </li> <li class=md-nav__item> <a href=#target-docker-containers-for-ansible-controller class=md-nav__link> Target Docker containers for Ansible controller </a> </li> <li class=md-nav__item> <a href=#issues-installing-ansible-and-its-dependencies class=md-nav__link> Issues installing Ansible and its dependencies </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#ansible-directory-structure-as-per-best-practises class=md-nav__link> Ansible Directory Structure as per Best Practises </a> </li> <li class=md-nav__item> <a href=#webapp--installation-instructions-for-centos-7 class=md-nav__link> WebApp Installation Instructions for Centos 7 </a> <nav class=md-nav aria-label="WebApp  Installation Instructions for Centos 7"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#install-python-pip-and-dependencies-on-centos-7 class=md-nav__link> Install Python Pip and dependencies on Centos 7 </a> </li> <li class=md-nav__item> <a href=#install-mysql-server-on-centos-7 class=md-nav__link> Install MySQL Server on Centos 7 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#executing-ansible-playbook class=md-nav__link> Executing Ansible Playbook </a> <nav class=md-nav aria-label="Executing Ansible Playbook"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#launching-ansible-situational-commands class=md-nav__link> Launching Ansible situational commands </a> </li> <li class=md-nav__item> <a href=#launching-ansible-playbook-situational-commands class=md-nav__link> Launching Ansible Playbook situational commands </a> </li> <li class=md-nav__item> <a href=#launching-ansible-vault-situational-commands class=md-nav__link> Launching Ansible Vault situational commands </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#ansible-playbook-examples class=md-nav__link> Ansible Playbook Examples </a> <nav class=md-nav aria-label="Ansible Playbook Examples"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#using-ansible-system-variables class=md-nav__link> Using ansible system variables </a> </li> <li class=md-nav__item> <a href=#async class=md-nav__link> Async </a> </li> <li class=md-nav__item> <a href=#deployment-strategy-and-forks class=md-nav__link> Deployment Strategy and Forks </a> </li> <li class=md-nav__item> <a href=#error-handling class=md-nav__link> Error Handling </a> </li> <li class=md-nav__item> <a href=#jinja2-templating class=md-nav__link> Jinja2 Templating </a> </li> <li class=md-nav__item> <a href=#lookups class=md-nav__link> Lookups </a> </li> <li class=md-nav__item> <a href=#tags class=md-nav__link> Tags </a> </li> <li class=md-nav__item> <a href=#includes-outdated-after-20 class=md-nav__link> Includes (Outdated after 2.0) </a> </li> <li class=md-nav__item> <a href=#roles class=md-nav__link> Roles </a> </li> <li class=md-nav__item> <a href=#ansible-galaxy class=md-nav__link> Ansible Galaxy </a> </li> <li class=md-nav__item> <a href=#ansible-galaxy-useful-commands class=md-nav__link> ansible-galaxy useful commands </a> </li> <li class=md-nav__item> <a href=#environment-variables class=md-nav__link> Environment Variables </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../devops/ class=md-nav__link> Index </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#introduction class=md-nav__link> Introduction </a> </li> <li class=md-nav__item> <a href=#documentation-on-cmdline class=md-nav__link> Documentation on cmdline </a> </li> <li class=md-nav__item> <a href=#setup-server class=md-nav__link> Setup Server </a> <nav class=md-nav aria-label="Setup Server"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#default-configuration class=md-nav__link> Default Configuration </a> </li> <li class=md-nav__item> <a href=#enabling-ssh-on-the-vm class=md-nav__link> Enabling SSH on the VM </a> </li> <li class=md-nav__item> <a href=#access-vm-over-ssh class=md-nav__link> Access VM over SSH </a> </li> <li class=md-nav__item> <a href=#copy-files-recursively-from-local-desktop-to-remote-server class=md-nav__link> Copy files recursively from local desktop to remote server </a> </li> <li class=md-nav__item> <a href=#target-docker-containers-for-ansible-controller class=md-nav__link> Target Docker containers for Ansible controller </a> </li> <li class=md-nav__item> <a href=#issues-installing-ansible-and-its-dependencies class=md-nav__link> Issues installing Ansible and its dependencies </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#ansible-directory-structure-as-per-best-practises class=md-nav__link> Ansible Directory Structure as per Best Practises </a> </li> <li class=md-nav__item> <a href=#webapp--installation-instructions-for-centos-7 class=md-nav__link> WebApp Installation Instructions for Centos 7 </a> <nav class=md-nav aria-label="WebApp  Installation Instructions for Centos 7"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#install-python-pip-and-dependencies-on-centos-7 class=md-nav__link> Install Python Pip and dependencies on Centos 7 </a> </li> <li class=md-nav__item> <a href=#install-mysql-server-on-centos-7 class=md-nav__link> Install MySQL Server on Centos 7 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#executing-ansible-playbook class=md-nav__link> Executing Ansible Playbook </a> <nav class=md-nav aria-label="Executing Ansible Playbook"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#launching-ansible-situational-commands class=md-nav__link> Launching Ansible situational commands </a> </li> <li class=md-nav__item> <a href=#launching-ansible-playbook-situational-commands class=md-nav__link> Launching Ansible Playbook situational commands </a> </li> <li class=md-nav__item> <a href=#launching-ansible-vault-situational-commands class=md-nav__link> Launching Ansible Vault situational commands </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#ansible-playbook-examples class=md-nav__link> Ansible Playbook Examples </a> <nav class=md-nav aria-label="Ansible Playbook Examples"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#using-ansible-system-variables class=md-nav__link> Using ansible system variables </a> </li> <li class=md-nav__item> <a href=#async class=md-nav__link> Async </a> </li> <li class=md-nav__item> <a href=#deployment-strategy-and-forks class=md-nav__link> Deployment Strategy and Forks </a> </li> <li class=md-nav__item> <a href=#error-handling class=md-nav__link> Error Handling </a> </li> <li class=md-nav__item> <a href=#jinja2-templating class=md-nav__link> Jinja2 Templating </a> </li> <li class=md-nav__item> <a href=#lookups class=md-nav__link> Lookups </a> </li> <li class=md-nav__item> <a href=#tags class=md-nav__link> Tags </a> </li> <li class=md-nav__item> <a href=#includes-outdated-after-20 class=md-nav__link> Includes (Outdated after 2.0) </a> </li> <li class=md-nav__item> <a href=#roles class=md-nav__link> Roles </a> </li> <li class=md-nav__item> <a href=#ansible-galaxy class=md-nav__link> Ansible Galaxy </a> </li> <li class=md-nav__item> <a href=#ansible-galaxy-useful-commands class=md-nav__link> ansible-galaxy useful commands </a> </li> <li class=md-nav__item> <a href=#environment-variables class=md-nav__link> Environment Variables </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>Ansible</h1> <h2 id=introduction>Introduction<a class=headerlink href=#introduction title="Permanent link">&para;</a></h2> <ul> <li><a href=https://www.digitalocean.com/community/tutorials/configuration-management-101-writing-ansible-playbooks>Ansible 101</a></li> <li><a href=https://www.digitalocean.com/community/cheatsheets/how-to-use-ansible-cheat-sheet-guide>Ansible Cheat Sheet</a></li> <li><a href=https://github.com/nfaction/ansible-tips-and-tricks/wiki>Ansible Tips and Tricks</a></li> <li><a href=https://github.com/do-community/ansible-practice>DO Practise examples</a> &amp; <a href=https://www.digitalocean.com/community/tutorial_series/how-to-write-ansible-playbooks>Explaination</a> &amp; <a href=https://www.digitalocean.com/community/tags/ansible>Tutorials</a></li> <li><a href=https://yaml.org/refcard.html>YAML Spec Ref Card</a></li> <li><a href=https://github.com/mmumshad/udemy-ansible-assignment>Full Application on Cloud</a></li> </ul> <h2 id=documentation-on-cmdline>Documentation on cmdline<a class=headerlink href=#documentation-on-cmdline title="Permanent link">&para;</a></h2> <div class=highlight><pre><span></span><code><span class=c1># System outputs the man page for debug module</span>
+ansible-doc debug     
+</code></pre></div> <h2 id=setup-server>Setup Server<a class=headerlink href=#setup-server title="Permanent link">&para;</a></h2> <h3 id=default-configuration>Default Configuration<a class=headerlink href=#default-configuration title="Permanent link">&para;</a></h3> <ul> <li>ansible.cfg and hosts files are present inside <code>/etc/ansible</code></li> <li>Testing ansible on Ubuntu WSL <code>ansible localhost -m ping</code></li> </ul> <h3 id=enabling-ssh-on-the-vm>Enabling SSH on the VM<a class=headerlink href=#enabling-ssh-on-the-vm title="Permanent link">&para;</a></h3> <ul> <li>If you need SSH enabled on the system, follow the below steps:</li> <li>Ensure the <code>/etc/apt/sources.list</code> file has been updated as per above</li> <li>Run the command: apt-get update </li> <li>Run the command: apt-get install openssh-server</li> <li>Run the command: service sshd start</li> </ul> <div class=highlight><pre><span></span><code>ssh-keygen -t rsa -C <span class=s2>&quot;ansible&quot;</span>
 
-OR
+<span class=c1>#OR</span>
 
-Generate an SSH key pair <span class=k>for</span> future connections to the VM instances <span class=o>(</span>run the <span class=nb>command</span> exactly as it is<span class=o>)</span>:
-$ ssh-keygen -t rsa  -b <span class=m>4096</span> -f ~/.ssh/raddit-user -C raddit-user -P <span class=s2>&quot;&quot;</span>
-
-Add the SSH private key to the ssh-agent:
-$ ssh-add ~/.ssh/raddit-user
-
-Verify that the key was added to the ssh-agent:
+<span class=c1># Generate an SSH key pair for future connections to the VM instances (run the command exactly as it is):</span>
+ssh-keygen -t rsa  -b <span class=m>4096</span> -f ~/.ssh/ansible-user -C ansible-user -P <span class=s2>&quot;&quot;</span>
+<span class=c1>#Add the SSH private key to the ssh-agent:</span>
+ssh-add ~/.ssh/ansible-user
+<span class=c1>#Verify that the key was added to the ssh-agent:</span>
 $ ssh-add -l
-</code></pre></div> <h2 id=access-vm-over-ssh>Access VM over SSH<a class=headerlink href=#access-vm-over-ssh title="Permanent link">&para;</a></h2> <div class=highlight><pre><span></span><code>ssh vagrant@127.0.0.1 -p <span class=m>2222</span> -i ~/.ssh/insecure_private_key
-</code></pre></div> <h2 id=copy-files-recursively-from-local-desktop-to-remote-server>Copy files recursively from local desktop to remote server<a class=headerlink href=#copy-files-recursively-from-local-desktop-to-remote-server title="Permanent link">&para;</a></h2> <div class=highlight><pre><span></span><code>scp -r ./scripts vagrant@127.0.0.1:/home/vagrant -p <span class=m>2222</span> -i ~/.ssh/insecure_private_key
-</code></pre></div> <h2 id=target-docker-containers-for-ansible-controller>Target Docker containers for Ansible controller<a class=headerlink href=#target-docker-containers-for-ansible-controller title="Permanent link">&para;</a></h2> <p>The Docker file used to create the ubuntu-ssh-enabled Docker image is located here.</p> <p><a class="magiclink magiclink-github magiclink-repository" href=https://github.com/mmumshad/ubuntu-ssh-enabled title="GitHub Repository: mmumshad/ubuntu-ssh-enabled">mmumshad/ubuntu-ssh-enabled</a> </p> <h2 id=issues-installing-ansible-and-its-dependencies>Issues installing Ansible and its dependencies<a class=headerlink href=#issues-installing-ansible-and-its-dependencies title="Permanent link">&para;</a></h2> <p>Once the Debian VM is up and running make the following changes to the /etc/apt/sources.list file to get the Ansible installation working right.</p> <div class=highlight><pre><span></span><code>deb http://security.debian.org/ jessie/updates main contrib
+</code></pre></div> <h3 id=access-vm-over-ssh>Access VM over SSH<a class=headerlink href=#access-vm-over-ssh title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>ssh vagrant@127.0.0.1 -p <span class=m>2222</span> -i ~/.ssh/insecure_private_key
+</code></pre></div> <h3 id=copy-files-recursively-from-local-desktop-to-remote-server>Copy files recursively from local desktop to remote server<a class=headerlink href=#copy-files-recursively-from-local-desktop-to-remote-server title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>scp -r ./scripts vagrant@127.0.0.1:/home/vagrant -p <span class=m>2222</span> -i ~/.ssh/insecure_private_key
+</code></pre></div> <h3 id=target-docker-containers-for-ansible-controller>Target Docker containers for Ansible controller<a class=headerlink href=#target-docker-containers-for-ansible-controller title="Permanent link">&para;</a></h3> <p>The <a href=https://github.com/mmumshad/ubuntu-ssh-enabled>Docker file</a> used to create the ubuntu-ssh-enabled Docker image is located here.</p> <h3 id=issues-installing-ansible-and-its-dependencies>Issues installing Ansible and its dependencies<a class=headerlink href=#issues-installing-ansible-and-its-dependencies title="Permanent link">&para;</a></h3> <p>Once the Debian VM is up and running make the following changes to the /etc/apt/sources.list file to get the Ansible installation working right.</p> <div class=highlight><pre><span></span><code>deb http://security.debian.org/ jessie/updates main contrib
 deb-src http://security.debian.org/ jessie/updates main contrib
 deb http://ftp.debian.org/debian/ jessie-updates main contrib
 deb-src http://ftp.debian.org/debian/ jessie-updates main contrib
 deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main
 deb http://ftp.de.debian.org/debian sid main
-</code></pre></div> <h2 id=directory-structure-as-per-best-practises>Directory Structure as per Best Practises<a class=headerlink href=#directory-structure-as-per-best-practises title="Permanent link">&para;</a></h2> <p>This is the directory layout of this repository with explanation.</p> <div class=highlight><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">production.ini</span>            <span class=c1># inventory file for production stage</span>
+</code></pre></div> <h2 id=ansible-directory-structure-as-per-best-practises>Ansible Directory Structure as per Best Practises<a class=headerlink href=#ansible-directory-structure-as-per-best-practises title="Permanent link">&para;</a></h2> <ul> <li>This is the directory layout of this repository with explanation.</li> </ul> <div class=highlight><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">production.ini</span>            <span class=c1># inventory file for production stage</span>
 <span class="l l-Scalar l-Scalar-Plain">development.ini</span>           <span class=c1># inventory file for development stage</span>
 <span class="l l-Scalar l-Scalar-Plain">test.ini</span>                  <span class=c1># inventory file for test stage</span>
 <span class="l l-Scalar l-Scalar-Plain">vpass</span>                     <span class=c1># ansible-vault password file</span>
                           <span class=c1># This file should not be committed into the repository</span>
-                          <span class=c1># therefore file is in ignored by git</span>
+                          <span class=c1># therefore file is ignored by git</span>
 <span class="l l-Scalar l-Scalar-Plain">group_vars/</span>
     <span class="l l-Scalar l-Scalar-Plain">all/</span>                  <span class=c1># variables under this directory belongs all the groups</span>
         <span class="l l-Scalar l-Scalar-Plain">apt.yml</span>           <span class=c1># ansible-apt role variable file for all groups</span>
@@ -48,7 +48,8 @@ deb http://ftp.de.debian.org/debian sid main
     <span class="l l-Scalar l-Scalar-Plain">setup/</span>                 <span class=c1># All the setup files for updating roles and ansible dependencies</span>
 </code></pre></div> <h2 id=webapp--installation-instructions-for-centos-7>WebApp Installation Instructions for Centos 7<a class=headerlink href=#webapp--installation-instructions-for-centos-7 title="Permanent link">&para;</a></h2> <h3 id=install-python-pip-and-dependencies-on-centos-7>Install Python Pip and dependencies on Centos 7<a class=headerlink href=#install-python-pip-and-dependencies-on-centos-7 title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code>sudo yum install -y epel-release python python-pip
 sudo pip install flask flask-mysql
-</code></pre></div> If you come across a certification validation error while running the above command, please use the below command. <code>sudo pip install --trusted-host files.pythonhosted.org --trusted-host pypi.org --trusted-host pypi.python.org flask flask-mysql</code></p> <h3 id=install-mysql-server-on-centos-7>Install MySQL Server on Centos 7<a class=headerlink href=#install-mysql-server-on-centos-7 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+</code></pre></div> If you come across a certification validation error while running the above command, please use the below command. <div class=highlight><pre><span></span><code>sudo pip install --trusted-host files.pythonhosted.org --trusted-host pypi.org --trusted-host pypi.python.org flask flask-mysql
+</code></pre></div></p> <h3 id=install-mysql-server-on-centos-7>Install MySQL Server on Centos 7<a class=headerlink href=#install-mysql-server-on-centos-7 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
 sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm
 sudo yum update
 sudo yum -y install mysql-server
@@ -56,7 +57,80 @@ sudo service mysql start
 
 The <span class=nb>complete</span> playbook to get the same workin on CentOS is here:
 https://github.com/kodekloudhub/simple_web_application
-</code></pre></div> <h2 id=launching-situational-commands>Launching situational commands<a class=headerlink href=#launching-situational-commands title="Permanent link">&para;</a></h2> <ul> <li>To check the inventory file <code>ansible-inventory --list -y</code></li> <li>Test Connection <code>ansible all -m ping -u root</code></li> <li>Check the disk usage of all servers <code>ansible all -a "df -h" -u root</code></li> <li>Check the time of <code>uptime</code> each host in a group <strong>servers</strong> <code>ansible servers -a "uptime" -u root</code></li> <li>Specify multiple hosts by separating their names with colons <code>ansible server1:server2 -m ping -u root</code></li> </ul> <h2 id=dynamic-inventory>Dynamic Inventory<a class=headerlink href=#dynamic-inventory title="Permanent link">&para;</a></h2> <p>You will need to set an environment variable with your API Personal Access Token in the provisioning machine export DO_API_TOKEN=YOUR_API_TOKEN_HERE</p> <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">host01</span>
+</code></pre></div> <h2 id=executing-ansible-playbook>Executing Ansible Playbook<a class=headerlink href=#executing-ansible-playbook title="Permanent link">&para;</a></h2> <h3 id=launching-ansible-situational-commands>Launching Ansible situational commands<a class=headerlink href=#launching-ansible-situational-commands title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># To check the inventory file </span>
+ansible-inventory --list -y
+<span class=c1># Test Connection </span>
+ansible all -m ping -u root
+<span class=c1># Ask for Sudo password</span>
+ansible all -m ping --ask-pass
+<span class=c1># Using a specific SSH private key and a user</span>
+ansible -m ping hosts --private-key<span class=o>=</span>~/.ssh/keys/id_rsa -u centos
+<span class=c1># Check the disk usage of all servers </span>
+ansible all -a <span class=s2>&quot;df -h&quot;</span> -u root
+<span class=c1># Check the time of `uptime` each host in a group **servers** </span>
+ansible servers -a <span class=s2>&quot;uptime&quot;</span> -u root
+<span class=c1># Specify multiple hosts by separating their names with colons</span>
+ansible server1:server2 -m ping -u root
+<span class=c1># Get system dat in json format of target</span>
+ansible target1 -i myhosts -m setup --private-key<span class=o>=</span>~/.ssh/ansible-user -u root
+<span class=c1># Filter json output</span>
+ansible target1 -i myhosts -m setup -a <span class=s2>&quot;filter=*ipv4*&quot;</span> --private-key<span class=o>=</span>~/.ssh/ansible-user -u root
+ansible all -i myhosts -m setup -a <span class=s2>&quot;filter=*ipv4*&quot;</span> --private-key<span class=o>=</span>~/.ssh/ansible-user -u root
+</code></pre></div> <h3 id=launching-ansible-playbook-situational-commands>Launching Ansible Playbook situational commands<a class=headerlink href=#launching-ansible-playbook-situational-commands title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>ansible-playbook -i myhosts site.yml
+<span class=c1># Ask for Sudo password</span>
+ansible-playbook myplaybook.yml --ask-become-pass
+<span class=c1># Or use the -K option</span>
+ansible-playbook -i inventory myplaybook.yml -u sammy -K
+<span class=c1># Execute a play without making any changes to the remote servers</span>
+ansible-playbook myplaybook.yml --list-tasks
+<span class=c1># List all hosts that would be affected by a play</span>
+ansible-playbook myplaybook.yml --list-hosts
+ansible-playbook -i myhosts playbooks/atmo_playbook.yml --user atmouser
+<span class=c1># Passing variables which executing playbooks</span>
+ansible-playbook playbooks/atmo_playbook.yml -e <span class=s2>&quot;ATMOUSERNAME=atmouser&quot;</span>
+ansible host01 -i myhosts -m copy -a <span class=s2>&quot;src=test.txt dest=/tmp/&quot;</span>
+ansible host01 -i myhosts -m file -a <span class=s2>&quot;dest=/tmp/test mode=644 state=directory&quot;</span>
+ansible host01 -i myhosts -m apt -a <span class=s2>&quot;name=sudo state=latest&quot;</span>
+ansible host01 -i myhosts -m shell -a <span class=s2>&quot;echo </span><span class=nv>$TERM</span><span class=s2>&quot;</span>
+ansible host01 -i myhosts -m <span class=nb>command</span> -a <span class=s2>&quot;mkdir folder1&quot;</span>
+<span class=c1># Run playbook on one host</span>
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --limit <span class=s2>&quot;host1&quot;</span>
+<span class=c1># Run playbook on multiple hosts</span>
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --limit <span class=s2>&quot;host1,host2&quot;</span>
+<span class=c1># Flush Ansible memory f pevious runs</span>
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --flush-cache
+<span class=c1># Dry run mode</span>
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --check
+<span class=c1># Starts playbook execution from an intermediate task, task name should match</span>
+ansible-playbook myplaybook.yml --start-at-task<span class=o>=</span><span class=s2>&quot;Set Up Nginx&quot;</span>
+<span class=c1># Increasing debug verbosity</span>
+ansible-playbook myplaybook.yml -v
+ansible-playbook myplaybook.yml -vvvv
+</code></pre></div> <h3 id=launching-ansible-vault-situational-commands>Launching Ansible Vault situational commands<a class=headerlink href=#launching-ansible-vault-situational-commands title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Create new encrypted file, enter password</span>
+ansible-vault encrypt credentials.yml
+<span class=c1># View the contents of encrypted file</span>
+ansible-vault view credentials.yml
+<span class=c1># Edit the encrypted file</span>
+ansible-vault edit credentials.yml
+<span class=c1># Permanently decrypt the file</span>
+ansible-vault decrypt credentials.yml
+<span class=c1># Creating multiple vaults per env like dev, prod  </span>
+<span class=c1># create a new vault ID named dev that uses prompt as password source. </span>
+<span class=c1># Prompt will ask you to enter a password, or a valid path to a password file. </span>
+ansible-vault create --vault-id dev@prompt credentials_dev.yml
+ansible-vault create --vault-id prod@prompt credentials_prod.yml
+<span class=c1># Editing , Decrypting multiple vaults</span>
+ansible-vault edit credentials_dev.yml --vault-id dev@prompt
+<span class=c1># Using Password file when using 3rd party automation</span>
+ansible-vault create --vault-id dev@path/to/passfile credentials_dev.yml
+<span class=c1># Running playbooks with encrypted password</span>
+ansible-playbook myplaybook.yml --ask-vault-pass
+<span class=c1># Passing password file</span>
+ansible-playbook myplaybook.yml --vault-password-file my_vault_password.py
+<span class=c1># Passing multi env password </span>
+ansible-playbook myplaybook.yml --vault-id dev@prompt
+ansible-playbook myplaybook.yml --vault-id dev@vault_password.py --vault-id test@prompt --vault-id ci@prompt
+</code></pre></div> <h2 id=ansible-playbook-examples>Ansible Playbook Examples<a class=headerlink href=#ansible-playbook-examples title="Permanent link">&para;</a></h2> <ul> <li>Install latest software version <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">host01</span>
 <span class=nn>---</span>
     <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
     <span class=nt>tasks</span><span class=p>:</span>
@@ -64,15 +138,7 @@ https://github.com/kodekloudhub/simple_web_application
         <span class=nt>apt</span><span class=p>:</span>
           <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">sysstat</span>
           <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">latest</span>
-
-<span class=c1># ansible-playbook -i myhosts site.yml</span>
-<span class=c1># ansible host01 -i myhosts -m copy -a &quot;src=test.txt dest=/tmp/&quot;</span>
-<span class=c1># ansible host01 -i myhosts -m file -a &quot;dest=/tmp/test mode=644 state=directory&quot;</span>
-<span class=c1># ansible host01 -i myhosts -m apt -a &quot;name=sudo state=latest&quot;</span>
-<span class=c1># ansible host01 -i myhosts -m shell -a &quot;echo $TERM&quot;</span>
-<span class=c1># ansible host01 -i myhosts -m command -a &quot;mkdir folder1&quot;</span>
-
-<span class=nn>---</span>
+</code></pre></div></li> <li>Install software on all hosts <div class=highlight><pre><span></span><code><span class=nn>---</span>
 <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install apache</span>
   <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
   <span class=nt>sudo</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
@@ -82,7 +148,7 @@ https://github.com/kodekloudhub/simple_web_application
         <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apache2</span>
         <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
         <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">latest</span>
-<span class=nn>---</span>
+</code></pre></div></li> <li>Copy file only when it does not exists <div class=highlight><pre><span></span><code><span class=nn>---</span>
 <span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">host01</span>
   <span class=nt>tasks</span><span class=p>:</span>
   <span class="p p-Indicator">-</span> <span class=nt>stat</span><span class=p>:</span>
@@ -95,8 +161,7 @@ https://github.com/kodekloudhub/simple_web_application
       <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/home/ubuntu/folder1/something.j2</span>
       <span class=nt>mode</span><span class=p>:</span> <span class=s>&#39;0644&#39;</span>
     <span class=nt>when</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">st.stat.exists == False</span>
-
-<span class=c1># Looping</span>
+</code></pre></div></li> <li>Add users using Loops <div class=highlight><pre><span></span><code><span class=c1># Looping</span>
 <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">add several users</span>
   <span class=nt>user</span><span class=p>:</span>
     <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
@@ -107,7 +172,7 @@ https://github.com/kodekloudhub/simple_web_application
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">david</span>
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">john</span>
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">lauren</span>
-<span class=c1># show all the hosts in the inventory</span>
+</code></pre></div></li> <li>Using Looping with debug <div class=highlight><pre><span></span><code><span class=c1># show all the hosts in the inventory</span>
 <span class="p p-Indicator">-</span> <span class=nt>debug</span><span class=p>:</span>
     <span class=nt>msg</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
   <span class=nt>with_items</span><span class=p>:</span>
@@ -117,7 +182,7 @@ https://github.com/kodekloudhub/simple_web_application
     <span class=nt>msg</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
   <span class=nt>with_items</span><span class=p>:</span>
     <span class="p p-Indicator">-</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>play_hosts</span><span class=nv> </span><span class=s>}}&quot;</span>
-<span class=c1># This Playbook will add Java Packages to different systems (handling Ubuntu/Debian OS)</span>
+</code></pre></div></li> <li>Conditionals <div class=highlight><pre><span></span><code><span class=c1># This Playbook will add Java Packages to different systems (handling Ubuntu/Debian OS)</span>
 <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">debian | ubuntu | add java ppa repo</span>
   <span class=nt>apt_repository</span><span class=p>:</span>
     <span class="l l-Scalar l-Scalar-Plain">repo=ppa:webupd8team/java</span>
@@ -133,9 +198,8 @@ https://github.com/kodekloudhub/simple_web_application
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">deb</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">deb-src</span>
   <span class=" -Error">  </span><span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
-  <span class=nt>when</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ansible_distribution == &#39;Debian</span>
-
-<span class=nn>---</span>
+  <span class=nt>when</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ansible_distribution == &#39;Debian&#39;</span>
+</code></pre></div></li> <li>Full Play <div class=highlight><pre><span></span><code><span class=nn>---</span>
 <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install software</span>
   <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">host01</span>
   <span class=nt>sudo</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
@@ -167,6 +231,10 @@ https://github.com/kodekloudhub/simple_web_application
         <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">started</span>
         <span class=nt>enabled</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
 
+<span class=c1>#file: vars.yml</span>
+<span class=nn>---</span>
+<span class=nt>var</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
+
 <span class=c1>#file: playbook.yml</span>
 <span class=nn>---</span>
 <span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
@@ -174,9 +242,7 @@ https://github.com/kodekloudhub/simple_web_application
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">vars.yml</span>
   <span class=nt>tasks</span><span class=p>:</span>
     <span class="p p-Indicator">-</span> <span class=nt>debug</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">msg=&quot;Variable &#39;var&#39; is set to {{ var }}&quot;</span>
-<span class=c1>#file: vars.yml</span>
-<span class=nn>---</span>
-<span class=nt>var</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
+
 <span class=c1>#host variables - Variables are defined inline for individual host</span>
   <span class="p p-Indicator">[</span><span class=nv>group1</span><span class="p p-Indicator">]</span>
   <span class="l l-Scalar l-Scalar-Plain">host1 http_port=80</span>
@@ -185,23 +251,83 @@ https://github.com/kodekloudhub/simple_web_application
   <span class="p p-Indicator">[</span><span class=nv>group1</span><span class="p p-Indicator">:</span><span class=nv>vars</span><span class="p p-Indicator">]</span>
   <span class="l l-Scalar l-Scalar-Plain">ntp_server= example.com</span>
   <span class="l l-Scalar l-Scalar-Plain">proxy=proxy.example.com</span>
-<span class=c1>### Whenever you run Playbook, Ansible by default collects information (facts) about each host</span>
-<span class=c1>### like host IP address, CPU type, disk space, operating system information etc.</span>
-<span class="l l-Scalar l-Scalar-Plain">ansible host01 -i myhosts -m setup</span>
- <span class="l l-Scalar l-Scalar-Plain"># Consider you need the IP address of all the servers in you web group using &#39;group&#39; variable</span>
-  <span class="l l-Scalar l-Scalar-Plain">{% for host in groups.web %}</span>
-
-  <span class="l l-Scalar l-Scalar-Plain">server {{ host.inventory_hostname }} {{ host.ansible_default_ipv4.address }}:8080</span>
-
-  <span class="l l-Scalar l-Scalar-Plain">{% endfor %}</span>
-
-<span class=c1># get a list of all the variables associated with the current host with the help of hostvars and inventory_hostname variables.</span>
+</code></pre></div></li> <li>Full Play - Deploying an Nginx static site on Ubuntu <div class=highlight><pre><span></span><code><span class=c1># playbook.yml</span>
 <span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+  <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  <span class=nt>vars</span><span class=p>:</span>
+    <span class=nt>server_name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>ansible_default_ipv4.address</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>document_root</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/var/www</span>
+    <span class=nt>app_root</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">html_demo_site-main</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Update apt cache and install Nginx</span>
+      <span class=nt>apt</span><span class=p>:</span>
+        <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">latest</span>
+        <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Copy website files to the server&#39;s document root</span>
+      <span class=nt>copy</span><span class=p>:</span>
+        <span class=nt>src</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>app_root</span><span class=nv> </span><span class=s>}}&quot;</span>
+        <span class=nt>dest</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>document_root</span><span class=nv> </span><span class=s>}}&quot;</span>
+        <span class=nt>mode</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">preserve</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Apply Nginx template</span>
+      <span class=nt>template</span><span class=p>:</span>
+        <span class=nt>src</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">files/nginx.conf.j2</span>
+        <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/nginx/sites-available/default</span>
+      <span class=nt>notify</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Restart Nginx</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Enable new site</span>
+      <span class=nt>file</span><span class=p>:</span>
+        <span class=nt>src</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/nginx/sites-available/default</span>
+        <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/nginx/sites-enabled/default</span>
+        <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">link</span>
+      <span class=nt>notify</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Restart Nginx</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Allow all access to tcp port 80</span>
+      <span class=nt>ufw</span><span class=p>:</span>
+        <span class=nt>rule</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">allow</span>
+        <span class=nt>port</span><span class=p>:</span> <span class=s>&#39;80&#39;</span>
+        <span class=nt>proto</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">tcp</span>
+
+  <span class=nt>handlers</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Restart Nginx</span>
+      <span class=nt>service</span><span class=p>:</span>
+        <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restarted</span>
+
+<span class=c1># Copy the static files and unzip to folder root</span>
+<span class="l l-Scalar l-Scalar-Plain">curl -L https://github.com/do-community/html_demo_site/archive/refs/heads/main.zip -o html_demo.zip</span>
+<span class=c1># files/nginx.conf.j2</span>
+<span class="l l-Scalar l-Scalar-Plain">server {</span>
+  <span class="l l-Scalar l-Scalar-Plain">listen 80;</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">root {{ document_root }}/{{ app_root }};</span>
+  <span class="l l-Scalar l-Scalar-Plain">index index.html index.htm;</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">server_name {{ server_name }};</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">location / {</span>
+   <span class="l l-Scalar l-Scalar-Plain">default_type &quot;text/html&quot;;</span>
+   <span class="l l-Scalar l-Scalar-Plain">try_files $uri.html $uri $uri/ =404;</span>
+  <span class="l l-Scalar l-Scalar-Plain">}</span>
+<span class=err>}</span>
+
+<span class=c1># Executing the playbook with sammy user and prompting for password</span>
+<span class="l l-Scalar l-Scalar-Plain">ansible-playbook -i inventory playbook.yml -u sammy -K</span>
+</code></pre></div></li> </ul> <h3 id=using-ansible-system-variables>Using ansible system variables<a class=headerlink href=#using-ansible-system-variables title="Permanent link">&para;</a></h3> <ul> <li>Whenever you run Playbook, Ansible by default collects information (facts) about each host</li> <li>like host IP address, CPU type, disk space, operating system information etc. <div class=highlight><pre><span></span><code>ansible host01 -i myhosts -m setup
+</code></pre></div></li> <li>Consider you need the IP address of all the servers in you web group using 'group' variable <div class=highlight><pre><span></span><code>  <span class=o>{</span>% <span class=k>for</span> host <span class=k>in</span> groups.web %<span class=o>}</span>
+
+  server <span class=o>{{</span> host.inventory_hostname <span class=o>}}</span> <span class=o>{{</span> host.ansible_default_ipv4.address <span class=o>}}</span>:8080
+
+  <span class=o>{</span>% endfor %<span class=o>}</span>
+</code></pre></div></li> <li>Get a list of all the variables associated with the current host with the help of hostvars and inventory_hostname variables. <div class=highlight><pre><span></span><code><span class=nn>---</span>
 <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">built-in variables</span>
   <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
   <span class=nt>tasks</span><span class=p>:</span>
     <span class="p p-Indicator">-</span> <span class=nt>debug</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">var=hostvars[inventory_hostname]</span>
-<span class=c1># register variable stores the output, after executing command module, in contents variable</span>
+</code></pre></div></li> <li>Using register variables <div class=highlight><pre><span></span><code><span class=c1># register variable stores the output, after executing command module, in contents variable</span>
 <span class=c1># stdout is used to access string content of register variable</span>
 <span class=nn>---</span>
 <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">check registered variable for emptiness</span>
@@ -216,11 +342,146 @@ https://github.com/kodekloudhub/simple_web_application
     <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">check dir has contents</span>
       <span class=nt>debug</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">msg=&quot;Directory is not empty&quot;</span>
       <span class=nt>when</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">contents.stdout != &quot;&quot;</span>
-<span class=c1># Variable Precedence =&gt; Command Line &gt; Playbook &gt; Facts &gt; Roles</span>
-<span class=c1># CLI: While running the playbook in Command Line redefine the variable</span>
-  <span class="l l-Scalar l-Scalar-Plain">ansible-playbook -i myhosts test.yml --extra-vars &quot;ansible_bios_version=Ansible&quot;</span>
-<span class=c1># Tags are names pinned on individual tasks, roles or an entire play, that allows you to run or skip parts of your Playbook.</span>
-<span class=c1># Tags can help you while testing certain parts of your Playbook.</span>
+</code></pre></div></li> <li>Variable Precedence =&gt; Command Line &gt; Playbook &gt; Facts &gt; Roles</li> <li>CLI: While running the playbook in Command Line redefine the variable <div class=highlight><pre><span></span><code><span class=c1># Passing runtime values in plays</span>
+ansible-playbook -i myhosts test.yml --extra-vars <span class=s2>&quot;ansible_bios_version=Ansible&quot;</span>
+</code></pre></div></li> </ul> <h3 id=async>Async<a class=headerlink href=#async title="Permanent link">&para;</a></h3> <ul> <li>async - How long to run the task</li> <li>poll - How frequently to check the task status. Default is 10 seconds</li> <li>async_status - Check status of an async task</li> </ul> <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a mysql DB</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">db_server</span>
+  <span class=nt>roles</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysql_db</span>
+
+<span class="p p-Indicator">-</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a Web Server</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web_server</span>
+  <span class=nt>roles</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">flask_web</span>
+
+<span class=c1># Below task will run the async in parallel as poll is 0 and register the output </span>
+<span class="p p-Indicator">-</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Monitor Web Application for 6 Minutes</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web_server</span>
+  <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/monitor_webapp.py</span>
+  <span class=nt>async</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">360</span>
+  <span class=nt>poll</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+  <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">webapp_result</span>
+  
+<span class="p p-Indicator">-</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Monitor Database for 6 Minutes</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">db_server</span>
+  <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/monitor_database.py</span>
+  <span class=nt>async</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">360</span>
+  <span class=nt>poll</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+  <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">database_result</span>
+<span class=c1># To avoid job from completing, async_status can be used to poll all async jobs have completed</span>
+<span class="p p-Indicator">-</span> 
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Check status of async task</span>
+  <span class=nt>async_status</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">jid={{ webapp_result.ansible_job_id }}</span>
+  <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">job_result</span>
+  <span class=nt>until</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">job_result.finished</span>
+  <span class=nt>retries</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
+</code></pre></div> <h3 id=deployment-strategy-and-forks>Deployment Strategy and Forks<a class=headerlink href=#deployment-strategy-and-forks title="Permanent link">&para;</a></h3> <ul> <li>Serial - Default: All tasks are run after the previous once completes</li> <li>Free: Once the task completes in a host, it continues next execution without waiting for other hosts</li> <li>Batch: Based on serial, but takes action on multiple host (Rolling Updates)</li> <li>Forks: Deployment on multiple servers</li> </ul> <p><div class=highlight><pre><span></span><code><span class=c1># Runs playbook on 2 servers at a time</span>
+<span class="p p-Indicator">-</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a web application</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">app_servers</span>
+  <span class=nt>serial</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+  <span class=nt>vars</span><span class=p>:</span>
+    <span class=nt>db_name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">employee_db</span>
+    <span class=nt>db_user</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">db_user</span>
+    <span class=nt>db_password</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Passw0rd</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Install MySQL database</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Start Mysql Service</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Create Application Database</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Create Application DB User</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Install Python Flask dependencies</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Copy web-server code</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Start web-application</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Deploy based on random rolling strategy</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a web application</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">app_servers</span>
+  <span class=nt>serial</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Deploy based on percentage</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a web application</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">app_servers</span>
+  <span class=nt>serial</span><span class=p>:</span> <span class=s>&quot;20%&quot;</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Deploy based on completion</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a web application</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">app_servers</span>
+  <span class=nt>strategy</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">free</span>
+</code></pre></div></p> <h3 id=error-handling>Error Handling<a class=headerlink href=#error-handling title="Permanent link">&para;</a></h3> <ul> <li><a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html>Playbook Error Handling</a></li> <li>We would like Ansible to stop execution of the entire playbook if a single server was to fail. <div class=highlight><pre><span></span><code><span class=c1># To fail playbook on any failure and stop processing on all servers</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a web application</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">app_servers</span>
+  <span class=nt>any_errors_fatal</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>  <span class=c1># This will stop all processing</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># To avoid failure of playbook due to an insignificant task</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a web application</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">app_servers</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>mail</span><span class=p>:</span>
+        <span class=nt>to</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">devops@abc.com</span>
+        <span class=nt>subject</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Server Deployed!</span>
+        <span class=nt>body</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Webserver is live!</span>
+      <span class=nt>ignore_errors</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>    <span class=c1># Add this to ignore task failure</span>
+    
+    <span class="p p-Indicator">-</span> <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">cat /var/log/server.log</span>
+      <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">command_output</span>
+      <span class=nt>failed_when</span><span class=p>:</span> <span class=s>&quot;&#39;ERROR&#39;</span><span class=nv> </span><span class=s>in</span><span class=nv> </span><span class=s>command_output.stdout&quot;</span>   <span class=c1># Conditional failure of task</span>
+</code></pre></div></li> </ul> <h3 id=jinja2-templating>Jinja2 Templating<a class=headerlink href=#jinja2-templating title="Permanent link">&para;</a></h3> <ul> <li>Templating: A process a generating dynamic content or expressions</li> <li>String Manipulation - <a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html#filters-for-formatting-data>Filters</a> <div class=highlight><pre><span></span><code><span class=c1># Substitution</span>
+<span class="l l-Scalar l-Scalar-Plain">The name is {{ my_name }}</span>
+<span class="l l-Scalar l-Scalar-Plain"># Uppercase</span>
+<span class="l l-Scalar l-Scalar-Plain">The name is {{ my_name | upper }}</span>
+<span class="l l-Scalar l-Scalar-Plain"># Lowercase</span>
+<span class="l l-Scalar l-Scalar-Plain">The name is {{ my_name | lower }}</span>
+<span class="l l-Scalar l-Scalar-Plain"># Titlecase</span>
+<span class="l l-Scalar l-Scalar-Plain">The name is {{ my_name | title }}</span>
+<span class="l l-Scalar l-Scalar-Plain"># Replace</span>
+<span class="l l-Scalar l-Scalar-Plain">The name is {{ my_name | replace(&quot;Bond&quot;, &quot;Bourne&quot;) }}</span>
+<span class="l l-Scalar l-Scalar-Plain"># Default value</span>
+<span class="l l-Scalar l-Scalar-Plain">The name is {{ first_name | default(&quot;James&quot;) }} {{ my_name }}</span>
+</code></pre></div></li> <li>Filters - List and Set <div class=highlight><pre><span></span><code><span class=c1># Min</span>
+<span class="p p-Indicator">{{</span> <span class="p p-Indicator">[</span><span class=nv>1</span><span class="p p-Indicator">,</span><span class=nv>2</span><span class="p p-Indicator">,</span><span class=nv>3</span><span class="p p-Indicator">]</span> <span class=err>|</span> <span class=nv>min</span> <span class="p p-Indicator">}}</span>     <span class="l l-Scalar l-Scalar-Plain">=&gt; 1</span>
+<span class="l l-Scalar l-Scalar-Plain"># Max</span>
+<span class="l l-Scalar l-Scalar-Plain">{{ [1,2,3] | min }}     =&gt; 3</span>
+<span class="l l-Scalar l-Scalar-Plain"># Unique</span>
+<span class="l l-Scalar l-Scalar-Plain">{{ [1,2,3,2] | unique }}     =&gt; 1,2,3</span>
+<span class="l l-Scalar l-Scalar-Plain"># Union</span>
+<span class="l l-Scalar l-Scalar-Plain">{{ [1,2,3,4] | union([4,5]) }}     =&gt; 1,2,3,4,5</span>
+<span class="l l-Scalar l-Scalar-Plain"># Intersect</span>
+<span class="l l-Scalar l-Scalar-Plain">{{ [1,2,3,4] | intersect([4,5]) }}     =&gt; 4</span>
+<span class="l l-Scalar l-Scalar-Plain">{{ 100 | random }}       =&gt; generates random number between 1 to 100</span>
+<span class="l l-Scalar l-Scalar-Plain"># Join</span>
+<span class="l l-Scalar l-Scalar-Plain">{{ [&quot;The&quot;,&quot;name&quot;,&quot;is&quot;,&quot;Bond&quot;] | join(&quot; &quot;)}} =&gt; The name is Bond</span>
+</code></pre></div></li> <li>Filters - File <div class=highlight><pre><span></span><code><span class="p p-Indicator">{{</span> <span class=s>&quot;/etc/hosts&quot;</span> <span class=err>|</span> <span class=nv>basename</span> <span class="p p-Indicator">}}</span>       <span class="l l-Scalar l-Scalar-Plain">=&gt; hosts</span>
+</code></pre></div></li> </ul> <h3 id=lookups>Lookups<a class=headerlink href=#lookups title="Permanent link">&para;</a></h3> <ul> <li><a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_lookups.html>Lookups</a>: To get data from another source on the system <div class=highlight><pre><span></span><code><span class=c1># Credentials File csv</span>
+Hostname,Password
+web_server,Passw0rd
+db_server,Passw0rd
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Format - Type of file, Value to Lookup, File to Lookup, Delimiter</span>
+<span class=nt>vars</span><span class=p>:</span>
+  <span class=nt>ansible_ssh_pass</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>lookup(&#39;csvfile&#39;,</span><span class=nv> </span><span class=s>&#39;web_server</span><span class=nv> </span><span class=s>file=/tmp/credentials.csv</span><span class=nv> </span><span class=s>delimiter=,&#39;)</span><span class=nv> </span><span class=s>}}&quot;</span>    <span class="l l-Scalar l-Scalar-Plain">=&gt; Passw0rd</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Credentials File ini</span>
+
+<span class=o>[</span>web_server<span class=o>]</span>
+<span class=nv>password</span><span class=o>=</span>Passw0rd
+
+<span class=o>[</span>db_server<span class=o>]</span>
+<span class=nv>password</span><span class=o>=</span>Passw0rd
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Format - Type of file, Value to Lookup, File to Lookup, Delimiter</span>
+<span class=nt>vars</span><span class=p>:</span>
+  <span class=nt>ansible_ssh_pass</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>lookup(&#39;ini&#39;,</span><span class=nv> </span><span class=s>&#39;password</span><span class=nv> </span><span class=s>section=web_server</span><span class=nv>  </span><span class=s>file=/tmp/credentials.ini&#39;)</span><span class=nv> </span><span class=s>}}&quot;</span>    <span class="l l-Scalar l-Scalar-Plain">=&gt; Passw0rd</span>
+</code></pre></div></li> </ul> <h3 id=tags>Tags<a class=headerlink href=#tags title="Permanent link">&para;</a></h3> <ul> <li>Tags are names pinned on individual tasks, roles or an entire play, that allows you to run or skip parts of your Playbook.</li> <li>Tags can help you while testing certain parts of your Playbook. <div class=highlight><pre><span></span><code><span class=c1># tag.yml</span>
 <span class=nn>---</span>
 <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Play1-install apache</span>
   <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
@@ -248,11 +509,13 @@ https://github.com/kodekloudhub/simple_web_application
       <span class=nt>shell</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">echo &quot;yet another task&quot;</span>
       <span class=nt>tags</span><span class=p>:</span>
         <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mymessage</span>
-<span class="l l-Scalar l-Scalar-Plain">ansible-playbook -i myhosts tag.yml --list-tasks</span> <span class=c1># displays the list of tasks in the Playbook</span>
-<span class="l l-Scalar l-Scalar-Plain">ansible-playbook -i myhosts tag.yml --list-tags</span> <span class=c1># displays only tags in your Playbook</span>
-<span class="l l-Scalar l-Scalar-Plain">ansible-playbook -i myhosts tag.yml --tags &quot;tag1,mymessage&quot;</span> <span class=c1># executes only certain tasks which are tagged as tag1 and mymessage</span>
-<span class=c1># Ansible gives you the flexibility of organizing your tasks through include keyword, that introduces more abstraction and make your Playbook more easily maintainable, reusable and powerful.</span>
-<span class=nn>---</span>
+</code></pre></div></li> <li>Executing above play using tags <div class=highlight><pre><span></span><code><span class=c1># displays the list of tasks in the Playbook</span>
+ansible-playbook -i myhosts tag.yml --list-tasks 
+<span class=c1># displays only tags in your Playbook</span>
+ansible-playbook -i myhosts tag.yml --list-tags 
+<span class=c1># executes only certain tasks which are tagged as tag1 and mymessage</span>
+ansible-playbook -i myhosts tag.yml --tags <span class=s2>&quot;tag1,mymessage&quot;</span> 
+</code></pre></div></li> </ul> <h3 id=includes-outdated-after-20>Includes (Outdated after 2.0)<a class=headerlink href=#includes-outdated-after-20 title="Permanent link">&para;</a></h3> <ul> <li>Ansible gives you the flexibility of organizing your tasks through include keyword, that introduces more abstraction and make your Playbook more easily maintainable, reusable and powerful. <div class=highlight><pre><span></span><code><span class=nn>---</span>
 <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">testing includes</span>
   <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
   <span class=nt>sudo</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
@@ -261,7 +524,9 @@ https://github.com/kodekloudhub/simple_web_application
     <span class="p p-Indicator">-</span> <span class=nt>include</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">content.yml</span>
     <span class="p p-Indicator">-</span> <span class=nt>include</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">create_folder.yml</span>
     <span class="p p-Indicator">-</span> <span class=nt>include</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">content.yml</span>
-<span class="p p-Indicator">-</span> <span class=nt>include</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx.yml</span>  <span class=c1>#  apache.yml will not have hosts &amp; tasks but nginx.yml as a separate play will have tasks and can run independently</span>
+<span class="p p-Indicator">-</span> <span class=nt>include</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx.yml</span>  
+<span class=c1>#  apache.yml will not have hosts &amp; tasks but nginx.yml as a separate play will have tasks and can run independently</span>
+
 <span class=c1>#nginx.yml</span>
 <span class=nn>---</span>
 <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing nginx</span>
@@ -272,14 +537,13 @@ https://github.com/kodekloudhub/simple_web_application
       <span class=nt>apt</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">name=nginx update_cache=yes state=latest</span>
     <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">displaying message</span>
       <span class=nt>debug</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">msg=&quot;yayy!! nginx installed&quot;</span>
-<span class=c1># A Role is completely self contained or encapsulated and completely reusable</span>
-<span class=c1># cat ansible.cfg</span>
+</code></pre></div></li> </ul> <h3 id=roles>Roles<a class=headerlink href=#roles title="Permanent link">&para;</a></h3> <ul> <li>A Role is completely self contained or encapsulated and completely reusable <div class=highlight><pre><span></span><code><span class=c1># cat ansible.cfg</span>
   <span class="p p-Indicator">[</span><span class=nv>defaults</span><span class="p p-Indicator">]</span>
   <span class="l l-Scalar l-Scalar-Plain">host_key_checking=False</span>
   <span class="l l-Scalar l-Scalar-Plain">inventory = /etc/ansible/myhosts</span>
   <span class="l l-Scalar l-Scalar-Plain">log_path = /home/scrapbook/tutorial/output.txt</span>
   <span class="l l-Scalar l-Scalar-Plain">roles_path = /home/scrapbook/tutorial/roles/</span>
-<span class=c1># master-playbook.yml</span>
+<span class="l l-Scalar l-Scalar-Plain"># master-playbook.yml</span>
 <span class=nn>---</span>
 <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">my first role in ansible</span>
   <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
@@ -318,24 +582,15 @@ https://github.com/kodekloudhub/simple_web_application
 <span class=nn>---</span>
 <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Copy a file</span>
   <span class=nt>copy</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">src=some-file.txt dest=/home/ubuntu/file1.txt</span>
-<span class=c1># Let us run the master_playbook and check the output:</span>
-<span class="l l-Scalar l-Scalar-Plain">ansible-playbook -i myhosts master_playbook.yml</span>
-<span class=c1># ansible-galaxy is command line tool for scaffolding the creation of directory structure needed for organizing your code</span>
-<span class="l l-Scalar l-Scalar-Plain">ansible-galaxy init sample_role</span>
-<span class=c1># ansible-galaxy useful commands</span>
-<span class=c1># Install a Role from Ansible Galaxy</span>
-<span class="l l-Scalar l-Scalar-Plain">To use others role, visit https://galaxy.ansible.com/ and search for the role that will achieve your goal.</span>
-<span class=nt>Goal</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Install Apache in the host machines.</span>
-<span class=c1># Ensure that roles_path are defined in ansible.cfg for a role to successfully install.</span>
-<span class="l l-Scalar l-Scalar-Plain">ansible-galaxy install geerlingguy.apache</span>
+</code></pre></div></li> <li>Executing the play <div class=highlight><pre><span></span><code><span class=c1># Let us run the master_playbook and check the output:</span>
+ansible-playbook -i myhosts master_playbook.yml
+</code></pre></div></li> </ul> <h3 id=ansible-galaxy>Ansible Galaxy<a class=headerlink href=#ansible-galaxy title="Permanent link">&para;</a></h3> <ul> <li>ansible-galaxy is command line tool for scaffolding the creation of directory structure needed for organizing your code ansible-galaxy init sample_role</li> </ul> <h3 id=ansible-galaxy-useful-commands>ansible-galaxy useful commands<a class=headerlink href=#ansible-galaxy-useful-commands title="Permanent link">&para;</a></h3> <ul> <li>Install a Role from Ansible Galaxy</li> <li>To use others role, visit <a href=https://galaxy.ansible.com/ >https://galaxy.ansible.com/</a> and search for the role that will achieve your goal.</li> <li>Goal: Install Apache in the host machines.</li> </ul> <div class=highlight><pre><span></span><code><span class=c1># Ensure that roles_path are defined in ansible.cfg for a role to successfully install.</span>
 <span class=c1># Here, apache is role name and geerlingguy is name of the user in GitHub who created the role.</span>
+ansible-galaxy install geerlingguy.apache
 <span class=c1># Forcefully Recreate Role</span>
-<span class="l l-Scalar l-Scalar-Plain">ansible-galaxy init geerlingguy.apache --force</span>
+ansible-galaxy init geerlingguy.apache --force
 <span class=c1># Listing Installed Roles</span>
-<span class="l l-Scalar l-Scalar-Plain">ansible-galaxy list</span>
+ansible-galaxy list
 <span class=c1># Remove an Installed Role</span>
-<span class="l l-Scalar l-Scalar-Plain">ansible-galaxy remove geerlingguy.apache</span>
-<span class=c1># Environment Variables</span>
-<span class=c1># Ansible recommends maintaining inventory file for each environment, instead of keeping all your hosts in a single inventory.</span>
-<span class=c1># Each environment directory has one inventory file (hosts) and group_vars directory.</span>
-</code></pre></div> </article> </div> </div> </main> <footer class=md-footer> <nav class="md-footer__inner md-grid" aria-label=Footer> <a href=../vagrant/ class="md-footer__link md-footer__link--prev" rel=prev> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </div> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Previous </span> Vagrant </div> </div> </a> <a href=../terraform/ class="md-footer__link md-footer__link--next" rel=next> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Next </span> Terraform </div> </div> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg> </div> </a> </nav> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2018 - 2019 Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script> <script src=../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>
+ansible-galaxy remove geerlingguy.apache
+</code></pre></div> <h3 id=environment-variables>Environment Variables<a class=headerlink href=#environment-variables title="Permanent link">&para;</a></h3> <ul> <li>Ansible recommends maintaining inventory file for each environment, instead of keeping all your hosts in a single inventory.</li> <li>Each environment directory has one inventory file (hosts) and group_vars directory.</li> </ul> </article> </div> </div> </main> <footer class=md-footer> <nav class="md-footer__inner md-grid" aria-label=Footer> <a href=../vagrant/ class="md-footer__link md-footer__link--prev" rel=prev> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </div> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Previous </span> Vagrant </div> </div> </a> <a href=../terraform/ class="md-footer__link md-footer__link--next" rel=next> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Next </span> Terraform </div> </div> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg> </div> </a> </nav> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2018 - 2019 Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script> <script src=../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>

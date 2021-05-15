@@ -1,0 +1,811 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/learning/linux/ rel=canonical><link rel="shortcut icon" href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-7.0.3"><title>Linux - Leslie's Online Notebook</title><link rel=stylesheet href=../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#introduction class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Linux </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../k8s/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../k8s/install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5 checked> <label class=md-nav__link for=__nav_5> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> Linux <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> Linux </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#introduction class=md-nav__link> Introduction </a> </li> <li class=md-nav__item> <a href=#basic-commands class=md-nav__link> Basic commands </a> </li> <li class=md-nav__item> <a href=#tips class=md-nav__link> Tips </a> </li> <li class=md-nav__item> <a href=#filesystem class=md-nav__link> Filesystem </a> <nav class=md-nav aria-label=Filesystem> <ul class=md-nav__list> <li class=md-nav__item> <a href=#creating-partitions class=md-nav__link> Creating Partitions </a> <nav class=md-nav aria-label="Creating Partitions"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#creating-filesystems class=md-nav__link> Creating Filesystems </a> </li> <li class=md-nav__item> <a href=#mounting-data class=md-nav__link> Mounting Data </a> </li> <li class=md-nav__item> <a href=#unmounting-data class=md-nav__link> Unmounting Data </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#virtual-memory-or-swap-filesystem class=md-nav__link> Virtual Memory or Swap Filesystem </a> </li> <li class=md-nav__item> <a href=#troubleshooting-linux-filesystem class=md-nav__link> Troubleshooting Linux filesystem </a> </li> <li class=md-nav__item> <a href=#file-permissions class=md-nav__link> File Permissions </a> </li> <li class=md-nav__item> <a href=#links-hard-and-soft-links class=md-nav__link> Links (Hard and Soft Links) </a> </li> <li class=md-nav__item> <a href=#applying-quotas class=md-nav__link> Applying Quotas </a> </li> <li class=md-nav__item> <a href=#directory-listing-and-alias class=md-nav__link> Directory Listing and Alias </a> </li> <li class=md-nav__item> <a href=#synchronize-directories class=md-nav__link> Synchronize Directories </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#process-management class=md-nav__link> Process Management </a> <nav class=md-nav aria-label="Process Management"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#monitor-process class=md-nav__link> Monitor Process </a> </li> <li class=md-nav__item> <a href=#jobs class=md-nav__link> Jobs </a> </li> <li class=md-nav__item> <a href=#managing-processes class=md-nav__link> Managing Processes </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#editors class=md-nav__link> Editors </a> <nav class=md-nav aria-label=Editors> <ul class=md-nav__list> <li class=md-nav__item> <a href=#vi class=md-nav__link> Vi </a> </li> <li class=md-nav__item> <a href=#line-navigation class=md-nav__link> Line Navigation </a> </li> <li class=md-nav__item> <a href=#read-and-write class=md-nav__link> Read and Write </a> </li> <li class=md-nav__item> <a href=#search-and-replace class=md-nav__link> Search and Replace </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#bash-scripting class=md-nav__link> BASH Scripting </a> <nav class=md-nav aria-label="BASH Scripting"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#understanding-variables class=md-nav__link> Understanding Variables </a> </li> <li class=md-nav__item> <a href=#simple-script class=md-nav__link> Simple Script </a> </li> <li class=md-nav__item> <a href=#getting-user-input class=md-nav__link> Getting user input </a> </li> <li class=md-nav__item> <a href=#user-input-types class=md-nav__link> User Input types </a> </li> <li class=md-nav__item> <a href=#multiple-inputs-using-positional-parameters class=md-nav__link> Multiple inputs using positional parameters </a> </li> <li class=md-nav__item> <a href=#code-snippets class=md-nav__link> Code Snippets </a> </li> <li class=md-nav__item> <a href=#conditional-statement---if class=md-nav__link> Conditional Statement - IF </a> </li> <li class=md-nav__item> <a href=#case-statement class=md-nav__link> Case Statement </a> </li> <li class=md-nav__item> <a href=#for class=md-nav__link> For </a> </li> <li class=md-nav__item> <a href=#while class=md-nav__link> While </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#user-management class=md-nav__link> User Management </a> <nav class=md-nav aria-label="User Management"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#group-management class=md-nav__link> Group Management </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#automate-system-tasks class=md-nav__link> Automate System Tasks </a> <nav class=md-nav aria-label="Automate System Tasks"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#system-cron-jobs class=md-nav__link> System Cron Jobs </a> </li> <li class=md-nav__item> <a href=#batch class=md-nav__link> Batch </a> </li> <li class=md-nav__item> <a href=#security-for-cron class=md-nav__link> Security for Cron </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#networking-fundamentals class=md-nav__link> Networking Fundamentals </a> <nav class=md-nav aria-label="Networking Fundamentals"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#network-time-protocol-ntp class=md-nav__link> Network Time Protocol (NTP) </a> <nav class=md-nav aria-label="Network Time Protocol (NTP)"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#configuring-network-time-protocol-ntp class=md-nav__link> Configuring Network Time Protocol (NTP) </a> </li> <li class=md-nav__item> <a href=#implementing-the-configuration-file-changes class=md-nav__link> Implementing the configuration file changes </a> </li> <li class=md-nav__item> <a href=#save-the-file-and-restart-the-service class=md-nav__link> Save the file and restart the service </a> </li> <li class=md-nav__item> <a href=#ntp-tools class=md-nav__link> NTP Tools </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#managing-system-log-daemons class=md-nav__link> Managing System Log Daemons </a> <nav class=md-nav aria-label="Managing System Log Daemons"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#rocket-fast-system-for-log-processing-rsyslogd class=md-nav__link> Rocket-Fast System for Log Processing (rsyslogd) </a> </li> <li class=md-nav__item> <a href=#varlog-folder-structure class=md-nav__link> /var/log/ folder structure </a> </li> <li class=md-nav__item> <a href=#logrotate class=md-nav__link> Logrotate </a> </li> <li class=md-nav__item> <a href=#journalctl class=md-nav__link> Journalctl </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#ssh class=md-nav__link> SSH </a> <nav class=md-nav aria-label=SSH> <ul class=md-nav__list> <li class=md-nav__item> <a href=#remote-access-using-ssh class=md-nav__link> Remote access using SSH </a> </li> <li class=md-nav__item> <a href=#ssh-server-configuration class=md-nav__link> SSH Server Configuration </a> </li> <li class=md-nav__item> <a href=#client-configuration-and-authentication class=md-nav__link> Client Configuration and Authentication </a> </li> <li class=md-nav__item> <a href=#to-connect-to-server-using-ssh class=md-nav__link> To connect to server using ssh </a> </li> <li class=md-nav__item> <a href=#to-generate-keypairs class=md-nav__link> To generate keypairs </a> </li> <li class=md-nav__item> <a href=#ssh-tunnels class=md-nav__link> SSH Tunnels </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#configuring-network-protocols-in-linux class=md-nav__link> Configuring Network Protocols in Linux </a> <nav class=md-nav aria-label="Configuring Network Protocols in Linux"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#etcservices class=md-nav__link> /etc/services </a> </li> <li class=md-nav__item> <a href=#dig-command class=md-nav__link> dig command </a> </li> <li class=md-nav__item> <a href=#interface-configuration-files class=md-nav__link> Interface Configuration Files </a> </li> <li class=md-nav__item> <a href=#to-make-the-ip-address-static class=md-nav__link> To make the IP address static </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#networking-tools class=md-nav__link> Networking Tools </a> <nav class=md-nav aria-label="Networking Tools"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#nmap class=md-nav__link> nmap </a> </li> <li class=md-nav__item> <a href=#netstat class=md-nav__link> netstat </a> </li> <li class=md-nav__item> <a href=#show-sockets-ss class=md-nav__link> Show Sockets (ss) </a> </li> <li class=md-nav__item> <a href=#lsof class=md-nav__link> lsof </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#testing-network-connectivity class=md-nav__link> Testing Network Connectivity </a> </li> <li class=md-nav__item> <a href=#host-name-resolution-tools class=md-nav__link> Host Name Resolution Tools </a> </li> <li class=md-nav__item> <a href=#managing-interfaces class=md-nav__link> Managing Interfaces </a> </li> <li class=md-nav__item> <a href=#securing-access-to-your-server class=md-nav__link> Securing Access to your Server </a> <nav class=md-nav aria-label="Securing Access to your Server"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#ulimit class=md-nav__link> ulimit </a> </li> <li class=md-nav__item> <a href=#avoiding-fork-bombs class=md-nav__link> Avoiding fork bombs </a> </li> <li class=md-nav__item> <a href=#xinetd class=md-nav__link> xinetd </a> </li> <li class=md-nav__item> <a href=#implementing-tftp-using-xinetdd-service class=md-nav__link> Implementing TFTP using xinetd.d service </a> </li> <li class=md-nav__item> <a href=#tcp-wrappers class=md-nav__link> TCP Wrappers </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#delegating-admin-rights-using-sudoers class=md-nav__link> Delegating Admin rights using sudoers </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#data-encryption class=md-nav__link> Data Encryption: </a> <nav class=md-nav aria-label="Data Encryption:"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#using-gpg-to-encrypt-data-between-users class=md-nav__link> Using GPG to encrypt data between users </a> </li> <li class=md-nav__item> <a href=#implementing-luks-for-full-disk-encryption class=md-nav__link> Implementing LUKS for Full Disk Encryption </a> </li> <li class=md-nav__item> <a href=#efs-for-data-encryption class=md-nav__link> EFS for data encryption </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#compiling-software-from-source class=md-nav__link> Compiling software from source </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../vagrant/ class=md-nav__link> Vagrant </a> </li> <li class=md-nav__item> <a href=../ansible/ class=md-nav__link> Ansible </a> </li> <li class=md-nav__item> <a href=../terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../devops/ class=md-nav__link> Index </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#introduction class=md-nav__link> Introduction </a> </li> <li class=md-nav__item> <a href=#basic-commands class=md-nav__link> Basic commands </a> </li> <li class=md-nav__item> <a href=#tips class=md-nav__link> Tips </a> </li> <li class=md-nav__item> <a href=#filesystem class=md-nav__link> Filesystem </a> <nav class=md-nav aria-label=Filesystem> <ul class=md-nav__list> <li class=md-nav__item> <a href=#creating-partitions class=md-nav__link> Creating Partitions </a> <nav class=md-nav aria-label="Creating Partitions"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#creating-filesystems class=md-nav__link> Creating Filesystems </a> </li> <li class=md-nav__item> <a href=#mounting-data class=md-nav__link> Mounting Data </a> </li> <li class=md-nav__item> <a href=#unmounting-data class=md-nav__link> Unmounting Data </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#virtual-memory-or-swap-filesystem class=md-nav__link> Virtual Memory or Swap Filesystem </a> </li> <li class=md-nav__item> <a href=#troubleshooting-linux-filesystem class=md-nav__link> Troubleshooting Linux filesystem </a> </li> <li class=md-nav__item> <a href=#file-permissions class=md-nav__link> File Permissions </a> </li> <li class=md-nav__item> <a href=#links-hard-and-soft-links class=md-nav__link> Links (Hard and Soft Links) </a> </li> <li class=md-nav__item> <a href=#applying-quotas class=md-nav__link> Applying Quotas </a> </li> <li class=md-nav__item> <a href=#directory-listing-and-alias class=md-nav__link> Directory Listing and Alias </a> </li> <li class=md-nav__item> <a href=#synchronize-directories class=md-nav__link> Synchronize Directories </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#process-management class=md-nav__link> Process Management </a> <nav class=md-nav aria-label="Process Management"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#monitor-process class=md-nav__link> Monitor Process </a> </li> <li class=md-nav__item> <a href=#jobs class=md-nav__link> Jobs </a> </li> <li class=md-nav__item> <a href=#managing-processes class=md-nav__link> Managing Processes </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#editors class=md-nav__link> Editors </a> <nav class=md-nav aria-label=Editors> <ul class=md-nav__list> <li class=md-nav__item> <a href=#vi class=md-nav__link> Vi </a> </li> <li class=md-nav__item> <a href=#line-navigation class=md-nav__link> Line Navigation </a> </li> <li class=md-nav__item> <a href=#read-and-write class=md-nav__link> Read and Write </a> </li> <li class=md-nav__item> <a href=#search-and-replace class=md-nav__link> Search and Replace </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#bash-scripting class=md-nav__link> BASH Scripting </a> <nav class=md-nav aria-label="BASH Scripting"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#understanding-variables class=md-nav__link> Understanding Variables </a> </li> <li class=md-nav__item> <a href=#simple-script class=md-nav__link> Simple Script </a> </li> <li class=md-nav__item> <a href=#getting-user-input class=md-nav__link> Getting user input </a> </li> <li class=md-nav__item> <a href=#user-input-types class=md-nav__link> User Input types </a> </li> <li class=md-nav__item> <a href=#multiple-inputs-using-positional-parameters class=md-nav__link> Multiple inputs using positional parameters </a> </li> <li class=md-nav__item> <a href=#code-snippets class=md-nav__link> Code Snippets </a> </li> <li class=md-nav__item> <a href=#conditional-statement---if class=md-nav__link> Conditional Statement - IF </a> </li> <li class=md-nav__item> <a href=#case-statement class=md-nav__link> Case Statement </a> </li> <li class=md-nav__item> <a href=#for class=md-nav__link> For </a> </li> <li class=md-nav__item> <a href=#while class=md-nav__link> While </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#user-management class=md-nav__link> User Management </a> <nav class=md-nav aria-label="User Management"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#group-management class=md-nav__link> Group Management </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#automate-system-tasks class=md-nav__link> Automate System Tasks </a> <nav class=md-nav aria-label="Automate System Tasks"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#system-cron-jobs class=md-nav__link> System Cron Jobs </a> </li> <li class=md-nav__item> <a href=#batch class=md-nav__link> Batch </a> </li> <li class=md-nav__item> <a href=#security-for-cron class=md-nav__link> Security for Cron </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#networking-fundamentals class=md-nav__link> Networking Fundamentals </a> <nav class=md-nav aria-label="Networking Fundamentals"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#network-time-protocol-ntp class=md-nav__link> Network Time Protocol (NTP) </a> <nav class=md-nav aria-label="Network Time Protocol (NTP)"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#configuring-network-time-protocol-ntp class=md-nav__link> Configuring Network Time Protocol (NTP) </a> </li> <li class=md-nav__item> <a href=#implementing-the-configuration-file-changes class=md-nav__link> Implementing the configuration file changes </a> </li> <li class=md-nav__item> <a href=#save-the-file-and-restart-the-service class=md-nav__link> Save the file and restart the service </a> </li> <li class=md-nav__item> <a href=#ntp-tools class=md-nav__link> NTP Tools </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#managing-system-log-daemons class=md-nav__link> Managing System Log Daemons </a> <nav class=md-nav aria-label="Managing System Log Daemons"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#rocket-fast-system-for-log-processing-rsyslogd class=md-nav__link> Rocket-Fast System for Log Processing (rsyslogd) </a> </li> <li class=md-nav__item> <a href=#varlog-folder-structure class=md-nav__link> /var/log/ folder structure </a> </li> <li class=md-nav__item> <a href=#logrotate class=md-nav__link> Logrotate </a> </li> <li class=md-nav__item> <a href=#journalctl class=md-nav__link> Journalctl </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#ssh class=md-nav__link> SSH </a> <nav class=md-nav aria-label=SSH> <ul class=md-nav__list> <li class=md-nav__item> <a href=#remote-access-using-ssh class=md-nav__link> Remote access using SSH </a> </li> <li class=md-nav__item> <a href=#ssh-server-configuration class=md-nav__link> SSH Server Configuration </a> </li> <li class=md-nav__item> <a href=#client-configuration-and-authentication class=md-nav__link> Client Configuration and Authentication </a> </li> <li class=md-nav__item> <a href=#to-connect-to-server-using-ssh class=md-nav__link> To connect to server using ssh </a> </li> <li class=md-nav__item> <a href=#to-generate-keypairs class=md-nav__link> To generate keypairs </a> </li> <li class=md-nav__item> <a href=#ssh-tunnels class=md-nav__link> SSH Tunnels </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#configuring-network-protocols-in-linux class=md-nav__link> Configuring Network Protocols in Linux </a> <nav class=md-nav aria-label="Configuring Network Protocols in Linux"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#etcservices class=md-nav__link> /etc/services </a> </li> <li class=md-nav__item> <a href=#dig-command class=md-nav__link> dig command </a> </li> <li class=md-nav__item> <a href=#interface-configuration-files class=md-nav__link> Interface Configuration Files </a> </li> <li class=md-nav__item> <a href=#to-make-the-ip-address-static class=md-nav__link> To make the IP address static </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#networking-tools class=md-nav__link> Networking Tools </a> <nav class=md-nav aria-label="Networking Tools"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#nmap class=md-nav__link> nmap </a> </li> <li class=md-nav__item> <a href=#netstat class=md-nav__link> netstat </a> </li> <li class=md-nav__item> <a href=#show-sockets-ss class=md-nav__link> Show Sockets (ss) </a> </li> <li class=md-nav__item> <a href=#lsof class=md-nav__link> lsof </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#testing-network-connectivity class=md-nav__link> Testing Network Connectivity </a> </li> <li class=md-nav__item> <a href=#host-name-resolution-tools class=md-nav__link> Host Name Resolution Tools </a> </li> <li class=md-nav__item> <a href=#managing-interfaces class=md-nav__link> Managing Interfaces </a> </li> <li class=md-nav__item> <a href=#securing-access-to-your-server class=md-nav__link> Securing Access to your Server </a> <nav class=md-nav aria-label="Securing Access to your Server"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#ulimit class=md-nav__link> ulimit </a> </li> <li class=md-nav__item> <a href=#avoiding-fork-bombs class=md-nav__link> Avoiding fork bombs </a> </li> <li class=md-nav__item> <a href=#xinetd class=md-nav__link> xinetd </a> </li> <li class=md-nav__item> <a href=#implementing-tftp-using-xinetdd-service class=md-nav__link> Implementing TFTP using xinetd.d service </a> </li> <li class=md-nav__item> <a href=#tcp-wrappers class=md-nav__link> TCP Wrappers </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#delegating-admin-rights-using-sudoers class=md-nav__link> Delegating Admin rights using sudoers </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#data-encryption class=md-nav__link> Data Encryption: </a> <nav class=md-nav aria-label="Data Encryption:"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#using-gpg-to-encrypt-data-between-users class=md-nav__link> Using GPG to encrypt data between users </a> </li> <li class=md-nav__item> <a href=#implementing-luks-for-full-disk-encryption class=md-nav__link> Implementing LUKS for Full Disk Encryption </a> </li> <li class=md-nav__item> <a href=#efs-for-data-encryption class=md-nav__link> EFS for data encryption </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#compiling-software-from-source class=md-nav__link> Compiling software from source </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>Linux</h1> <h2 id=introduction>Introduction<a class=headerlink href=#introduction title="Permanent link">&para;</a></h2> <ul> <li><a href=https://www.cyberciti.biz/tips/understanding-unixlinux-file-system-part-i.html>Understanding Linux Filesystem</a></li> <li><a href=https://askubuntu.com/questions/94734/what-is-the-templates-folder-in-the-home-directory-for>Templates folder</a></li> <li><a href=https://crontab.guru/ >CronTab Guru</a></li> </ul> <h2 id=basic-commands>Basic commands<a class=headerlink href=#basic-commands title="Permanent link">&para;</a></h2> <details class=note open=open><summary>Important Commands</summary><details class=summary><summary>Terminal</summary><div class=highlight><pre><span></span><code>Ctrl+Alt+T          <span class=c1># Open the terminal</span>
+Ctrl+D              <span class=c1># Close the terminal</span>
+<span class=nb>exit</span>                <span class=c1># Close the terminal</span>
+Ctrl + L	        <span class=c1># Clear the screen, but will keep the current command</span>
+Ctrl + Shift +	    <span class=c1># Increases font size of the terminal</span>
+</code></pre></div> </details> <details class=summary><summary>Utility</summary><div class=highlight><pre><span></span><code>cal	                        <span class=c1># Calendar current month</span>
+cal -3	                    <span class=c1># Current -1, Current , Current +1 month</span>
+cal <span class=m>5</span> <span class=m>1967</span>	                <span class=c1># Format is (Month and Year). Gives May 1967 </span>
+date	                    <span class=c1># Current date in BST (default)</span>
+date -u                     <span class=c1># Current date in UTC</span>
+date --date “30 days”	    <span class=c1># Gives current date + 30 days (future date)</span>
+date --date “30 days ago”	<span class=c1># Gives current date – 30 days (past date)</span>
+which <span class=nb>echo</span>                  <span class=c1># Shows where the command is stored in PATH</span>
+hostname -I                 <span class=c1># Gives IP address</span>
+<span class=nb>echo</span> <span class=nv>$?</span>                     <span class=c1># Gives the output 0/1 value stored after a command is run</span>
+wc –l file1	                <span class=c1># Gives line count in file1</span>
+wc file1	                <span class=c1># Give word count in file1</span>
+</code></pre></div> </details> <details class=summary><summary>History</summary><div class=highlight><pre><span></span><code><span class=nb>history</span>	                    <span class=c1># List all the commands executed</span>
+!!                          <span class=c1># Run the previous command</span>
+!50                         <span class=c1># Run the command that is on line 50 of history output</span>
+<span class=nb>history</span> –c<span class=p>;</span> <span class=nb>history</span> –w<span class=p>;</span>     <span class=c1># Clears history and writes back to the file</span>
+Ctrl + r                    <span class=c1># reverse searches for your input. Press Esc to edit the matched command</span>
+</code></pre></div> </details> <details class=summary><summary>man</summary><p>Using the Manual There are 8 sections in the manual. Important are 1, 5 and 8 sections <div class=highlight><pre><span></span><code>man –k &lt;search term&gt;	    <span class=c1># Search the manual for pages matching &lt;search term&gt;.</span>
+man -k tmux                 <span class=c1># example of searching for tmux in the manual pages</span>
+man -k <span class=s2>&quot;list directory contents&quot;</span> <span class=c1># Double quote seraches complete words </span>
+man <span class=m>1</span> tmux                  <span class=c1># Opens section 1 of tmux manual page, 1 is default and can be ignored</span>
+man ls                      <span class=c1># Shows section 1 of ls command</span>
+<span class=nb>help</span> <span class=nb>cd</span>          	        <span class=c1># Shows the help pages if man pages are not present</span>
+</code></pre></div></p> </details> <details class=summary><summary>Redirection of Streams</summary><div class=highlight><pre><span></span><code><span class=nb>echo</span> <span class=s2>&quot;Hello&quot;</span> <span class=m>1</span>&gt; output.txt	    <span class=c1># Standard output is redirected to output.txt</span>
+<span class=nb>echo</span> <span class=s2>&quot;Hello&quot;</span> &gt; output.txt	    <span class=c1># Standard output is default</span>
+<span class=nb>echo</span> <span class=s2>&quot;World&quot;</span> <span class=m>1</span>&gt;&gt; output.txt	    <span class=c1># Standard output is appended to output.txt</span>
+<span class=nb>echo</span> <span class=s2>&quot;Error&quot;</span> <span class=m>2</span>&gt; error.txt       <span class=c1># Standard error is redirected to error.txt</span>
+cat -k bla <span class=m>2</span>&gt;&gt; error.txt        <span class=c1># Program error is redirected and appended to error.txt</span>
+<span class=nb>echo</span> <span class=s2>&quot;Hello World&quot;</span> <span class=m>1</span>&gt;&gt; output.txt <span class=m>2</span>&gt;&gt; error.txt     <span class=c1># Use both std output and error</span>
+cat <span class=m>0</span>&lt; input.txt                <span class=c1># Standard input is read from a file and sent to cat command</span>
+cat &lt; input.txt                 <span class=c1># Standard input is default</span>
+cat <span class=m>0</span>&lt; input.txt <span class=m>1</span>&gt;&gt; output.txt <span class=m>2</span>&gt;&gt; error.txt       <span class=c1># Use all 3 data streams</span>
+</code></pre></div> </details> <details class=summary><summary>Redirection to Terminals</summary><div class=highlight><pre><span></span><code>tty	                            <span class=c1># Current terminal connected to Linux, gives path</span>
+cat &lt; input.txt &gt; /dev/pts/1    <span class=c1># In another terminal, Standard input is read from a file and sent to tty 1 terminal</span>
+Ctrl + Alt + F1 / chvt <span class=m>1</span>	    <span class=c1># Goes to physical terminal with no graphics. Similarly you can change to 2 to 6 tty terminals.</span>
+Ctrl + Alt + F7 / chvt <span class=m>7</span>	    <span class=c1># Comes back to Graphical terminal</span>
+</code></pre></div> </details> <details class=summary><summary>Piping</summary><p><div class=highlight><pre><span></span><code>date <span class=p>|</span> cut --delimiter <span class=s2>&quot; &quot;</span> --fields <span class=m>1</span>   <span class=c1># Output of date is input to cut command</span>
+</code></pre></div> - <a href=https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Tee.svg/400px-Tee.svg.png>Tee command</a> - Used to store intermediate output in a file and then stream passed horizontally through the pipeline - tee command takes a snapshot of the standard output and then passes it along <div class=highlight><pre><span></span><code>date &gt; date.txt <span class=p>|</span> cut --delimiter <span class=s2>&quot; &quot;</span> --fields <span class=m>1</span>        
+<span class=c1># Output will not work and date will only be stored in file and not passed to cut command</span>
+date <span class=p>|</span> tee date.txt <span class=p>|</span> cut --delimiter <span class=s2>&quot; &quot;</span> --fields <span class=m>1</span>    
+<span class=c1># Output of date is first stored in file, then passed to cut command for display to Standard Output</span>
+date <span class=p>|</span> tee date.txt <span class=p>|</span> cut --delimiter <span class=s2>&quot; &quot;</span> --fields <span class=m>1</span> <span class=p>|</span> tee today.txt 
+cat file1.txt file2.txt <span class=p>|</span> tee unsorted.txt <span class=p>|</span> sort -r &gt; reversed.txt
+<span class=c1># Output chaining and storing intermediate data in files</span>
+</code></pre></div> - XARGS command (Powerful pipeline command) - Allows piped data into command line arguments - <div class=highlight><pre><span></span><code>date <span class=p>|</span> <span class=nb>echo</span>  
+<span class=c1># Output of date is passed to echo, but echo doesn&#39;t accept standard input, only commandline arguments</span>
+date <span class=p>|</span> xargs <span class=nb>echo</span>
+<span class=c1># xargs will convert standard output into command line arguments</span>
+date <span class=p>|</span> cut --delimiter <span class=s2>&quot; &quot;</span> --fields <span class=m>1</span> <span class=p>|</span> xargs <span class=nb>echo</span>  <span class=c1># Prints the day of the week</span>
+</code></pre></div></p> </details> <details class=summary><summary>Alias</summary><ul> <li>Used to store reusable scripts in <code>.bash_aliases</code> file</li> <li>can be used in scripts <div class=highlight><pre><span></span><code><span class=nb>alias</span>	                <span class=c1># Shows all the alias setup for the user</span>
+<span class=c1># Store an alias in the `.bash_aliases` file</span>
+<span class=nb>alias</span> <span class=nv>calmagic</span><span class=o>=</span><span class=s1>&#39;xargs cal -A 1 -B 1 &gt; /home/leslie/calOutput.txt&#39;</span>
+<span class=c1># In the terminal use if in a pipe command, STDOUT will be stored in a file</span>
+<span class=nb>echo</span> <span class=s2>&quot;12 2021&quot;</span> <span class=p>|</span> calmagic
+</code></pre></div></li> </ul> </details> <details class=summary><summary>File System Navigation</summary><div class=highlight><pre><span></span><code><span class=c1># File Listing</span>
+<span class=nb>pwd</span>                     <span class=c1># Prints absolute path of current working directory(CWD)</span>
+ls –l               	<span class=c1># Long list of CWD</span>
+ls –a	                <span class=c1># Shows all files including hidden</span>
+ls -F                   <span class=c1># Shows directories as ending with / along with other files</span>
+stat &lt;filename&gt;         <span class=c1># Detailed file information</span>
+file &lt;filename&gt;         <span class=c1># File type</span>
+ls -ld                  <span class=c1># Detailed folder information</span>
+<span class=c1># Change Directories</span>
+<span class=nb>cd</span> -	                <span class=c1># Helps to switch directories. Like a Toggle (Alt + Tab) in windows</span>
+<span class=nb>cd</span>  / <span class=nb>cd</span> ~	            <span class=c1># User Home directory from anywhere</span>
+<span class=nb>cd</span> ..                   <span class=c1># Back to parent directory of CWD</span>
+</code></pre></div> </details> <details class=summary><summary>Wildcards</summary><p><a href=https://tldp.org/LDP/GNU-Linux-Tools-Summary/html/x11655.htm>Wildcards</a> and <a href=http://www.linfo.org/wildcard.html>How to use</a> - The star wildcard has the broadest meaning of any of the wildcards, as it can represent zero characters, all single characters or any string. - The question mark (?) is used as a wildcard character in shell commands to represent exactly one character, which can be any single character. - The square wildcard can represent any of the characters enclosed in the brackets. <div class=highlight><pre><span></span><code>ls *.txt                <span class=c1># Matches all txt files</span>
+ls ???.txt              <span class=c1># Matches all 3 letter txt files</span>
+ls file<span class=o>[</span><span class=m>123</span><span class=o>]</span>.txt        <span class=c1># Matches all files ending with 1 to 3 </span>
+ls file<span class=o>[</span>A-Z<span class=o>]</span>.txt        <span class=c1># Matches all files ending with A to Z</span>
+ls file<span class=o>[</span><span class=m>0</span>-9<span class=o>][</span>A-Z<span class=o>]</span>.txt   <span class=c1># Matches all files ending with 0A to 9Z</span>
+</code></pre></div></p> </details> <details class=summary><summary>File and Folders</summary><div class=highlight><pre><span></span><code><span class=c1># Create Operations</span>
+touch file1                         <span class=c1># Creates a new file1</span>
+<span class=nb>echo</span> <span class=s2>&quot;Hello&quot;</span> &gt; hello.txt            <span class=c1># Creates and writes using redirection</span>
+<span class=c1># -p is parent directory which is data and inside that 2 directories called sales &amp; mkt is created</span>
+mkdir –p /data/<span class=o>{</span>sales,mkt<span class=o>}</span>	     
+<span class=c1># Brace exapansion will allow to create folders. Sequence can be expressed as ..</span>
+mkdir -p /tmp/<span class=o>{</span>jan,feb,mar<span class=o>}</span>_<span class=o>{</span><span class=m>2020</span>..2023<span class=o>}</span>
+<span class=c1># Brace expansion for files, it will create 10 files inside each folder</span>
+touch <span class=o>{</span>jan,feb,mar<span class=o>}</span>_<span class=o>{</span><span class=m>2020</span>..2023<span class=o>}</span>/file<span class=o>{</span><span class=m>1</span>..10<span class=o>}</span>
+<span class=c1># Delete Operations</span>
+rm file1                            <span class=c1># Deletes file1</span>
+rm  *.txt                           <span class=c1># Deletes all txt files</span>
+<span class=c1># Deletes all files and folders inside the main folder and the main folder as well</span>
+<span class=c1># CAUTION: Use the recursive option with care</span>
+rm -r /tmp/<span class=o>{</span>jan,feb,mar<span class=o>}</span>_<span class=o>{</span><span class=m>2020</span>..2023<span class=o>}</span>/   
+<span class=c1># Deletes only empty directories</span>
+rmdir /tmp/                         <span class=c1># Skips folders which have files</span>
+<span class=c1># Copy Operations</span>
+cp /data/sales/file1 /data/mkt/file1
+cp /data/sales/* .                  <span class=c1># Copy all files to CWD</span>
+cp -r /data/sales /data/backup      <span class=c1># Copy folder to backup folder</span>
+<span class=c1># Move and Rename Operations</span>
+mv file1 file2                      <span class=c1># Rename file in the same folder</span>
+mv /data/mkt/ /data/hr              <span class=c1># Rename folder, Note the slash after first folder</span>
+mv /data/sales/* /tmp/backup/       <span class=c1># Move files to new location</span>
+mv /data/mkt/ /tmp/newFolder        <span class=c1># Move and rename the folder</span>
+</code></pre></div> </details> <details class=summary><summary>Nano - Editing</summary><ul> <li>M Key can be Alt or Cmd depending on keyboard layout</li> <li>Enable spell checking on nano by editing <code>/etc/nanorc</code> and uncomment <code>set speller</code> in the file. <div class=highlight><pre><span></span><code>Ctrl + O                            <span class=c1># Write data out to file</span>
+Ctrl + R                            <span class=c1># Copy contents of one file into another</span>
+Ctrl + K                            <span class=c1># Cuts entire line, also used as a delete</span>
+Alt + <span class=m>6</span>                             <span class=c1># Copy entire line</span>
+Ctrl + U                            <span class=c1># Paste the line</span>
+Ctrl + T                            <span class=c1># Spell check the file</span>
+Alt + U                             <span class=c1># Undo changes</span>
+Alt + E                             <span class=c1># Redo changes</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># File operations in vi</span>
+&gt; filename                        	<span class=c1># Empties an existing file</span>
+:x	                                <span class=c1># Saves file changes instead of :wq</span>
+</code></pre></div></li> </ul> </details> <details class=summary><summary>Search Files</summary><p><div class=highlight><pre><span></span><code>find ~/projects                     <span class=c1># Find matches of files and folders from projects and below</span>
+find .                              <span class=c1># Find from CWD and below</span>
+find . -maxdepth <span class=m>1</span>                  <span class=c1># Find from CWD and one level below</span>
+find . -type f                      <span class=c1># Find files only</span>
+find . -type d                      <span class=c1># Find folder only</span>
+find . -maxdepth <span class=m>1</span> -type d          <span class=c1># Find folder only and one level below</span>
+find . -name <span class=s2>&quot;*.txt&quot;</span>                <span class=c1># Find files ending with matching patterns</span>
+find . -maxdepth <span class=m>3</span> -iname <span class=s2>&quot;*.TXT&quot;</span>   <span class=c1># Find files with case insensitive matching patterns</span>
+find . -type f -size +100k          <span class=c1># Find files greater than 100 Kb</span>
+<span class=c1># Find files greater than 100 Kb AND less than 5 Mb and count them</span>
+find . -type f -size +100k -size -5M <span class=p>|</span> wc -l
+<span class=c1># Find files less than 100 Kb OR greater than 5 Mb and count them</span>
+find . -type f -size -100k -o -size +5M <span class=p>|</span> wc -l
+</code></pre></div> - Find and Execute commands <div class=highlight><pre><span></span><code><span class=c1># Find and copy files to backup folder. `\;` denotes end of exec command</span>
+find . -type f -size +100k -size +5M -exec cp <span class=o>{}</span> ~/Desktop/backup <span class=se>\;</span>
+<span class=c1>###</span>
+<span class=c1># Find file called needle.txt inside haystack folder</span>
+<span class=c1>###</span>
+<span class=c1># Create 100 folders and inside each folder 100 files</span>
+mkdir -p haystack/folder<span class=o>{</span><span class=m>1</span>..100<span class=o>}</span>
+touch haystack/folder<span class=o>{</span><span class=m>1</span>..100<span class=o>}</span>/file<span class=o>{</span><span class=m>1</span>..100<span class=o>}</span>
+<span class=c1># Create file in one random folder</span>
+touch haystack/folder<span class=k>$(</span>shuf -i <span class=m>1</span>-100 -n <span class=m>1</span><span class=k>)</span>/needle.txt
+<span class=c1>###</span>
+<span class=c1># Finding the file using name</span>
+find haystack/ -type f -name <span class=s2>&quot;needle.txt&quot;</span>
+<span class=c1># Move the file to haystack folder</span>
+find haystack/ -type f -name <span class=s2>&quot;needle.txt&quot;</span> -exec mv <span class=o>{}</span> ~/tmp/haystack <span class=se>\;</span>
+<span class=c1>###</span>
+</code></pre></div></p> </details> <details class=summary><summary>View/Read File Contents</summary><ul> <li>cat <div class=highlight><pre><span></span><code>cat file1 file2 &gt; file3             <span class=c1># Concatenate 2 files and write into file3</span>
+cat –vet file3                      <span class=c1># displays special characters in the file e.g. EOL as $. Useful if sh files are created in windows</span>
+</code></pre></div></li> <li>tac - Flips the file contents vertically <div class=highlight><pre><span></span><code>tac file3                           <span class=c1># Reads the file in reverse</span>
+</code></pre></div></li> <li>rev - Reverses the contents of each line <div class=highlight><pre><span></span><code>rev file3                           <span class=c1># Reads the line in reverse</span>
+</code></pre></div></li> <li>less - Allows to page through big files <div class=highlight><pre><span></span><code>less file3                          <span class=c1># Shows one page at a time. Use Arrow keys to scroll</span>
+<span class=c1># Output of find piped to less command for scrolling</span>
+find . -type f -name <span class=s2>&quot;*.txt&quot;</span> <span class=p>|</span> less
+</code></pre></div></li> <li>head - Shows limited lines from top of output <div class=highlight><pre><span></span><code>cat file3 <span class=p>|</span> head -n <span class=m>3</span>               <span class=c1># Shows first 3 lines</span>
+</code></pre></div></li> <li>tail - Shows limited lines from bottom of output <div class=highlight><pre><span></span><code>cat file3 <span class=p>|</span> tail -n <span class=m>3</span>               <span class=c1># Shows last 3 lines</span>
+tail –f /var/log/messages           <span class=c1># follows the file and continuously shows the 10 lines </span>
+</code></pre></div></li> </ul> </details> <details class=summary><summary>Sort</summary><p><div class=highlight><pre><span></span><code>sort words.txt &gt; sorted.txt         <span class=c1># Sorts in Asc order and redirects to sorted.txt</span>
+sort -r word.txt &gt; reverse.txt      <span class=c1># Sorts in Des order</span>
+sort -n numbers.txt                 <span class=c1># Sorts in Asc numeric order based on digit placement</span>
+sort -nr numbers.txt                <span class=c1># Sorts in Des numeric order based on digit placement</span>
+sort -u numbers0-9.txt              <span class=c1># Sorts and shows only unique values</span>
+</code></pre></div> - Sorting data in tabular format <div class=highlight><pre><span></span><code><span class=c1># Sort on the basis of file size (5th column and its numeric)</span>
+ls -l /etc <span class=p>|</span> head -n <span class=m>20</span> <span class=p>|</span> sort -k 5n    
+<span class=c1># Reverse (r) the output showing largest files first</span>
+ls -l /etc <span class=p>|</span> head -n <span class=m>20</span> <span class=p>|</span> sort -k 5nr
+<span class=c1># Sort on the basis of largest file size in human readable format</span>
+ls -lh /etc <span class=p>|</span> head -n <span class=m>20</span> <span class=p>|</span> sort -k 5hr  
+<span class=c1># Sort on the basis of month </span>
+ls -lh /etc <span class=p>|</span> head -n <span class=m>20</span> <span class=p>|</span> sort -k 6M 
+</code></pre></div></p> </details> <details class=summary><summary>Search data - grep</summary><ul> <li>grep is case-sensitive search command <div class=highlight><pre><span></span><code><span class=c1># grep &lt;search term&gt; file-name</span>
+grep e words.txt                    <span class=c1># Shows matching lines as STDOUT</span>
+grep -c e words.txt                 <span class=c1># Counts the matching lines</span>
+<span class=c1># Search in case insensitive manner</span>
+grep -i gadsby gadsby_manuscript.txt
+<span class=c1># Search strings using quotes</span>
+grep -ci <span class=s2>&quot;our boys&quot;</span> gadsby_manuscript.txt
+<span class=c1># Invert the search</span>
+grep -v <span class=s2>&quot;our boys&quot;</span> gadsby_manuscript.txt
+<span class=c1># Searches for server and not servers. \b is the word boundary</span>
+grep ‘<span class=se>\b</span>server<span class=se>\b</span>’/etc/ntp.conf    
+<span class=c1># Searches for server beginning in the line. \b is the word boundary</span>
+grep ‘^server<span class=se>\b</span>’/etc/ntp.conf
+</code></pre></div></li> <li>Filter data using grep <div class=highlight><pre><span></span><code>ls -lF / <span class=p>|</span> grep opt                 <span class=c1># Shows details for opt folder only</span>
+ls -F /etc <span class=p>|</span> grep -v /              <span class=c1># Shows only files in etc folder</span>
+- Remove Commented and Blank Lines
+<span class=c1># Empty lines can be shown as ^$. –v reverses our search and –e allows more than one expression. O/p is sent to std o/p</span>
+grep –ve ‘^#’ –ve’^$’ /etc/ntp.conf   
+<span class=c1># -v ^# says I don’t want to see lines starting with #. ^$ says I don’t want to see lines that begin with EOL marker</span>
+</code></pre></div></li> </ul> </details> <details class=summary><summary>Archival and Compression</summary><ul> <li>Two step process: Create the tar ball, then compress the tar</li> <li><a href=https://www.rootusers.com/gzip-vs-bzip2-vs-xz-performance-comparison/ >Compression tool comparison</a> <div class=highlight><pre><span></span><code><span class=c1># Create the tar ball</span>
+tar -cvf backup.tar file<span class=o>[</span><span class=m>1</span>-3<span class=o>]</span>.txt   <span class=c1># Create, Verbose, Files to archive</span>
+tar -tf backup.tar                  <span class=c1># Test for tar file without unzipping</span>
+<span class=c1># Compress the tar ball</span>
+<span class=c1>## 3 compression tools - gzip -&gt; bzip2 -&gt; xz (Compression and time increases from left to right)</span>
+gzip backup.tar                     <span class=c1># Compresses the tar ball and adds .gz extension to tar ball</span>
+gunzip backup.tar.gz                <span class=c1># Decompress the gzip</span>
+<span class=c1>###</span>
+bzip2 backup.tar                    <span class=c1># Smaller file size than gzip and adds .bz2 extension to tar ball</span>
+bunzip2 backup.tar.bz2              <span class=c1># Decompress the bzip. Best used for larger file sizes</span>
+<span class=c1># Open the tar ball contents</span>
+tar -xvf backup.tar                 <span class=c1># Extract, Verbose, Files to unarchive</span>
+<span class=c1>###</span>
+Create tar and compress <span class=k>in</span> single <span class=nb>command</span>
+<span class=c1># Adding the z option for gzip and renaming the tar as .gz</span>
+tar -cvzf backup.tar.gz file<span class=o>[</span><span class=m>1</span>-3<span class=o>]</span>.txt
+tar -xvzf backup.tar.gz 
+<span class=c1># Adding the j option for bzip2 and renaming the tar as .bz2</span>
+tar -cvjf backup.tar.bz2 file<span class=o>[</span><span class=m>1</span>-3<span class=o>]</span>.txt
+tar -xvjf backup.tar.bz2 
+<span class=c1>###</span>
+</code></pre></div></li> </ul> </details> <details class=summary><summary>BASH</summary><div class=highlight><pre><span></span><code><span class=ch>#!/bin/bash                         # First line in the script &quot;SHEBANG&quot; tells type of script</span>
+<span class=c1>### </span>
+<span class=c1># To create an executable script, create a `bin` folder in your home.</span>
+<span class=c1># Move all utility shell scripts to bin. Also remove .sh file extenstions</span>
+<span class=c1># Make the file as executable `chmod +x data_backup`</span>
+<span class=c1># Add the `~/bin` to the PATH variable</span>
+<span class=c1># Edit `.bashrc` with PATH=&quot;$PATH:$HOME/bin&quot;</span>
+<span class=c1># Now all scripts in bin folder are executable from command line</span>
+<span class=c1>###</span>
+<span class=c1># Set and unset variables</span>
+<span class=nb>export</span> <span class=nv>$VARIABLE</span>	        <span class=c1># Sets the variable</span>
+<span class=nb>unset</span> VARIABLE	            <span class=c1># Removes the variable, NOTE – No $ in variable</span>
+</code></pre></div> </details> <details class=summary><summary>Cron Scheduling</summary><div class=highlight><pre><span></span><code>crontab -e &lt;<span class=k>select</span> editor&gt;          <span class=c1># Opens the template crontab</span>
+<span class=c1># Multiple options for each column of crontab using comma. </span>
+<span class=c1># SPACE is used to delimit the columns of crontab</span>
+<span class=c1># */&lt;value&gt; can divide the time intervals</span>
+<span class=c1>###</span>
+<span class=c1># min hours &quot;day of month&quot; month &quot;day of week (0-6)&quot;</span>
+<span class=c1>###</span>
+* * * * * bash ~/data_backup.sh
+</code></pre></div> </details> <details class=summary><summary>Package Management</summary><p><div class=highlight><pre><span></span><code>apt-cache search docx               <span class=c1># Searches apt for programs that can work with MS Word</span>
+apt-cache show &lt;package&gt; <span class=p>|</span> less     <span class=c1># Gives software information</span>
+<span class=c1># Apt cache information resides in /var/lib/apt/lists</span>
+sudo apt-get update                 <span class=c1># Updates the apt lists</span>
+sudo apt-get upgrade                <span class=c1># Upgraded to the latest software versions from the list</span>
+sudo apt-get install &lt;pkg-name&gt;     <span class=c1># Install package   </span>
+sudo apt-get purge &lt;pkg-name&gt;       <span class=c1># Remove &amp; uninstall package. Recommended approach</span>
+sudo apt-get autoremove             <span class=c1># Removes any installed package dependecies</span>
+<span class=c1># Package compressed archives are stored in `/var/cache/apt/archives`</span>
+sudo apt-get clean                  <span class=c1># Removes all package compressed acrhives</span>
+sudo apt-get autoclean              <span class=c1># Removes only package compressed acrhives that cannot be downloaded</span>
+</code></pre></div> - <a href=https://help.ubuntu.com/community/Repositories/CommandLine>Source Code for apps</a></p> </details> <details class=summary><summary>OS</summary><div class=highlight><pre><span></span><code>uname                               <span class=c1># Shows kernal</span>
+uname -o                            <span class=c1># Shows OS</span>
+uname -m                            <span class=c1># Shows computer architecture x86_64 (64 bit), x86 (32 bit)</span>
+lsb_release -a                      <span class=c1># Distro version</span>
+</code></pre></div> </details> <details class=summary><summary>Misc</summary><div class=highlight><pre><span></span><code>fdisk -l 	                    <span class=c1># Gives device wise memory details</span>
+free / free -m	                <span class=c1># Gives amount of free memory</span>
+lsblk	                        <span class=c1># Lists all partitions</span>
+swapon –s	                    <span class=c1># List all swap files</span>
+ps	                            <span class=c1># Process id of the current bash shell</span>
+shutdown –h now / poweroff / init <span class=m>0</span>	    <span class=c1># Power downs the system</span>
+restart / init <span class=m>6</span> / reboot               <span class=c1># Restarts the system </span>
+shutdown –r + <span class=m>1</span> “We are restarting”	    <span class=c1># Restarts the system give all logged in users 1 min to shut down all process</span>
+su -	                        <span class=c1># Login to root</span>
+id / id bob	                    <span class=c1># Shows the current user and group id</span>
+sudo -i	                        <span class=c1># Interactive shell for password of the current user, to get elevated access</span>
+ssh localhost	                <span class=c1># ssh connection to same server. Type exit or Ctrl + D to logout of ssh.</span>
+who / w	                        <span class=c1># Gives the list of terminals that are connected and who has logged on to the server</span>
+</code></pre></div> </details> <details class=summary><summary>Terminal</summary><div class=highlight><pre><span></span><code>
+</code></pre></div> </details> <details class=summary><summary>Terminal</summary><div class=highlight><pre><span></span><code>
+</code></pre></div> </details> <details class=summary><summary>Terminal</summary><div class=highlight><pre><span></span><code>
+</code></pre></div> </details> <details class=summary><summary>Terminal</summary><div class=highlight><pre><span></span><code>
+</code></pre></div> </details> <details class=summary><summary>Terminal</summary><div class=highlight><pre><span></span><code>
+</code></pre></div> </details> <details class=summary><summary>Terminal</summary><div class=highlight><pre><span></span><code>
+</code></pre></div> </details> <details class=summary><summary>Terminal</summary><div class=highlight><pre><span></span><code>
+</code></pre></div> </details> <details class=summary><summary>Terminal</summary><div class=highlight><pre><span></span><code>
+</code></pre></div> </details> <details class=summary><summary>Terminal</summary><div class=highlight><pre><span></span><code>
+</code></pre></div> </details> <details class=summary><summary>Terminal</summary><div class=highlight><pre><span></span><code>
+</code></pre></div> </details> </details> <h2 id=tips>Tips<a class=headerlink href=#tips title="Permanent link">&para;</a></h2> <ul> <li>Alt + F2 Gives the run command terminal and then type gnome-system-monitor is like task Manger in windows. Gives graphical overview of the system and can kill processes.</li> <li>Putting &amp; after any commands runs it in the background. Run jobs to see all the background running jobs. Type fg to bring the background running jobs to the foreground. Ctrl + C to cancel the job then.</li> <li><code>!&lt;anycharacter&gt;</code> will sreach for the last command in history starting with that character</li> <li><code>!?etc</code> executes the last command that contains etc</li> </ul> <h2 id=filesystem>Filesystem<a class=headerlink href=#filesystem title="Permanent link">&para;</a></h2> <h3 id=creating-partitions>Creating Partitions<a class=headerlink href=#creating-partitions title="Permanent link">&para;</a></h3> <p>fdisk or gdisk utility to partition. If Mountpoint is /, that is primary partition.</p> <h4 id=creating-filesystems>Creating Filesystems<a class=headerlink href=#creating-filesystems title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>mkfs.ext4 –b <span class=m>4096</span> /dev/sdb1         <span class=c1># Creates 4MB block size file system</span>
+mkfs.xfs –b <span class=nv>size</span><span class=o>=</span>64k /dev/sdb2      <span class=c1># Creates 64k block size file system. Xfs is specialized filesystem</span>
+</code></pre></div> <h4 id=mounting-data>Mounting Data<a class=headerlink href=#mounting-data title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>mkdir –p /data/<span class=o>{</span>sales,mkt<span class=o>}</span>
+mount /dev/sdb1 /data/sales         <span class=c1># Mounts device to data/sales directory</span>
+mount /dev/sdb2 /data/mkt
+</code></pre></div> <h4 id=unmounting-data>Unmounting Data<a class=headerlink href=#unmounting-data title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>umount /dev/sdb1 or umount /dev/sdb<span class=o>{</span><span class=m>1</span>,2<span class=o>}</span>    <span class=c1># Unmounts both the devices</span>
+</code></pre></div> <h3 id=virtual-memory-or-swap-filesystem>Virtual Memory or Swap Filesystem<a class=headerlink href=#virtual-memory-or-swap-filesystem title="Permanent link">&para;</a></h3> <ul> <li>They are temporary space requirements</li> <li>Virtual memory in Linux can be a Disk Partition or Swap file. </li> <li>Use gdisk to create swap filesystem. Option L and then hex code 8200.</li> <li>To make the swap filesystem permanent, make an entry in <code>/etc/fstab</code> file, so changes are persistent even after system reboot. <div class=highlight><pre><span></span><code>partprobe /dev/sdb                  <span class=c1># Sync saved partition in memory. Or it requires system reboot</span>
+mkswap /dev/sdb3                    <span class=c1># Select the right swap device to create the filesystem</span>
+swapon /dev/sdb3                    <span class=c1># Mount the filesystem</span>
+</code></pre></div></li> </ul> <h3 id=troubleshooting-linux-filesystem>Troubleshooting Linux filesystem<a class=headerlink href=#troubleshooting-linux-filesystem title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>df –hT                              <span class=c1># list all filesystem with space details</span>
+du –hs /etc                         <span class=c1># gives diskusage of etc directory with memory</span>
+dumpe2fs /dev/sdb1 <span class=p>|</span> less           <span class=c1># human readable details for the device</span>
+dd <span class=k>if</span><span class=o>=</span>/dev/sda <span class=nv>of</span><span class=o>=</span>/data/sales/file <span class=nv>count</span><span class=o>=</span><span class=m>1</span> <span class=nv>bs</span><span class=o>=</span><span class=m>512</span>   <span class=c1># takes data backup of sda to sales/file of the first 512 bytes</span>
+dd <span class=k>if</span><span class=o>=</span>/data/sales/file <span class=nv>of</span><span class=o>=</span>/dev/sda  <span class=c1># copies the data back in case of recovery</span>
+tar –cvf /data/sales/etc.tar /etc   <span class=c1># backs up etc directory by creating a tar file</span>
+umount /dev/sdb1                    <span class=c1># unmounts sales directory </span>
+tune2fs –L “DATA” /dev/sdb1         <span class=c1># adding label to the file system</span>
+debugfs /dev/sdb1                   <span class=c1># enters debug of sdb1 directory. Type quit to exit</span>
+</code></pre></div> <h3 id=file-permissions>File Permissions<a class=headerlink href=#file-permissions title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code><span class=c1># Format for file permission :              User-Group-Others</span>
+<span class=c1># Symbolic Notation (Default permission)    RWX – RW  - R     </span>
+<span class=c1># Octal Notation                            7   - 6   - 4       </span>
+<span class=c1># So RWX is 111 i.e. 7, RW is 110 i.e. 6 and R is 100 i.e. 4</span>
+<span class=nb>umask</span> <span class=m>2</span>                         <span class=c1># sets default permission to all the files in the directory</span>
+chmod <span class=m>777</span> file1                 <span class=c1># Changes permission for a file1</span>
+chmod <span class=nv>u</span><span class=o>=</span>rwx,g<span class=o>=</span>rw,o<span class=o>=</span>rw file <span class=m>2</span>    <span class=c1># Verbose way to set permissions</span>
+chmod +rx file3                 <span class=c1># Sets read &amp; write for User, group and others</span>
+ls –ld /data                    <span class=c1># Shows permission for a single directory</span>
+chgrp users /data               <span class=c1># Adds users group to the directory</span>
+</code></pre></div> - Even if user does not have <strong>write</strong> access to a file, he has <strong>delete / add</strong> file access to a directory. - <code>chmod o+t /data</code> .Users can delete only their files and not other’s. Root will not be able to delete files in this directory. - This permission is sent on the <code>/tmp</code> directory by default at installation. So only user’s own file can be deleted, not of others.</p> <h3 id=links-hard-and-soft-links>Links (Hard and Soft Links)<a class=headerlink href=#links-hard-and-soft-links title="Permanent link">&para;</a></h3> <ul> <li>Soft links are also called as <strong>Symbolic Links or symlinks</strong>. Here one file will be a pointer to the other file.</li> <li>If file has more than one name, it’s called hard link.</li> <li>To find the number of sub directories , use <code>stat dirname</code>. </li> <li>Links number -2 is the total number of sub directories. Each directory has a minimum of 2 links, hence subtract 2. <div class=highlight><pre><span></span><code>ln file2 file5                  <span class=c1>#  Creates hard link between file2 and file5.</span>
+<span class=c1># Shows the inode number which is same i.e. the same metadata is present for both. Cat on both the files shows the same data content</span>
+ls –li file2 file5      
+ln –s file3 file4               <span class=c1>#  Creates a symlink between file 3 and file5. Cat on both the files shows the same data content</span>
+ls –li file3 file4              <span class=c1>#  Shows the symlink, but they are different files. Inode number is different.</span>
+readlink file5                  <span class=c1># shows where the link is </span>
+</code></pre></div></li> </ul> <h3 id=applying-quotas>Applying Quotas<a class=headerlink href=#applying-quotas title="Permanent link">&para;</a></h3> <ul> <li>Quotas can be applied to Space/inodes, Group, User or File System. <div class=highlight><pre><span></span><code>repquota –auv          <span class=c1># Give quota report per user space usage along with limits</span>
+quotaon /dev/sdb1      <span class=c1># Checks quota limit</span>
+<span class=c1># enable quotas and edit the hard and soft limits. Soft limit can be exceeded for 7 days, after which it is enforced.</span>
+edquota –u &lt;username&gt;  
+<span class=c1># enables quota via command line. Soft limit is 21000 is 21MB, hard limit is 26MB</span>
+setquota –u &lt;username&gt; <span class=m>21000</span> <span class=m>26000</span> <span class=m>0</span> <span class=m>0</span> /dev/sdb1  
+</code></pre></div></li> </ul> <h3 id=directory-listing-and-alias>Directory Listing and Alias<a class=headerlink href=#directory-listing-and-alias title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>ls –F /dir1                   <span class=c1># shows directory with a / and symlink as @ at the end of the name </span>
+ls –-color<span class=o>=</span>auto /dir1         <span class=c1># shows the same file types in color</span>
+<span class=nb>alias</span> <span class=nv>ls</span><span class=o>=</span>’ls –-color<span class=o>=</span>auto’    <span class=c1># creates an alias for ls with color</span>
+ls –lh file1                  <span class=c1># list in human readable format</span>
+ls –lt /etc                   <span class=c1># shows long listing with time modified in descending order</span>
+ls –ltr /etc <span class=p>|</span> less           <span class=c1># shows reverse listing, q to quit</span>
+</code></pre></div> <h3 id=synchronize-directories>Synchronize Directories<a class=headerlink href=#synchronize-directories title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>mkdir /backup
+rsync –av /home/ /backup/           <span class=c1># archive home dir to backup dir. / after home and backup is important</span>
+rsync –av --delete /home/ /backup/  <span class=c1># sync deletions of data as well, otherwise rsync ignores it by default</span>
+rsync –ave ssh                      <span class=c1># sync data between servers using e option</span>
+</code></pre></div> <h2 id=process-management>Process Management<a class=headerlink href=#process-management title="Permanent link">&para;</a></h2> <h3 id=monitor-process>Monitor Process<a class=headerlink href=#monitor-process title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>which ps               <span class=c1># shows the installation directory for ps</span>
+uptime                 <span class=c1># shows the uptime of the system along with the load average in the range of 1 min, 5 mins and 15 mins</span>
+<span class=c1># Rule of Thumb for uptime --&gt; Load average for single core value should be less than 1, for dual core less than 2 etc.</span>
+which uptime           <span class=c1># shows the installation directory for uptime</span>
+cat /proc/uptime       <span class=c1># shows uptime and idle time</span>
+cat /proc/loadavg      <span class=c1># shows load avg for 1,5 and 15 mins, active process running/total process, last process id that was issued</span>
+</code></pre></div> <h3 id=jobs>Jobs<a class=headerlink href=#jobs title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>sleep <span class=m>180</span>              <span class=c1># sleeps for 180 secs in foreground. Ctrl + Z to pause the job. Run bg to put the sleep command in background.</span>
+<span class=nb>jobs</span>                   <span class=c1># shows running jobs          </span>
+<span class=nb>fg</span> <span class=m>1</span>                   <span class=c1># puts the sleep command in foreground</span>
+</code></pre></div> <h3 id=managing-processes>Managing Processes<a class=headerlink href=#managing-processes title="Permanent link">&para;</a></h3> <ul> <li>ps to display processes and kill to send signals. </li> <li><strong>pgrep, pkill and killall</strong> are great shortcuts. </li> <li>The default kill signal is -15 which can also be written as <strong>–term or –sigterm</strong>.</li> <li>To really kill it is <strong>-9, -kill or –sigkill</strong>. <div class=highlight><pre><span></span><code>ps –l                  <span class=c1># long listing with the process</span>
+ps –ef                 <span class=c1># shows all the processes for all users</span>
+ps –eaf <span class=p>|</span> grep processname
+pgrep nginx            <span class=c1># shows process ids for nginx</span>
+sleep <span class=m>900</span><span class=p>&amp;</span>
+pkill sleep            <span class=c1># searches for sleep process and kills it</span>
+killall sleep          <span class=c1># searches for all running sleep process and kills it</span>
+<span class=nb>kill</span> –l                <span class=c1># shows the multiple kill signals available</span>
+<span class=nb>kill</span> -9 &lt;process id&gt;   <span class=c1># forcefully terminates the process, also use kill –kill &lt;process id&gt; </span>
+</code></pre></div></li> <li>top &rarr; kill, renice, sort and display processes</li> <li>Running top, you can toggle between the information displayed at the top lines. l – on/off load, t – on/off tasks, m – on/off memory </li> <li>Sorting of top is on %CPU, f – shows current fields being shown on output of top. Select the new field to sort and type s</li> <li>Type r for renice and put in the process id. Esc and Enter to quit the shell</li> <li>Type k for kill and put in the process id. Esc and Enter to quit the shell</li> <li>q to quit out of top <div class=highlight><pre><span></span><code>top                    <span class=c1># shows all running processes, q to quit</span>
+top –n <span class=m>1</span>               <span class=c1># shows the running processes for 1 capture and quits</span>
+top –n <span class=m>2</span> –d <span class=m>3</span>          <span class=c1># shows 2 captures with a delay of 3 seconds and quits</span>
+</code></pre></div></li> </ul> <h2 id=editors>Editors<a class=headerlink href=#editors title="Permanent link">&para;</a></h2> <h3 id=vi>Vi<a class=headerlink href=#vi title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>:               <span class=c1># Last line mode</span>
+q, q!           <span class=c1># quit the file</span>
+x, wq, wq!      <span class=c1># save and exit the file</span>
+i, I            <span class=c1># insert from cursor position, I for inserting from start of the line</span>
+a, A            <span class=c1># append after the cursor, A for append from last character in the line</span>
+o, O            <span class=c1># insert line below the cursor, O for above the current cursor position</span>
+dd              <span class=c1># delete the line</span>
+u               <span class=c1># undo the changes</span>
+</code></pre></div> <h3 id=line-navigation>Line Navigation<a class=headerlink href=#line-navigation title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>&lt;Linenumber&gt;G                   <span class=c1># e.g. 7G, takes cursor to 7th line in the file</span>
+G                               <span class=c1># only G takes cursor to end of file</span>
+w , b                           <span class=c1># w takes cursor to next word, b takes cursor to one word before</span>
+^ , $                           <span class=c1># ^takes cursor to start of line, $ to end of the line</span>
+vi +127 /etc/file1              <span class=c1># opens the file and takes cursor to 127th line</span>
+vi +/Document /etc/file1.conf   <span class=c1># opens the file and takes cursor to first occurrence of “Document”</span>
+<span class=nb>set</span> number / <span class=nb>set</span> nonumber       <span class=c1># from last line mode, it will show and stop line number display</span>
+syntax on                       <span class=c1># highlighting on, e.g. xml highlighting etc.</span>
+</code></pre></div> <h3 id=read-and-write>Read and Write<a class=headerlink href=#read-and-write title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>r /etc/hosts           <span class=c1># Open an existing file, use : and then you can get content from hosts file into current file</span>
+w newfile              <span class=c1># :, it will copy entire file contents into newfile in the same directory</span>
+<span class=m>3</span>,7w newfile           <span class=c1># it will copy line 3 to 7 into newfile</span>
+</code></pre></div> <h3 id=search-and-replace>Search and Replace<a class=headerlink href=#search-and-replace title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>%s/Hi/Hello            <span class=c1># Open an existing file, use : and you can search Hi and Replace with Hello. %s signifies entire document search</span>
+/Hello                 <span class=c1># searches for Hello in the document. Type n to get next occurrence, N will take cursor in reverse</span>
+<span class=m>1</span>,20s/Hi/Hello         <span class=c1># searches for 1st 20 lines for Hi and replaces with Hello</span>
+<span class=m>14</span>,20s/^/   /          <span class=c1># from 14th to 20th line, it will add 3 spaces from the start of the line, just like Tab</span>
+</code></pre></div> <h2 id=bash-scripting>BASH Scripting<a class=headerlink href=#bash-scripting title="Permanent link">&para;</a></h2> <h3 id=understanding-variables>Understanding Variables<a class=headerlink href=#understanding-variables title="Permanent link">&para;</a></h3> <ul> <li>Local variables &rarr; accessible only to the current shell, <code>FRUIT=’apple’, echo $FRUIT</code></li> <li>Global variables &rarr; you need to set and then export it to make it global. <code>export FRUIT=’apple’</code></li> </ul> <h3 id=simple-script>Simple Script<a class=headerlink href=#simple-script title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>vi hello.sh
+<span class=c1>#!/bin/bash                    # Path to the interpreter</span>
+<span class=nb>echo</span> “Hello World”
+<span class=nb>exit</span> <span class=m>0</span>                         <span class=c1># return code, :wq</span>
+chmod +x hello.sh
+hello.sh                       <span class=c1># execute the script as it’s in the home directory /user/bin</span>
+</code></pre></div> <h3 id=getting-user-input>Getting user input<a class=headerlink href=#getting-user-input title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>vi hello.sh
+<span class=c1>#!/bin/bash                    </span>
+<span class=nb>echo</span> –e “Enter your name: <span class=se>\c</span>”   <span class=c1># -e is the escape sequence, -c is for the prompt</span>
+<span class=nb>read</span> INPUT_NAME                 <span class=c1># read the input data into a variable</span>
+<span class=nb>echo</span> “Hello <span class=nv>$INPUT_NAME</span>”
+<span class=nb>exit</span> <span class=m>0</span>       
+</code></pre></div> <h3 id=user-input-types>User Input types<a class=headerlink href=#user-input-types title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=nv>$1</span> <span class=nv>$2</span>             <span class=c1># $1 is the 1st input parameter, 2nd Parameter and so on.</span>
+<span class=nv>$0</span>                <span class=c1># is the script name itself</span>
+<span class=nv>$#</span>                <span class=c1># count of input parameters</span>
+<span class=nv>$*</span>                <span class=c1># is collection of all the arguments</span>
+</code></pre></div> <h3 id=multiple-inputs-using-positional-parameters>Multiple inputs using positional parameters<a class=headerlink href=#multiple-inputs-using-positional-parameters title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>vi hello.sh
+<span class=c1>#!/bin/bash          </span>
+<span class=nb>echo</span> “Hello <span class=nv>$1</span> <span class=nv>$2</span>”          <span class=c1># $1 is the 1st input parameter, $0 is the script name itself, $2 is the 2nd input parameter and so on</span>
+<span class=nb>exit</span> <span class=m>0</span>
+</code></pre></div> <h3 id=code-snippets>Code Snippets<a class=headerlink href=#code-snippets title="Permanent link">&para;</a></h3> <ul> <li>Gedit &rarr; Gnome Editor &rarr; Add the Snippet Plugin (Applications &rarr; Accessories &rarr; gedit.</li> <li>Preferences in gedit tab &rarr; Plugins enable Snippet Plugin and restart gedit)</li> </ul> <h3 id=conditional-statement---if>Conditional Statement - IF<a class=headerlink href=#conditional-statement---if title="Permanent link">&para;</a></h3> <ul> <li>if [[condition]] &rarr; testing for string condition</li> <li>if ((condition)) &rarr; testing for numeric condition</li> <li>e.g. if (( $# &lt; 1 )) &rarr; if count of input parameter <div class=highlight><pre><span></span><code>vi hello.sh
+<span class=c1>#!/bin/bash        </span>
+<span class=k>if</span> <span class=o>((</span> <span class=nv>$#</span>  <span class=m>1</span> <span class=o>))</span>
+   <span class=k>then</span>
+      <span class=nb>echo</span> “Usage: <span class=nv>$0</span> &lt;name&gt;”
+      <span class=nb>exit</span> <span class=m>1</span>
+<span class=k>fi</span> 
+<span class=nb>echo</span> “Hello <span class=nv>$1</span> <span class=nv>$2</span>”      
+<span class=nb>exit</span> <span class=m>0</span>
+</code></pre></div></li> </ul> <h3 id=case-statement>Case Statement<a class=headerlink href=#case-statement title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>vi hello.sh
+<span class=c1>#!/bin/bash        </span>
+<span class=k>if</span> <span class=o>[[</span> ! –d <span class=nv>$1</span> <span class=o>]]</span>            <span class=c1># if the 1st argument is not a directory</span>
+   <span class=k>then</span>
+      <span class=nb>echo</span> “Usage: <span class=nv>$0</span> &lt;directory&gt;”
+      <span class=nb>exit</span> <span class=m>1</span>
+<span class=k>fi</span>
+<span class=k>case</span> <span class=nv>$2</span>  <span class=k>in</span> 
+	“directory”<span class=o>)</span>
+		find <span class=nv>$1</span> –maxdepth <span class=m>1</span> –type d
+		<span class=p>;;</span>                  <span class=c1># break</span>
+	“link”<span class=o>)</span>
+		find <span class=nv>$1</span> –maxdepth <span class=m>1</span> –type l
+		<span class=p>;;</span>                  <span class=c1># break</span>
+	*<span class=o>)</span>		                <span class=c1># default statement</span>
+		<span class=nb>echo</span> “Usage: <span class=nv>$0</span> &lt;directory&gt; directory<span class=p>|</span>link”
+		<span class=p>;;</span>
+<span class=k>esac</span>
+<span class=nb>exit</span> <span class=m>0</span> 
+</code></pre></div> <h3 id=for>For<a class=headerlink href=#for title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code>vi hello.sh
+<span class=c1>#!/bin/bash        </span>
+<span class=k>for</span> u <span class=k>in</span> <span class=nv>$*</span>                             <span class=c1># $* is collection of arguments, u is temporary variable</span>
+  <span class=k>do</span>                                    <span class=c1># do block</span>
+    useradd <span class=nv>$u</span>                          <span class=c1># access to temp variable is via $</span>
+    <span class=nb>echo</span> Password1 <span class=p>|</span> passwd –stdin <span class=nv>$u</span>   <span class=c1># use the passwd command and get the user input from keyboard</span>
+    passwd –e <span class=nv>$u</span>                        <span class=c1># expire the password, so they can change it at first login</span>
+  <span class=k>done</span>
+<span class=nb>echo</span> “Finished”                         <span class=c1># at time of execution ./hello.sh fred mary john</span>
+</code></pre></div> <div class=highlight><pre><span></span><code>vi listsize.sh
+<span class=c1>#!/bin/bash        </span>
+<span class=k>for</span> file <span class=k>in</span> <span class=k>$(</span>ls<span class=k>)</span>                 <span class=c1># for each file, in the output of ls</span>
+  <span class=k>do</span>
+    <span class=o>[[</span>! –f <span class=o>]]</span> <span class=o>&amp;&amp;</span> <span class=k>continue</span>         <span class=c1># not a file then continue to next</span>
+    <span class=c1># use the stats to get statistics of the file, to get the last accessed date and then format the date</span>
+    <span class=nv>LA</span><span class=o>=</span><span class=k>$(</span>stat –c %x <span class=nv>$file</span> <span class=p>|</span> cut –d “ ” –f1<span class=k>)</span>    
+    <span class=nb>echo</span> “<span class=nv>$file</span> is <span class=k>$(</span>du –b <span class=nv>$file</span><span class=k>)</span> bytes  and was last accessed on <span class=nv>$LA</span>”  <span class=c1># use du to get file size</span>
+  <span class=k>done</span>    
+</code></pre></div></p> <h3 id=while>While<a class=headerlink href=#while title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code>vi loop.sh
+<span class=c1>#!/bin/bash -x               # -x is for debug mode</span>
+<span class=nv>COUNT</span><span class=o>=</span><span class=m>10</span>
+<span class=k>while</span> <span class=o>((</span> COUNT &gt; <span class=m>0</span> <span class=o>))</span> 
+  <span class=k>do</span>
+    <span class=nb>echo</span> –e “<span class=nv>$COUNT</span> <span class=se>\c</span>”      <span class=c1># \c will suppress the line feed (enter)</span>
+    sleep <span class=m>1</span>
+    <span class=o>((</span> COUNT -- <span class=o>))</span>           <span class=c1># round brackets to avoid using $ symbol</span>
+  <span class=k>done</span>      
+</code></pre></div> - Use the until when you want to stop the loop when the condition becomes true. </p> <h2 id=user-management>User Management<a class=headerlink href=#user-management title="Permanent link">&para;</a></h2> <ul> <li>Managing Users: User Lifecycle ==&gt; useradd, usermod, userdel</li> <li>Local databases ==&gt; /etc/passwd, /etc/shadow (encrypted)</li> <li>passwd (to set the password)</li> <li>pwconv (move pass to encrypted)</li> <li>pwunconv (move back to unencrypted) <div class=highlight><pre><span></span><code><span class=c1># /etc/passwd file structure </span>
+<span class=c1># It has 7 filed separated by :</span>
+Login Name, Optional encrypted password or “x”, Numerical UID, Numerical GID, Username or comment, User home directory, Optional <span class=nb>command</span> interpreter
+
+<span class=c1># /etc/shadow file structure where the actual passwords are stored</span>
+<span class=c1># It has 8 filed separated by :</span>
+Login Name, encrypted password <span class=o>(</span><span class=k>if</span> it begins with ! the account is locked<span class=o>)</span>, Date of last password change,
+Minimum password age, Maximum password age, Password warning period, password inactivity, account expiry date
+
+<span class=c1># /etc/login.defs</span>
+The password ageing defaults can be configured with this file
+</code></pre></div> <div class=highlight><pre><span></span><code>useradd –D                     <span class=c1># shows the default settings for a user that is added</span>
+cat /etc/default/useradd       <span class=c1># shows where the defaults are set</span>
+useradd bob                    <span class=c1># only adds the user, no home directory is created. Once the user logs in, it will get created</span>
+tail -3 /etc/passwd            <span class=c1># shows that bob is added</span>
+useradd –m bob                 <span class=c1># also creates the home directory</span>
+tail -3 /etc/shadow            <span class=c1># shows the password for the user</span>
+passwd bob                     <span class=c1># add the password for bob</span>
+passwd –l bob                  <span class=c1># locks the account</span>
+passwd –u bob                  <span class=c1># unlocks the account</span>
+usermod bob –c “Bob Smith”     <span class=c1># adding additional details for the user</span>
+userdel –r bob                 <span class=c1># removes the user and home directory</span>
+</code></pre></div></li> </ul> <h3 id=group-management>Group Management<a class=headerlink href=#group-management title="Permanent link">&para;</a></h3> <ul> <li>Group Lifecycle &rarr; groupadd, groupmod, groupdel</li> <li>Local databases &rarr; /etc/group, /etc/gshadow (encrypted)</li> <li>gpasswd (to set password)</li> <li>newgrp (switch to new groups) <div class=highlight><pre><span></span><code><span class=c1># /etc/group structure</span>
+<span class=c1># It has 4 fields:</span>
+Group Name, Password, Numerical GID, User list that is comma separated
+
+<span class=c1># /etc/gshadow structure</span>
+<span class=c1># It has 4 field:</span>
+Group Name, Encrypted password, Admin list that is comma separated, 
+<span class=c1># this can be managed used –A cmd</span>
+<span class=c1># Members, this can be managed using the –M cmd</span>
+</code></pre></div></li> <li>Private groups are enabled by default. The user added is also added to the same group. If this is disabled, users will belong to the groups users.</li> <li>Use <code>useradd –N</code> to overwrite private groups. This can be enabled or disabled by setting USERGROUPS_ENAB in <code>/etc/login.defs</code> <div class=highlight><pre><span></span><code>useradd –m –g users jim               <span class=c1># -g is Primary Group, -G is secondary groups. Secondary groups are more traditional groups</span>
+id jim
+usermod –G sudo,adm jim               <span class=c1># added jim to secondary groups sudo, adm</span>
+useradd –N –m sally                   <span class=c1># adds sally to the default group</span>
+gpasswd –M jim,sally sudo             <span class=c1># adds 2 users to sudo group</span>
+groupadd sales
+gpasswd sales                         <span class=c1># sets the new password for sales</span>
+newgrp sales                          <span class=c1># add the user to the sales group temporarily. If the user logs out, he is removed from the group</span>
+</code></pre></div></li> </ul> <h2 id=automate-system-tasks>Automate System Tasks<a class=headerlink href=#automate-system-tasks title="Permanent link">&para;</a></h2> <ul> <li>Regular Tasks &rarr; cron (more than once a day but misses job if turned off), anacron (run jobs missed on startup but jobs can run just once a day)</li> <li>Once Off &rarr; at (runs at specified time and date), batch (runs when load average drops below 0.8)</li> </ul> <h3 id=system-cron-jobs>System Cron Jobs<a class=headerlink href=#system-cron-jobs title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code><span class=c1># /etc/crontab, /etc/cron.d           # cron files</span>
+<span class=c1># /etc/cron.&lt;time&gt;      # where time is hourly, daily, weekly and monthly, contains scripts that need to be executed</span>
+<span class=c1># Adding a system cron job</span>
+<span class=nb>cd</span> /etc/cron.d
+vi daily-backup                    <span class=c1># add a new file</span>
+<span class=m>30</span> <span class=m>20</span> * * <span class=m>1</span>-5 root /root/back.sh   <span class=c1># run back.sh from Mon to Fri at 20:30 </span>
+
+<span class=c1># Adding a user cron job</span>
+crontab –e                         <span class=c1># edit the user crontab file</span>
+*/10 <span class=m>10</span> <span class=m>1</span> <span class=m>1</span> <span class=m>1</span> tail /etc/passwd     <span class=c1># Runs once on 1st day if it’s a Mon of Jan, at 10 am for every 10 mins</span>
+
+crontab –l                         <span class=c1># list all cron jobs</span>
+crontab –r                         <span class=c1># remove the cron job</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># anacron: /etc/anacrontab structure</span>
+<span class=c1># It has 4 fields</span>
+Period <span class=k>in</span> days or macro <span class=o>(</span>Daily, Monthly<span class=o>)</span>,
+Delay <span class=o>(</span> minutes after system startup <span class=k>for</span> job to run<span class=o>)</span>,
+Job Identifier <span class=o>(</span>used to name timestamp file indicating when job was last run<span class=o>)</span>
+Command <span class=o>(</span>that needs to be executed<span class=o>)</span>
+
+@weekly <span class=m>120</span> weekly-backup ls /etc          // weekly, <span class=m>120</span> mins after startup it will run weekly-backup
+</code></pre></div></p> <h3 id=batch>Batch<a class=headerlink href=#batch title="Permanent link">&para;</a></h3> <ul> <li>at and batch commands <div class=highlight><pre><span></span><code>at noon tomorrow                <span class=c1># Enter the command line, Ctrl + D to save</span>
+at&gt; ls /etc                     <span class=c1># enter the command that needs to be executed</span>
+
+atq                             <span class=c1># shows the jobs queue</span>
+atrm                            <span class=c1># remove the job</span>
+
+batch                          <span class=c1># Enter the command line, Ctrl + D to save</span>
+at&gt; ls /etc   &gt; /root/file1    <span class=c1># redirect the o/p to file1. It will run if the system load avg is less than 0.8. </span>
+</code></pre></div></li> </ul> <h3 id=security-for-cron>Security for Cron<a class=headerlink href=#security-for-cron title="Permanent link">&para;</a></h3> <ul> <li>Everyone is allowed to run their own cron and at jobs, unless you add entries to /etc/cron.allow or /etc/at.allow.</li> <li>No one is denied unless you add entries to /etc/cron.deny or /etc/at.deny</li> </ul> <h2 id=networking-fundamentals>Networking Fundamentals<a class=headerlink href=#networking-fundamentals title="Permanent link">&para;</a></h2> <h3 id=network-time-protocol-ntp>Network Time Protocol (NTP)<a class=headerlink href=#network-time-protocol-ntp title="Permanent link">&para;</a></h3> <h4 id=configuring-network-time-protocol-ntp>Configuring Network Time Protocol (NTP)<a class=headerlink href=#configuring-network-time-protocol-ntp title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># vi /etc/ntp.conf</span>
+<span class=c1># prefixing i with date creates a backup of the original file. Removes commented and blank lines</span>
+sed –i.<span class=k>$(</span>date +%F<span class=k>)</span>  ‘/^#d<span class=p>;</span>/^$/d’ /etc/ntp.conf               
+</code></pre></div> <h4 id=implementing-the-configuration-file-changes>Implementing the configuration file changes<a class=headerlink href=#implementing-the-configuration-file-changes title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>vi /etc/ntp.conf              
+<span class=c1># Add lines other can default just below the driftfile command</span>
+statsdir /var/log/ntpstats
+<span class=c1># Delete one of the server 0 line and add the local server here</span>
+server <span class=m>192</span>.168.0.3 iburst prefer            <span class=c1># this will synchronize with the local server instead of on the internet debian servers</span>
+</code></pre></div> <h4 id=save-the-file-and-restart-the-service>Save the file and restart the service<a class=headerlink href=#save-the-file-and-restart-the-service title="Permanent link">&para;</a></h4> <p><div class=highlight><pre><span></span><code>service ntp restart              <span class=c1># sudo if no access</span>
+<span class=c1># check if the ntpstats directory is accessible to the ntp service</span>
+<span class=c1># The user should be ntp and it should have write access</span>
+ls –ld /var/log/ntpstats/        
+</code></pre></div> - Date &rarr; Current system date and time. This is the time in memory. - HwClock &rarr; Hardware date and time set by the BIOS. <div class=highlight><pre><span></span><code>hwclock –r                 <span class=c1># shows the hardware clock</span>
+hwclock –-systohc          <span class=c1># sets the hardware clock from system clock</span>
+Hwclock –-hctosys          <span class=c1># sets the system clock from hardware clock</span>
+</code></pre></div></p> <h4 id=ntp-tools>NTP Tools<a class=headerlink href=#ntp-tools title="Permanent link">&para;</a></h4> <ul> <li>ntpdate (once off adjustment)</li> <li>ntpq (query the ntp server) <code>ntpq –p</code> (shows peers)</li> <li>ntpstat (Shows status but not on debian. Try ntpdc –c sysinfo)</li> <li>ntpq –c “associations” &rarr; shows associations</li> </ul> <div class=highlight><pre><span></span><code><span class=c1># Configuring NTP on centos --&gt; Install ntp</span>
+ntpdate <span class=m>192</span>.168.0.3                         <span class=c1># one off update with a local machine in the network</span>
+<span class=c1># vi /etc/ntp.conf              </span>
+<span class=c1># Delete one of the server 0 line and add the local server here</span>
+server <span class=m>192</span>.168.0.3 iburst prefer            <span class=c1># this will synchronize with the local server</span>
+systemctl start ntpd                        <span class=c1># save and restart</span>
+systemctl <span class=nb>enable</span> ntpd                       <span class=c1># enable to start at system startup</span>
+</code></pre></div> <h3 id=managing-system-log-daemons>Managing System Log Daemons<a class=headerlink href=#managing-system-log-daemons title="Permanent link">&para;</a></h3> <h4 id=rocket-fast-system-for-log-processing-rsyslogd>Rocket-Fast System for Log Processing (rsyslogd)<a class=headerlink href=#rocket-fast-system-for-log-processing-rsyslogd title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>rsyslogd –v 
+<span class=c1># vi /etc/rsyslog.conf</span>
+<span class=c1># Adding a simple log rule</span>
+<span class=c1># For any log event greater than or equal to info make a log entry in local5 log. Local5 could be a simple application</span>
+local5.info    /var/log/local5      
+systemctl restart rsyslog.service       <span class=c1># restart the service</span>
+<span class=c1># to test this in working using command line</span>
+logger –p local5.info “Script started”  <span class=c1># p is priority, if you see /var/log/local5 file, the log would be present</span>
+</code></pre></div> <h4 id=varlog-folder-structure>/var/log/ folder structure<a class=headerlink href=#varlog-folder-structure title="Permanent link">&para;</a></h4> <ul> <li>messages (Nearly everything is logged here)</li> <li>secure (su and sudo events amongst others)</li> <li>dmesg (kernel ring buffer messages)</li> </ul> <h4 id=logrotate>Logrotate<a class=headerlink href=#logrotate title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>ls /etc/cron.daily           <span class=c1># has the logrotate script which will rotate log files</span>
+<span class=nb>cd</span> /etc/logrotate.d/         <span class=c1># folder where all apps rotation policy is set</span>
+cp syslog local5             <span class=c1># copy existing app conf for local5 app</span>
+<span class=c1># vi local5                  # make edits to point to /var/log/local5 file</span>
+/var/log/local5 <span class=o>{</span>
+weekly                       <span class=c1># period for rotation</span>
+size +10                     <span class=c1># size of the file for rotation</span>
+compress                     <span class=c1># use compression for the rotated log file</span>
+rotate <span class=m>4</span>                     <span class=c1># keep 4 weeks of logs before overwriting</span>
+<span class=o>}</span>
+<span class=c1># manually running the rotate</span>
+logrotate /etc/logrotate.conf  <span class=c1># on execution, all files mentioned will be interrogated and log backup will be created</span>
+</code></pre></div> <h4 id=journalctl>Journalctl<a class=headerlink href=#journalctl title="Permanent link">&para;</a></h4> <ul> <li>Responsible for viewing and log management. </li> <li>Need to be a member of adm group to read this. </li> <li>By default journal is memory resident i.e. it will be lost on restart <div class=highlight><pre><span></span><code>journalctl                          <span class=c1># view the journal</span>
+journalctl –n <span class=m>10</span>                    <span class=c1># shows the last 10 entries</span>
+journalctl –n <span class=m>10</span> –p err             <span class=c1># shows the last 10 entries with priority errors</span>
+mkdir /var/log/journal              <span class=c1># to make the journal data persistent</span>
+systemctl restart system-journald
+systemctl status system-journald    <span class=c1># shows that the journal data is persistent</span>
+usermod –a –G adm username          <span class=c1># adding user to adm group, -a is append</span>
+chgrp –R adm /var/log/journal       <span class=c1># recursively give adm group access</span>
+jornalctl –-disk-usage              <span class=c1># shows disk usage</span>
+journalctl –-verify                 <span class=c1># verify the journal integrity</span>
+</code></pre></div></li> </ul> <h3 id=ssh>SSH<a class=headerlink href=#ssh title="Permanent link">&para;</a></h3> <h4 id=remote-access-using-ssh>Remote access using SSH<a class=headerlink href=#remote-access-using-ssh title="Permanent link">&para;</a></h4> <ul> <li>Server Configuration <code>/etc/ssh/sshd_config</code></li> <li>The public key of the server is used to authenticate to the client.</li> <li>The public key of the server is stored in <code>/etc/ssh/ssh_host_rsa_key.pub</code></li> <li>It is down to the client to check the public key using: <code>StrictHostkeyChecking</code></li> <li>Server public keys are stored centrally in <code>/etc/ssh/ssh_known_host</code> or locally under <code>~/.ssh/known_hosts</code></li> </ul> <h4 id=ssh-server-configuration>SSH Server Configuration<a class=headerlink href=#ssh-server-configuration title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>netstat –antl               <span class=c1># shows the open tcp ports of the server </span>
+grep ssh /etc/services      <span class=c1># shows the services using ssh</span>
+lsof –i                     <span class=c1># Also shows open ports</span>
+
+<span class=c1># vi /etc/ssh/sshd_config</span>
+<span class=c1># Uncomment AddressFamily line and change as below</span>
+AddressFamily inet          <span class=c1># Now ssh will only listen on IPv6 </span>
+
+systemctl restart sshd
+
+<span class=c1># vi /etc/ssh/sshd_config</span>
+<span class=c1># Uncomment below lines and modify</span>
+LoginGraceTime 1m           <span class=c1># To avoid denial of service attacks and freeing up your service quickly</span>
+PermitRootLogin no          <span class=c1># 2 level authentication, first as normal user and then root </span>
+SyslogFacility AUTHPRIV  
+ClientAliveInterval <span class=m>300</span>
+ClientAliveCountMax <span class=m>0</span>
+MaxSessions <span class=m>10</span>
+
+systemctl restart sshd
+</code></pre></div> <h4 id=client-configuration-and-authentication>Client Configuration and Authentication<a class=headerlink href=#client-configuration-and-authentication title="Permanent link">&para;</a></h4> <ul> <li>Client Configuration <code>/etc/ssh/ssh_config</code> </li> <li>Generate Private and Public keypair using ssh_keygen</li> <li>Use ssh-copy-id to copy to host we want to authenticate with.</li> <li>To provide Single Sign On using ssh-agent</li> <li>Client/User public keys are stored in <code>~/.ssh/authorized_keys</code> using ssh-copy-id.</li> </ul> <h4 id=to-connect-to-server-using-ssh>To connect to server using ssh<a class=headerlink href=#to-connect-to-server-using-ssh title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=nb>cd</span>                              <span class=c1># home directory</span>
+ls –a                           <span class=c1># to show all hidden files</span>
+ssh pi@192.168.0.97             <span class=c1># ssh using user and ip address. Add the password of the user to authenticate</span>
+<span class=nb>cd</span> .ssh
+cat known_hosts                 <span class=c1># shows the client ip and public keys</span>
+<span class=nb>exit</span> or <span class=nb>logout</span> or Ctrl + D      <span class=c1># to end the ssh session</span>
+</code></pre></div> <h4 id=to-generate-keypairs>To generate keypairs<a class=headerlink href=#to-generate-keypairs title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=nb>cd</span> .ssh                 <span class=c1># On the client home directory</span>
+ssh-keygen –t rsa       <span class=c1># generate key pair. Private key is encrypted using a passphrase</span>
+<span class=c1># This will copy the generated public key to the target server. To which user’s directory at the server we will                               </span>
+<span class=c1># connect as. Give the password of the server’s account.</span>
+ssh-copy-id –i id_rsa.pub pi@192.168.0.97 
+ssh pi@192.168.0.97     <span class=c1># now connect to the server using passphrase of the private key</span>
+
+<span class=c1># From another terminal say tty we can now add the private key once and don’t need to authenticate to the target server</span>
+ssh-agent bash          <span class=c1># fire up another bash terminal</span>
+ssh-add .ssh/id_rsa     <span class=c1># add the private key from the home directory. Enter the passphrase</span>
+ssh –l or ssh –L        <span class=c1># list all identities added</span>
+ssh pi@192.168.0.97
+</code></pre></div> <h4 id=ssh-tunnels>SSH Tunnels<a class=headerlink href=#ssh-tunnels title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>ssh –f –N –L <span class=m>80</span>:localhost:80 user@s1.com    
+<span class=c1># -f = execute in background, -N = We are not running any commands on remote host</span>
+<span class=c1># -L = listening on port 80, we are listening on localhost and forwarding to port 80 on the remote host</span>
+<span class=c1># On the remote host it has to listen on ssh called s1.com. We connect as user called user.</span>
+
+<span class=c1># Example</span>
+<span class=c1># Webservice on 192.168.0.3</span>
+<span class=c1># on a different machine, login as standard user </span>
+<span class=nb>cd</span> .ssh
+ssh –f –N –L <span class=m>9000</span>:localhost:80 andrew@192.168.0.3 
+<span class=c1># we are listening on port 9000 on the localhost and forwarding traffic to port 80 om 192.168.0.3</span>
+netstat –antlp             
+<span class=c1># we can see that localhost:9000 is listening on ssh</span>
+<span class=c1># On the client machine open the browser and type in http://127.0.0.1:9000 we will see the webservice data</span>
+<span class=nb>kill</span> &lt;process id of ssh&gt;   <span class=c1># shutdown the ssh tunneling process after finishing the work </span>
+</code></pre></div> <h3 id=configuring-network-protocols-in-linux>Configuring Network Protocols in Linux<a class=headerlink href=#configuring-network-protocols-in-linux title="Permanent link">&para;</a></h3> <h4 id=etcservices>/etc/services<a class=headerlink href=#etcservices title="Permanent link">&para;</a></h4> <ul> <li>Network services are identified by a port address</li> <li>Common services and associated port address is listed in /etc/services</li> <li><code>netstat –alt</code> will list services listening via TCP this resolves address to name in <code>/etc/services</code> <div class=highlight><pre><span></span><code><span class=c1># To verify the above we can use strace to map the netstat data with the services that are running</span>
+strace netstat –alt <span class=m>2</span>&gt;<span class=p>&amp;</span><span class=m>1</span> <span class=p>|</span> grep /etc/services
+grep http /etc/services       <span class=c1># service and port mapping</span>
+</code></pre></div></li> </ul> <h4 id=dig-command>dig command<a class=headerlink href=#dig-command title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>which dig                   <span class=c1># get the path of dig</span>
+rpm –qf /usr/bin/dig        <span class=c1># dig is not installed by default. Hence needs to be installed.</span>
+dig –t AAAA ipv6.bbc.co.uk  <span class=c1># shows the IPv6 address</span>
+</code></pre></div> <h4 id=interface-configuration-files>Interface Configuration Files<a class=headerlink href=#interface-configuration-files title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>ifconfig                                                <span class=c1># shows ip address details</span>
+ifconfig eth0 <span class=m>192</span>.168.0.99 netmask <span class=m>255</span>.255.255.0 up     <span class=c1># sets ip address for Ethernet card</span>
+ip address show                                         <span class=c1># same as ifconfig</span>
+<span class=c1># These settings are lost upon restart unless they are written to configuration files.</span>
+/etc/sysconfig/network-scripts/                         <span class=c1># centos</span>
+/etc/network/interfaces                                 <span class=c1># debian</span>
+</code></pre></div> <h4 id=to-make-the-ip-address-static>To make the IP address static<a class=headerlink href=#to-make-the-ip-address-static title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=nb>cd</span> /etc/sysconfig/network-scripts/     
+vi ifcfg-ens32                   <span class=c1># open the config file</span>
+<span class=c1># Replace and add the lines</span>
+<span class=nv>BOOTPROTO</span><span class=o>=</span>”static”               <span class=c1># change from dhcp </span>
+<span class=nv>IPADDR</span><span class=o>=</span><span class=m>192</span>.168.0.240             <span class=c1># select a static ip address</span>
+<span class=nv>NETMASK</span><span class=o>=</span><span class=m>255</span>.255.255.0            <span class=c1># add a class c subnet</span>
+<span class=nv>GATEWAY</span><span class=o>=</span><span class=m>192</span>.168.0.1              <span class=c1># add the gateway address</span>
+<span class=nv>DNS1</span><span class=o>=</span><span class=m>8</span>.8.8.8                     <span class=c1># add google as the DNS server</span>
+<span class=c1># Restart the services</span>
+systemctl restart network.service
+</code></pre></div> <h3 id=networking-tools>Networking Tools<a class=headerlink href=#networking-tools title="Permanent link">&para;</a></h3> <h4 id=nmap>nmap<a class=headerlink href=#nmap title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>nmap localhost          <span class=c1># shows all open ports used by localhost</span>
+nmap <span class=m>192</span>.168.0.3        <span class=c1># shows open ports at remote host</span>
+nmap –v <span class=m>192</span>.168.0.3     <span class=c1># verbose mode</span>
+nmap –iL ip.txt         <span class=c1># input file containing all ip address to be scanned</span>
+</code></pre></div> <h4 id=netstat>netstat<a class=headerlink href=#netstat title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>netstat –a              <span class=c1># shows all connections</span>
+netstat –at             <span class=c1># shows all tcp connections</span>
+netstat –alt            <span class=c1># shows all listening tcp connections</span>
+netstat –altpe          <span class=c1># shows all user and process ids and listening tcp connections</span>
+netstat –s              <span class=c1># statistics</span>
+netstat –i              <span class=c1># shows interfaces</span>
+netstat –g              <span class=c1># multicast groups</span>
+netstat –nr             <span class=c1># network route tables</span>
+</code></pre></div> <h4 id=show-sockets-ss>Show Sockets (ss)<a class=headerlink href=#show-sockets-ss title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>ss –t –a                                                    <span class=c1># shows all tcp connections</span>
+ss –o state established ‘<span class=o>(</span> <span class=nv>dport</span> <span class=o>=</span> :ssh or <span class=nv>sport</span> <span class=o>=</span> :ssh <span class=o>)</span>’  <span class=c1># shows all ssh connections</span>
+ss –x src /tmp/.X11-unix/*                                  <span class=c1># shows X11 connections using socket files</span>
+</code></pre></div> <h4 id=lsof>lsof<a class=headerlink href=#lsof title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>lsof –i -4             <span class=c1># list all ipv4 connections</span>
+lsof –i :23, <span class=m>24</span>        <span class=c1># list all port 22 and 23 connections</span>
+lsof –p <span class=m>1385</span>           <span class=c1># list process id 1385 connections</span>
+</code></pre></div> <h3 id=testing-network-connectivity>Testing Network Connectivity<a class=headerlink href=#testing-network-connectivity title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>ping www.centos.org                 <span class=c1># test network connectivity</span>
+ping –c3 www.centos.org             <span class=c1># sends only 3 pings</span>
+traceroute www.centos.org           <span class=c1># describes the route to destination from source</span>
+tracepath www.centos.org            <span class=c1># shows maximum transmission unit size</span>
+</code></pre></div> <h3 id=host-name-resolution-tools>Host Name Resolution Tools<a class=headerlink href=#host-name-resolution-tools title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>hostname                             <span class=c1># Confirms the hostname</span>
+cat /etc/hostname                    <span class=c1># shows the current host name</span>
+hostname myComputer                  <span class=c1># changes the hostname to myComputer. You need to login as root to change this</span>
+dig www.centos.org                   <span class=c1># resolves to ip address</span>
+dig –t MX centos.org                 <span class=c1># mail servers associated with centos </span>
+</code></pre></div> <h3 id=managing-interfaces>Managing Interfaces<a class=headerlink href=#managing-interfaces title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>ip a s                               <span class=c1># Shows ip addresses</span>
+ip n s                               <span class=c1># Shows Neighbor shows looking at ARP cache</span>
+ip r s                               <span class=c1># Shows root table</span>
+ip ma s                              <span class=c1># Shows Multicast groups</span>
+ip l                                 <span class=c1># Shows network cards</span>
+ifdown eth0                          <span class=c1># Brings down interface</span>
+ifup eth0                            <span class=c1># Brings up interface</span>
+</code></pre></div> <h3 id=securing-access-to-your-server>Securing Access to your Server<a class=headerlink href=#securing-access-to-your-server title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Temporary disables logins for users other than root. Just the existence of this file will prevent user logins and is controlled via PAM(Pluggable Authentication Modules)</span>
+/etc/nologin 
+<span class=c1># Create a blank file, but if the user tries to login via ssh username@localhost, the connection will be immediately closed. Only root can access the server then.</span>
+touch /etc/nologin                     
+rm /etc/nologin                        <span class=c1># Now users can login. This can be used as a temporary measure</span>
+<span class=nb>cd</span> /etc/pam.d/                         <span class=c1># Config files for authentication modules</span>
+grep nologin *                         <span class=c1># Shows instances where nologin file exists</span>
+last                                   <span class=c1># shows last user activity present in /var/log/wtmp file.</span>
+lastlog                                <span class=c1># List the last login time for each user</span>
+lastlog <span class=p>|</span> grep –v Never                <span class=c1># Reverse the grep search to check for all user logins</span>
+</code></pre></div> <h4 id=ulimit>ulimit<a class=headerlink href=#ulimit title="Permanent link">&para;</a></h4> <ul> <li>Puts restrictions on system resources <div class=highlight><pre><span></span><code><span class=nb>ulimit</span> –a                              <span class=c1># Shows system limitations that can be applied</span>
+<span class=nb>ulimit</span> –u <span class=m>8000</span>                         
+<span class=c1># -u is for avoiding fork bombs and is defaulted to 4096. A std user can set a new value to 8000. </span>
+<span class=c1># It will remain for his profile till system restart.</span>
+<span class=nb>cd</span> /etc/security                       <span class=c1># To set the limits which can be persisted even after restart</span>
+cat limits.conf                        <span class=c1># Shows soft (can be changed by processes) and hard (can’t be changed by processes) limits</span>
+<span class=nb>cd</span> limits.d/                           
+<span class=c1># ls to see the files inside this directory. Edit the file and add an entry for the user account with soft or hard limits and save the file.</span>
+</code></pre></div></li> </ul> <h4 id=avoiding-fork-bombs>Avoiding fork bombs<a class=headerlink href=#avoiding-fork-bombs title="Permanent link">&para;</a></h4> <ul> <li>They are a potential Denial of Service Attack <div class=highlight><pre><span></span><code><span class=nb>ulimit</span> –u
+<span class=c1>##### Do not run on Production Machines. Test only in laptop #####</span>
+ps –u username <span class=p>|</span> wc -l                 <span class=c1># Shows the number of processes running under the user and gives the count</span>
+<span class=c1># On the command line create a function called foo</span>
+foo<span class=o>(){</span>
+  <span class=nb>echo</span> hello
+<span class=o>}</span>
+<span class=c1># Execute the function by just calling it and pressing enter</span>
+foo
+<span class=c1># Similarly to execute a fork bomb, instead of foo, call it :</span>
+:<span class=o>(){</span>
+  :<span class=p>|</span>:<span class=p>&amp;</span>                                <span class=c1># Here the function calls itself and pipes the output to itself</span>
+<span class=o>}</span><span class=p>;</span>:                                   <span class=c1># End the function with a semicolon and then call the function :</span>
+<span class=c1># BEWARE: Do this only at your own risk. Ensure ulimit is set to protect the resources on the server #</span>
+</code></pre></div></li> </ul> <h4 id=xinetd>xinetd<a class=headerlink href=#xinetd title="Permanent link">&para;</a></h4> <ul> <li>Called the super daemon as it can manage a lot of smaller services, secures access to your server</li> <li>/etc/xinetd.d </li> <li>/etc/xinetd.conf </li> <li>tftp server (Trivial file transfer protocol) <div class=highlight><pre><span></span><code><span class=c1># Sample configuration</span>
+service tftp <span class=o>{</span>
+  <span class=nv>socket_type</span> <span class=o>=</span> dgram              <span class=c1># data gram</span>
+  <span class=nv>protocol</span> <span class=o>=</span> udp
+  <span class=nb>wait</span> <span class=o>=</span> yes
+  <span class=nv>user</span> <span class=o>=</span> root
+  <span class=nv>server</span> <span class=o>=</span> /usr/sbin/in.tftpd
+  <span class=nv>server_args</span> <span class=o>=</span> -s /tftpboot       <span class=c1># root directory of the server</span>
+  <span class=nv>disable</span> <span class=o>=</span>  no
+<span class=o>}</span>
+</code></pre></div></li> </ul> <h4 id=implementing-tftp-using-xinetdd-service>Implementing TFTP using xinetd.d service<a class=headerlink href=#implementing-tftp-using-xinetdd-service title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>ls /etc/xinetd.d/                  <span class=c1># blank directory</span>
+yum install tftp-server tftp       <span class=c1># install client and server, also xinetd as it’s a dependency</span>
+vi /etc/xinetd.d/tftp              <span class=c1># after installation, delete disable line from the configuration to enable tftp</span>
+<span class=c1># if the server directory doent exist, create it</span>
+mkdir –p /var/lib/tftpboot
+systemctl <span class=nb>enable</span> xinetd
+systemctl start xinetd
+netstat –aulpe <span class=p>|</span> grep tftp         <span class=c1># shows the port</span>
+<span class=c1># As a root user, create a temp file inside var/lib/tftpboot directory with hello text</span>
+vi var/lib/tftpboot/file1
+<span class=c1># Logout and login as standard user. Use TFTP to transfer the file to standard user</span>
+tftp <span class=m>127</span>.0.0.1                     <span class=c1># Press enter</span>
+get file1                          <span class=c1># Get the file1 created by root using tftp</span>
+quit
+<span class=c1># At the same file location do a cat to see the contents of the file</span>
+cat file1
+</code></pre></div> <h4 id=tcp-wrappers>TCP Wrappers<a class=headerlink href=#tcp-wrappers title="Permanent link">&para;</a></h4> <ul> <li>Alternative to firewalling on the server <div class=highlight><pre><span></span><code><span class=c1># To check if service supports TCP wrappers. Once we can determine this, we can use hosts.allow or hosts.deny </span>
+ldd &lt;/path to service name&gt; <span class=p>|</span> grep libwrap     
+<span class=c1># To set this up for a service, 2 entries are made</span>
+<span class=c1># This in /etc/hosts.allow file to allow access to 0.3 IP which is raspberry pi. tftpd is the name of the binary</span>
+<span class=k>in</span>.tftpd : <span class=m>192</span>.168.0.3                         
+<span class=c1># This in /etc/hosts.deny file to deny access to all other IP except for 0.3 IP</span>
+<span class=k>in</span>.tftpd : ALL
+<span class=c1># If the client appears in both files then allow takes precedence and access is granted</span>
+ldd /usr/sbin/xinetd <span class=p>|</span> grep libwrap     
+tftp <span class=m>192</span>.168.0.240                             
+<span class=c1># login from raspberry pi and access the remote server, disable your firewall before trying this.</span>
+</code></pre></div></li> </ul> <h3 id=delegating-admin-rights-using-sudoers>Delegating Admin rights using sudoers<a class=headerlink href=#delegating-admin-rights-using-sudoers title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>id                         <span class=c1># check if the user is already an admin and part of wheel group in centos</span>
+<span class=nb>cd</span> /etc
+grep wheel sudoers         <span class=c1># check the current setup</span>
+visudo                     <span class=c1># to edit sudoers file</span>
+%wheel <span class=nv>ALL</span><span class=o>=(</span>root<span class=o>)</span>  ALL     <span class=c1># Uncomment the line for %wheel, change (ALL) to (root), so only root can change the sudoers. Save and exit</span>
+</code></pre></div> <h2 id=data-encryption>Data Encryption:<a class=headerlink href=#data-encryption title="Permanent link">&para;</a></h2> <h3 id=using-gpg-to-encrypt-data-between-users>Using GPG to encrypt data between users<a class=headerlink href=#using-gpg-to-encrypt-data-between-users title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=nv>password</span><span class=o>=</span><span class=k>$(</span>mkpassword –m sha-512 Password1<span class=k>)</span>    <span class=c1># encrypt the password using sha and mkpassword and put in a variable</span>
+<span class=nb>echo</span> <span class=nv>$password</span>
+<span class=k>for</span> u <span class=k>in</span> marta ivan <span class=p>;</span> <span class=k>do</span>                       <span class=c1># take an input from marta and ivan for users</span>
+sudo useradd –m –p <span class=nv>$password</span> <span class=nv>$u</span>                <span class=c1># add the user and set the encrypted password</span>
+<span class=k>done</span>                                           <span class=c1># Run the command and create 2 users ivan and marta</span>
+<span class=c1># Install GPG if not present</span>
+dkpg –S <span class=k>$(</span>which gpg<span class=k>)</span>
+<span class=c1># Login as ivan and generate private and public keys for gpg encryption</span>
+su - ivan
+gpg --gen-key                                   <span class=c1># Take the default settings</span>
+gpg --list-key                                  <span class=c1># List the keys</span>
+gpg --export –a &lt;email from gpg gen-key step&gt; &gt; /tmp/ivankey  
+<span class=c1># export the public key and place in tmp folder for marta to access</span>
+<span class=nb>exit</span>
+su - marta
+vi secret.txt                                   <span class=c1># create a plain txt file for encryption</span>
+chmod <span class=m>400</span> secret.txt                            <span class=c1># make the file writeable by marta only</span>
+gpg --import /tmp/ivankey                       <span class=c1># import ivan public key</span>
+gpg –e –r &lt;ivan mailid&gt; secret.txt              <span class=c1># add the recipient and encrypt the file</span>
+mv secret.txt.gpg /tmp/                         <span class=c1># move the encrypted file to tmp and exit</span>
+su – ivan
+gpg –d /tmp/secret.txt.gpg                      <span class=c1># decrypt the file and enter the passphrase for the private key</span>
+</code></pre></div> <h3 id=implementing-luks-for-full-disk-encryption>Implementing LUKS for Full Disk Encryption<a class=headerlink href=#implementing-luks-for-full-disk-encryption title="Permanent link">&para;</a></h3> <ul> <li>example Laptops, USB <div class=highlight><pre><span></span><code>sudo apt-get install cryptsetup                 <span class=c1># Install LUKS tools</span>
+lsblk                                           <span class=c1># list the blocks</span>
+sudo fdisk /dev/sdb                             <span class=c1># partition the sdb drive and create a new partition called sdb1 </span>
+sudo cryptsetup –y luksFormat /dev/sdb1         <span class=c1># Allows to store encrypted data in this partition. Give a passphrase</span>
+sudo cryptsetup luksDump /dev/sdb1              <span class=c1># Shows details of the encrypted partition</span>
+sudo cryptsetup luksOpen /dev/sdb1 private_data <span class=c1># Assign a mapper called private_data</span>
+ls /dev/mapper                                  <span class=c1># Shows the new mapper setup and that is a device</span>
+sudo mkfs.ext4 /dev/mapper/private_data         <span class=c1># format the device as ext4</span>
+sudo mount /dev/mapper/private_data /mnt        <span class=c1># The device is mounted and any data that is stored will get encrypted</span>
+</code></pre></div></li> </ul> <h3 id=efs-for-data-encryption>EFS for data encryption<a class=headerlink href=#efs-for-data-encryption title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>sudo apt-get install ecryptfs-utils   <span class=c1># Install EFS tools</span>
+su – ivan                             <span class=c1># Login as std user</span>
+ecryptfs-setup-private                <span class=c1># Create a private key with passphrase. logout and login back as ivan</span>
+ls                                    <span class=c1># Private directory is created by EFS</span>
+<span class=nb>echo</span> hello &gt; Private/data             <span class=c1># Write to private directory</span>
+cat Private/data                      <span class=c1># ivan can see the data</span>
+ecryptfs-umount-private               <span class=c1># unmount the private directory</span>
+ls                                    <span class=c1># Now ivan cannot see the data</span>
+<span class=nb>cd</span> /.Private/                         <span class=c1># Go to the ivan’s hidden Private folder with a dot</span>
+ls                                    <span class=c1># You can see the encrypted data file</span>
+ecryptfs-mount-private                <span class=c1># Mount the directory again</span>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <h2 id=compiling-software-from-source>Compiling software from source<a class=headerlink href=#compiling-software-from-source title="Permanent link">&para;</a></h2> <ul> <li>Install gcc compiler <code>sudo apt-get install gcc make</code> <div class=highlight><pre><span></span><code><span class=c1># go to gnu.org/software/Downloads -&gt; coreutils -&gt; file ending with .xz</span>
+<span class=c1># tar -xvJf coreutils-8.28.tar.xz   # J is for xz, j is for bzip2</span>
+<span class=c1># cd into src folder and select ls.c file</span>
+<span class=c1># Add a line in main function printf(&quot;Hello World\n&quot;); </span>
+<span class=c1># After changes, change directory one level up and run the configure script</span>
+bash configure
+<span class=c1># This will check for any configuration changes to the src files and update the make file</span>
+<span class=c1># Excute the make command</span>
+make
+<span class=c1># After binary code is compiled, it needs to be updated in OS</span>
+sudo make install
+<span class=c1># Close the terminal and restart. New software is working ;)</span>
+</code></pre></div></li> </ul> </article> </div> </div> </main> <footer class=md-footer> <nav class="md-footer__inner md-grid" aria-label=Footer> <a href=../../k8s/install/ class="md-footer__link md-footer__link--prev" rel=prev> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </div> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Previous </span> Installation </div> </div> </a> <a href=../git/ class="md-footer__link md-footer__link--next" rel=next> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Next </span> Git </div> </div> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg> </div> </a> </nav> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2018 - 2019 Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script> <script src=../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>
