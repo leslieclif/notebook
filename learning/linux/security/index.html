@@ -1,0 +1,577 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/learning/linux/security/ rel=canonical><link rel="shortcut icon" href=../../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-7.0.3"><title>Introduction - Leslie's Online Notebook</title><link rel=stylesheet href=../../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#introduction class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Introduction </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Linux <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Linux data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Linux </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../linux/linux.md class=md-nav__link> Linux </a> </li> <li class=md-nav__item> <a href=../../../linux/security.md class=md-nav__link> Security </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Ansible <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ansible data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Ansible </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ansible/ansible/ class=md-nav__link> Ansible </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../k8s/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../../k8s/install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../../python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../vagrant/ class=md-nav__link> Vagrant </a> </li> <li class=md-nav__item> <a href=../../terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../../docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_8 type=checkbox id=__nav_8> <label class=md-nav__link for=__nav_8> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_8> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../devops/ class=md-nav__link> Index </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#introduction class=md-nav__link> Introduction </a> <nav class=md-nav aria-label=Introduction> <ul class=md-nav__list> <li class=md-nav__item> <a href=#linux-is-only-as-secure-as-you-make-it class=md-nav__link> Linux is only as secure as you make it! </a> </li> <li class=md-nav__item> <a href=#continous-improvement class=md-nav__link> Continous Improvement </a> </li> <li class=md-nav__item> <a href=#risk-assessment class=md-nav__link> Risk Assessment </a> </li> <li class=md-nav__item> <a href=#multiuser-system class=md-nav__link> Multiuser System </a> </li> <li class=md-nav__item> <a href=#advantages-to-a-multiuser-system class=md-nav__link> Advantages to a Multiuser System. </a> <nav class=md-nav aria-label="Advantages to a Multiuser System."> <ul class=md-nav__list> <li class=md-nav__item> <a href=#file-permissions class=md-nav__link> File permissions </a> </li> <li class=md-nav__item> <a href=#process-permissions class=md-nav__link> Process permissions. </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#security-guidelines class=md-nav__link> Security Guidelines </a> <nav class=md-nav aria-label="Security Guidelines"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#minimize-software-and-services class=md-nav__link> Minimize Software and Services </a> </li> <li class=md-nav__item> <a href=#run-services-on-separate-systems class=md-nav__link> Run Services on Separate Systems </a> </li> <li class=md-nav__item> <a href=#encrypt-data-transmissions class=md-nav__link> Encrypt Data Transmissions </a> </li> <li class=md-nav__item> <a href=#avoid-shared-accounts class=md-nav__link> Avoid Shared Accounts </a> </li> <li class=md-nav__item> <a href=#avoid-direct-root-logins class=md-nav__link> Avoid Direct root Logins </a> </li> <li class=md-nav__item> <a href=#maintain-accounts class=md-nav__link> Maintain Accounts </a> </li> <li class=md-nav__item> <a href=#use-multifactor-authentication class=md-nav__link> Use Multifactor Authentication </a> </li> <li class=md-nav__item> <a href=#the-principle-of-least-privilege class=md-nav__link> The Principle of Least Privilege </a> </li> <li class=md-nav__item> <a href=#monitor-system-activity class=md-nav__link> Monitor System Activity </a> </li> <li class=md-nav__item> <a href=#use-a-firewall class=md-nav__link> Use a Firewall </a> </li> <li class=md-nav__item> <a href=#encrypt-your-data class=md-nav__link> Encrypt Your Data </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#physical-security class=md-nav__link> Physical Security </a> <nav class=md-nav aria-label="Physical Security"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#physical-security-is-linux-security class=md-nav__link> Physical Security Is Linux Security </a> </li> <li class=md-nav__item> <a href=#systems-not-under-your-control class=md-nav__link> Systems Not Under Your Control </a> </li> <li class=md-nav__item> <a href=#cloud class=md-nav__link> Cloud </a> </li> <li class=md-nav__item> <a href=#protecting-linux-against-physical-attacks class=md-nav__link> Protecting Linux Against Physical Attacks </a> </li> <li class=md-nav__item> <a href=#securing-the-boot-loader class=md-nav__link> Securing the Boot Loader </a> </li> <li class=md-nav__item> <a href=#disk-encryption class=md-nav__link> Disk Encryption </a> <nav class=md-nav aria-label="Disk Encryption"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#dm-crypt class=md-nav__link> dm-crypt </a> </li> <li class=md-nav__item> <a href=#luks class=md-nav__link> LUKS </a> </li> <li class=md-nav__item> <a href=#encrypt-during-install class=md-nav__link> Encrypt During Install </a> </li> <li class=md-nav__item> <a href=#setting-up-luks-on-a-new-device class=md-nav__link> Setting up LUKS on a New Device </a> </li> <li class=md-nav__item> <a href=#implementing-luks-for-full-disk-encryption class=md-nav__link> Implementing LUKS for Full Disk Encryption </a> </li> <li class=md-nav__item> <a href=#encrypting-device-in-cloud class=md-nav__link> Encrypting device in Cloud </a> </li> <li class=md-nav__item> <a href=#converting-an-existing-device-to-luks class=md-nav__link> Converting an Existing Device to LUKS </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#disabling-ctrlaltdel-systemd class=md-nav__link> Disabling Ctrl+Alt+Del (Systemd) </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#account-security class=md-nav__link> Account Security </a> <nav class=md-nav aria-label="Account Security"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#mitigation class=md-nav__link> Mitigation </a> </li> <li class=md-nav__item> <a href=#pam class=md-nav__link> PAM </a> </li> <li class=md-nav__item> <a href=#pam-configuration-files class=md-nav__link> PAM Configuration files </a> </li> <li class=md-nav__item> <a href=#pam-module-interfaces class=md-nav__link> PAM Module Interfaces </a> </li> <li class=md-nav__item> <a href=#pam-control-flags class=md-nav__link> PAM Control Flags </a> </li> <li class=md-nav__item> <a href=#pam-configuration-example class=md-nav__link> PAM Configuration Example </a> </li> <li class=md-nav__item> <a href=#pam-documentation class=md-nav__link> PAM Documentation </a> </li> <li class=md-nav__item> <a href=#linux-account-types class=md-nav__link> Linux Account Types </a> <nav class=md-nav aria-label="Linux Account Types"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#root-the-superuser class=md-nav__link> root, the superuser </a> </li> <li class=md-nav__item> <a href=#system-accounts class=md-nav__link> System accounts </a> </li> <li class=md-nav__item> <a href=#normal-user-accounts class=md-nav__link> Normal User Accounts </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#password-security class=md-nav__link> Password Security </a> </li> <li class=md-nav__item> <a href=#use-shadow-passwords class=md-nav__link> Use Shadow Passwords </a> </li> <li class=md-nav__item> <a href=#converting-passwords class=md-nav__link> Converting Passwords </a> </li> <li class=md-nav__item> <a href=#etcshadow-format class=md-nav__link> /etc/shadow format </a> </li> <li class=md-nav__item> <a href=#display-user-account-expiry-info-with-chage class=md-nav__link> Display user account expiry info with chage </a> </li> <li class=md-nav__item> <a href=#change-user-account-expiry-info-with-chage class=md-nav__link> Change user account expiry info with chage </a> </li> <li class=md-nav__item> <a href=#demo-to-change-normal-account-to-root class=md-nav__link> Demo to change normal account to root </a> </li> <li class=md-nav__item> <a href=#controlling-account-access class=md-nav__link> Controlling Account Access </a> <nav class=md-nav aria-label="Controlling Account Access"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#locking-and-unlocking-accounts class=md-nav__link> Locking and Unlocking accounts </a> </li> <li class=md-nav__item> <a href=#disabling-logins-for-system-and-root-accounts class=md-nav__link> Disabling logins for system and root accounts </a> </li> <li class=md-nav__item> <a href=#centralized-authentication class=md-nav__link> Centralized Authentication </a> </li> <li class=md-nav__item> <a href=#disable-logins class=md-nav__link> Disable Logins </a> </li> <li class=md-nav__item> <a href=#monitoring-authentication-logs class=md-nav__link> Monitoring Authentication Logs </a> </li> <li class=md-nav__item> <a href=#intrusion-prevention-with-fail2ban class=md-nav__link> Intrusion Prevention with fail2ban </a> </li> <li class=md-nav__item> <a href=#multifactor-authentication class=md-nav__link> Multifactor Authentication </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#security-by-account-type class=md-nav__link> Security by Account Type </a> <nav class=md-nav aria-label="Security by Account Type"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#account-security---root class=md-nav__link> Account Security - root </a> </li> <li class=md-nav__item> <a href=#disabling-root-logins class=md-nav__link> Disabling root Logins </a> </li> <li class=md-nav__item> <a href=#system--application-accounts class=md-nav__link> System / Application Accounts </a> </li> <li class=md-nav__item> <a href=#user-accounts class=md-nav__link> User Accounts </a> </li> <li class=md-nav__item> <a href=#deleting-accounts class=md-nav__link> Deleting Accounts </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#using-and-configuring-sudo class=md-nav__link> Using and Configuring Sudo </a> <nav class=md-nav aria-label="Using and Configuring Sudo"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#sudo-vs-su class=md-nav__link> sudo vs su </a> </li> <li class=md-nav__item> <a href=#sudo-super-user-do class=md-nav__link> Sudo (Super User Do) </a> </li> <li class=md-nav__item> <a href=#sudoers-format class=md-nav__link> Sudoers Format </a> </li> <li class=md-nav__item> <a href=#sudo-authentication class=md-nav__link> Sudo Authentication </a> </li> <li class=md-nav__item> <a href=#sudo-aliases class=md-nav__link> Sudo Aliases </a> </li> <li class=md-nav__item> <a href=#displaying-the-sudo-configuration class=md-nav__link> Displaying the Sudo Configuration </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#network-security class=md-nav__link> Network Security </a> <nav class=md-nav aria-label="Network Security"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#network-services class=md-nav__link> Network Services </a> </li> <li class=md-nav__item> <a href=#securing-network-services class=md-nav__link> Securing Network Services </a> </li> <li class=md-nav__item> <a href=#securing-ssh class=md-nav__link> Securing SSH </a> </li> <li class=md-nav__item> <a href=#ssh-port-forwarding class=md-nav__link> SSH Port Forwarding </a> </li> <li class=md-nav__item> <a href=#dynamic-port-forwarding--socks class=md-nav__link> Dynamic Port Forwarding / SOCKS </a> </li> <li class=md-nav__item> <a href=#reverse-port-forwarding class=md-nav__link> Reverse Port Forwarding </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#linux-firewall-fundamentals class=md-nav__link> Linux Firewall Fundamentals </a> <nav class=md-nav aria-label="Linux Firewall Fundamentals"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#default-tables class=md-nav__link> Default Tables </a> </li> <li class=md-nav__item> <a href=#default-chains class=md-nav__link> Default Chains </a> </li> <li class=md-nav__item> <a href=#rules class=md-nav__link> Rules </a> </li> <li class=md-nav__item> <a href=#targets class=md-nav__link> Targets </a> </li> <li class=md-nav__item> <a href=#iptables--ip6tables class=md-nav__link> iptables / ip6tables </a> </li> <li class=md-nav__item> <a href=#list--view-iptables class=md-nav__link> List / View iptables </a> </li> <li class=md-nav__item> <a href=#chain-policy--default-target class=md-nav__link> Chain Policy / Default Target </a> </li> <li class=md-nav__item> <a href=#rule-specification-options class=md-nav__link> Rule Specification Options </a> </li> <li class=md-nav__item> <a href=#target--jump class=md-nav__link> Target / Jump </a> </li> <li class=md-nav__item> <a href=#rule-specification-example class=md-nav__link> Rule Specification Example </a> </li> <li class=md-nav__item> <a href=#creating-and-deleting-a-chain class=md-nav__link> Creating and Deleting a Chain </a> </li> <li class=md-nav__item> <a href=#saving-rules class=md-nav__link> Saving Rules </a> </li> <li class=md-nav__item> <a href=#netfilteriptable-front-ends class=md-nav__link> Netfilter/iptable Front-Ends </a> </li> <li class=md-nav__item> <a href=#ip-tables-examples class=md-nav__link> IP Tables Examples </a> </li> <li class=md-nav__item> <a href=#tcp-wrappers class=md-nav__link> TCP Wrappers </a> <nav class=md-nav aria-label="TCP Wrappers"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#configuring-tcp-wrappers class=md-nav__link> Configuring TCP Wrappers </a> </li> <li class=md-nav__item> <a href=#access-rules class=md-nav__link> Access Rules </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#file-security class=md-nav__link> File Security </a> <nav class=md-nav aria-label="File Security"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#file-permissions_1 class=md-nav__link> File Permissions </a> </li> <li class=md-nav__item> <a href=#files-vs-directory class=md-nav__link> Files vs Directory </a> </li> <li class=md-nav__item> <a href=#groups class=md-nav__link> Groups </a> </li> <li class=md-nav__item> <a href=#directory-permissions class=md-nav__link> Directory permissions </a> </li> <li class=md-nav__item> <a href=#file-creation-mask class=md-nav__link> File Creation Mask </a> </li> <li class=md-nav__item> <a href=#umask-command class=md-nav__link> umask command </a> </li> <li class=md-nav__item> <a href=#special-modes class=md-nav__link> Special Modes </a> <nav class=md-nav aria-label="Special Modes"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#setuid class=md-nav__link> Setuid </a> </li> <li class=md-nav__item> <a href=#setgid class=md-nav__link> Setgid </a> </li> <li class=md-nav__item> <a href=#setgid-on-directories class=md-nav__link> Setgid on Directories </a> </li> <li class=md-nav__item> <a href=#use-an-integrity-checker class=md-nav__link> Use an Integrity Checker </a> </li> <li class=md-nav__item> <a href=#sticky-bit class=md-nav__link> Sticky Bit </a> </li> <li class=md-nav__item> <a href=#reading-ls-output class=md-nav__link> Reading ls Output </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#file-attributes class=md-nav__link> File Attributes </a> <nav class=md-nav aria-label="File Attributes"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#attribute-i-immutable class=md-nav__link> Attribute: i immutable </a> </li> <li class=md-nav__item> <a href=#attribute-a-append class=md-nav__link> Attribute: a append </a> </li> <li class=md-nav__item> <a href=#other-attributes class=md-nav__link> Other Attributes </a> </li> <li class=md-nav__item> <a href=#modifying-attributes class=md-nav__link> Modifying Attributes </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#access-control-lists class=md-nav__link> Access Control Lists </a> <nav class=md-nav aria-label="Access Control Lists"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#types-of-acls class=md-nav__link> Types of ACLs </a> </li> <li class=md-nav__item> <a href=#acls-can-be-configured class=md-nav__link> ACLs Can Be Configured: </a> </li> <li class=md-nav__item> <a href=#creating-acls class=md-nav__link> Creating ACLs </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#rootkits class=md-nav__link> Rootkits </a> <nav class=md-nav aria-label=Rootkits> <ul class=md-nav__list> <li class=md-nav__item> <a href=#rootkit-detection class=md-nav__link> Rootkit Detection </a> </li> <li class=md-nav__item> <a href=#rootkit-hunter--rkhunter class=md-nav__link> Rootkit Hunter / RKHunter </a> </li> <li class=md-nav__item> <a href=#ossec class=md-nav__link> OSSEC </a> </li> <li class=md-nav__item> <a href=#rootkit-removal class=md-nav__link> Rootkit Removal </a> </li> <li class=md-nav__item> <a href=#rootkit-prevention class=md-nav__link> Rootkit Prevention </a> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>Introduction</h1> <h2 id=introduction>Introduction<a class=headerlink href=#introduction title="Permanent link">&para;</a></h2> <ul> <li><a href=http://www.LinuxTrainingAcademy.com/security-videos/ >Linux Security Confernce Videos</a></li> <li>Hardening Guides from CIS, DISA, Ubuntu</li> <li>Add Ubuntu mailing list for security updates</li> </ul> <h3 id=linux-is-only-as-secure-as-you-make-it>Linux is only as secure as you make it!<a class=headerlink href=#linux-is-only-as-secure-as-you-make-it title="Permanent link">&para;</a></h3> <ul> <li>Nothing is perfectly secure.</li> <li>Security is a series of trade-offs.</li> <li>convenience vs security <div class=highlight><pre><span></span><code><span class=c1># No passwords = easy to use, not secure.</span>
+<span class=c1># System powered off = secure, not usable.</span>
+</code></pre></div></li> <li>Examples:</li> <li>Linux can be configured to be unsecure.</li> <li>Users may employ lax file permissions.</li> <li>System administration mistakes.</li> <li>Users could use easy to guess passwords.</li> <li>Data transmitted in the clear.</li> <li>Malicious software installed on the system.</li> <li>Lack of training or security awareness.</li> </ul> <h3 id=continous-improvement>Continous Improvement<a class=headerlink href=#continous-improvement title="Permanent link">&para;</a></h3> <ul> <li>Just because you are using Linux, doesn’t mean you are “secure.”</li> <li>Security is an ongoing process.</li> <li>Stay vigilant!</li> </ul> <h3 id=risk-assessment>Risk Assessment<a class=headerlink href=#risk-assessment title="Permanent link">&para;</a></h3> <ul> <li>What is the severity of the risk?</li> <li>What is the probability of the risk occurring?</li> <li>What is the cost to mitigate the risk?</li> <li>What is the effectiveness of the countermeasure?</li> </ul> <h3 id=multiuser-system>Multiuser System<a class=headerlink href=#multiuser-system title="Permanent link">&para;</a></h3> <ul> <li>Linux is a multiuser system.</li> <li>The superuser is the root account.</li> <li><strong>root</strong> is all powerful.</li> <li>Required to install system-wide software, configure networking, manager users, etc.</li> <li>All other accounts are <strong>“normal”</strong> accounts.</li> <li>Can be used by people or applications (services).</li> </ul> <h3 id=advantages-to-a-multiuser-system>Advantages to a Multiuser System.<a class=headerlink href=#advantages-to-a-multiuser-system title="Permanent link">&para;</a></h3> <h4 id=file-permissions>File permissions<a class=headerlink href=#file-permissions title="Permanent link">&para;</a></h4> <ul> <li>Every file has an owner.</li> <li>Permissions can be granted to other accounts and users as needed.</li> <li>Breaking into one account does not necessarily compromise the entire system.</li> </ul> <h4 id=process-permissions>Process permissions.<a class=headerlink href=#process-permissions title="Permanent link">&para;</a></h4> <ul> <li>Every process has an owner.</li> <li>Each account can manage their processes.</li> <li>Exception to above rule: <strong>root can do anything</strong></li> <li>Breaking into one account does not necessarily compromise the entire system.</li> </ul> <h2 id=security-guidelines>Security Guidelines<a class=headerlink href=#security-guidelines title="Permanent link">&para;</a></h2> <ul> <li>Principle of Least Privilege</li> <li>Use encryption</li> <li>Shared accounts (Yes, root can be a shared account!)</li> <li>Multifactor authentication</li> <li>Firewall</li> <li>Monitoring logs</li> </ul> <h3 id=minimize-software-and-services>Minimize Software and Services<a class=headerlink href=#minimize-software-and-services title="Permanent link">&para;</a></h3> <ul> <li>If you don’t need a piece of software, don’t install it.</li> <li>If you don’t need a service, don’t start it.</li> <li>If you no longer need the software or service, stop and uninstall it.</li> </ul> <h3 id=run-services-on-separate-systems>Run Services on Separate Systems<a class=headerlink href=#run-services-on-separate-systems title="Permanent link">&para;</a></h3> <ul> <li>Minimizes the risk of one compromised service leading to other compromised services.</li> </ul> <h3 id=encrypt-data-transmissions>Encrypt Data Transmissions<a class=headerlink href=#encrypt-data-transmissions title="Permanent link">&para;</a></h3> <ul> <li>Protect against eavesdropping and man-in-the middle attacks.</li> <li>Examples:</li> <li>Protocol &rarr; Replace with</li> <li>FTP &rarr; SFTP</li> <li>telnet &rarr; SSH</li> <li>SNMP v1/v2 &rarr; SNMP v3</li> <li>HTTP &rarr; HTTPS</li> </ul> <h3 id=avoid-shared-accounts>Avoid Shared Accounts<a class=headerlink href=#avoid-shared-accounts title="Permanent link">&para;</a></h3> <ul> <li>Each person should have their own account.</li> <li>Each service should have its own account.</li> <li>Shared accounts make security auditing difficult.</li> <li>Lack of accountability with shared accounts.</li> </ul> <h3 id=avoid-direct-root-logins>Avoid Direct root Logins<a class=headerlink href=#avoid-direct-root-logins title="Permanent link">&para;</a></h3> <ul> <li>Do not allow direct login of shared accounts.</li> <li>Users must login to their personal accounts and then switch to the shared account.</li> <li>Control and monitor access with sudo.</li> </ul> <h3 id=maintain-accounts>Maintain Accounts<a class=headerlink href=#maintain-accounts title="Permanent link">&para;</a></h3> <ul> <li>Create and use a process for removing access.</li> </ul> <h3 id=use-multifactor-authentication>Use Multifactor Authentication<a class=headerlink href=#use-multifactor-authentication title="Permanent link">&para;</a></h3> <ul> <li>Something you know (password) + something you have (phone) or something you are(fingerprints).</li> <li>Examples:</li> <li>account password + phone to receive the one time password (OTP).</li> <li>account password + fingerprint</li> </ul> <h3 id=the-principle-of-least-privilege>The Principle of Least Privilege<a class=headerlink href=#the-principle-of-least-privilege title="Permanent link">&para;</a></h3> <ul> <li>AKA, the Principle of Least Authority.</li> <li>Examples:</li> <li>Only use root privileges when required.</li> <li>Avoid running services as the root user.</li> <li>Use restrictive permissions that allow people and services enough access to do their jobs.</li> </ul> <h3 id=monitor-system-activity>Monitor System Activity<a class=headerlink href=#monitor-system-activity title="Permanent link">&para;</a></h3> <ul> <li>Routinely review logs.</li> <li>Send logs to a central logging system.</li> </ul> <h3 id=use-a-firewall>Use a Firewall<a class=headerlink href=#use-a-firewall title="Permanent link">&para;</a></h3> <ul> <li>Linux has a built-in firewall. Netfilters + iptables.</li> <li>Only allow network connections from desired sources.</li> </ul> <h3 id=encrypt-your-data>Encrypt Your Data<a class=headerlink href=#encrypt-your-data title="Permanent link">&para;</a></h3> <ul> <li>Encryption protects your data while it is “at rest” (on disk).</li> </ul> <h2 id=physical-security>Physical Security<a class=headerlink href=#physical-security title="Permanent link">&para;</a></h2> <h3 id=physical-security-is-linux-security>Physical Security Is Linux Security<a class=headerlink href=#physical-security-is-linux-security title="Permanent link">&para;</a></h3> <ul> <li>Physical access poses a great security threat to your Linux system!</li> <li>Single user mode - Allows unrestricted access.</li> <li>Only allow physical access when necessary.</li> </ul> <h3 id=systems-not-under-your-control>Systems Not Under Your Control<a class=headerlink href=#systems-not-under-your-control title="Permanent link">&para;</a></h3> <ul> <li>Data centers / colos - Like “banks” of data.</li> <li>Possible targets for attackers</li> <li>Needs processes, procedures, and controls in place toprotect your valuable data.</li> </ul> <h3 id=cloud>Cloud<a class=headerlink href=#cloud title="Permanent link">&para;</a></h3> <ul> <li>At some point the cloud is real equipment.</li> <li>Physical security is still important.</li> <li>Your data is on their storage systems.</li> <li>The provider has access to your virtual disks.</li> <li>If encryption is available, use it.</li> </ul> <h3 id=protecting-linux-against-physical-attacks>Protecting Linux Against Physical Attacks<a class=headerlink href=#protecting-linux-against-physical-attacks title="Permanent link">&para;</a></h3> <ul> <li>Gaining Access to a Linux System: Single User Mode &amp; Power Resets</li> <li>Changing the shell command from sushell to sulogin will prompt for root password when entrering into single user mode <div class=highlight><pre><span></span><code><span class=c1># Securing Single User Mode and blank passwords by having root password at logins</span>
+<span class=c1># Login to root and gain access to shell</span>
+<span class=nb>echo</span> <span class=nv>$$</span>             <span class=c1># Shows the current process id i.e shell</span>
+ps -fp &lt;pid&gt;        
+<span class=c1># Shows detailed information about shell process including command executed at login</span>
+<span class=nb>cd</span> /lib/systemd/system
+grep sulogin emergency.target       <span class=c1># No output should be visible</span>
+grep sulogin emergency.service      <span class=c1># Should have sulogin in ExecStart command</span>
+head -1 /etc/shadow                 <span class=c1># Shows id root password is set or not. If not set (!) is present in output 2nd column   </span>
+passwd                              <span class=c1># Set root password</span>
+</code></pre></div></li> </ul> <h3 id=securing-the-boot-loader>Securing the Boot Loader<a class=headerlink href=#securing-the-boot-loader title="Permanent link">&para;</a></h3> <ul> <li>To prevent a person who as physical access from passing arguments to the Linux kernel at boot time, you should password protect the boot loader.</li> <li>Check examples how to secure this.</li> </ul> <h3 id=disk-encryption>Disk Encryption<a class=headerlink href=#disk-encryption title="Permanent link">&para;</a></h3> <h4 id=dm-crypt>dm-crypt<a class=headerlink href=#dm-crypt title="Permanent link">&para;</a></h4> <ul> <li>device mapper crypt</li> <li>Provides transparent disk encryption.</li> <li>Creates a new device in /dev/mapper.</li> <li>Use like any other block device.</li> <li>Manage with <code>cryptsetup</code></li> </ul> <h4 id=luks>LUKS<a class=headerlink href=#luks title="Permanent link">&para;</a></h4> <ul> <li>Linux Unified Key Setup.</li> <li>Front-end for dm-crypt.</li> <li>Multiple passphrase support.</li> <li>Portable as LUKS stores setup information in the partition header.</li> <li>Great for removable media, too.</li> </ul> <h4 id=encrypt-during-install>Encrypt During Install<a class=headerlink href=#encrypt-during-install title="Permanent link">&para;</a></h4> <ul> <li>PRO: easy, with sane defaults.</li> <li>CON: you give up some control.</li> </ul> <h4 id=setting-up-luks-on-a-new-device>Setting up LUKS on a New Device<a class=headerlink href=#setting-up-luks-on-a-new-device title="Permanent link">&para;</a></h4> <ul> <li>Use this process for any block device presented to your system that you want to encrypt.</li> <li>Following this procedure will remove all data on the partition (device) that you are encrypting!</li> </ul> <h4 id=implementing-luks-for-full-disk-encryption>Implementing LUKS for Full Disk Encryption<a class=headerlink href=#implementing-luks-for-full-disk-encryption title="Permanent link">&para;</a></h4> <ul> <li>example Laptops, USB <div class=highlight><pre><span></span><code>sudo apt-get install cryptsetup                 <span class=c1># Install LUKS tools</span>
+lsblk                                           <span class=c1># list the blocks</span>
+sudo shread -v -n <span class=m>1</span> /dev/sdb                    <span class=c1># Writes random data to he device sdb</span>
+sudo fdisk /dev/sdb                             <span class=c1># partition the sdb drive and create a new partition called sdb1 </span>
+sudo cryptsetup –y luksFormat /dev/sdb1         <span class=c1># Allows to store encrypted data in this partition. Give a passphrase</span>
+sudo cryptsetup luksDump /dev/sdb1              <span class=c1># Shows details of the encrypted partition</span>
+sudo cryptsetup luksOpen /dev/sdb1 private_data <span class=c1># Assign a mapper called private_data and opens the device</span>
+ls /dev/mapper                                  <span class=c1># Shows the new mapper setup and that is a device</span>
+ls -arlt /dev/mapper <span class=p>|</span> tail                     <span class=c1># Shows the virtual block devices private_data</span>
+sudo mkfs.ext4 /dev/mapper/private_data         <span class=c1># format the device as ext4</span>
+sudo mount /dev/mapper/private_data /mnt        <span class=c1># The device is mounted and any data that is stored will get encrypted</span>
+<span class=c1># Make an entry in the /etc/fstab to mount private_data to /mnt on each boot</span>
+<span class=c1># Make an entry in /etc/crypttab to mount private_data at boot time</span>
+
+<span class=c1># To close the encrypted device</span>
+sudo cryptsetup luksClose private_data
+</code></pre></div></li> </ul> <h4 id=encrypting-device-in-cloud>Encrypting device in Cloud<a class=headerlink href=#encrypting-device-in-cloud title="Permanent link">&para;</a></h4> <ul> <li>Sometimes cloud providers do not give block level access to volumes.</li> <li>For such cases, we will encrypt the files like we do for volumes <div class=highlight><pre><span></span><code>sudo mkdir /data
+sudo fallocate -l 100M /data/private_data        <span class=c1># Creates a non sparse file</span>
+sudo strings /data/private_data                  <span class=c1># Shows any string data in the file. It mostly is blank</span>
+<span class=c1># Write random data, if=input, of=output, bs=byte size&lt;1 Mb&gt;, count=&lt;size of file i.e 100Mb&gt;</span>
+sudo dd <span class=k>if</span><span class=o>=</span>/dev/urandom <span class=nv>of</span><span class=o>=</span>/data_private_data <span class=nv>bs</span><span class=o>=</span>1M <span class=nv>count</span><span class=o>=</span><span class=m>100</span>
+sudo strings /data/private_data 
+sudo cryptsetup –y luksFormat /data/private_data <span class=c1># Allows to store encrypted data in this file. Give a passphrase</span>
+sudo cryptsetup luksOpen /data/private_data private_data <span class=c1># Assign a mapper called private_data and opens the device</span>
+ls /dev/mapper                                  <span class=c1># Shows the new mapper setup and that is a device</span>
+ls -arlt /dev/mapper <span class=p>|</span> tail                     <span class=c1># Shows the virtual block devices private_data</span>
+sudo mkfs.ext4 /dev/mapper/private_data         <span class=c1># format the device as ext4</span>
+sudo mount /dev/mapper/private_data /mnt        <span class=c1># The device is mounted and any data that is stored will get encrypted</span>
+sudo df -h /mnt                                 <span class=c1># Shows the size</span>
+<span class=c1># Make an entry in the /etc/fstab to mount private_data to /mnt on each boot</span>
+<span class=c1># Make an entry in /etc/crypttab to mount private_data at boot time</span>
+</code></pre></div></li> </ul> <h4 id=converting-an-existing-device-to-luks>Converting an Existing Device to LUKS<a class=headerlink href=#converting-an-existing-device-to-luks title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># Backup the data.</span>
+/home lives on /dev/sda3        <span class=c1># for example.</span>
+<span class=c1># Wipe the device.</span>
+<span class=c1># use shred or dd if=/dev/urandom of=/dev/sda3</span>
+<span class=c1># Setup LUKS.</span>
+cryptsetup luksFormat /dev/sda3
+cryptsetup luksOpen /dev/sda3 home
+mkfs -t ext4 /dev/mapper/home
+mount /dev/mapper/home /home
+<span class=c1># &amp; restore from backup</span>
+</code></pre></div> <h3 id=disabling-ctrlaltdel-systemd>Disabling Ctrl+Alt+Del (Systemd)<a class=headerlink href=#disabling-ctrlaltdel-systemd title="Permanent link">&para;</a></h3> <ul> <li>Attackers can gain access to the virtual terminal and send command <code>ctrl+alt+delete</code> to reboot the system. <div class=highlight><pre><span></span><code><span class=c1># Disabling reboot using ctrl-alt-delete command over remote connection</span>
+systemctl mask ctrl-alt-del.target
+systemctl daemon-reload
+</code></pre></div></li> </ul> <h2 id=account-security>Account Security<a class=headerlink href=#account-security title="Permanent link">&para;</a></h2> <ul> <li>It's easier to attack a system from the inside.</li> <li>Privilege escalation attacks are a threat.</li> </ul> <h3 id=mitigation>Mitigation<a class=headerlink href=#mitigation title="Permanent link">&para;</a></h3> <ul> <li>Keep unwanted users out.</li> <li>Secure accounts.</li> </ul> <h3 id=pam>PAM<a class=headerlink href=#pam title="Permanent link">&para;</a></h3> <ul> <li>Pluggable Authentication Modules</li> <li>Used to delegate / abstract authentication of services / programs like login or sshd</li> </ul> <h3 id=pam-configuration-files>PAM Configuration files<a class=headerlink href=#pam-configuration-files title="Permanent link">&para;</a></h3> <ul> <li>Location: <code>/etc/pam.d</code></li> <li>Configuration file for login is <code>/etc/pam.d/login</code></li> <li>Configuration file for sshd is <code>/etc/pam.d/sshd</code></li> <li>Format: <code>module_interface control_flag module_name module_args</code></li> </ul> <h3 id=pam-module-interfaces>PAM Module Interfaces<a class=headerlink href=#pam-module-interfaces title="Permanent link">&para;</a></h3> <ul> <li>auth - Authenticates users.</li> <li>account - Verifies if access is permitted.</li> <li>password - Changes a user’s password.</li> <li>session - Manages user’s sessions.</li> </ul> <h3 id=pam-control-flags>PAM Control Flags<a class=headerlink href=#pam-control-flags title="Permanent link">&para;</a></h3> <ul> <li>required - Module result must be successful to continue.</li> <li>requisite - Like required, but no other modules are invoked.</li> <li>sufficient - Authenticates user if no required modules have failed, otherwise ignored.</li> <li>optional - Only used when no other modules reference the interface.</li> <li>include - Includes configuration from another file.</li> <li>complex control flags - attribute=value</li> </ul> <h3 id=pam-configuration-example>PAM Configuration Example<a class=headerlink href=#pam-configuration-example title="Permanent link">&para;</a></h3> <ul> <li>The directives listed in the PAM module are executed in sequential order</li> <li>*.so extension stands for shared objects <div class=highlight><pre><span></span><code><span class=c1>#%PAM-1.0                                       # Comment</span>
+auth required pam_securetty.so                  <span class=c1># 3 auth modules which need to pass</span>
+auth required pam_unix.so nullok
+auth required pam_nologin.so
+account required pam_unix.so                    <span class=c1># Checks if the user account is valid</span>
+password required pam_pwquality.so <span class=nv>retry</span><span class=o>=</span><span class=m>3</span>      <span class=c1># Checks for password quality if acount has expired and gives 3 tries to set password</span>
+password required pam_unix.so shadow <span class=se>\ </span>         <span class=c1># Allows to use shadow file</span>
+                    nullok use_authtok
+session required pam_unix.so                    <span class=c1># Logs when user logs in and out of the system</span>
+</code></pre></div></li> </ul> <h3 id=pam-documentation>PAM Documentation<a class=headerlink href=#pam-documentation title="Permanent link">&para;</a></h3> <ul> <li>Configuration:</li> <li><code>account required pam_nologin.so</code></li> <li> <p><code>session required pam_unix.so</code></p> </li> <li> <p>Getting help, drop the <code>.so</code> extension and use the man page to get additional help:</p> </li> <li><code>man pam_nologin</code></li> <li><code>man pam_unix</code></li> </ul> <h3 id=linux-account-types>Linux Account Types<a class=headerlink href=#linux-account-types title="Permanent link">&para;</a></h3> <h4 id=root-the-superuser>root, the superuser<a class=headerlink href=#root-the-superuser title="Permanent link">&para;</a></h4> <ul> <li>Root can do anything.</li> <li>Always has the UID of 0.</li> </ul> <h4 id=system-accounts>System accounts<a class=headerlink href=#system-accounts title="Permanent link">&para;</a></h4> <ul> <li>UIDs &lt; 1,000</li> <li>Configured in /etc/login.defs</li> <li><code>useradd -r system_account_name</code></li> </ul> <h4 id=normal-user-accounts>Normal User Accounts<a class=headerlink href=#normal-user-accounts title="Permanent link">&para;</a></h4> <ul> <li>UIDs &gt;= 1,000</li> <li>Intended for human (interactive) use</li> </ul> <h3 id=password-security>Password Security<a class=headerlink href=#password-security title="Permanent link">&para;</a></h3> <ul> <li>Enforce, not hope for, strong passwords.</li> <li>Use pam_pwquality, based on pam_cracklib.</li> <li>Configuration File: <code>/etc/security/pwquality.conf</code></li> <li>PAM Usage: <code>password requisite pam_pwquality.so</code></li> <li>Module attributes: <code>man pam_pwquality</code> <div class=highlight><pre><span></span><code><span class=c1># /etc/login.defs format</span>
+<span class=c1># PASS_MAX_DAYS 99999</span>
+<span class=c1># PASS_MIN_DAYS 0</span>
+<span class=c1># PASS_MIN_LEN 5</span>
+<span class=c1># PASS_WARN_AGE 7</span>
+</code></pre></div></li> </ul> <h3 id=use-shadow-passwords>Use Shadow Passwords<a class=headerlink href=#use-shadow-passwords title="Permanent link">&para;</a></h3> <ul> <li>/etc/passwd unencrypted: <code>root:$6$L3ZSmlM1H5:0:0:root:/root:/bin/bash</code></li> <li>/etc/passwd with shadow passwords: <code>root:x:0:0:root:/root:/bin/bash</code></li> <li>/etc/shadow: <code>root:$6$L3ZSmlM1H5::0:99999:7:::</code></li> </ul> <h3 id=converting-passwords>Converting Passwords<a class=headerlink href=#converting-passwords title="Permanent link">&para;</a></h3> <ul> <li>pwconv - convert to shadow passwords.</li> <li>pwunconv - convert from shadow passwords.</li> </ul> <h3 id=etcshadow-format>/etc/shadow format<a class=headerlink href=#etcshadow-format title="Permanent link">&para;</a></h3> <ul> <li>Username</li> <li>Hashed password</li> <li>Days since epoch of last password change</li> <li>Days until change allowed</li> <li>Days before change required</li> <li>Days warning for expiration</li> <li>Days before account inactive</li> <li>Days since epoch when account expires</li> <li>Reserved</li> </ul> <h3 id=display-user-account-expiry-info-with-chage>Display user account expiry info with chage<a class=headerlink href=#display-user-account-expiry-info-with-chage title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>chage -l &lt;account-name&gt;     <span class=c1># Show account aging info.</span>
+
+$ chage -l jason
+<span class=c1># Last password change : Apr 01, 2016</span>
+<span class=c1># Password expires : never</span>
+<span class=c1># Password inactive : never</span>
+<span class=c1># Account expires : never</span>
+<span class=c1># Minimum number of days between password change : 0</span>
+<span class=c1># Maximum number of days between password change : 99999</span>
+<span class=c1># Number of days of warning before password expires : 7</span>
+</code></pre></div> <h3 id=change-user-account-expiry-info-with-chage>Change user account expiry info with chage<a class=headerlink href=#change-user-account-expiry-info-with-chage title="Permanent link">&para;</a></h3> <ul> <li>-M MAX_DAYS - Set the maximum number of days during which a password is valid.</li> <li>-E EXPIRE_DATE - Date on which the user’s account will no longer be accessible.</li> <li>-d LAST_DAY - Set the last day the password was changed.</li> </ul> <h3 id=demo-to-change-normal-account-to-root>Demo to change normal account to root<a class=headerlink href=#demo-to-change-normal-account-to-root title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>head -n <span class=m>1</span> /etc/passwd               <span class=c1># Shows the root entry, UID is 3rd field delimited by :</span>
+sudo useradd jim                    <span class=c1># Create normal account</span>
+sudo passwd jim                     <span class=c1># Change password</span>
+su - jim                            <span class=c1># Login to account</span>
+whoami                              <span class=c1># Show logged in user details</span>
+<span class=nb>exit</span>
+sudo vi /etc/passwd                 <span class=c1># Edit the UID of jim to 0</span>
+su - jim
+id
+whoami                              <span class=c1># Now jim account shows root</span>
+<span class=c1># Show how many users have UID of 0</span>
+awk -F: <span class=s1>&#39;($3 == &#39;</span><span class=m>0</span><span class=s1>&#39;)&#39;</span> <span class=o>{</span>print<span class=o>}</span>       <span class=c1># Delimit Field by :, take the 3rd field and check if its 0 and print the line</span>
+<span class=c1># This will show 2 entries, one for root and other for jim</span>
+<span class=c1># Undo the change by editing `/etc/passwd` and updating jim&#39;s UID to original</span>
+</code></pre></div> <h3 id=controlling-account-access>Controlling Account Access<a class=headerlink href=#controlling-account-access title="Permanent link">&para;</a></h3> <h4 id=locking-and-unlocking-accounts>Locking and Unlocking accounts<a class=headerlink href=#locking-and-unlocking-accounts title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>passwd -l account
+passwd -u account
+</code></pre></div> <h4 id=disabling-logins-for-system-and-root-accounts>Disabling logins for system and root accounts<a class=headerlink href=#disabling-logins-for-system-and-root-accounts title="Permanent link">&para;</a></h4> <ul> <li>Locking with nologin as the Shell <div class=highlight><pre><span></span><code><span class=c1># Example /etc/passwd entries: for apache and www-data system accounts</span>
+apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+<span class=c1># Using chsh :</span>
+chsh -s SHELL ACCOUNT
+chsh -s /sbin/nologin jason             <span class=c1># Does not allow jason user to login using password</span>
+</code></pre></div></li> </ul> <h4 id=centralized-authentication>Centralized Authentication<a class=headerlink href=#centralized-authentication title="Permanent link">&para;</a></h4> <ul> <li>Easy to manage users system-wide - lock account everywhere</li> <li>Example authentication systems: freeIPA, LDAP (openLDAP)</li> <li>Has drawbacks too.</li> </ul> <h4 id=disable-logins>Disable Logins<a class=headerlink href=#disable-logins title="Permanent link">&para;</a></h4> <ul> <li>pam_nologin module</li> <li>Looks for <code>/etc/nologin or /var/run/nologin</code></li> <li>Disables logins and displays contents of nologin file.</li> </ul> <h4 id=monitoring-authentication-logs>Monitoring Authentication Logs<a class=headerlink href=#monitoring-authentication-logs title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>last                <span class=c1># All login data</span>
+lastb               <span class=c1># Failed authentication</span>
+lastlog             <span class=c1># Last logins</span>
+<span class=c1># Depends on syslog configuration, logs are stored in following files:</span>
+/var/log/messages
+/var/log/syslog
+/var/log/secure
+/var/log/auth.log
+</code></pre></div> <h4 id=intrusion-prevention-with-fail2ban>Intrusion Prevention with fail2ban<a class=headerlink href=#intrusion-prevention-with-fail2ban title="Permanent link">&para;</a></h4> <ul> <li>Monitors log files.</li> <li>Blocks IP address of attacker.</li> <li>Automatic unban.</li> <li>Not just for Linux logins.</li> </ul> <h4 id=multifactor-authentication>Multifactor Authentication<a class=headerlink href=#multifactor-authentication title="Permanent link">&para;</a></h4> <ul> <li>Google Authenticator PAM module</li> <li>DuoSecurity’s pam_duo module</li> <li>RSA SecurID PAM module</li> </ul> <h3 id=security-by-account-type>Security by Account Type<a class=headerlink href=#security-by-account-type title="Permanent link">&para;</a></h3> <h4 id=account-security---root>Account Security - root<a class=headerlink href=#account-security---root title="Permanent link">&para;</a></h4> <ul> <li>Use a normal account for normal activities.</li> <li>Avoid logging in as root.</li> <li>Use sudo instead of su.</li> <li>Avoid using the same root password.</li> <li>Ensure only the root account has UID 0 - <code>awk -F: '($3 == "0") {print}' /etc/passwd</code></li> </ul> <h4 id=disabling-root-logins>Disabling root Logins<a class=headerlink href=#disabling-root-logins title="Permanent link">&para;</a></h4> <ul> <li><code>/etc/securetty</code> - Controls root logins using terminals.</li> <li>Normal user logins don't use this file <div class=highlight><pre><span></span><code><span class=c1># pam_securetty module - /etc/pam.d/login</span>
+auth <span class=o>[</span><span class=nv>user_unknown</span><span class=o>=</span>ignore <span class=nv>success</span><span class=o>=</span>ok <span class=nv>ignore</span><span class=o>=</span>ignore <span class=nv>default</span><span class=o>=</span>bad<span class=o>]</span> pam_securetty.so    <span class=c1># Shows pam_securetty module is used</span>
+w                               <span class=c1># Shows the current terminal, assume tty1</span>
+vi /etc/securetty               <span class=c1># Remove tty1 entry from this file and save</span>
+<span class=c1># login to system as root and it fails as tty1 (first terminal) has been removed from logging</span>
+<span class=c1># Alt+Ctrl+F2  (This will use tty2 to login to the system instead of tty1 as that is no longer valid)</span>
+<span class=c1># Similarly F3 for tty3, F4 for tty4 and so on</span>
+<span class=c1># Now login as root and it works as tty2 is present in /etc/securetty file</span>
+
+<span class=c1># Empty the securetty file of all entries and save it.</span>
+<span class=c1># Now there is no way root can login to this system.</span>
+
+<span class=c1># Login using a normal account and that will work</span>
+</code></pre></div></li> </ul> <h4 id=system--application-accounts>System / Application Accounts<a class=headerlink href=#system--application-accounts title="Permanent link">&para;</a></h4> <ul> <li>Use one account per service - web service (httpd), web service account (apache)</li> <li>Don’t activate the account.</li> <li>Don’t allow direct logins from the account - sshd_config: DenyUsers account1 accountN</li> <li>Use sudo for all access. <div class=highlight><pre><span></span><code>sudo -u apache apachectl configtest
+</code></pre></div></li> </ul> <h4 id=user-accounts>User Accounts<a class=headerlink href=#user-accounts title="Permanent link">&para;</a></h4> <ul> <li>One account per person.</li> </ul> <h4 id=deleting-accounts>Deleting Accounts<a class=headerlink href=#deleting-accounts title="Permanent link">&para;</a></h4> <ul> <li>Determine the UID - <code>id ACCOUNT</code></li> <li>Delete their account and home directory - <code>userdel -r</code></li> <li>Find other files that belong to them on the system. <div class=highlight><pre><span></span><code>find / -user UID
+find / -nouser
+</code></pre></div></li> </ul> <h3 id=using-and-configuring-sudo>Using and Configuring Sudo<a class=headerlink href=#using-and-configuring-sudo title="Permanent link">&para;</a></h3> <h4 id=sudo-vs-su>sudo vs su<a class=headerlink href=#sudo-vs-su title="Permanent link">&para;</a></h4> <ul> <li>“SuperUser Do” or “Substitute User Do”</li> <li>Use instead of the su command.</li> <li>Complete shell access with su.</li> <li>With su you need to know the password of the other account.</li> <li>Breaks the Principle of Least Privilege.</li> <li>Vague audit trail with su.</li> </ul> <h4 id=sudo-super-user-do>Sudo (Super User Do)<a class=headerlink href=#sudo-super-user-do title="Permanent link">&para;</a></h4> <ul> <li><strong>Elevation of Privileges</strong> - Giving users temporary root priviledges</li> <li>Fine grain controls.</li> <li>No need to share passwords.</li> <li>Clear audit trail.</li> </ul> <h4 id=sudoers-format>Sudoers Format<a class=headerlink href=#sudoers-format title="Permanent link">&para;</a></h4> <ul> <li>User Specification Format: <code>user host=(run_as) command</code> <div class=highlight><pre><span></span><code><span class=c1># Examples:</span>
+jason <span class=nv>webdev01</span><span class=o>=(</span>root<span class=o>)</span> /sbin/apachectl
+%web web*<span class=o>=(</span>root<span class=o>)</span> /sbin/apachectl
+%wheel <span class=nv>ALL</span><span class=o>=(</span>ALL<span class=o>)</span> ALL
+</code></pre></div></li> </ul> <h4 id=sudo-authentication>Sudo Authentication<a class=headerlink href=#sudo-authentication title="Permanent link">&para;</a></h4> <ul> <li>Sudo requires a user to authenticate.</li> <li>Default 5 minute grace period (timeout).</li> <li>You may not want to use a password. <div class=highlight><pre><span></span><code>apache web*<span class=o>=(</span>root<span class=o>)</span> NOPASSWD:/sbin/backup-web,                <span class=c1># No password required to run backup-web</span>
+                   PASSWD:/sbin/apachectl                    <span class=c1># Password required for apache</span>
+</code></pre></div></li> </ul> <h4 id=sudo-aliases>Sudo Aliases<a class=headerlink href=#sudo-aliases title="Permanent link">&para;</a></h4> <ul> <li>User_Alias</li> <li>Runas_Alias</li> <li>Host_Alias</li> <li>Cmnd_Alias</li> <li>Format: <code>Alias_Type NAME = item1, item2, ...</code> <div class=highlight><pre><span></span><code><span class=c1># Add normal users to group webteam</span>
+User_Alias <span class=nv>WEBTEAM</span> <span class=o>=</span> jason, bob
+<span class=c1># Give permission to group </span>
+WEBTEAM web*<span class=o>=(</span>root<span class=o>)</span> /sbin/apachectl
+WEBTEAM web*<span class=o>=(</span>apache<span class=o>)</span> /sbin/apachebackup
+<span class=c1># Run permissions to system accounts</span>
+Runas_Alias <span class=nv>WEBUSERS</span> <span class=o>=</span> apache, httpd
+WEBTEAM web*<span class=o>=(</span>WEBUSERS<span class=o>)</span> /sbin/apachectl
+<span class=c1># Host permissions to user accounts</span>
+Host_Alias <span class=nv>WEBHOSTS</span> <span class=o>=</span> web*, prodweb01
+WEBTEAM <span class=nv>WEBHOSTS</span><span class=o>=(</span>WEBUSERS<span class=o>)</span> /sbin/apachectl
+<span class=c1># Command permissions</span>
+Cmnd_Alias <span class=nv>WEBCMNDS</span> <span class=o>=</span> /sbin/apachectl
+WEBTEAM <span class=nv>WEBHOSTS</span><span class=o>=(</span>WEBUSERS<span class=o>)</span> WEBCMNDS
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Optimized sudoers configuration</span>
+User_Alias <span class=nv>WEBTEAM</span> <span class=o>=</span> jason, bob
+Runas_Alias <span class=nv>WEBUSERS</span> <span class=o>=</span> apache, httpd
+Host_Alias <span class=nv>WEBHOSTS</span> <span class=o>=</span> web*, prodweb01
+Cmnd_Alias <span class=nv>WEBCMNDS</span> <span class=o>=</span> /sbin/apachectl
+
+WEBTEAM <span class=nv>WEBHOSTS</span><span class=o>=(</span>root<span class=o>)</span> /sbin/apachebackup
+WEBTEAM <span class=nv>WEBHOSTS</span><span class=o>=(</span>WEBUSERS<span class=o>)</span> WEBCMNDS
+</code></pre></div></li> </ul> <h4 id=displaying-the-sudo-configuration>Displaying the Sudo Configuration<a class=headerlink href=#displaying-the-sudo-configuration title="Permanent link">&para;</a></h4> <ul> <li>List commands you are allowed to run: <code>sudo -l</code></li> <li>Verbose listing of commands: <code>sudo -ll</code></li> <li>List commands another USER is allowed: <code>sudo -l -U user</code> <div class=highlight><pre><span></span><code><span class=c1># Sudo configuration</span>
+<span class=nb>export</span> <span class=nv>EDITOR</span><span class=o>=</span>nano
+visudo
+<span class=c1># Give Bob the rights to run yum command at the end of the sudoers file</span>
+bob <span class=nv>ALL</span><span class=o>=(</span>root<span class=o>)</span> /usr/bin/yum             <span class=c1># save and exit</span>
+sudo -l -U bob                          <span class=c1># List sudo permissions for bob</span>
+sudo -ll -U bob                         <span class=c1># More verbose output</span>
+su - bob                                <span class=c1># Login as bob</span>
+sudo -l                                 <span class=c1># Shows current permissions</span>
+sudo yum install dstat -y               <span class=c1># It will work without password</span>
+<span class=nb>exit</span>
+su -
+visudo -f /etc/sudoers.d/bob            <span class=c1># Creates a new file inside sudoers.d</span>
+bob <span class=nv>ALL</span><span class=o>=(</span>ALL<span class=o>)</span> /usr/bin/whoami           <span class=c1># Give permission to run whoami. save and exit</span>
+su - bob
+whoami                                  <span class=c1># Gives bob as output</span>
+sudo -u jason whoami                    <span class=c1># Pass user as jason who runs whoami and it works as well.</span>
+<span class=c1># As one user can give another user access to run a command and this is dangerous.</span>
+<span class=c1># All sudo operations are logged inside /var/log/secure</span>
+
+<span class=c1># Allow the “bob” account to run the “reboot” command only as the “root” user on the “linuxsvr1” system</span>
+bob <span class=nv>linuxsvr1</span><span class=o>=(</span>root<span class=o>)</span> /sbin/reboot  
+</code></pre></div></li> </ul> <h2 id=network-security>Network Security<a class=headerlink href=#network-security title="Permanent link">&para;</a></h2> <h3 id=network-services>Network Services<a class=headerlink href=#network-services title="Permanent link">&para;</a></h3> <ul> <li>Called -Network services, daemons, servers.</li> <li>Listen on network ports.</li> <li>Constantly running in the background.</li> <li>Output recorded in log files.</li> <li>Designed to perform a single task.</li> </ul> <h3 id=securing-network-services>Securing Network Services<a class=headerlink href=#securing-network-services title="Permanent link">&para;</a></h3> <ul> <li>Use a dedicated user for each service.</li> <li>Take advantage of privilege separation. Ports below 1024 are privileged.</li> <li>Use root to open them, then drop privileges. Configuration controlled by each service.</li> <li>Stop and uninstall unused services.</li> <li>Avoid unsecure services. Use SSH instead of telnet, rlogin, rsh, and FTP</li> <li>Stay up to date with patches. Install services provided by your distro.</li> <li>Only listen on the required interfaces and addresses.</li> <li>Information Leakage: Avoid revealing information where possible.</li> <li>Examples: Web server banners or information in <code>/etc/motd /etc/issue /etc/issue.net</code></li> <li>Stop and Disable Services <div class=highlight><pre><span></span><code>systemctl stop SERVICE
+systemctl disable SERVICE
+<span class=c1># Example:</span>
+systemctl stop httpd
+systemctl disable httpd
+</code></pre></div></li> <li>List Listening Programs with netstat: <code>netstat -nutlp</code></li> <li>Port Scanning: <code>nmap HOSTNAME_OR_IP</code> or <code>lsof -i</code> <div class=highlight><pre><span></span><code>nmap localhost
+nmap <span class=m>10</span>.11.12.13
+</code></pre></div></li> <li>Testing a Specific Port: <code>telnet HOST_OR_ADDRESS PORT</code> or <code>nc -v HOST_OR_ADDRESS PORT</code></li> <li>Xinetd Controlled Services <code>/etc/xinetd.d/SERVICE</code> <div class=highlight><pre><span></span><code><span class=c1># To disable service:</span>
+<span class=nv>disable</span> <span class=o>=</span> yes
+<span class=c1># To disable xinetd:</span>
+systemctl stop xinetd
+systemctl disable xinetd
+</code></pre></div></li> </ul> <h3 id=securing-ssh>Securing SSH<a class=headerlink href=#securing-ssh title="Permanent link">&para;</a></h3> <ul> <li>SSH = Secure SHell.</li> <li>Allows for key based authentication.</li> <li>Configuration: <code>/etc/ssh/sshd_config</code> <div class=highlight><pre><span></span><code><span class=c1># vi /etc/ssh/sshd_config</span>
+PubkeyAuthentication yes
+PasswordAuthentication no           <span class=c1># Force Key Authentication</span>
+PermitRootLogin no                  <span class=c1># To disable root logins</span>
+PermitRootLogin without-password    <span class=c1># To only allow root to login with a key</span>
+AllowUsers user1 user2 userN        <span class=c1># Only Allow Certain Users SSH Access</span>
+AllowGroups group1 group2 groupN    <span class=c1># Only Allow Certain Groups SSH Access</span>
+DenyUsers user1 user2 userN         <span class=c1># Deny Certain Users SSH Access</span>
+DenyGroups group1 group2 groupN     <span class=c1># Deny Certain Groups SSH Access</span>
+AllowTcpForwarding no               <span class=c1># Disable TCP Port Forwarding</span>
+GatewayPorts no
+Protocol <span class=m>2</span>                          <span class=c1># Use SSHv2 instead of SSHv1</span>
+ListenAddress host_or_address1      <span class=c1># Bind SSH to a Specific Address</span>
+ListenAddress host_or_addressN      <span class=c1># Allow individual IP to connect to SSH, separate line for each IP</span>
+Port <span class=m>2222</span>                           <span class=c1># Change the Default Port. This masks port scanners</span>
+Banner none                         <span class=c1># Disable the Banner, or update the banner in `/etc/issue.net` to remove identifiable data like versions</span>
+
+<span class=c1># Reload the SSH Configuration</span>
+systemctl reload sshd
+<span class=c1># Add the New Port to SELinux after changing ssh port number</span>
+semanage port -a -t ssh_port_t -p tcp PORT
+semanage port -l <span class=p>|</span> grep ssh
+
+<span class=c1># Additional information</span>
+man ssh
+man sshd
+man sshd_config
+</code></pre></div></li> </ul> <h3 id=ssh-port-forwarding>SSH Port Forwarding<a class=headerlink href=#ssh-port-forwarding title="Permanent link">&para;</a></h3> <ul> <li>Expose service (database) to a client not in same network</li> <li>Forward traffic from client to a service running in remote <div class=highlight><pre><span></span><code><span class=c1># Client (Different network) ---&gt; (SSH session on port 3306) ---&gt; Server1 ---&gt; (SSH session on port 22) ---&gt; (Database on 127.0.0.0 and port 3306)</span>
+ssh -L <span class=m>3306</span>:127.0.0.1:3306 server1      <span class=c1># -L = forwarding</span>
+<span class=c1># Similarly another application can connect to Client on port 3306 and access database on server 1</span>
+<span class=c1># Avoid this by having firewall block connections to client</span>
+
+<span class=c1># Client (Different network) ---&gt; (SSH session on port 8080) ---&gt; Server1 ---&gt; (SSH session on port 22) ---&gt; Google.com (service on port 80)</span>
+ssh -L <span class=m>8080</span>:google.com:80 server1      <span class=c1># -L = forwarding</span>
+<span class=c1># In this case google.com will understand that traffic is originating from server1 instead of client</span>
+</code></pre></div></li> </ul> <h3 id=dynamic-port-forwarding--socks>Dynamic Port Forwarding / SOCKS<a class=headerlink href=#dynamic-port-forwarding--socks title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Client (Different network) ---&gt; (SSH session on port 8080) ---&gt; Server1 ---&gt; (SSH session on port 22) ---&gt; (Internal Network)</span>
+ssh -D <span class=m>8080</span> server1                    <span class=c1># -D = Dynamic forwarding</span>
+<span class=c1># This allows users to connect to company network</span>
+</code></pre></div> <h3 id=reverse-port-forwarding>Reverse Port Forwarding<a class=headerlink href=#reverse-port-forwarding title="Permanent link">&para;</a></h3> <ul> <li>Use a proxy to direct traffic to internal network</li> <li>Connect to a desktop inside corporate network to work from home <div class=highlight><pre><span></span><code><span class=c1># (Internal Network) (SSH session on port 22) &lt;--- (Desktop having shell program) &lt;--- (SSH session on port 22) (Port 2222 is open to internet) &lt;--- Server1 &lt;--- Client (Different network)</span>
+ssh -R <span class=m>2222</span>:127.0.0.0:22               <span class=c1># -R = Reverse forwarding</span>
+</code></pre></div></li> </ul> <h2 id=linux-firewall-fundamentals>Linux Firewall Fundamentals<a class=headerlink href=#linux-firewall-fundamentals title="Permanent link">&para;</a></h2> <ul> <li>Firewalls control network access.</li> <li>Linux firewall = Netfilter + IPTables</li> <li>Netfilter is a kernel framework.</li> <li>IPTables is a packet selection system.</li> <li>Use the <code>iptables</code> command to control the firewall.</li> </ul> <h3 id=default-tables>Default Tables<a class=headerlink href=#default-tables title="Permanent link">&para;</a></h3> <ul> <li>Filter - Most commonly used table.</li> <li>NAT - Network Address Translation.</li> <li>Mangle - Alter packets.</li> <li>Raw - Used to disable connection tracking.</li> <li>Security - Used by SELinux.</li> </ul> <h3 id=default-chains>Default Chains<a class=headerlink href=#default-chains title="Permanent link">&para;</a></h3> <ul> <li>INPUT</li> <li>OUTPUT</li> <li>FORWARD</li> <li>PREROUTING</li> <li>POSTROUTING</li> </ul> <h3 id=rules>Rules<a class=headerlink href=#rules title="Permanent link">&para;</a></h3> <ul> <li>Rules = Match + Target</li> <li>Match on: Protocol, Source/Dest IP or network, Source/Dest Port, Network Interface</li> <li>Example: <code>protocol: TCP, source IP: 1.2.3.4, dest port: 80</code></li> </ul> <h3 id=targets>Targets<a class=headerlink href=#targets title="Permanent link">&para;</a></h3> <ul> <li>Built-in targets:</li> <li>ACCEPT</li> <li>DROP</li> <li>REJECT</li> <li>LOG</li> <li>RETURN</li> </ul> <h3 id=iptables--ip6tables>iptables / ip6tables<a class=headerlink href=#iptables--ip6tables title="Permanent link">&para;</a></h3> <ul> <li>Command line interface to IPTables/netfilter.</li> </ul> <h3 id=list--view-iptables>List / View iptables<a class=headerlink href=#list--view-iptables title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>iptables -L                     <span class=c1># Display the filter table.</span>
+iptables -t nat -L              <span class=c1># Display the nat table.</span>
+iptables -nL                    <span class=c1># Display using numeric output.</span>
+iptables -vL                    <span class=c1># Display using verbose output.</span>
+iptables --line-numbers -L      <span class=c1># Use line nums.</span>
+</code></pre></div> <h3 id=chain-policy--default-target>Chain Policy / Default Target<a class=headerlink href=#chain-policy--default-target title="Permanent link">&para;</a></h3> <ul> <li>Set the default TARGET for CHAIN: <code>iptables -P CHAIN TARGET</code></li> <li>Example: <code>iptables -P INPUT DROP</code> <div class=highlight><pre><span></span><code><span class=c1># Appending Rules</span>
+iptables -A CHAIN RULE-SPECIFICATION
+iptables <span class=o>[</span>-t TABLE<span class=o>]</span> -A CHAIN RULE-SPECIFICATION
+<span class=c1># Inserting Rules</span>
+iptables -I CHAIN <span class=o>[</span>RULENUM<span class=o>]</span> RULE-SPECIFICATION
+<span class=c1># Deleting Rules</span>
+iptables -D CHAIN RULE-SPECIFICATION
+iptables -D CHAIN RULENUM
+<span class=c1># Flushing rules or deleting tables</span>
+iptables <span class=o>[</span>-t table<span class=o>]</span> -F <span class=o>[</span>chain<span class=o>]</span>
+</code></pre></div></li> </ul> <h3 id=rule-specification-options>Rule Specification Options<a class=headerlink href=#rule-specification-options title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>-s <span class=m>10</span>.11.12.13                          <span class=c1># Source IP, network, or name</span>
+-d <span class=m>216</span>.58.192.0/19                      <span class=c1># Destination IP, network, or name</span>
+-p tcp / udp / icmp                     <span class=c1># Protocol</span>
+-p tcp --dport <span class=m>80</span>                       <span class=c1># Destination Port</span>
+-p tcp --sport <span class=m>8080</span>                     <span class=c1># Source Port</span>
+-p icmp --icmp-type echo-reply          <span class=c1># ICMP packet type, gives pong response</span>
+-p icmp --icmp-type echo-request        <span class=c1># Gives ping response</span>
+<span class=c1># Rating limiting</span>
+-m limit --limit rate<span class=o>[</span>/second/minute/hour/day<span class=o>]</span> <span class=c1># Match until a limit is reached.</span>
+-m limit --limit-burst                  <span class=c1># --limit default is 3/hour and --limit-burst default is 5</span>
+-m limit --limit <span class=m>5</span>/m --limit-burst <span class=m>10</span>   <span class=c1># /s = second, /m = minutes</span>
+-m limit ! --limit <span class=m>5</span>/s                  <span class=c1># ! = invert the match</span>
+</code></pre></div> <h3 id=target--jump>Target / Jump<a class=headerlink href=#target--jump title="Permanent link">&para;</a></h3> <ul> <li>To specify a jump point or target: <code>-j TARGET_OR_CHAIN</code> <div class=highlight><pre><span></span><code>-j ACCEPT               <span class=c1># Built-in target.</span>
+-j DROP                 <span class=c1># Built-in target.</span>
+-j LOGNDROP             <span class=c1># Custom chain.</span>
+</code></pre></div></li> </ul> <h3 id=rule-specification-example>Rule Specification Example<a class=headerlink href=#rule-specification-example title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># To drop all traffic from given source ip</span>
+iptables -A INPUT -s <span class=m>216</span>.58.219.174 -j DROP
+<span class=c1># List the filter table, as the above rule didnt specify table name</span>
+iptables -nL
+<span class=c1># Chain INPUT (policy ACCEPT)</span>
+<span class=c1># target prot opt source         destination</span>
+<span class=c1># DROP   all  --  216.58.219.174 0.0.0.0/0</span>
+
+<span class=c1># Accept SSH connection from only one network, drop all other SSH connections</span>
+iptables -A INPUT -s <span class=m>10</span>.0.0.0/24 -p tcp --dport <span class=m>22</span> -j ACCEPT
+iptables -A INPUT -p tcp --dport <span class=m>22</span> -j DROP
+
+<span class=c1># DOS protection by implementing Rate limiting</span>
+iptables -I INPUT -p tcp --dport <span class=m>80</span> <span class=se>\</span>
+-m limit --limit <span class=m>50</span>/min --limit-burst <span class=m>200</span> -j REJECT
+<span class=c1># Apply the below rate limit rule only for new connections and ignore for established connections</span>
+iptables -I INPUT -p tcp --dport <span class=m>80</span> <span class=se>\</span>
+-m limit --limit <span class=m>50</span>/min --limit-burst <span class=m>200</span> <span class=se>\</span>
+-m state --state NEW -j REJECT
+</code></pre></div> <h3 id=creating-and-deleting-a-chain>Creating and Deleting a Chain<a class=headerlink href=#creating-and-deleting-a-chain title="Permanent link">&para;</a></h3> <ul> <li>Create CHAIN: iptables [-t table] -N CHAIN</li> <li>Delete CHAIN: iptables [-t table] -X CHAIN</li> </ul> <h3 id=saving-rules>Saving Rules<a class=headerlink href=#saving-rules title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Debian / Ubuntu:</span>
+apt-get install iptables-persistent
+netfilter-persistent save
+</code></pre></div> <h3 id=netfilteriptable-front-ends>Netfilter/iptable Front-Ends<a class=headerlink href=#netfilteriptable-front-ends title="Permanent link">&para;</a></h3> <ul> <li>Uses iptables command on the back-end</li> <li>Firewalld - CentOS/RHEL</li> <li>UFW - Uncomplicated FireWall (Ubuntu)</li> <li>GUFW - Graphical interface to UFW</li> <li>system-configure-firewall - CentOS/RHEL</li> </ul> <h3 id=ip-tables-examples>IP Tables Examples<a class=headerlink href=#ip-tables-examples title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Allow anyone to connect to webserver, but only internal ips to connect via SSH</span>
+<span class=c1># Block all other traffic</span>
+iptables -L                             <span class=c1># List the existing rules, no rules</span>
+<span class=c1># Accept all incoming TCP traffic on port 80</span>
+iptables -A INPUT -p tcp --dport <span class=m>80</span> -j ACCEPT
+iptables -nL                            <span class=c1># List the current new rule</span>
+<span class=c1># Accept all incoming SSH traffic on port 22 originating from the internal network</span>
+iptables -A INPUT -p tcp --dport <span class=m>22</span> -s <span class=m>10</span>.0.0.0/24 -j ACCEPT
+<span class=c1># Drop all packets which dont match above 2 rules</span>
+iptables -A INPUT  -j DROP
+
+<span class=c1># Testing the filters</span>
+nc -v <span class=m>10</span>.0.0.8 <span class=m>80</span>                       <span class=c1># Net cat using an internal IP on port 80</span>
+nc -v <span class=m>10</span>.0.0.8 <span class=m>22</span>                       <span class=c1># Test the SSH connection</span>
+
+<span class=c1># Deleting existing rule</span>
+iptables -D INPUT <span class=m>1</span>                     <span class=c1># Deletes the Web server traffic on port 80</span>
+
+nc -w <span class=m>2</span> -v <span class=m>10</span>.0.0.8 <span class=m>80</span>                  <span class=c1># -w specifies timeout of 2 seconds</span>
+
+<span class=c1># Reject the packets instead of dropping them</span>
+iptables -D INPUT <span class=m>2</span>                     <span class=c1># Deletes the drop rule</span>
+iptables -A INPUT -J REJECT             <span class=c1># Now rejects the packets</span>
+nc -w <span class=m>2</span> -v <span class=m>10</span>.0.0.8 <span class=m>80</span>                  <span class=c1># Connection refused</span>
+
+<span class=c1># Flush all existing rules</span>
+iptables -F
+
+iptables -A INPUT -p tcp --dport <span class=m>22</span> -s <span class=m>10</span>.0.0.0/24 -j ACCEPT
+<span class=c1># Create a new custom table</span>
+iptables -N LOGNDROP
+<span class=c1># Create a rule to log all incoming traffic other than internal network SSH connection </span>
+iptables -A LOGNDROP -p tcp -m limit --limit <span class=m>5</span>/min -j LOG --log-prefix <span class=s2>&quot;iptables BLOCK &quot;</span>
+iptables -A INPUT -j LOGNDROP           <span class=c1># Accept and log before dropping the connection other than internal network</span>
+
+<span class=c1># In another terminal, tail the syslog file</span>
+tail -f /var/log/syslog
+
+<span class=c1># Other terminal</span>
+nc -w <span class=m>2</span> -v <span class=m>10</span>.0.0.8 <span class=m>80</span>                  <span class=c1># This will log and drop the connection</span>
+
+<span class=c1># Persist the iptables changes after reboot</span>
+netfilter- persistent save
+</code></pre></div> <h3 id=tcp-wrappers>TCP Wrappers<a class=headerlink href=#tcp-wrappers title="Permanent link">&para;</a></h3> <ul> <li>Host-based networking ACL system.</li> <li>Controls access to “wrapped” services.</li> <li>A wrapped service is compiled with <code>libwrap</code> support.</li> <li>Check if a service supports wrappers use <code>ldd</code>. <div class=highlight><pre><span></span><code>ldd /usr/sbin/sshd <span class=p>|</span> grep libwrap           <span class=c1># Prints required shared libraries.</span>
+</code></pre></div></li> <li>Can control access by IP address / networks.</li> <li>Can control access by hostname.</li> <li>Transparent to the client and service.</li> <li>Used with xinetd which is a super daemon as it can manage a lot of smaller services, secures access to your server.</li> <li>Centralized management for multiple network services.</li> <li>Runtime configuration</li> </ul> <h4 id=configuring-tcp-wrappers>Configuring TCP Wrappers<a class=headerlink href=#configuring-tcp-wrappers title="Permanent link">&para;</a></h4> <ul> <li><code>/etc/hosts.allow</code> is checked first. If a match is found, <strong>access is granted</strong>.</li> <li><code>/etc/hosts.deny</code> is checked next. If a match is found, <strong>access is denied</strong>.</li> </ul> <h4 id=access-rules>Access Rules<a class=headerlink href=#access-rules title="Permanent link">&para;</a></h4> <ul> <li>The rule format for <code>hosts.allow</code> and <code>hosts.deny</code> are the same.</li> <li>One rule per line</li> <li>Format: <code>SERVICE(S) : CLIENT(S) [: ACTION(S) ]</code> <div class=highlight><pre><span></span><code><span class=c1># Deny All configuration</span>
+<span class=c1># /etc/hosts.deny:</span>
+ALL : ALL                                       <span class=c1># Deny all connections</span>
+<span class=c1># /etc/hosts.allow:</span>
+<span class=c1># Explicitly list allowed connections here.</span>
+sshd : <span class=m>10</span>.11.12.13                              <span class=c1># Allow only ssh connection from this ip</span>
+
+<span class=c1># Additional configuration possibilities</span>
+sshd, imapd : <span class=m>10</span>.11.12.13                       <span class=c1># Multiple services allowed</span>
+ALL : <span class=m>10</span>.11.12.13                               <span class=c1># Wild Card configuration</span>
+sshd : <span class=m>10</span>.11.12.13, <span class=m>10</span>.5.6.7                    <span class=c1># Multiple IPs</span>
+sshd : jumpbox.example.com                      <span class=c1># Domain name</span>
+sshd : .admin.example.com                       <span class=c1># Subdomain - server2.admin.example.com or webdev.admin.example.com</span>
+sshd : jumpbox*.example.com                     <span class=c1># jumpbox4admins.example.com</span>
+sshd : jumpbox0?.example.com                    <span class=c1># jumpbox03.example.com</span>
+sshd : <span class=m>10</span>.11.12.                                <span class=c1># Subnet range</span>
+sshd : <span class=m>10</span>.                                      
+sshd : <span class=m>10</span>.11.0.0/255.255.0.0
+sshd : /etc/hosts.sshd                          <span class=c1># Allow all hosts in this file</span>
+imapd : ALL                                     <span class=c1># Wildcard in clients</span>
+sshd : ALL EXCEPT .hackers.net                  <span class=c1># Conditions, except IP in hacker.net domains</span>
+sshd : <span class=m>10</span>.11.12.13 : severity emerg             <span class=c1># Actions - Log emergency messages for that ssh connection coming from IP</span>
+sshd : <span class=m>10</span>.11.12.13 : severity local0.alert      <span class=c1># Raise local alert</span>
+<span class=c1># Raise custom message</span>
+<span class=c1># /etc/hosts.deny:</span>
+sshd : .hackers.net : spawn /usr/bin/wall “Attack <span class=k>in</span> progress.”
+<span class=c1># Use expressions in message, %a logs client ip</span>
+sshd : .hackers.net : spawn /usr/bin/wall “Attack from %a.”
+
+<span class=c1>## Possible expression expansions</span>
+<span class=c1># %a (%A) The client (server) host address.</span>
+<span class=c1># %c      Client information.</span>
+<span class=c1># %d      The daemon process name.</span>
+<span class=c1># %h (%H) The client (server) host name or address.</span>
+<span class=c1># %n (%N) The client (server) host name.</span>
+<span class=c1># %p      The daemon process id.</span>
+<span class=c1># %s      Server information.</span>
+<span class=c1># %u      The client user name (or &quot;unknown&quot;).</span>
+<span class=c1># %%      Expands to a single `% ́ character.</span>
+</code></pre></div></li> </ul> <h2 id=file-security>File Security<a class=headerlink href=#file-security title="Permanent link">&para;</a></h2> <h3 id=file-permissions_1>File Permissions<a class=headerlink href=#file-permissions_1 title="Permanent link">&para;</a></h3> <ul> <li>first letter in <code>ls -l</code> output</li> <li>Regular file: -</li> <li>Directory: d</li> <li>Symbolic link: l</li> <li>Read: r</li> <li>Write: w</li> <li>Execute: x</li> </ul> <h3 id=files-vs-directory>Files vs Directory<a class=headerlink href=#files-vs-directory title="Permanent link">&para;</a></h3> <ul> <li>r - Allows a file to be read. Allows file names in a directory to be read</li> <li>w - Allows a file to be modified. Allows entries to be modified within the directory</li> <li>x - Allows a file to be executed. Allows access to the contents and metdadata for entries</li> </ul> <h3 id=groups>Groups<a class=headerlink href=#groups title="Permanent link">&para;</a></h3> <ul> <li>Every user in linux is in atleast one group</li> <li>Users can belong to many groups</li> <li><code>group</code> command shows a user's group. Can also use <code>id -Gn</code> <div class=highlight><pre><span></span><code><span class=c1># Changing file permissions</span>
+ls -l sales.data                <span class=c1># Long list file permissions</span>
+chmod g+w sales.data            <span class=c1># Add Write permission to group</span>
+chmod g-w sales.data            <span class=c1># Remove Write permission to group</span>
+chmod u+rwx,g-x sales.data      <span class=c1># Add user all permissions and remove execute permission for group</span>
+chmod <span class=nv>a</span><span class=o>=</span>r sales.data            <span class=c1># Give all groups read permissions</span>
+chmod <span class=nv>o</span><span class=o>=</span> sales.data             <span class=c1># removes all permissions for others</span>
+</code></pre></div></li> </ul> <h3 id=directory-permissions>Directory permissions<a class=headerlink href=#directory-permissions title="Permanent link">&para;</a></h3> <ul> <li>Permissions on a directory can affect the files in the directory</li> <li>If the file permissions look correct, start checking the directory permissions</li> <li>Work your way up to the root</li> <li>Use <code>chgrp</code> to change group of a file <div class=highlight><pre><span></span><code><span class=c1># Changing directory permissions</span>
+ls -l sales.data                <span class=c1># Long list to show current group membership</span>
+groups                          <span class=c1># Shows current user&#39;s groups (one is user and other is sales group)</span>
+chgrp sales sales.data          <span class=c1># Change file ownership from user to sales group</span>
+chmod g+w sales.data            <span class=c1># Give other members in sales group write access</span>
+mkdir -p /usr/local/sales       <span class=c1># Create a common directory for sales group</span>
+mv sales.data /usr/local/sales  <span class=c1># Now file and directory have the same permissions</span>
+
+<span class=c1># Verify directory permissions</span>
+mkdir -p my-cat                 <span class=c1># Create new directory</span>
+touch my-cat/cat                <span class=c1># Create new file</span>
+chmod <span class=m>755</span> my-cat                <span class=c1># Modify permissions</span>
+ls -ld my-cat                   <span class=c1># Shows permissions</span>
+chmod <span class=m>400</span> my-cat                <span class=c1># Give only read permissions</span>
+ls -ld my-cat                   <span class=c1># Gives permission error</span>
+chmod <span class=m>500</span> my-cat                <span class=c1># Give write permission as well</span>
+ls -ld my-cat                   <span class=c1># Gives output</span>
+cat my-cat/cat                  <span class=c1># Shows file output</span>
+</code></pre></div></li> </ul> <h3 id=file-creation-mask>File Creation Mask<a class=headerlink href=#file-creation-mask title="Permanent link">&para;</a></h3> <ul> <li>File creation mask are set by the admins</li> <li>This can be changed by per user basis</li> <li>File creation mask determines default permissions.</li> <li>If no mask were to be specified: deafault permissions would be <strong>777 for directories and 666 for files</strong></li> </ul> <h3 id=umask-command>umask command<a class=headerlink href=#umask-command title="Permanent link">&para;</a></h3> <ul> <li>Sets the file creation mask to mode, if given</li> <li>Use <code>-S</code> for symbolic notation</li> <li>Format: <code>umask [-S] [mode]</code></li> <li>mode of umask is opposite to chmod</li> <li>chmod - adds permissions. <code>chmod 660</code> will give read and write permissions to file </li> <li>umask - subtracts permissions. <code>umask 007</code> will give read an write permissions to file</li> <li>Common umask modes: 002, 022, 077, 007 <div class=highlight><pre><span></span><code><span class=c1># Test umask</span>
+mkdir testumask
+<span class=nb>cd</span> testumask
+<span class=nb>umask</span>                           <span class=c1># Shows creation umask 0022</span>
+<span class=nb>umask</span> -S                        <span class=c1># Shows umask in symbolic mode</span>
+mkdir newdir
+touch newfile
+ls -l                           <span class=c1># Shows dir permissions = 0755 and file permissions = 0644</span>
+rm newfile
+rmdir newdir
+<span class=nb>umask</span> <span class=m>007</span>                       <span class=c1># Set new umask</span>
+mkdir newdir
+touch newfile
+ls -l                           <span class=c1># Shows dir permissions = 0770 and file permissions = 0660</span>
+</code></pre></div></li> </ul> <h3 id=special-modes>Special Modes<a class=headerlink href=#special-modes title="Permanent link">&para;</a></h3> <h4 id=setuid>Setuid<a class=headerlink href=#setuid title="Permanent link">&para;</a></h4> <ul> <li>When a process is started, it runs using the starting user's UID and GID.</li> <li>setuid = Set User ID upon execution.</li> <li>Examples of binaries running with root and setuid <div class=highlight><pre><span></span><code>-rwsr-xr-x <span class=m>1</span> root root /usr/bin/passwd      <span class=c1># Requires root permissions to modify passwd file</span>
+ping
+chsh
+</code></pre></div></li> <li>setuid files are an attack surface.</li> <li>Not honored on shell scripts.</li> <li>Octal Permissions: setuid=4, setgid=2 and sticky=1 <div class=highlight><pre><span></span><code><span class=c1># Adding the Setuid Attribute</span>
+chmod u+s /path/to/file
+chmod <span class=m>4755</span> /path/to/file
+<span class=c1># Removing the Setuid Attribute</span>
+chmod u-s /path/to/file
+chmod <span class=m>0755</span> /path/to/file
+<span class=c1># Finding Setuid Files</span>
+find / -perm /4000 -ls              <span class=c1># ls also lists files</span>
+<span class=c1># Only the Owner Should Edit Setuid Files</span>
+Good:           Symbolic          Octal
+                -rwsr-xr-x        <span class=m>4755</span>
+Really bad:     -rwsrwxrwx        <span class=m>4777</span>
+</code></pre></div></li> </ul> <h4 id=setgid>Setgid<a class=headerlink href=#setgid title="Permanent link">&para;</a></h4> <ul> <li>setgid = Set Group ID upon execution. <div class=highlight><pre><span></span><code>-rwxr-sr-x <span class=m>1</span> root tty /usr/bin/wall     <span class=c1># s - set in group field</span>
+crw--w---- <span class=m>1</span> bob tty /dev/pts/0
+<span class=c1># Adding the Setgid Attribute</span>
+chmod g+s /path/to/file
+chmod <span class=m>2755</span> /path/to/file
+<span class=c1># Adding the Setuid &amp; Setgid Attributes</span>
+chmod ug+s /path/to/file
+chmod <span class=m>6755</span> /path/to/file
+<span class=c1># Removing the Setgid Attribute</span>
+chmod g-s /path/to/file
+chmod <span class=m>0755</span> /path/to/file
+<span class=c1># Finding Setgid Files</span>
+find / -perm /2000 -ls
+</code></pre></div></li> </ul> <h4 id=setgid-on-directories>Setgid on Directories<a class=headerlink href=#setgid-on-directories title="Permanent link">&para;</a></h4> <ul> <li>setgid on a directory causes new files to inherit the group of the directory.</li> <li>setgid causes directories to inherit the setgid bit.</li> <li>Is not retroactive. Does not apply on existing files, but new files in directories.</li> <li>Great for working with groups.</li> </ul> <h4 id=use-an-integrity-checker>Use an Integrity Checker<a class=headerlink href=#use-an-integrity-checker title="Permanent link">&para;</a></h4> <ul> <li>Other options to <code>find</code>.</li> <li>Tripwire</li> <li>AIDE (Advanced Intrusion Detection</li> <li>Environment)</li> <li>OSSEC</li> <li>Samhain</li> <li>Package managers</li> </ul> <h4 id=sticky-bit>Sticky Bit<a class=headerlink href=#sticky-bit title="Permanent link">&para;</a></h4> <ul> <li>Use on a directory to only allow the owner of the file/directory to delete it.</li> <li>Required on files or directories whcih are shared with multiple users or programs <div class=highlight><pre><span></span><code><span class=c1># Used on /tmp:</span>
+drwxrwxrwt <span class=m>10</span> root root <span class=m>4096</span> Feb <span class=m>1</span> <span class=m>09</span>:47 /tmp
+<span class=c1># Adding the Sticky Bit</span>
+chmod o+s /path/to/directory
+chmod <span class=m>1777</span> /path/to/directory
+<span class=c1># Removing the Sticky Bit</span>
+chmod o-t /path/to/directory
+chmod <span class=m>0777</span> /path/to/directory
+</code></pre></div></li> </ul> <h4 id=reading-ls-output>Reading ls Output<a class=headerlink href=#reading-ls-output title="Permanent link">&para;</a></h4> <ul> <li>A capitalized special permission means the underlying normal permission is not set.</li> <li>A lowercase special permission means the underlying normal permission set. <div class=highlight><pre><span></span><code><span class=c1># execute permission is not set for user</span>
+-rwSr--r-- <span class=m>1</span> root root <span class=m>0</span> Feb <span class=m>14</span> <span class=m>11</span>:21 <span class=nb>test</span>
+<span class=c1># execute permission is set for the user</span>
+-rwsr--r-- <span class=m>1</span> root root <span class=m>0</span> Feb <span class=m>14</span> 
+<span class=c1># execute permission is not set for group</span>
+-rwxrwSr-- <span class=m>1</span> root root <span class=m>0</span> Feb <span class=m>14</span> <span class=m>11</span>:21 <span class=nb>test</span>
+<span class=c1># execute permission is not set for others</span>
+drwxr-xr-T <span class=m>2</span> root root <span class=m>0</span> Feb <span class=m>14</span> <span class=m>11</span>:30 testd
+</code></pre></div></li> </ul> <h3 id=file-attributes>File Attributes<a class=headerlink href=#file-attributes title="Permanent link">&para;</a></h3> <ul> <li>xattr: Supported by many file systems. ext2, ext3, ext4, XFS</li> </ul> <h4 id=attribute-i-immutable>Attribute: i immutable<a class=headerlink href=#attribute-i-immutable title="Permanent link">&para;</a></h4> <p>The file cannot be: modified, deleted, renamed, hard linked to Unset the attribute in order to delete it.</p> <h4 id=attribute-a-append>Attribute: a append<a class=headerlink href=#attribute-a-append title="Permanent link">&para;</a></h4> <ul> <li>Append only.</li> <li>Existing contents cannot be modified.</li> <li>Cannot be deleted while attribute is set.</li> <li>Use this attribute on log files.</li> <li>Safeguard the audit trail.</li> </ul> <h4 id=other-attributes>Other Attributes<a class=headerlink href=#other-attributes title="Permanent link">&para;</a></h4> <ul> <li>Not every attribute is supported.</li> <li>man ext4, man xfs, man brtfs, etc.</li> <li>Example: s secure deletion</li> </ul> <h4 id=modifying-attributes>Modifying Attributes<a class=headerlink href=#modifying-attributes title="Permanent link">&para;</a></h4> <ul> <li>Use the chattr command.</li> <li> <ul> <li>adds attributes.</li> </ul> </li> <li> <ul> <li>removes attributes.</li> </ul> </li> <li>= sets the exact attributes. <div class=highlight><pre><span></span><code><span class=c1># Making the hosts file immutable</span>
+lsattr /etc/hosts           <span class=c1># No attributes present</span>
+chattr +i /etc/hosts        <span class=c1># Add immutable attribute</span>
+vi /etc/hosts               <span class=c1># Not able to write and save</span>
+rm /etc/hosts               <span class=c1># Not able to delete the file</span>
+chattr -i /etc/hosts        <span class=c1># Remove immutable attribute  </span>
+lsattr /etc/hosts           <span class=c1># No attributes present</span>
+vi /etc/hosts               <span class=c1># Now able to write and save</span>
+chattr +i /etc/hosts        <span class=c1># Add immutable attribute back again</span>
+
+<span class=c1># Making the apache logs files append only</span>
+<span class=nb>cd</span> /var/log/httpd
+<span class=nv>chattr</span> <span class=o>=</span>a *                 <span class=c1># Adding append attribute to all the files inside</span>
+lsattr
+<span class=nb>echo</span> <span class=nb>test</span> &gt;&gt; access_log     <span class=c1># Data will be appended</span>
+cat access_log
+vi access_log               <span class=c1># Not able to write and save</span>
+</code></pre></div></li> </ul> <h3 id=access-control-lists>Access Control Lists<a class=headerlink href=#access-control-lists title="Permanent link">&para;</a></h3> <ul> <li>ACL = Access Control List</li> <li>Provides additional control</li> <li>Example: Give one user access to a file.</li> <li>Traditional solution is to create another group.</li> <li>Increases management overhead of groups.</li> <li>Ensure file system mounted with ACL support</li> <li>XFS supports this by default <div class=highlight><pre><span></span><code><span class=c1># Mount files with ACL support to get this feature</span>
+mount -o acl /path/to/dev /path/to/mount
+tune2fs -o acl /path/to/dev
+tune2fs -l /path/to/dev <span class=p>|</span> grep options      <span class=c1># Verify ACL</span>
+</code></pre></div></li> </ul> <h4 id=types-of-acls>Types of ACLs<a class=headerlink href=#types-of-acls title="Permanent link">&para;</a></h4> <ul> <li><strong>Access</strong> - Control access to a specific file or directory.</li> <li><strong>Default</strong>- Used on directories only.</li> <li>Files without access rules use the default ACL rules.</li> <li>Not retroactive.</li> <li>Optional.</li> </ul> <h4 id=acls-can-be-configured>ACLs Can Be Configured:<a class=headerlink href=#acls-can-be-configured title="Permanent link">&para;</a></h4> <ul> <li>Per user</li> <li>Per group</li> <li>For users not in the file’s group</li> <li>Via the effective rights mask</li> </ul> <h4 id=creating-acls>Creating ACLs<a class=headerlink href=#creating-acls title="Permanent link">&para;</a></h4> <ul> <li>Use the setfacl command.</li> <li>May need to install the ACL tools.</li> <li>Modify or add ACLs: <code>setfacl -m ACL FILE_OR_DIRECTORY</code></li> <li>Detecting Files with ACLs: <code>+</code> at the end of <code>ls -l</code> permissions output <div class=highlight><pre><span></span><code><span class=c1># User ACLs / Rules</span>
+<span class=c1># u:uid:perms               Set the access ACL for a user.</span>
+setfacl -m u:jason:rwx start.sh
+setfacl -m u:sam:xr start.sh
+<span class=c1># Group ACLs / Rules</span>
+<span class=c1># g:gid:perms               Sets the access ACL for a group.</span>
+setfacl -m g:sales:rw sales.txt
+<span class=c1># Mask ACLs / Rules</span>
+<span class=c1># m:perms                   Sets the effective rights mask.</span>
+setfacl -m m:rx sales.txt
+<span class=c1># Other ACLs / Rules</span>
+<span class=c1># o:perms                   Sets the access ACL for others.</span>
+setfacl -m o:r sales.txt
+<span class=c1># Creating Multiple ACLs at Once</span>
+setfacl -m u:bob:r,g:sales:rw sales.txt
+<span class=c1># Default ACLs</span>
+<span class=c1># d:[ugo]:perms             Sets the default ACL.</span>
+setfacl -m d:g:sales:rw sales
+<span class=c1># Setting ACLs Recursively (-R)</span>
+setfacl -R -m g:sales:rw sales
+<span class=c1># Removing ACLs for particular group or user</span>
+setfacl -x ACL FILE_OR_DIRECTORY
+setfacl -x u:jason sales.txt        <span class=c1># Note: Not supposed to give permissions when deleting ACL</span>
+setfacl -x g:sales sales.txt
+<span class=c1># Removing All ACLs</span>
+setfacl -b FILE_OR_DIRECTORY
+setfacl -b sales.txt
+<span class=c1># Viewing ACLs</span>
+getfacl sales.txt
+</code></pre></div></li> </ul> <div class=highlight><pre><span></span><code><span class=c1># ACL for a shared project directory</span>
+<span class=c1># Logged in as root user</span>
+mkdir /usr/local/project
+<span class=nb>cd</span> /usr/local
+chgrp project project/                  
+chmod <span class=m>775</span> project/                      <span class=c1># Give the project members access to the directory</span>
+ls -ld project/                         <span class=c1># Directory owned by root and project members have access</span>
+su - sam                                <span class=c1># Switch user</span>
+groups                                  <span class=c1># same is in project group</span>
+<span class=nb>cd</span> usr/local/project
+<span class=nb>echo</span> stuff &gt; notes.txt
+ls -l notes.txt                         <span class=c1># sam is the owner of this file</span>
+<span class=c1># Give bob who is not a member of project group access to this file</span>
+setfacl -m u:bob:rw notes.txt           <span class=c1># Modify access by sam to give read and write access</span>
+getfacl notes.txt                       <span class=c1># List the permisions for bob</span>
+su -bob                                 <span class=c1># Switch user</span>
+vi notes.txt                            <span class=c1># bob is able to write</span>
+su -sam                                 <span class=c1># Switch user</span>
+setfacl -x u:bob notes.txt              <span class=c1># Remove the rw permissions</span>
+getfacl notes.txt                       <span class=c1># No permissions visble for bob</span>
+
+su -                                    <span class=c1># Switch to root</span>
+<span class=nb>cd</span> project
+touch root-was-here                     <span class=c1># Create a new file owned by root in shared directory</span>
+ls -l                                   <span class=c1># No ACL is applied even though its in shared directory</span>
+su sam                                  <span class=c1># Switch to group user</span>
+<span class=nb>echo</span> &gt;&gt; root-was-here                   <span class=c1># Permission denied</span>
+su -                                    <span class=c1># Switch to root</span>
+<span class=nb>cd</span> /usr/local/project
+setfacl -m d:g:project:rw .             <span class=c1># Set default ACL to project directory </span>
+ls -ld .                                <span class=c1># Default ACL are added to directory denoted by +</span>
+getfacl                                 <span class=c1># Default ACL are added</span>
+touch <span class=nb>test</span>                              <span class=c1># Create new file</span>
+getfacl
+su sam
+vi <span class=nb>test</span>                                 <span class=c1># Edit is possible</span>
+setfacl -R -m g:project:rw .            <span class=c1># Add recursively permissions to root-was-here file as well</span>
+</code></pre></div> <h3 id=rootkits>Rootkits<a class=headerlink href=#rootkits title="Permanent link">&para;</a></h3> <ul> <li>Software used to gain root access and remain undetected.</li> <li>They attempt to hide from system administrators and antivirus software.</li> <li>User space rootkits replace common commands such as ls, ps, find, netstat, etc</li> <li>Kernel space rootkits add or replace parts of the core operating system.</li> </ul> <h4 id=rootkit-detection>Rootkit Detection<a class=headerlink href=#rootkit-detection title="Permanent link">&para;</a></h4> <ul> <li>Use a file integrity checker for user space rootkits. (AIDE, tripwire, OSSEC, etc.)</li> <li>Identify inconsistent behavior of a system.</li> <li>High CPU utilization without corresponding processes.</li> <li>High network load or unusual connections.</li> <li>Kernel mode rootkits have to be running in order to hide themselves.</li> <li>Halt the system and examine the storage.</li> <li>Use a known good operating system to do the investigation.</li> <li>Use bootable media, for example.</li> </ul> <h4 id=rootkit-hunter--rkhunter>Rootkit Hunter / RKHunter<a class=headerlink href=#rootkit-hunter--rkhunter title="Permanent link">&para;</a></h4> <ul> <li>Shell script that searches for rootkits. <div class=highlight><pre><span></span><code>rkhunter --update               <span class=c1># Update database</span>
+rkhunter --propupd              <span class=c1># Update RKHunter configurations</span>
+rkhunter -c                     <span class=c1># Interactive Check Mode </span>
+cat /var/log/rkhunter.log       <span class=c1># Log file location</span>
+rkhunter -c --rwo               <span class=c1># Report only warnings</span>
+rkhunter --cronjob              <span class=c1># Run as cronjob</span>
+
+<span class=c1># After a fresh installation of OS</span>
+<span class=c1># Install RK Hunter and then update the properties and database</span>
+<span class=c1># Configure it to run everyday and report any issues by configuring it to log all output in a central place</span>
+<span class=c1># Configure Cronjob</span>
+crontab -e                      <span class=c1># Create a new cronjob</span>
+<span class=c1># At the end run at modnight everyday </span>
+<span class=c1># Redirect the output to single file</span>
+<span class=m>0</span> <span class=m>0</span> * * * /usr/local/bin/rkhunter --cronjob --update &gt; /var/tmp/rkhunter.cronlog <span class=m>2</span>&gt;<span class=p>&amp;</span><span class=m>1</span> 
+</code></pre></div></li> </ul> <h4 id=ossec><a href=http://ossec.github.io/ >OSSEC</a><a class=headerlink href=#ossec title="Permanent link">&para;</a></h4> <ul> <li>Host Intrusion Detection System (HIDS)</li> <li>More than just rookit detection: log analysis, file integrity checking, alerting.</li> <li>Syscheck module - user mode rootkit detection.</li> <li>Rootcheck module - both user mode and kernel mode rootkit detection.</li> </ul> <h4 id=rootkit-removal>Rootkit Removal<a class=headerlink href=#rootkit-removal title="Permanent link">&para;</a></h4> <ul> <li>Keep a copy of the data if possible.</li> <li>Learn how to keep it from happening again.</li> <li>Reinstall core OS components and start investigating. Not recommended. Easy to make a mistake.</li> <li>Safest is to reinstall the OS from trusted media.</li> </ul> <h4 id=rootkit-prevention>Rootkit Prevention<a class=headerlink href=#rootkit-prevention title="Permanent link">&para;</a></h4> <ul> <li>Use good security practices: Physical, Account Network</li> <li>Use file integrity monitoring: AIDE,Tripware, OSSEC</li> <li>Keep your systems patched. <div class=highlight><pre><span></span><code>
+</code></pre></div></li> </ul> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> </article> </div> </div> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2018 - 2019 Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script> <script src=../../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>

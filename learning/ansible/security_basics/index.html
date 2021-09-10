@@ -1,0 +1,997 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/learning/ansible/security_basics/ rel=canonical><link rel="shortcut icon" href=../../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-7.0.3"><title>Introduction - Leslie's Online Notebook</title><link rel=stylesheet href=../../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#introduction class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Introduction </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Linux <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Linux data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Linux </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../linux/linux.md class=md-nav__link> Linux </a> </li> <li class=md-nav__item> <a href=../../../linux/security.md class=md-nav__link> Security </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Ansible <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ansible data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Ansible </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../ansible/ class=md-nav__link> Ansible </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../k8s/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../../k8s/install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../../python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../vagrant/ class=md-nav__link> Vagrant </a> </li> <li class=md-nav__item> <a href=../../terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../../docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_8 type=checkbox id=__nav_8> <label class=md-nav__link for=__nav_8> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_8> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../devops/ class=md-nav__link> Index </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#introduction class=md-nav__link> Introduction </a> <nav class=md-nav aria-label=Introduction> <ul class=md-nav__list> <li class=md-nav__item> <a href=#why-ansible-for-this-setup class=md-nav__link> Why Ansible for this setup? </a> </li> <li class=md-nav__item> <a href=#setting-up-nginx-web-server class=md-nav__link> Setting up nginx web server </a> </li> <li class=md-nav__item> <a href=#hardening-ssh-service class=md-nav__link> Hardening SSH service </a> </li> <li class=md-nav__item> <a href=#hardening-nginx class=md-nav__link> Hardening nginx </a> </li> <li class=md-nav__item> <a href=#hardening-wordpress class=md-nav__link> Hardening WordPress </a> </li> <li class=md-nav__item> <a href=#hardening-a-database-service class=md-nav__link> Hardening a database service </a> </li> <li class=md-nav__item> <a href=#hardening-a-host-firewall-service class=md-nav__link> Hardening a host firewall service </a> </li> <li class=md-nav__item> <a href=#setting-up-automated-encrypted-backups-in-aws-s3 class=md-nav__link> Setting up automated encrypted backups in AWS S3 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#lamp-stack-playbook class=md-nav__link> LAMP stack playbook </a> <nav class=md-nav aria-label="LAMP stack playbook"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#the-high-level-hierarchy-structure-of-the-entire-playbook class=md-nav__link> The high-level hierarchy structure of the entire playbook: </a> </li> <li class=md-nav__item> <a href=#playbook-files class=md-nav__link> Playbook Files </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#setting-up-ansible-tower class=md-nav__link> Setting up Ansible Tower </a> </li> <li class=md-nav__item> <a href=#setting-up-awx class=md-nav__link> Setting up AWX </a> <nav class=md-nav aria-label="Setting up AWX"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#installing-awx class=md-nav__link> Installing AWX </a> </li> <li class=md-nav__item> <a href=#running-your-first-playbook-from-awx class=md-nav__link> Running your first playbook from AWX </a> <nav class=md-nav aria-label="Running your first playbook from AWX"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#creating-an-awx-project class=md-nav__link> Creating an AWX project </a> </li> <li class=md-nav__item> <a href=#creating-an-inventory class=md-nav__link> Creating an inventory </a> </li> <li class=md-nav__item> <a href=#creating-a-job-template class=md-nav__link> Creating a job template </a> </li> <li class=md-nav__item> <a href=#running-a-job class=md-nav__link> Running a job </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#controlling-access-to-awx class=md-nav__link> Controlling access to AWX </a> <nav class=md-nav aria-label="Controlling access to AWX"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#creating-a-user class=md-nav__link> Creating a user </a> </li> <li class=md-nav__item> <a href=#creating-a-team class=md-nav__link> Creating a team </a> </li> <li class=md-nav__item> <a href=#creating-an-organization class=md-nav__link> Creating an organization </a> </li> <li class=md-nav__item> <a href=#assigning-permissions-in-awx class=md-nav__link> Assigning permissions in AWX </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#setting-up-jenkins class=md-nav__link> Setting up Jenkins </a> </li> <li class=md-nav__item> <a href=#security-automation-use-cases class=md-nav__link> Security automation use cases </a> <nav class=md-nav aria-label="Security automation use cases"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#ansible-tower-configuration class=md-nav__link> Ansible Tower configuration </a> </li> <li class=md-nav__item> <a href=#jenkins-ansible-integration-configuration class=md-nav__link> Jenkins Ansible integration configuration </a> </li> <li class=md-nav__item> <a href=#authentication-and--data-security class=md-nav__link> Authentication and data security </a> <nav class=md-nav aria-label="Authentication and  data security"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#rbac-for-ansible-tower class=md-nav__link> RBAC for Ansible Tower </a> </li> <li class=md-nav__item> <a href=#tlsssl-for-ansible-tower class=md-nav__link> TLS/SSL for Ansible Tower </a> </li> <li class=md-nav__item> <a href=#encryption-and-data-security-for-ansible-tower class=md-nav__link> Encryption and data security for Ansible Tower </a> </li> <li class=md-nav__item> <a href=#tlsssl-for-jenkins class=md-nav__link> TLS/SSL for Jenkins </a> </li> <li class=md-nav__item> <a href=#encryption-and-data-security-for-jenkins class=md-nav__link> Encryption and data security for Jenkins </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#output-of-the-playbooks class=md-nav__link> Output of the playbooks </a> <nav class=md-nav aria-label="Output of the playbooks"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#report-management-for-ansible-tower class=md-nav__link> Report management for Ansible Tower </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#scheduling-of-jobs class=md-nav__link> Scheduling of jobs </a> </li> <li class=md-nav__item> <a href=#alerting-notifications-and-webhooks class=md-nav__link> Alerting, notifications, and webhooks </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#setting-up-a-hardened-wordpress-with-encrypted-automated-backups class=md-nav__link> Setting Up a Hardened WordPress with Encrypted Automated Backups </a> <nav class=md-nav aria-label="Setting Up a Hardened WordPress with Encrypted Automated Backups"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#secure-automated-the-wordpress-updates class=md-nav__link> Secure automated the WordPress updates </a> </li> <li class=md-nav__item> <a href=#scheduling-via-ansible-tower-for-daily-updates class=md-nav__link> Scheduling via Ansible Tower for daily updates </a> </li> <li class=md-nav__item> <a href=#setting-up-apache2-web-server class=md-nav__link> Setting up Apache2 web server </a> </li> <li class=md-nav__item> <a href=#enabling-tlsssl-with-lets-encrypt class=md-nav__link> Enabling TLS/SSL with Let's Encrypt </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#log-monitoring class=md-nav__link> Log Monitoring </a> <nav class=md-nav aria-label="Log Monitoring"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#introduction-to-elastic-stack class=md-nav__link> Introduction to Elastic Stack </a> </li> <li class=md-nav__item> <a href=#elasticsearch class=md-nav__link> Elasticsearch </a> </li> <li class=md-nav__item> <a href=#logstash class=md-nav__link> Logstash </a> </li> <li class=md-nav__item> <a href=#kibana class=md-nav__link> Kibana </a> </li> <li class=md-nav__item> <a href=#beats class=md-nav__link> Beats </a> </li> <li class=md-nav__item> <a href=#elastalert class=md-nav__link> ElastAlert </a> </li> <li class=md-nav__item> <a href=#why-should-we-use-elastic-stack-for-security-monitoring-and-alerting class=md-nav__link> Why should we use Elastic Stack for security monitoring and alerting? </a> </li> <li class=md-nav__item> <a href=#prerequisites-for-setting-up-elastic-stack class=md-nav__link> Prerequisites for setting up Elastic Stack </a> </li> <li class=md-nav__item> <a href=#setting-up-the-elastic-stack class=md-nav__link> Setting up the Elastic Stack </a> </li> <li class=md-nav__item> <a href=#installing-elasticsearch class=md-nav__link> Installing Elasticsearch </a> </li> <li class=md-nav__item> <a href=#installing-logstash class=md-nav__link> Installing Logstash </a> </li> <li class=md-nav__item> <a href=#logstash-configuration class=md-nav__link> Logstash configuration </a> </li> <li class=md-nav__item> <a href=#installing-kibana class=md-nav__link> Installing Kibana </a> </li> <li class=md-nav__item> <a href=#setting-up-nginx-reverse-proxy class=md-nav__link> Setting up nginx reverse proxy </a> </li> <li class=md-nav__item> <a href=#installing-beats-to-send-logs-to-elastic-stack class=md-nav__link> Installing Beats to send logs to Elastic Stack </a> </li> <li class=md-nav__item> <a href=#elastalert-for-alerting class=md-nav__link> ElastAlert for alerting </a> </li> <li class=md-nav__item> <a href=#configuring-the-lets-encrypt-service class=md-nav__link> Configuring the Let's Encrypt service </a> </li> <li class=md-nav__item> <a href=#elastalert-rule-configuration class=md-nav__link> ElastAlert rule configuration </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#serverless-automated-defense class=md-nav__link> Serverless Automated Defense </a> <nav class=md-nav aria-label="Serverless Automated Defense"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#setup class=md-nav__link> Setup </a> </li> <li class=md-nav__item> <a href=#configuration class=md-nav__link> Configuration </a> </li> <li class=md-nav__item> <a href=#automated-defense-lambda-in-action class=md-nav__link> Automated defense lambda in action </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>Introduction</h1> <h2 id=introduction>Introduction<a class=headerlink href=#introduction title="Permanent link">&para;</a></h2> <ul> <li><a href=https://github.com/PacktPublishing/Security-Automation-with-Ansible-2>Ansible Security</a></li> <li><a href=https://github.com/dev-sec>Dev-Sec Community Playbooks</a></li> <li><a href=https://www.Ansible.com/security-automation-with-Ansible>Ansible Security Automation</a></li> </ul> <h3 id=why-ansible-for-this-setup>Why Ansible for this setup?<a class=headerlink href=#why-ansible-for-this-setup title="Permanent link">&para;</a></h3> <p>Ansible is made for security automation and hardening. It uses YAML syntax, which helps us to codify our entire process of repeated tasks. By using this, we can automate the process of continuous delivery and deployment of infrastructure using roles and playbooks.</p> <p>The modular approach enables us to perform tasks very simply. For example, the operations teams can write a playbook to set up a WordPress site and the security team can create another role which can harden the WordPress site. </p> <p>It is very easy to use the modules for repeatability, and the output is idempotent, which means creating standards for the servers, applications, and infrastructure. Some use cases include creating base images for organizations using internal policy standards.</p> <p>Ansible uses SSH protocol, which is by default secured with encrypted transmission and host encryption. Also, there are no dependency issues while dealing with different types of operating systems. It uses Python to perform; this can be easily extended, based on our use case. </p> <h3 id=setting-up-nginx-web-server>Setting up nginx web server<a class=headerlink href=#setting-up-nginx-web-server title="Permanent link">&para;</a></h3> <ul> <li>We are adding the signing key, then adding the repository, then installing. </li> <li>This ensures that we can also perform integrity checks while downloading packages from the repositories. </li> </ul> <h3 id=hardening-ssh-service>Hardening SSH service<a class=headerlink href=#hardening-ssh-service title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code><span class=c1># Disabling the root user login, and instead creating a different user, and, if required, providing the sudo privilege</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">create new user</span>
+      <span class=nt>user</span><span class=p>:</span>
+        <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>new_user_name</span><span class=nv> </span><span class=s>}}&quot;</span>
+        <span class=nt>password</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>new_user_password</span><span class=nv> </span><span class=s>}}&quot;</span>
+        <span class=nt>shell</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/bin/bash</span>
+        <span class=nt>groups</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">sudo</span>
+        <span class=nt>append</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+<span class=c1># Using key-based authentication to log in. Unlike with password-based authentication, we can generate SSH keys and add the public key to the authorized keys</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">add ssh key for new user</span>
+      <span class=nt>authorized_key</span><span class=p>:</span>
+        <span class=nt>user</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>new_user_name</span><span class=nv> </span><span class=s>}}&quot;</span>
+        <span class=nt>key</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>lookup(&#39;file&#39;,</span><span class=nv> </span><span class=s>&#39;/home/user/.ssh/id_rsa.pub&#39;)</span><span class=nv> </span><span class=s>}}&quot;</span>
+        <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+<span class=c1># Some of the configuration tweaks using the SSH configuration file; for example, PermitRootLogin, PubkeyAuthentication, and PasswordAuthentication</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ssh configuration tweaks</span>
+      <span class=nt>lineinfile</span><span class=p>:</span>
+        <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/ssh/sshd_config</span>
+        <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+        <span class=nt>line</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+        <span class=nt>backups</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+      <span class=nt>with_items</span><span class=p>:</span>
+        <span class="p p-Indicator">-</span> <span class=s>&quot;PermitRootLogin</span><span class=nv> </span><span class=s>no&quot;</span>
+        <span class="p p-Indicator">-</span> <span class=s>&quot;PasswordAuthentication</span><span class=nv> </span><span class=s>no&quot;</span>
+
+      <span class=nt>notify</span><span class=p>:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">restart ssh</span>
+</code></pre></div> - We can also set up services like fail2ban for protecting against basic attacks. - Also, we can enable MFA, if required to log in. <a href=https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-16-04>Digitial Ocean</a> - The following playbook will provide more advanced features for SSH hardening by <a href=https://github.com/dev-sec/ansible-ssh-hardening>dev-sec team</a></p> <h3 id=hardening-nginx>Hardening nginx<a class=headerlink href=#hardening-nginx title="Permanent link">&para;</a></h3> <ul> <li>We can start looking at things like disabling server tokens to not display version information, adding headers like X-XSS-Protection, and many other configuration tweaks. </li> <li>Most of these changes are done via configuration changes, and Ansible allows us to version and control and automate these changes based on user requirements.<ul> <li>The nginx server version information can be blocked by adding the server_tokens off; value to the configuration</li> <li>add_header X-XSS-Protection "1; mode=block"; will enable the cross-site scripting (XSS) filter</li> <li>SSLv3 can be disabled by adding ssl_protocols TLSv1 TLSv1.1 TLSv1.2; <div class=highlight><pre><span></span><code>    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">update the hardened nginx configuration changes</span>
+      <span class=nt>template</span><span class=p>:</span>
+        <span class=nt>src</span><span class=p>:</span> <span class=s>&quot;hardened-nginx-config.j2&quot;</span>
+        <span class=nt>dest</span><span class=p>:</span> <span class=s>&quot;/etc/nginx/sites-available/default&quot;</span>
+
+      <span class=nt>notify</span><span class=p>:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">restart nginx</span>
+</code></pre></div></li> </ul> </li> <li>Mozilla runs an updated web page on guidance for <a href=https://wiki.mozilla.org/Security/Server_Side_TLS>SSL/TLS</a>. </li> <li>The guidance offers an opinion on what cipher suites to use, and other security measures. </li> <li>Additionally, if you trust their judgment, you can also use their SSL/TLS configuration generator to quickly generate a configuration for your <a href=https://mozilla.github.io/server-side-tls/ssl-config-generator/ >web server configuration</a>.</li> <li>Whichever configuration you decide to use, the template needs to be named as <code>hardened-nginx-config.j2</code>.</li> </ul> <h3 id=hardening-wordpress>Hardening WordPress<a class=headerlink href=#hardening-wordpress title="Permanent link">&para;</a></h3> <ul> <li>This includes basic checks for WordPress security misconfigurations. Some of them include: <div class=highlight><pre><span></span><code><span class=c1># Directory and file permissions</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">update the file permissions</span>
+      <span class=nt>file</span><span class=p>:</span>
+        <span class=nt>path</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>WordPress_install_directory</span><span class=nv> </span><span class=s>}}&quot;</span>
+        <span class=nt>recurse</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+        <span class=nt>owner</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>new_user_name</span><span class=nv> </span><span class=s>}}&quot;</span>
+        <span class=nt>group</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">www-data</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">updating file and directory permissions</span>
+      <span class=nt>shell</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+
+      <span class=nt>with_items</span><span class=p>:</span>
+        <span class="p p-Indicator">-</span> <span class=s>&quot;find</span><span class=nv> </span><span class=s>{{</span><span class=nv> </span><span class=s>WordPress_install_directory</span><span class=nv> </span><span class=s>}}</span><span class=nv> </span><span class=s>-type</span><span class=nv> </span><span class=s>d</span><span class=nv> </span><span class=s>-exec</span><span class=nv> </span><span class=s>chmod</span>
+         <span class=s>755</span><span class=nv> </span><span class=s>{}</span><span class=nv> </span><span class=err>\</span><span class=s>;&quot;</span>
+        <span class="p p-Indicator">-</span> <span class=s>&quot;find</span><span class=nv> </span><span class=s>{{</span><span class=nv> </span><span class=s>WordPress_install_directory</span><span class=nv> </span><span class=s>}}</span><span class=nv> </span><span class=s>-type</span><span class=nv> </span><span class=s>f</span><span class=nv> </span><span class=s>-exec</span><span class=nv> </span><span class=s>chmod</span> 
+        <span class=s>644</span><span class=nv> </span><span class=s>{}</span><span class=nv> </span><span class=err>\</span><span class=s>;&quot;</span>
+<span class=c1># Username and attachment enumeration blocking. The following code snippet is part of nginx&#39;s configuration</span>
+    <span class=c1># Username enumeration block</span>
+    <span class="l l-Scalar l-Scalar-Plain">if ($args ~ &quot;^/?author=([0-9]*)&quot;){</span>
+        <span class="l l-Scalar l-Scalar-Plain">return 403;</span>
+    <span class=err>}</span>
+
+    <span class=c1># Attachment enumeration block</span>
+    <span class="l l-Scalar l-Scalar-Plain">if ($query_string ~ &quot;attachment_id=([0-9]*)&quot;){</span>
+        <span class="l l-Scalar l-Scalar-Plain">return 403;</span>
+    <span class=err>}</span>
+<span class=c1># Disallowing file edits in the WordPress editor</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">update the WordPress configuration</span>
+      <span class=nt>lineinfile</span><span class=p>:</span>
+        <span class=nt>path</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/var/www/html/wp-config.php</span>
+        <span class=nt>line</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+  
+      <span class=nt>with_items</span><span class=p>:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">define(&#39;FS_METHOD&#39;, &#39;direct&#39;);</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">define(&#39;DISALLOW_FILE_EDIT&#39;, true);</span>
+</code></pre></div></li> </ul> <h3 id=hardening-a-database-service>Hardening a database service<a class=headerlink href=#hardening-a-database-service title="Permanent link">&para;</a></h3> <ul> <li>We can harden the MySQL service by binding it to localhost and the required interfaces for interacting with the application. </li> <li>It then removes the anonymous user and test databases <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">delete anonymous mysql user for localhost</span>
+  <span class=nt>mysql_user</span><span class=p>:</span>
+    <span class=nt>user</span><span class=p>:</span> <span class=s>&quot;&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">absent</span>
+    <span class=nt>login_password</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>mysql_root_password</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>login_user</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">secure mysql root user</span>
+  <span class=nt>mysql_user</span><span class=p>:</span>
+    <span class=nt>user</span><span class=p>:</span> <span class=s>&quot;root&quot;</span>
+    <span class=nt>password</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>mysql_root_password</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>host</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>login_password</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>mysql_root_password</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>login_user</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">::1</span>
+    <span class="p p-Indicator">-</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>ansible_fqdn</span><span class=nv> </span><span class=s>}}&quot;</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">removes mysql test database</span>
+  <span class=nt>mysql_db</span><span class=p>:</span>
+    <span class=nt>db</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">absent</span>
+    <span class=nt>login_password</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>mysql_root_password</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>login_user</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+</code></pre></div></li> </ul> <h3 id=hardening-a-host-firewall-service>Hardening a host firewall service<a class=headerlink href=#hardening-a-host-firewall-service title="Permanent link">&para;</a></h3> <ul> <li>Ansible even has a module for UFW, so the following snippet starts with installing this and enabling logging. </li> <li>It follows this by adding default policies, like default denying all incoming and allowing outgoing. </li> <li>Then it will add SSH, HTTP, and HTTPS services to allow incoming. These options are completely configurable, as required. <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing ufw package</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;ufw&quot;</span>
+    <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">enable ufw logging</span>
+  <span class=nt>ufw</span><span class=p>:</span>
+    <span class=nt>logging</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">on</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">default ufw setting</span>
+  <span class=nt>ufw</span><span class=p>:</span>
+    <span class=nt>direction</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.direction</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>policy</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.policy</span><span class=nv> </span><span class=s>}}&quot;</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> direction</span><span class=p>:</span> <span class=s>&#39;incoming&#39;</span><span class="p p-Indicator">,</span><span class=nt> policy</span><span class=p>:</span> <span class=s>&#39;deny&#39;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> direction</span><span class=p>:</span> <span class=s>&#39;outgoing&#39;</span><span class="p p-Indicator">,</span><span class=nt> policy</span><span class=p>:</span> <span class=s>&#39;allow&#39;</span> <span class="p p-Indicator">}</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">allow required ports to access server</span>
+  <span class=nt>ufw</span><span class=p>:</span>
+    <span class=nt>rule</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.policy</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>port</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.port</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>proto</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.protocol</span><span class=nv> </span><span class=s>}}&quot;</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> port</span><span class=p>:</span> <span class=s>&quot;22&quot;</span><span class="p p-Indicator">,</span><span class=nt> protocol</span><span class=p>:</span> <span class=s>&quot;tcp&quot;</span><span class="p p-Indicator">,</span><span class=nt> policy</span><span class=p>:</span> <span class=s>&quot;allow&quot;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> port</span><span class=p>:</span> <span class=s>&quot;80&quot;</span><span class="p p-Indicator">,</span><span class=nt> protocol</span><span class=p>:</span> <span class=s>&quot;tcp&quot;</span><span class="p p-Indicator">,</span><span class=nt> policy</span><span class=p>:</span> <span class=s>&quot;allow&quot;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> port</span><span class=p>:</span> <span class=s>&quot;443&quot;</span><span class="p p-Indicator">,</span><span class=nt> protocol</span><span class=p>:</span> <span class=s>&quot;tcp&quot;</span><span class="p p-Indicator">,</span><span class=nt> policy</span><span class=p>:</span> <span class=s>&quot;allow&quot;</span> <span class="p p-Indicator">}</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">enable ufw</span>
+  <span class=nt>ufw</span><span class=p>:</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">enabled</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restart ufw and add to start up programs</span>
+  <span class=nt>service</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ufw</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restarted</span>
+    <span class=nt>enabled</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+</code></pre></div></li> </ul> <h3 id=setting-up-automated-encrypted-backups-in-aws-s3>Setting up automated encrypted backups in AWS S3<a class=headerlink href=#setting-up-automated-encrypted-backups-in-aws-s3 title="Permanent link">&para;</a></h3> <ul> <li>Backups are always something that most of us feel should be done, but they seem quite a chore. </li> <li>Over the years, people have done extensive work to ensure we can have simple enough ways to back up and restore our data. </li> <li>In today's day and age, a great backup solution/software should be able to do the following:<ul> <li>Automated: Automation allows for process around it</li> <li>Incremental: While storage is cheap overall, if we want backups at five minute intervals, what has changed should be backed up</li> <li>Encrypted before it leaves our server: This is to ensure that we have security of data at rest and in motion</li> <li>Cheap: While we care about our data, a good back up solution will be much cheaper than the server which needs to be backed up</li> </ul> </li> <li>For our backup solution, we will pick up the following stack:<ul> <li>Software: Duply - A wrapper over duplicity, a Python script </li> <li>Storage: While duply offers many backends, it works really well with AWS S3 </li> <li>Encryption: By using GPG, we can use asymmetric public and private key pairs <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing duply</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+  
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python-boto</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">duply</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">check if we already have backup directory</span>
+  <span class=nt>stat</span><span class=p>:</span>
+    <span class=nt>path</span><span class=p>:</span> <span class=s>&quot;/root/.duply/{{</span><span class=nv> </span><span class=s>new_backup_name</span><span class=nv> </span><span class=s>}}&quot;</span>
+  <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">duply_dir_stats</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">create backup directories</span>
+  <span class=nt>shell</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">duply {{ new_backup_name }} create</span>
+  <span class=nt>when</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">duply_dir_stats.stat.exists == False</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">update the duply configuration</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>src</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.src</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>dest</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.dest</span><span class=nv> </span><span class=s>}}&quot;</span>
+  
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=nv>conf.j2</span><span class="p p-Indicator">,</span><span class=nt> dest</span><span class=p>:</span> <span class=nv>/root/.duply/</span><span class="p p-Indicator">{{</span> <span class=nv>new_backup_name</span> <span class="p p-Indicator">}}</span><span class=nv>/conf</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=nv>exclude.j2</span><span class="p p-Indicator">,</span><span class=nt> dest</span><span class=p>:</span> <span class=nv>/root/.duply/</span><span class="p p-Indicator">{{</span> <span class=nv>new_backup_name</span> <span class="p p-Indicator">}}</span><span class=nv>/exclude</span> <span class="p p-Indicator">}</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">create cron job for automated backups</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>src</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">duply-backup.j2</span>
+    <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/cron.hourly/duply-backup</span>
+</code></pre></div></li> </ul> </li> </ul> <h2 id=lamp-stack-playbook>LAMP stack playbook<a class=headerlink href=#lamp-stack-playbook title="Permanent link">&para;</a></h2> <h3 id=the-high-level-hierarchy-structure-of-the-entire-playbook>The high-level hierarchy structure of the entire playbook:<a class=headerlink href=#the-high-level-hierarchy-structure-of-the-entire-playbook title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">inventory</span>               <span class=c1># inventory file</span>
+<span class="l l-Scalar l-Scalar-Plain">group_vars/</span>             <span class=c1>#</span>
+   <span class="l l-Scalar l-Scalar-Plain">all.yml</span>              <span class=c1># variables</span>
+<span class="l l-Scalar l-Scalar-Plain">site.yml</span>                <span class=c1># master playbook (contains list of roles)</span>
+<span class="l l-Scalar l-Scalar-Plain">roles/</span>                  <span class=c1>#</span>
+    <span class="l l-Scalar l-Scalar-Plain">common/</span>             <span class=c1># common role</span>
+        <span class="l l-Scalar l-Scalar-Plain">tasks/</span>          <span class=c1>#</span>
+            <span class="l l-Scalar l-Scalar-Plain">main.yml</span>    <span class=c1># installing basic tasks</span>
+    <span class="l l-Scalar l-Scalar-Plain">web/</span>                <span class=c1># apache2 role</span>
+        <span class="l l-Scalar l-Scalar-Plain">tasks/</span>          <span class=c1>#</span>
+            <span class="l l-Scalar l-Scalar-Plain">main.yml</span>    <span class=c1># install apache</span>
+        <span class="l l-Scalar l-Scalar-Plain">templates/</span>      <span class=c1>#</span>
+            <span class="l l-Scalar l-Scalar-Plain">web.conf.j2</span> <span class=c1># apache2 custom configuration</span>
+        <span class="l l-Scalar l-Scalar-Plain">vars/</span>           <span class=c1># </span>
+            <span class="l l-Scalar l-Scalar-Plain">main.yml</span>    <span class=c1># variables for web role </span>
+        <span class="l l-Scalar l-Scalar-Plain">handlers/</span>       <span class=c1>#</span>
+            <span class="l l-Scalar l-Scalar-Plain">main.yml</span>    <span class=c1># start apache2</span>
+    <span class="l l-Scalar l-Scalar-Plain">php/</span>                <span class=c1># php role</span>
+        <span class="l l-Scalar l-Scalar-Plain">tasks/</span>          <span class=c1># </span>
+            <span class="l l-Scalar l-Scalar-Plain">main.yml</span>    <span class=c1># installing php and restart apache2</span>
+    <span class="l l-Scalar l-Scalar-Plain">db/</span>                 <span class=c1># db role</span>
+        <span class="l l-Scalar l-Scalar-Plain">tasks/</span>          <span class=c1>#</span>
+            <span class="l l-Scalar l-Scalar-Plain">main.yml</span>    <span class=c1># install mysql and include harden.yml</span>
+            <span class="l l-Scalar l-Scalar-Plain">harden.yml</span>  <span class=c1># security hardening for mysql</span>
+        <span class="l l-Scalar l-Scalar-Plain">handlers/</span>       <span class=c1>#</span>
+            <span class="l l-Scalar l-Scalar-Plain">main.yml</span>    <span class=c1># start db and restart apache2</span>
+        <span class="l l-Scalar l-Scalar-Plain">vars/</span>           <span class=c1>#</span>
+            <span class="l l-Scalar l-Scalar-Plain">main.yml</span>    <span class=c1># variables for db role</span>
+</code></pre></div> <h3 id=playbook-files>Playbook Files<a class=headerlink href=#playbook-files title="Permanent link">&para;</a></h3> <ul> <li>Here is a very basic static inventory file where we will define a since host and set the IP address used to connect to it.</li> <li>Configure the following inventory file as required: <div class=highlight><pre><span></span><code><span class="p p-Indicator">[</span><span class=nv>lamp</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">lampstack    ansible_host=192.168.56.10</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1>#  group_vars/lamp.yml, which has the configuration of all the global variables</span>
+<span class=nt>remote_username</span><span class=p>:</span> <span class=s>&quot;hodor&quot;</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1>#  site.yml, which is the main playbook file to start</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">LAMP stack setup on Ubuntu 16.04</span>
+<span class=" -Error"> </span><span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">lamp</span>
+ <span class=nt>gather_facts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
+ <span class=nt>remote_user</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>remote_username</span><span class=nv> </span><span class=s>}}&quot;</span>
+ <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+
+ <span class=nt>roles</span><span class=p>:</span>
+   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">common</span>
+   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">web</span>
+   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db</span>
+   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">php</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># roles/common/tasks/main.yml file, which will install python2, curl, and git</span>
+<span class=c1># In ubuntu 16.04 by default there is no python2</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install python 2</span>
+  <span class=nt>raw</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">test -e /usr/bin/python || (apt -y update &amp;&amp; apt install -y python-minimal)</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install curl and git</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">curl</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">git</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># roles/web/tasks/main.yml, performs multiple operations, such as installation and configuration of apache2. </span>
+<span class=c1># It also adds the service to the startup process</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install apache2 server</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apache2</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">update the apache2 server configuration</span>
+  <span class=nt>template</span><span class=p>:</span> 
+    <span class=nt>src</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web.conf.j2</span>
+    <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/apache2/sites-available/000-default.conf</span>
+    <span class=nt>owner</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+    <span class=nt>group</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+    <span class=nt>mode</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">0644</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">enable apache2 on startup</span>
+  <span class=nt>systemd</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apache2</span>
+    <span class=nt>enabled</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  <span class=nt>notify</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">start apache2</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># notify parameter will trigger the handlers found in roles/web/handlers/main.yml</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">start apache2</span>
+  <span class=nt>systemd</span><span class=p>:</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">started</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apache2</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">stop apache2</span>
+  <span class=nt>systemd</span><span class=p>:</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">stopped</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apache2</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restart apache2</span>
+  <span class=nt>systemd</span><span class=p>:</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restarted</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apache2</span>
+    <span class=nt>daemon_reload</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># The template files will be taken from role/web/templates/web.conf.j2, which uses Jinja templating, it also takes values from local variables</span>
+<span class="l l-Scalar l-Scalar-Plain">&lt;VirtualHost *:80&gt;&lt;VirtualHost *:80&gt;</span>
+    <span class="l l-Scalar l-Scalar-Plain">ServerAdmin {{server_admin_email}}</span>
+    <span class="l l-Scalar l-Scalar-Plain">DocumentRoot {{server_document_root}}</span>
+
+    <span class="l l-Scalar l-Scalar-Plain">ErrorLog ${APACHE_LOG_DIR}/error.log</span>
+    <span class="l l-Scalar l-Scalar-Plain">CustomLog ${APACHE_LOG_DIR}/access.log combined</span>
+<span class="l l-Scalar l-Scalar-Plain">&lt;/VirtualHost&gt;</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># The local variables file is located in roles/web/vars/main.yml</span>
+<span class=nt>server_admin_email</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">hodor@localhost.local</span>
+<span class=nt>server_document_root</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/var/www/html</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># File roles/db/tasks/main.yml includes installation of the database server with assigned passwords when prompted. </span>
+<span class=c1># At the end of the file, we included harden.yml, which executes another set of tasks</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">set mysql root password</span>
+  <span class=nt>debconf</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">mysql-server</span>
+    <span class=nt>question</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">mysql-server/root_password</span>
+    <span class=nt>value</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>mysql_root_password</span><span class=nv> </span><span class=s>|</span><span class=nv> </span><span class=s>quote</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>vtype</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">password</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">confirm mysql root password</span>
+  <span class=nt>debconf</span><span class=p>:</span> 
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">mysql-server</span>
+    <span class=nt>question</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">mysql-server/root_password_again</span>
+    <span class=nt>value</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>mysql_root_password</span><span class=nv> </span><span class=s>|</span><span class=nv> </span><span class=s>quote</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>vtype</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">password</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install mysqlserver</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span> 
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysql-server</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysql-client</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>include</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">harden.yml</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1>#  harden.yml performs hardening of MySQL server configuration</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">deletes anonymous mysql user</span>
+  <span class=nt>mysql_user</span><span class=p>:</span>
+    <span class=nt>user</span><span class=p>:</span> <span class=s>&quot;&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">absent</span>
+    <span class=nt>login_password</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>mysql_root_password</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>login_user</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">secures the mysql root user</span>
+  <span class=nt>mysql_user</span><span class=p>:</span> 
+    <span class=nt>user</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+    <span class=nt>password</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>mysql_root_password</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>host</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>login_password</span><span class=p>:</span> <span class=s>&quot;{{mysql_root_password}}&quot;</span>
+    <span class=nt>login_user</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class=" -Error"> </span><span class=nt>with_items</span><span class=p>:</span>
+   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">127.0.0.1</span>
+   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">::1</span>
+   <span class="p p-Indicator">-</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>ansible_fqdn</span><span class=nv> </span><span class=s>}}&quot;</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">removes the mysql test database</span>
+  <span class=nt>mysql_db</span><span class=p>:</span>
+    <span class=nt>db</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">test</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">absent</span>
+    <span class=nt>login_password</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>mysql_root_password</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>login_user</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">enable mysql on startup</span>
+  <span class=nt>systemd</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">mysql</span>
+    <span class=nt>enabled</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class=nt>notify</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">start mysql</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># db server role also has roles/db/handlers/main.yml and local variables similar to the web role</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">start mysql</span>
+  <span class=nt>systemd</span><span class=p>:</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">started</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">mysql</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">stop mysql</span>
+  <span class=nt>systemd</span><span class=p>:</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">stopped</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">mysql</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restart mysql</span>
+  <span class=nt>systemd</span><span class=p>:</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restarted</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">mysql</span>
+    <span class=nt>daemon_reload</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># roles/db/vars/main.yml, which has the mysql_root_password while configuring the server. </span>
+<span class=c1># we can secure these plaintext passwords using ansible-vault in future.</span>
+<span class=nt>mysql_root_password</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">R4nd0mP4$$w0rd</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># we will install PHP and configure it to work with apache2 by restarting the roles/php/tasks/main.yml service</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install php7</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">php7.0-mysql</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">php7.0-curl</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">php7.0-json</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">php7.0-cgi</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">php7.0</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">libapache2-mod-php7</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restart apache2</span>
+  <span class=nt>systemd</span><span class=p>:</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restarted</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apache2</span>
+    <span class=nt>daemon_reload</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Execute the following command against the Ubuntu 16.04 server to set up LAMP stack. </span>
+<span class=c1># Provide the password when it prompts for system access for user hodor.</span>
+ansible-playbook -i inventory site.yml
+</code></pre></div></li> </ul> <h2 id=setting-up-ansible-tower>Setting up Ansible Tower<a class=headerlink href=#setting-up-ansible-tower title="Permanent link">&para;</a></h2> <p><div class=highlight><pre><span></span><code><span class=c1># Make sure you have Vagrant installed in your host system before running the following command: </span>
+vagrant init ansible/tower
+vagrant up
+vagrant ssh
+<span class=c1># It will prompt you to enter  IP address, username, and password to login to the Ansible Tower dashboard.</span>
+</code></pre></div> - Then navigate the browser to <a href=https://10.42.0.42>https://10.42.0.42</a> and accept the SSL error to proceed. - This SSL error can be fixed by providing the valid certificates in the configuration at <code>/etc/tower</code> and need to restart the Ansible Tower service. - Enter the login credentials to access the Ansible Tower dashboard. - Once you log in, it will prompt you for the Ansible Tower license. - Ansible Tower also provides <strong>Role-Based Authentication Control (RBAC)</strong>, which provides a granular level of control for different users and groups to manage Tower. - Create a new user with the System Administrator privilege - To add inventory into Ansible Tower, we can simply enter it manually - Add credentials (or) keys to the tower by providing them in credential management, which can be reused as well. - Secrets store in Ansible Tower are encrypted with a symmetric key unique to each Ansible Tower cluster. - Once stored in the Ansible Tower database, the credentials may only be used, not viewed, in the web interface. - The types of credentials that Ansible Tower can store are passwords, SSH keys, Ansible Vault keys, and cloud credentials. - Once we have the inventory gathered, we can create jobs to perform the playbook or ad-hoc command operations. - The Ansible Tower REST API is a pretty powerful way to interact with the system - Get started with the <code>pip install ansible-tower-cli</code> command.</p> <h2 id=setting-up-awx>Setting up AWX<a class=headerlink href=#setting-up-awx title="Permanent link">&para;</a></h2> <ul> <li>Ansible is very powerful, but it does require the user to use the CLI. </li> <li>In some situations, this is not the best option, such as in cases where you need to trigger an Ansible job from another job (where APIs would be better) or in cases where the person that should trigger a job should only be able to trigger that specific job. </li> <li>For these cases, AWX or Ansible Tower are better options to use.</li> <li>The only differences between AWX and Ansible Tower are that AWX is the upstream and open source version, while Ansible Tower is the Red Hat and downstream product that is officially supported but for a price, and also the delivery method. </li> <li><strong>We will use AWX and talk about AWX, but everything we discuss also applies to Ansible Tower.</strong></li> <li>Although there are several ways to install AWX, we are going to use the suggested AWX installation, which is container-based. </li> <li>For this reason, the following software needs to be installed on your machine:<ul> <li>Ansible 2.4+.</li> <li>Docker.</li> <li>The docker Python module.</li> <li>The docker-compose Python module.</li> <li>If your system uses Security-Enhanced Linux (SELinux), you also need the libselinux Python module.</li> </ul> </li> </ul> <h3 id=installing-awx>Installing AWX<a class=headerlink href=#installing-awx title="Permanent link">&para;</a></h3> <ul> <li>We need to clone the AWX Git repository. <code>git clone https://github.com/ansible/awx.git</code></li> <li>Modify the installer/inventory file by setting sensible values for the passwords and secrets (such as pg_password, rabbitmq_password, admin_password, and secret_key)</li> <li>Now that we have downloaded the Ansible AWX code and installer, we can move into the installer folder and execute the installation by running the following code. <div class=highlight><pre><span></span><code><span class=nb>cd</span> awx/installer
+ansible-playbook -i inventory install.yml
+</code></pre></div></li> <li>The install.yml playbook performs the whole installation for us. It starts by checking the environment for possible misconfigurations or missing dependencies. If everything seems to be correct, it moves on to downloading several Docker images (including PostgreSQL, memcached, RabbitMQ, AWX Web, and AWX workers) and then runs them all.</li> <li>As soon as the playbook completes, you can check the installation by issuing the docker ps command.</li> <li>As you can see from docker ps output, our system now has a container called awx_web, which has bound itself to port 80. You can now access AWX by browsing to <code>http://&lt;ip address of your AWX host&gt;/</code> and using the credentials you specified in the inventory file earlier on and that the default administrator username is admin unless you change it in the inventory.</li> </ul> <h3 id=running-your-first-playbook-from-awx>Running your first playbook from AWX<a class=headerlink href=#running-your-first-playbook-from-awx title="Permanent link">&para;</a></h3> <ul> <li>As in Ansible, in AWX, the goal is running an Ansible playbook and each playbook that is run is called a job. </li> <li>Since AWX gives you more flexibility and automation than Ansible, it requires a little bit more configuration before you can run your first job.</li> </ul> <h4 id=creating-an-awx-project>Creating an AWX project<a class=headerlink href=#creating-an-awx-project title="Permanent link">&para;</a></h4> <ul> <li>AWX uses the term <strong>project</strong> to identify a repository of Ansible playbooks. </li> <li>AWX projects support the placement of playbooks in all major Source Control Management (SCM) systems, such as Git, Mercurial, and SVN, but also support playbooks on the filesystem or playbooks provided by Red Hat Insights. </li> <li>Projects are the system to store and use playbooks in AWX. As you can imagine, there are many interesting additional configurations for AWX projects—and the most interesting one, in my view—is update revision on launch.</li> <li>If flagged, this option instructs Ansible to always update the playbook's repository before running any playbook from that project. This ensures it always executes the latest version of the playbook. This is an important feature to enable as if you don't have it checked, there is the possibility (and sooner or later, this will happen in your environment) that someone notices that there is a problem in a playbook and fixes it, then they run the playbook feeling sure that they are running the latest version. They then forget to run the synchronization task before running the playbook, effectively running the older version of the playbook. This could lead to major problems if the previous version was fairly buggy.</li> <li>The downside of using this option is that every time you execute a playbook, two playbooks are effectively run, adding time to your task execution. I think this is a very small downside and one that does not offset the benefits of using this option.</li> </ul> <h4 id=creating-an-inventory>Creating an inventory<a class=headerlink href=#creating-an-inventory title="Permanent link">&para;</a></h4> <ul> <li>As with Ansible Core, to make AWX aware of the machines present in your environment, we use inventories. </li> <li>Inventories, in the AWX world, are not that different from their equivalents in Ansible Core. </li> <li>Since an empty inventory is not useful in any way, we are going to add <code>localhost</code> to it.</li> <li>We then need to add the hostname (localhost) and instruct Ansible to use the local connection by adding the following code to the VARIABLES box. <div class=highlight><pre><span></span><code><span class=nn>---</span>
+<span class=nt>ansible_connection</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class=nt>ansible_python_interpreter</span><span class=p>:</span> <span class=s>&#39;{{</span><span class=nv> </span><span class=s>ansible_playbook_python</span><span class=nv> </span><span class=s>}}&#39;</span>
+</code></pre></div></li> </ul> <h4 id=creating-a-job-template>Creating a job template<a class=headerlink href=#creating-a-job-template title="Permanent link">&para;</a></h4> <ul> <li>A job template in AWX is a collection of the configurations that are needed to perform a job. </li> <li>This is very similar to the ansible-playbook command-line options. </li> <li>The reason why we need to create a job template is so that playbook runs can be launched with little or no user input, meaning they can be delegated to teams who might not know all the details of how a playbook works, or can even be run on a scheduled basis without anyone present.</li> <li>Note that because we are running it using the local connection to localhost, we don't need to create or specify any credentials. </li> <li>However, if you were running a job template against one or more remote hosts, you would need to create a machine credential and associate it with your job template.</li> <li>A machine credential is, for example, an SSH username and password or an SSH username and a private key—these are stored securely in the backend database of AWX, meaning you can again delegate playbook-related tasks to other teams without actually giving them passwords or SSH keys.</li> <li>The first thing we had to choose was whether we are creating a job template or a workflow template. We chose Job Template since we want to be able to create simple jobs out of this template. It's also possible to create more complex jobs, which are the composition of multiple job templates, with flow control features between one job and the next. This allows more complex situations and scenarios where you might want to have multiple jobs (such as the creation of an instance, company customization, the setup of Oracle Database, the setup of a MySQL database, and so on), but you also want to have a one-click deployment that would, for instance, set up the machine, apply all the company customization, and install the MySQL database. Obviously, you might also have another deployment that uses all the same components except the last one and in its place, it uses the Oracle Database piece to create an Oracle Database machine. This allows you to have extreme flexibility and to reuse a lot of components, creating multiple, nearly identical playbooks.</li> <li>It's interesting to note that many fields in the Job Template creation window have an option with the Prompt on launch caption. This is to be able to set this value optionally during the creation of the job template, but also allow the user running the job to enter/override it at runtime. This can be incredibly valuable when you have a field that changes on each run (perhaps the limit field, which operates in the same way as &ndash;limit when used with the ansible-playbook command) or can also be used as a sanity check, as it prompts the user with the value (and gives them a chance to modify it) before the playbook is actually run. However, it could potentially block scheduled job runs, so exercise caution when enabling this feature.</li> </ul> <h4 id=running-a-job>Running a job<a class=headerlink href=#running-a-job title="Permanent link">&para;</a></h4> <ul> <li>A job is an instance of a job template. </li> <li>This means that to perform any action on our machine, we have to create a job template instance or, more simply, a job.</li> <li>One of the great things about AWX and Ansible Tower is that they archive this job execution output in the backend database, meaning you can, at any point in the future, come back and query a job run to see what changed and what happened. This is incredibly powerful and useful for occasions such as auditing and policy enforcement.</li> </ul> <h3 id=controlling-access-to-awx>Controlling access to AWX<a class=headerlink href=#controlling-access-to-awx title="Permanent link">&para;</a></h3> <ul> <li>In my opinion, one of the biggest advantages of AWX compared to Ansible is the fact that AWX allows multiple users to connect and control/perform actions. </li> <li>This allows a company to have a single AWX installation for different teams, a whole organization, or even multiple organizations.</li> <li>A Role-Based Access Control (RBAC) system is in place to manage the users' permissions.</li> <li>Both AWX and Ansible Tower can link to central directories, such as Lightweight Directory Access Protocol (LDAP) and Azure Active Directory however, we can also create user accounts locally on the AWX server itself. </li> </ul> <h4 id=creating-a-user>Creating a user<a class=headerlink href=#creating-a-user title="Permanent link">&para;</a></h4> <ul> <li>One of the big advantages of AWX is the ability to manage multiple users. </li> <li>This allows us to create a user in AWX for each person that is using the AWX system so that we can ensure they are only granted the permissions that they need. </li> <li>Also, by using individual accounts, we can ensure that we can see who carried out what action by using the audit logs. </li> <li>By adding the email address, the username, and the password (with confirmation), you can create the new user.</li> <li>Users can be of three types:<ul> <li>A normal user: Users of this type do not have any inherited permissions and they need to be awarded specific permissions to be able to do anything.</li> <li>A system auditor: Users of this type have full read-only privileges on the whole AWX installation.</li> <li>A system administrator: Users of this type have full privileges on the whole AWX installation.</li> </ul> </li> </ul> <h4 id=creating-a-team>Creating a team<a class=headerlink href=#creating-a-team title="Permanent link">&para;</a></h4> <ul> <li>Although having individual user accounts is an incredibly powerful tool, especially for enterprise use cases, it would be incredibly inconvenient and cumbersome to have to set permissions for each object (such as a job template or an inventory) on an individual basis. </li> <li>Every time someone joins a team, their user account has to be manually configured with the correct permissions against every object and, similarly, be removed if they leave.</li> <li>AWX and Ansible Tower have the same concept of user grouping that you would find in most other RBAC systems. The only slight difference is that in the user interface, they are referred to as teams, rather than groups. However, you can create teams simply and easily and then add and remove users as you need to. Doing this through the user interface is very straightforward and you will find the process similar to the way that most RBAC systems handle user groups, so we won't go into any more specific details here.</li> <li>Once you have your teams set up, I recommend that you assign your permissions to teams, rather than through individual users, as this will make your management of AWX object permissions much easier as your organization grows. </li> </ul> <h4 id=creating-an-organization>Creating an organization<a class=headerlink href=#creating-an-organization title="Permanent link">&para;</a></h4> <ul> <li>Sometimes, you have multiple independent groups of people that you need to manage independent machines. </li> <li>For those kinds of scenarios, the use of organizations can help you. </li> <li>An organization is basically a tenant of AWX, with its own unique user accounts, teams, projects, inventories, and job templates—it's almost like having a separate instance of AWX! </li> <li>After you create the organization, you can assign any kind of resource to an organization, such as projects, templates, inventories, users, and so on. </li> <li>Organizations are a simple concept to grasp, but also powerful in terms of segregating roles and responsibilities in AWX. </li> </ul> <h4 id=assigning-permissions-in-awx>Assigning permissions in AWX<a class=headerlink href=#assigning-permissions-in-awx title="Permanent link">&para;</a></h4> <ul> <li>Individual users (or the teams that they belong to) can be granted permissions on a per-object basis. So, for example, you could have a team of database administrators who only have access to see and execute playbooks on an inventory of database servers, using job templates that are specific to their role. Linux system administrators could then have access to the inventories, projects, and job templates that are specific to their role. AWX hides objects that users don't have the privileges to, which means the database administrators never see the Linux system administrator objects and vice versa.</li> <li>There are a number of different privilege levels that you can award users (or teams) with, which include the following:<ul> <li>Admin: This is the organization-level equivalent of a system administrator.</li> <li>Execute: This kind of user can only execute templates that are part of the organization.</li> <li>Project admin: This kind of user can alter any project that is part of the organization.</li> <li>Inventory admin: This kind of user can alter any inventory that is part of the organization.</li> <li>Credential admin: This kind of user can alter any credential that is part of the organization.</li> <li>Workflow admin: This kind of user can alter any workflow that is part of the organization.</li> <li>Notification admin: This kind of user can alter any notification that is part of the organization.</li> <li>Job template admin: This kind of user can alter any job template that is part of the organization.</li> <li>Auditor: This is the organization-level equivalent to a system auditor.</li> <li>Member: This is the organization-level equivalent of a normal user.</li> <li>Read: This kind of user is able to view non-sensible objects that are part of the organization.</li> </ul> </li> <li>AWX is a great addition to the power of Ansible in an enterprise setting and really helps ensure that your users can run Ansible playbooks in a manner that is well managed, secure, and auditable.</li> </ul> <h2 id=setting-up-jenkins>Setting up Jenkins<a class=headerlink href=#setting-up-jenkins title="Permanent link">&para;</a></h2> <p><div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing jenkins in ubuntu 16.04</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class=s>&quot;192.168.1.7&quot;</span>
+  <span class=nt>remote_user</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu</span>
+  <span class=nt>gather_facts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
+  <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+
+<span class=nt>tasks</span><span class=p>:</span>
+  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install python 2</span>
+    <span class=nt>raw</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">test -e /usr/bin/python || (apt -y update &amp;&amp; apt install -y python-minimal)</span>
+
+  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install curl and git</span>
+    <span class=nt>apt</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">name={{ item }} state=present update_cache=yes</span>
+    <span class=nt>with_items</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">curl</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">git</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding jenkins gpg key</span>
+    <span class=nt>apt_key</span><span class=p>:</span>
+      <span class=nt>url</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">https://pkg.jenkins.io/debian/jenkins-ci.org.key</span>
+      <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">jeknins repository to system</span>
+    <span class=nt>apt_repository</span><span class=p>:</span>
+      <span class=nt>repo</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">http://pkg.jenkins.io/debian-stable binary/</span>
+      <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing jenkins</span>
+    <span class=nt>apt</span><span class=p>:</span>
+      <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">jenkins</span>
+      <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+      <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding jenkins to startup</span>
+    <span class=nt>service</span><span class=p>:</span>
+      <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">jenkins</span>
+      <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">started</span>
+      <span class=nt>enabled</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">printing jenkins default administration password</span>
+    <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">cat /var/lib/jenkins/secrets/initialAdminPassword</span>
+    <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">jenkins_default_admin_password</span>
+  
+  <span class="p p-Indicator">-</span> <span class=nt>debug</span><span class=p>:</span>
+      <span class=nt>msg</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>jenkins_default_admin_password.stdout</span><span class=nv> </span><span class=s>}}&quot;</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># To set up Jenkins, run the following command. Where 192.168.1.7 is the server IP address where Jenkins will be installed:</span>
+ansible-playbook -i <span class=s1>&#39;192.168.1.7,&#39;</span> site.yml --ask-sudo-pass
+<span class=c1># we have to navigate to the Jenkins dashboard by browsing to http://192.168.1.7:8080 and providing the auto-generated password. </span>
+<span class=c1># If the playbook runs without any errors, it will display the password at the end of the play.</span>
+</code></pre></div> - Create the new user by filling in the details and confirming to log in to the Jenkins console. - We can install custom plugins in Jenkins, navigate to the Manage Jenkins tab, select Manage Plugins, then navigate to the Available tab. - In the Filter: enter the plugin name as Ansible. Then select the checkbox and click Install without restart. - Now we are ready to work with the Ansible plugin for Jenkins. - Create a new project in the main dashboard, give it a name, and select Freestyle project to proceed: - We can configure the build options, this is where Jenkins will give us more flexibility to define our own triggers, build instructions, and post build scripts - Once the build triggers based on an event, this can be sent to some artifact storage, it can also be available in the Jenkins build console output - This is a really very powerful way to perform dynamic operations such as triggering automated server and stacks setup based on a code push to the repository, as well as scheduled scans and automated reporting.</p> <h2 id=security-automation-use-cases>Security automation use cases<a class=headerlink href=#security-automation-use-cases title="Permanent link">&para;</a></h2> <ul> <li>Here is a list of tasks that will prepare you to build layers of automation for the stuff that is important to you:<ul> <li>Adding playbooks or connecting your source code management (SCM) tools, such as GitHub/GitLab/BitBucket</li> <li>Authentication and data security</li> <li>Logging output and managing reports for the automation jobs</li> <li>Job scheduling</li> <li>Alerting, notifications, and webhooks</li> </ul> </li> </ul> <h3 id=ansible-tower-configuration>Ansible Tower configuration<a class=headerlink href=#ansible-tower-configuration title="Permanent link">&para;</a></h3> <ul> <li>To add playbooks into Ansible Tower, we have to start by creating projects, then select the SCM TYPE as Manual</li> <li>We can choose the SCM TYPE set to Git and provide a github.com URL pointing to a playbook</li> <li>Git SCM to add playbooks into projects<ul> <li>We can also change the PROJECTS_ROOT under CONFIGURE TOWER to change this location.</li> </ul> </li> <li>The added playbooks are executed by creating a job template. Then we can schedule these jobs (or) we can launch directly.</li> </ul> <h3 id=jenkins-ansible-integration-configuration>Jenkins Ansible integration configuration<a class=headerlink href=#jenkins-ansible-integration-configuration title="Permanent link">&para;</a></h3> <ul> <li>Jenkins supports SCM to use playbooks and local directories for manual playbooks too. </li> <li>This can be configured with the build options. </li> <li>Jenkins supports both ad-hoc commands and playbooks to trigger as a build (or) post-build action.</li> <li>We can also specify credentials if we want to access private repositories</li> <li>We can add the Playbook path by specifying the location of the playbook and defining inventory and variables as required</li> </ul> <h3 id=authentication-and--data-security>Authentication and data security<a class=headerlink href=#authentication-and--data-security title="Permanent link">&para;</a></h3> <ul> <li>Some of the security features the tools offer include:<ul> <li>RBAC (authentication and authorization)</li> <li>Web application over TLS/SSL (security for data in motion)</li> <li>Encryption for storing secrets (security for data at rest)</li> </ul> </li> </ul> <h4 id=rbac-for-ansible-tower>RBAC for Ansible Tower<a class=headerlink href=#rbac-for-ansible-tower title="Permanent link">&para;</a></h4> <ul> <li>Ansible Tower supports RBAC to manage multiple users with different permissions and roles. </li> <li>It also supports Lightweight Directory Access Protocol (LDAP) integration in the enterprise version to support Active Directory. </li> <li>This feature allows us to create different levels of users for accessing Ansible Tower. </li> <li>For example:<ul> <li>The operations team requires a system administrator role to perform playbook execution and other activities like monitoring</li> <li>The security team requires a system auditor role to perform audit check for compliance standards such as Payment Card Industry Data Security Standard (PCI DSS) or even internal policy validation</li> <li>Normal users, such as team members, might just want to see how things are going, in the form of status updates and failure (or) success of job status</li> </ul> </li> </ul> <h4 id=tlsssl-for-ansible-tower>TLS/SSL for Ansible Tower<a class=headerlink href=#tlsssl-for-ansible-tower title="Permanent link">&para;</a></h4> <ul> <li>By default, Ansible Tower uses HTTPS using self-signed certificates at /etc/tower/tower.cert and /etc/tower/tower.key.</li> </ul> <h4 id=encryption-and-data-security-for-ansible-tower>Encryption and data security for Ansible Tower<a class=headerlink href=#encryption-and-data-security-for-ansible-tower title="Permanent link">&para;</a></h4> <ul> <li>Ansible Tower has been created with built-in security for handling encryption of credentials that includes passwords and keys. </li> <li>It uses Ansible Vault to perform this operation. </li> <li>It encrypts passwords and key information in the database.</li> </ul> <h4 id=tlsssl-for-jenkins>TLS/SSL for Jenkins<a class=headerlink href=#tlsssl-for-jenkins title="Permanent link">&para;</a></h4> <ul> <li>By default, Jenkins runs as plain old HTTP. To enable HTTPS, we can use a reverse proxy, such as Nginx, in front of Jenkins to serve as HTTPS. </li> <li><a href=https://www.digitalocean.com/community/tutorials/how-to-configure-jenkins-with-ssl-using-an-nginx-reverse-proxy>Digital Ocean Reference for TLS</a></li> </ul> <h4 id=encryption-and-data-security-for-jenkins>Encryption and data security for Jenkins<a class=headerlink href=#encryption-and-data-security-for-jenkins title="Permanent link">&para;</a></h4> <ul> <li>We are using Jenkins' default credential feature. This will store the keys and passwords in the local filesystem. </li> </ul> <h3 id=output-of-the-playbooks>Output of the playbooks<a class=headerlink href=#output-of-the-playbooks title="Permanent link">&para;</a></h3> <ul> <li>We would like to know where can we see the output of the playbooks executing and if any other logs that get created. </li> </ul> <h4 id=report-management-for-ansible-tower>Report management for Ansible Tower<a class=headerlink href=#report-management-for-ansible-tower title="Permanent link">&para;</a></h4> <ul> <li>By default, Ansible Tower itself is a reporting platform for the status of the playbooks, job executions, and inventory collection. </li> <li>The Ansible Tower dashboard gives an overview of the total projects, inventories, hosts, and status of the jobs. </li> <li>The output can be consumed in the dashboard, standard out, or by using the REST API and we can get this via tower-cli command line tool as well, which is just a pre-built command line tool for interfacing with the REST API.</li> </ul> <h3 id=scheduling-of-jobs>Scheduling of jobs<a class=headerlink href=#scheduling-of-jobs title="Permanent link">&para;</a></h3> <ul> <li>The scheduling of jobs is simple and straightforward in Ansible Tower. </li> <li>For a job, you can specify a schedule and the options are mostly like cron. </li> <li>For example, you can say that you have a daily scan template and would like it to be executed at 4 a.m. every day for the next three months. </li> <li>This kind of schedule makes our meta automation very flexible and powerful. </li> </ul> <h3 id=alerting-notifications-and-webhooks>Alerting, notifications, and webhooks<a class=headerlink href=#alerting-notifications-and-webhooks title="Permanent link">&para;</a></h3> <ul> <li>Tower supports multiple ways of alerting and notifying users as per configuration. </li> <li>This can even be configured to make an HTTP POST request to a URL of your choice using a webhook.</li> <li>Ansible Tower notification using slack webhook is a popular option.</li> </ul> <h2 id=setting-up-a-hardened-wordpress-with-encrypted-automated-backups>Setting Up a Hardened WordPress with Encrypted Automated Backups<a class=headerlink href=#setting-up-a-hardened-wordpress-with-encrypted-automated-backups title="Permanent link">&para;</a></h2> <ul> <li>Automating our server's patches is the most obvious, and possibly popular, requirement. </li> <li>We will apply security automation techniques and approaches to set up a hardened WordPress and enable encrypted backups. </li> <li>Everyone would agree that setting up a secure website and keeping it secured is a fairly common security requirement. </li> <li>And since it is so common, it would be useful for a lot of people who are tasked with building and managing websites to stay secure to look at that specific scenario. </li> </ul> <div class="admonition note"> <p class=admonition-title>Note</p> <p>Are you aware that, according to Wikipedia, 27.5% of the top 10 million websites use WordPress? According to another statistic, 58.7% of all websites with known software on the entire web run WordPress.</p> </div> <ul> <li>For us, setting up a hardened WordPress with encrypted automated backups can be broken down into the following steps:<ul> <li>Setting up a Linux/Windows server with security measures in place.</li> <li>Setting up a web server (Apache/Nginx on Linux and IIS on Windows).</li> <li>Setting up a database server (MySQL) on the same host.</li> <li>Setting up WordPress using a command-line utility called WP-CLI.</li> <li>Setting up backup for the site files and the database which is incremental, encrypted, and most importantly, automated.</li> </ul> </li> </ul> <div class="admonition note"> <p class=admonition-title>Note</p> <p>We will assume that the server that we plan to deploy our WordPress website on is already up and running and we are able to connect to it. We will store the backup in an already configured AWS S3 bucket, for which the access key and secret access key is already provisioned. </p> </div> <ul> <li>Refer the examples in Introduction to set this up.</li> </ul> <h3 id=secure-automated-the-wordpress-updates>Secure automated the WordPress updates<a class=headerlink href=#secure-automated-the-wordpress-updates title="Permanent link">&para;</a></h3> <ul> <li>Run the backups and update WordPress core, themes, and plugins. This can be scheduled via an Ansible Tower job for every day <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">running backup using duply</span>
+  <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/cron.hourly/duply-backup</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">updating WordPress core</span>
+  <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">wp core update</span>
+  <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">wp_core_update_output</span>
+  <span class=nt>ignore_errors</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">wp core update output</span>
+  <span class=nt>debug</span><span class=p>:</span>
+    <span class=nt>msg</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>wp_core_update_output.stdout</span><span class=nv> </span><span class=s>}}&quot;</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">updating WordPress themes</span>
+  <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">wp theme update --all</span>
+  <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">wp_theme_update_output</span>
+  <span class=nt>ignore_errors</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">wp themes update output</span>
+  <span class=nt>debug</span><span class=p>:</span>
+    <span class=nt>msg</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>wp_theme_update_output.stdout</span><span class=nv> </span><span class=s>}}&quot;</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">updating WordPress plugins</span>
+  <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">wp plugin update --all</span>
+  <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">wp_plugin_update_output</span>
+  <span class=nt>ignore_errors</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">wp plugins update output</span>
+  <span class=nt>debug</span><span class=p>:</span>
+    <span class=nt>msg</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>wp_plugin_update_output.stdout</span><span class=nv> </span><span class=s>}}&quot;</span>
+</code></pre></div></li> </ul> <h3 id=scheduling-via-ansible-tower-for-daily-updates>Scheduling via Ansible Tower for daily updates<a class=headerlink href=#scheduling-via-ansible-tower-for-daily-updates title="Permanent link">&para;</a></h3> <ul> <li>Ansible Tower job scheduling for automated WordPress updates OR</li> <li>We can use the cron job template to perform this daily and add this template while deploying the WordPress setup <div class=highlight><pre><span></span><code><span class=ch>#!/bin/bash</span>
+
+/etc/cron.hourly/duply-backup
+wp core update
+wp theme update --all
+wp plugin update --all
+</code></pre></div></li> </ul> <h3 id=setting-up-apache2-web-server>Setting up Apache2 web server<a class=headerlink href=#setting-up-apache2-web-server title="Permanent link">&para;</a></h3> <ul> <li>Shows how we can use templating to perform configuration updates in the server <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing apache2 server</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;apache2&quot;</span>
+    <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">updating customized templates for apache2 configuration</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>src</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.src</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>dest</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.dst</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>mode</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">0644</span>
+  
+  <span class=nt>with_tems</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=nv>apache2.conf.j2</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=nv>/etc/apache2/conf.d/apache2.conf</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=nv>000-default.conf.j2</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=nv>/etc/apache2/sites-available/000-default.conf</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=nv>default-ssl.conf.j2</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=nv>/etc/apache2/sites-available/default-ssl.conf</span> <span class="p p-Indicator">}</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding custom link for sites-enabled from sites-available</span>
+  <span class=nt>file</span><span class=p>:</span>
+    <span class=nt>src</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.src</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>dest</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.dest</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">link</span>
+  
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;/etc/apache2/sites-available/000-default.conf&#39;</span><span class="p p-Indicator">,</span><span class=nt> dest</span><span class=p>:</span> <span class=s>&#39;/etc/apache2/sites-enabled/000-default.conf&#39;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;/etc/apache2/sites-available/default-ssl.conf&#39;</span><span class="p p-Indicator">,</span><span class=nt> dest</span><span class=p>:</span> <span class=s>&#39;/etc/apache2/sites-enabled/default-ssl.conf&#39;</span> <span class="p p-Indicator">}</span>
+
+  <span class=nt>notify</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">start apache2</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">startup apache2</span>
+</code></pre></div></li> </ul> <h3 id=enabling-tlsssl-with-lets-encrypt>Enabling TLS/SSL with Let's Encrypt<a class=headerlink href=#enabling-tlsssl-with-lets-encrypt title="Permanent link">&para;</a></h3> <ul> <li>We can use a command-line tool offered by Let's Encrypt to get free SSL/TLS certificates in an open, automated manner. </li> <li>The tool is capable of reading and understanding an nginx virtual host file and generating the relevant certificates completely automatically, without any kind of manual intervention. <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding certbot ppa</span>
+  <span class=nt>apt_repository</span><span class=p>:</span>
+    <span class=nt>repo</span><span class=p>:</span> <span class=s>&quot;ppa:certbot/certbot&quot;</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install certbot</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python-certbot-nginx</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">check if we have generated a cert already</span>
+  <span class=nt>stat</span><span class=p>:</span>
+    <span class=nt>path</span><span class=p>:</span> <span class=s>&quot;/etc/letsencrypt/live/{{</span><span class=nv> </span><span class=s>website_domain_name</span><span class=nv> </span><span class=s>}}/fullchain.pem&quot;</span>
+  <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">cert_stats</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">run certbot to generate the certificates</span>
+  <span class=nt>shell</span><span class=p>:</span> <span class=s>&quot;certbot</span><span class=nv> </span><span class=s>certonly</span><span class=nv> </span><span class=s>--standalone</span><span class=nv> </span><span class=s>-d</span><span class=nv> </span><span class=s>{{</span><span class=nv> </span><span class=s>website_domain_name</span><span class=nv> </span><span class=s>}}</span><span class=nv> </span><span class=s>--email</span><span class=nv> </span><span class=s>{{</span><span class=nv> </span><span class=s>service_admin_email</span><span class=nv> </span><span class=s>}}</span><span class=nv> </span><span class=s>--non-interactive</span><span class=nv> </span><span class=s>--agree-tos&quot;</span>
+  <span class=nt>when</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">cert_stats.stat.exists == False</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">configuring site files</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>src</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">website.conf</span>
+    <span class=nt>dest</span><span class=p>:</span> <span class=s>&quot;/etc/nginx/sites-available/{{</span><span class=nv> </span><span class=s>website_domain_name</span><span class=nv> </span><span class=s>}}&quot;</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restart nginx</span>
+  <span class=nt>service</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restarted</span>
+</code></pre></div></li> </ul> <h2 id=log-monitoring>Log Monitoring<a class=headerlink href=#log-monitoring title="Permanent link">&para;</a></h2> <ul> <li>Log monitoring is the perfect place to think about security automation. </li> <li>For monitoring to be effective, a few things need to happen. </li> <li>We should be able to move logs from different devices to a central location. </li> <li>We should be able to make sense of what a regular log entry is and what could possibly be an attack. </li> <li>We should be able to store the logs, and also operate on them for things such as aggregation, normalization, and eventually, analysis.</li> <li>Traditional logging systems find it difficult to log for all applications, systems, and devices. </li> <li>The variety of time formats, log output formats, and so on, makes the task pretty complicated.</li> <li>The biggest roadblock is finding a way to be able to centralize logs. </li> <li>This gets in the way of being able to process log entries in real time, or near real time effectively.</li> <li>Some of the problematic points are as follows:<ul> <li>Access is often difficult</li> <li>High expertise in mined data is required</li> <li>Logs can be difficult to find</li> <li>Log data is immense in size</li> </ul> </li> </ul> <h3 id=introduction-to-elastic-stack>Introduction to Elastic Stack<a class=headerlink href=#introduction-to-elastic-stack title="Permanent link">&para;</a></h3> <ul> <li>Elastic Stack is a group of open source products from the Elastic company. </li> <li>It takes data from any type of source and in any format and searches, analyzes, and visualizes that data in real time. </li> <li>It consists of four major components, as follows:<ul> <li>Elasticsearch</li> <li>Logstash</li> <li>Kibana</li> <li>Beats</li> </ul> </li> <li>It helps users/admins to collect, analyze, and visualize data in (near) real time. </li> <li>Each module fits based on your use case and environment.</li> </ul> <h3 id=elasticsearch>Elasticsearch<a class=headerlink href=#elasticsearch title="Permanent link">&para;</a></h3> <ul> <li>Elasticsearch is a distributed, RESTful search and analytics engine capable of solving a growing number of use cases. </li> <li>As the heart of the Elastic Stack, it centrally stores your data so you can discover the expected and uncover the unexpected</li> <li>Main plus points of Elastic Stack:<ul> <li>Distributed and highly available search engine, written in Java, and uses Groovy</li> <li>Built on top of Lucene</li> <li>Multi-tenant, with multi types and a set of APIs</li> <li>Document-oriented, providing (near) real-time search</li> </ul> </li> </ul> <h3 id=logstash>Logstash<a class=headerlink href=#logstash title="Permanent link">&para;</a></h3> <ul> <li>Logstash is an open source, server-side data processing pipeline that ingests data from a multitude of sources, simultaneously transforms it, and then sends it to your favorite stash.</li> <li>Centralized data processing of all types of logs</li> <li>Consists of the following three main components:<ul> <li>Input: Passing logs to process them into machine-understandable format</li> <li>Filter: A set of conditions to perform a specific action on an event</li> <li>Output: The decision maker for processed events/logs</li> </ul> </li> </ul> <h3 id=kibana>Kibana<a class=headerlink href=#kibana title="Permanent link">&para;</a></h3> <ul> <li>Kibana lets you visualize your Elasticsearch data and navigate the Elastic Stack, so you can do anything from learning why you're getting paged at 2:00 a.m. to understanding the impact rain might have on your quarterly numbers.</li> <li>Kibana's list of features:<ul> <li>Powerful frontend dashboard is written in JavaScript</li> <li>Browser-based analytics and search dashboard for Elasticsearch</li> <li>A flexible analytics and visualization platform</li> <li>Provides data in the form of charts, graphs, counts, maps, and so on, in real time</li> </ul> </li> </ul> <h3 id=beats>Beats<a class=headerlink href=#beats title="Permanent link">&para;</a></h3> <ul> <li>Beats is the platform for single-purpose data shippers. They install as lightweight agents and send data from hundreds or thousands of machines to Logstash or Elasticsearch.</li> <li>Beats are:<ul> <li>Lightweight shippers for Elasticsearch and Logstash</li> <li>Capture all sorts of operational data, like logs or network packet data</li> <li>They can send logs to either Elasticsearch or Logstash</li> </ul> </li> </ul> <h3 id=elastalert>ElastAlert<a class=headerlink href=#elastalert title="Permanent link">&para;</a></h3> <ul> <li>ElastAlert is a Python tool which also bundles with the different types of integrations to support with alerting and notifications. </li> <li>Some of them include Command, Email, JIRA, OpsGenie, AWS SNS, HipChat, Slack, Telegram, and so on. </li> <li>It also provides a modular approach to creating our own integrations.</li> </ul> <h3 id=why-should-we-use-elastic-stack-for-security-monitoring-and-alerting>Why should we use Elastic Stack for security monitoring and alerting?<a class=headerlink href=#why-should-we-use-elastic-stack-for-security-monitoring-and-alerting title="Permanent link">&para;</a></h3> <ul> <li>The Elastic Stack solves most of the problems that we have discussed before, such as:<ul> <li>Ability to store large amounts of data</li> <li>Ability to understand and read a variety of log formats</li> <li>Ability to ship the log information from a variety of devices in near real time to one central location</li> <li>A visualization dashboard for log analysis</li> </ul> </li> </ul> <h3 id=prerequisites-for-setting-up-elastic-stack>Prerequisites for setting up Elastic Stack<a class=headerlink href=#prerequisites-for-setting-up-elastic-stack title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install python 2</span>
+  <span class=nt>raw</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">test -e /usr/bin/python || (apt -y update &amp;&amp; apt install -y python-minimal)</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">accepting oracle java license agreement</span>
+  <span class=nt>debconf</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&#39;oracle-java8-installer&#39;</span>
+    <span class=nt>question</span><span class=p>:</span> <span class=s>&#39;shared/accepted-oracle-license-v1-1&#39;</span>
+    <span class=nt>value</span><span class=p>:</span> <span class=s>&#39;true&#39;</span>
+    <span class=nt>vtype</span><span class=p>:</span> <span class=s>&#39;select&#39;</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding ppa repo for oracle java by webupd8team</span>
+  <span class=nt>apt_repository</span><span class=p>:</span>
+    <span class=nt>repo</span><span class=p>:</span> <span class=s>&#39;ppa:webupd8team/java&#39;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing java nginx apache2-utils and git</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python-software-properties</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">oracle-java8-installer</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">apache2-utils</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python-pip</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python-passlib</span>
+</code></pre></div> <h3 id=setting-up-the-elastic-stack>Setting up the Elastic Stack<a class=headerlink href=#setting-up-the-elastic-stack title="Permanent link">&para;</a></h3> <ul> <li>The stack is a combination of:<ul> <li>The Elasticsearch service</li> <li>The Logstash service</li> <li>The Kibana service</li> <li>The Beats service on all the devices </li> </ul> </li> <li>We are going to set up Elasticsearch, Logstash, and Kibana on a single machine.</li> <li>This is the main log collection machine:<ul> <li>It requires a minimum of 4 GB RAM, as we are using a single machine to serve three services (Elasticsearch, Logstash, and Kibana)</li> <li>It requires a minimum of 20 GB disk space, and, based on your log size, you can add the disk space</li> </ul> </li> </ul> <h3 id=installing-elasticsearch>Installing Elasticsearch<a class=headerlink href=#installing-elasticsearch title="Permanent link">&para;</a></h3> <ul> <li>Install Elasticsearch from the repository with gpg key and add it to the startup programs <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding elastic gpg key for elasticsearch</span>
+  <span class=nt>apt_key</span><span class=p>:</span>
+    <span class=nt>url</span><span class=p>:</span> <span class=s>&quot;https://artifacts.elastic.co/GPG-KEY-elasticsearch&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding the elastic repository</span>
+  <span class=nt>apt_repository</span><span class=p>:</span>
+    <span class=nt>repo</span><span class=p>:</span> <span class=s>&quot;deb</span><span class=nv> </span><span class=s>https://artifacts.elastic.co/packages/5.x/apt</span><span class=nv> </span><span class=s>stable</span><span class=nv> </span><span class=s>main&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing elasticsearch</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">elasticsearch</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding elasticsearch to the startup programs</span>
+  <span class=nt>service</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">elasticsearch</span>
+    <span class=nt>enabled</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  
+  <span class=nt>notify</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">start elasticsearch</span>
+</code></pre></div></li> <li>Configure the Elasticsearch cluster with the required settings.</li> <li>Also, set up the JVM options for the Elasticsearch cluster. </li> <li>Also, create a backup directory for Elasticsearch cluster backups and snapshots <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">creating elasticsearch backup repo directory at {{ elasticsearch_backups_repo_path }}</span>
+  <span class=nt>file</span><span class=p>:</span>
+    <span class=nt>path</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>elasticsearch_backups_repo_path</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">directory</span>
+    <span class=nt>mode</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">0755</span>
+    <span class=nt>owner</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">elasticsearch</span>
+    <span class=nt>group</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">elasticsearch</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">configuring elasticsearch.yml file</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>src</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.src</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/elasticsearch/&quot;{{ item.dst }}&quot;</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;elasticsearch.yml.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;elasticsearch.yml&#39;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;jvm.options.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;jvm.options&#39;</span> <span class="p p-Indicator">}</span>
+
+  <span class=nt>notify</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">restart elasticsearch</span>
+</code></pre></div></li> <li>The notify part will trigger the restart elasticsearch handler and the handler file will look as follows. <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">start elasticsearch</span>
+  <span class=nt>service</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">elasticsearch</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">started</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restart elasticsearch</span>
+  <span class=nt>service</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">elasticsearch</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restarted</span>
+</code></pre></div></li> </ul> <h3 id=installing-logstash>Installing Logstash<a class=headerlink href=#installing-logstash title="Permanent link">&para;</a></h3> <ul> <li>Install Logstash from the repository with gpg key and add it to the startup programs <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding elastic gpg key for logstash</span>
+  <span class=nt>apt_key</span><span class=p>:</span>
+    <span class=nt>url</span><span class=p>:</span> <span class=s>&quot;https://artifacts.elastic.co/GPG-KEY-elasticsearch&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding the elastic repository</span>
+  <span class=nt>apt_repository</span><span class=p>:</span>
+    <span class=nt>repo</span><span class=p>:</span> <span class=s>&quot;deb</span><span class=nv> </span><span class=s>https://artifacts.elastic.co/packages/5.x/apt</span><span class=nv> </span><span class=s>stable</span><span class=nv> </span><span class=s>main&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing logstash</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">logstash</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding logstash to the startup programs</span>
+  <span class=nt>service</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">logstash</span>
+    <span class=nt>enabled</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class=nt>notify</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">start logstash</span>
+</code></pre></div></li> <li>Configure the Logstash service with input, output, and filter settings. </li> <li>This enables receiving logs, processing logs, and sending logs to the Elasticsearch cluster <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">logstash configuration files</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>src</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.src</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/logstash/conf.d/&quot;{{ item.dst }}&quot;</span>
+  
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;02-beats-input.conf.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;02-beats-input.conf&#39;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;10-sshlog-filter.conf.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;10-sshlog-filter.conf&#39;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;11-weblog-filter.conf.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;11-weblog-filter.conf&#39;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;30-elasticsearch-output.conf.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;10-elasticsearch-output.conf&#39;</span> <span class="p p-Indicator">}</span>
+
+  <span class=nt>notify</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">restart logstash</span>
+</code></pre></div></li> </ul> <h3 id=logstash-configuration>Logstash configuration<a class=headerlink href=#logstash-configuration title="Permanent link">&para;</a></h3> <ul> <li>To receive logs from different systems, we use the Beats service from Elastic. </li> <li>The following configuration is to receive logs from different servers to the Logstash server. </li> <li>Logstash runs on port 5044 and we can use SSL certificates to ensure logs are transferred via an encrypted channel. <div class=highlight><pre><span></span><code><span class=c1># 02-beats-input.conf.j2</span>
+<span class="l l-Scalar l-Scalar-Plain">input {</span>
+    <span class="l l-Scalar l-Scalar-Plain">beats {</span>
+        <span class="l l-Scalar l-Scalar-Plain">port =&gt; 5044</span>
+        <span class="l l-Scalar l-Scalar-Plain">ssl =&gt; true</span>
+        <span class="l l-Scalar l-Scalar-Plain">ssl_certificate =&gt; &quot;/etc/pki/tls/certs/logstash-forwarder.crt&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">ssl_key =&gt; &quot;/etc/pki/tls/private/logstash-forwarder.key&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">}</span>
+<span class="l l-Scalar l-Scalar-Plain">}</span>
+</code></pre></div></li> <li>The following configuration is to parse the system SSH service logs (auth.log) using grok filters. </li> <li>It also applies filters like geoip, while providing additional information like country, location, longitude, latitude, and so on. <div class=highlight><pre><span></span><code><span class=c1>#10-sshlog-filter.conf.j2</span>
+<span class="l l-Scalar l-Scalar-Plain">filter {</span>
+    <span class="l l-Scalar l-Scalar-Plain">if [type] == &quot;sshlog&quot; {</span>
+        <span class="l l-Scalar l-Scalar-Plain">grok {</span>
+            <span class="l l-Scalar l-Scalar-Plain">match =&gt; [ &quot;message&quot;, &quot;%{SYSLOGTIMESTAMP:syslog_date} %{SYSLOGHOST:syslog_host} %{DATA:syslog_program}(?:\[%{POSINT}\])?</span><span class="p p-Indicator">:</span> <span class=err>%</span><span class="p p-Indicator">{</span><span class=nv>WORD</span><span class="p p-Indicator">:</span><span class=nv>login</span><span class="p p-Indicator">}</span> <span class="l l-Scalar l-Scalar-Plain">password for %{USERNAME:username} from %{IP:ip} %{GREEDYDATA}&quot;,</span>
+            <span class="l l-Scalar l-Scalar-Plain">&quot;message&quot;, &quot;%{SYSLOGTIMESTAMP:syslog_date} %{SYSLOGHOST:syslog_host} %{DATA:syslog_program}(?:\[%{POSINT}\])?</span><span class="p p-Indicator">:</span> <span class=nt>message repeated 2 times</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">\[ %{WORD:login} password for %{USERNAME:username} from %{IP:ip} %{GREEDYDATA}&quot;,</span>
+            <span class="l l-Scalar l-Scalar-Plain">&quot;message&quot;, &quot;%{SYSLOGTIMESTAMP:syslog_date} %{SYSLOGHOST:syslog_host} %{DATA:syslog_program}(?:\[%{POSINT}\])?</span><span class="p p-Indicator">:</span> <span class=err>%</span><span class="p p-Indicator">{</span><span class=nv>WORD</span><span class="p p-Indicator">:</span><span class=nv>login</span><span class="p p-Indicator">}</span> <span class="l l-Scalar l-Scalar-Plain">password for invalid user %{USERNAME:username} from %{IP:ip} %{GREEDYDATA}&quot;,</span>
+            <span class="l l-Scalar l-Scalar-Plain">&quot;message&quot;, &quot;%{SYSLOGTIMESTAMP:syslog_date} %{SYSLOGHOST:syslog_host} %{DATA:syslog_program}(?:\[%{POSINT}\])?</span><span class="p p-Indicator">:</span> <span class=err>%</span><span class="p p-Indicator">{</span><span class=nv>WORD</span><span class="p p-Indicator">:</span><span class=nv>login</span><span class="p p-Indicator">}</span> <span class=err>%</span><span class="p p-Indicator">{</span><span class=nv>WORD</span><span class="p p-Indicator">:</span><span class=nv>auth_method</span><span class="p p-Indicator">}</span> <span class="l l-Scalar l-Scalar-Plain">for %{USERNAME:username} from %{IP:ip} %{GREEDYDATA}&quot; ]</span>
+        <span class="l l-Scalar l-Scalar-Plain">}</span>
+        
+        <span class="l l-Scalar l-Scalar-Plain">date {</span>
+            <span class="l l-Scalar l-Scalar-Plain">match =&gt; [ &quot;timestamp&quot;, &quot;dd/MMM/YYYY:HH:mm:ss Z&quot; ]</span>
+            <span class="l l-Scalar l-Scalar-Plain">locale =&gt; en</span>
+        <span class="l l-Scalar l-Scalar-Plain">}</span>
+        
+        <span class="l l-Scalar l-Scalar-Plain">geoip {</span>
+            <span class="l l-Scalar l-Scalar-Plain">source =&gt; &quot;ip&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">}</span>
+<span class=err>}</span>
+</code></pre></div></li> <li>The following configuration is to parse web server logs (nginx, apache2).</li> <li>We will also apply filters for geoip and useragent. </li> <li>The useragent filter allows us to get information about the agent, OS type, version information, and so on. <div class=highlight><pre><span></span><code><span class=c1>#11-weblog-filter.conf.j2</span>
+<span class="l l-Scalar l-Scalar-Plain">filter {</span>
+    <span class="l l-Scalar l-Scalar-Plain">if [type] == &quot;weblog&quot; {</span>
+        <span class="l l-Scalar l-Scalar-Plain">grok {</span>
+        <span class="l l-Scalar l-Scalar-Plain">match =&gt; { &quot;message&quot; =&gt; &#39;%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] &quot;%{WORD:verb} %{DATA:request} HTTP/%{NUMBER:httpversion}&quot; %{NUMBER:response:int} (?:-|%{NUMBER:bytes:int}) %{QS:referrer} %{QS:agent}&#39; }</span>
+        <span class="l l-Scalar l-Scalar-Plain">}</span>
+
+        <span class="l l-Scalar l-Scalar-Plain">date {</span>
+        <span class="l l-Scalar l-Scalar-Plain">match =&gt; [ &quot;timestamp&quot;, &quot;dd/MMM/YYYY:HH:mm:ss Z&quot; ]</span>
+        <span class="l l-Scalar l-Scalar-Plain">locale =&gt; en</span>
+        <span class="l l-Scalar l-Scalar-Plain">}</span>
+
+        <span class="l l-Scalar l-Scalar-Plain">geoip {</span>
+            <span class="l l-Scalar l-Scalar-Plain">source =&gt; &quot;clientip&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">}</span>
+        
+        <span class="l l-Scalar l-Scalar-Plain">useragent {</span>
+            <span class="l l-Scalar l-Scalar-Plain">source =&gt; &quot;agent&quot;</span>
+            <span class="l l-Scalar l-Scalar-Plain">target =&gt; &quot;useragent&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">}</span>
+    <span class="l l-Scalar l-Scalar-Plain">}</span>
+<span class="l l-Scalar l-Scalar-Plain">}</span>
+</code></pre></div></li> <li>The following configuration will send the log output into the Elasticsearch cluster with daily index formats. <div class=highlight><pre><span></span><code><span class=c1>#30-elasticsearch-output.conf.j2</span>
+<span class="l l-Scalar l-Scalar-Plain">output {</span>
+    <span class="l l-Scalar l-Scalar-Plain">elasticsearch {</span>
+        <span class="l l-Scalar l-Scalar-Plain">hosts =&gt; [&quot;localhost:9200&quot;]</span>
+        <span class="l l-Scalar l-Scalar-Plain">manage_template =&gt; false</span>
+        <span class="l l-Scalar l-Scalar-Plain">index =&gt; &quot;%{[@metadata][beat]}-%{+YYYY.MM.dd}&quot;</span>
+        <span class="l l-Scalar l-Scalar-Plain">document_type =&gt; &quot;%{[@metadata][type]}&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">}</span>
+<span class="l l-Scalar l-Scalar-Plain">}</span>
+</code></pre></div></li> </ul> <h3 id=installing-kibana>Installing Kibana<a class=headerlink href=#installing-kibana title="Permanent link">&para;</a></h3> <ul> <li>By default we are not making any changes in Kibana, as it works out of the box with Elasticsearch. <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding elastic gpg key for kibana</span>
+  <span class=nt>apt_key</span><span class=p>:</span>
+    <span class=nt>url</span><span class=p>:</span> <span class=s>&quot;https://artifacts.elastic.co/GPG-KEY-elasticsearch&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding the elastic repository</span>
+  <span class=nt>apt_repository</span><span class=p>:</span>
+    <span class=nt>repo</span><span class=p>:</span> <span class=s>&quot;deb</span><span class=nv> </span><span class=s>https://artifacts.elastic.co/packages/5.x/apt</span><span class=nv> </span><span class=s>stable</span><span class=nv> </span><span class=s>main&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing kibana</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">kibana</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding kibana to the startup programs</span>
+  <span class=nt>service</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">kibana</span>
+    <span class=nt>enabled</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class=nt>notify</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">start kibana</span>
+</code></pre></div></li> <li>By default Kibana doesn't have any authentication, X-Pack is the commercial plug-in by Elastic for RBAC (role-based access control) with security. Also, some open source options include <a href=https://readonlyrest.com/ >https://readonlyrest.com/</a> and Search Guard (<a href=https://floragunn.com>https://floragunn.com</a>) to interact with Elasticsearch. </li> <li>Using TLS/SSL and custom authentication and aauthorization is highly recommended. </li> <li>Some of the open source options includes Oauth2 Proxy (<a class="magiclink magiclink-github magiclink-repository" href=https://github.com/bitly/oauth2_proxy title="GitHub Repository: bitly/oauth2_proxy">bitly/oauth2_proxy</a>) and Auth0, and so on.</li> </ul> <h3 id=setting-up-nginx-reverse-proxy>Setting up nginx reverse proxy<a class=headerlink href=#setting-up-nginx-reverse-proxy title="Permanent link">&para;</a></h3> <ul> <li>The following configuration is to enable basic authentication for Kibana using nginx reverse proxy. <div class=highlight><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">server {</span>
+    <span class="l l-Scalar l-Scalar-Plain">listen 80;</span>
+    <span class="l l-Scalar l-Scalar-Plain">server_name localhost;</span>
+    <span class="l l-Scalar l-Scalar-Plain">auth_basic &quot;Restricted Access&quot;;</span>
+    <span class="l l-Scalar l-Scalar-Plain">auth_basic_user_file /etc/nginx/htpasswd.users;</span>
+    <span class="l l-Scalar l-Scalar-Plain">location / {</span>
+        <span class="l l-Scalar l-Scalar-Plain">proxy_pass http://localhost:5601;</span>
+        <span class="l l-Scalar l-Scalar-Plain">proxy_http_version 1.1;</span>
+        <span class="l l-Scalar l-Scalar-Plain">proxy_set_header Upgrade $http_upgrade;</span>
+        <span class="l l-Scalar l-Scalar-Plain">proxy_set_header Connection &#39;upgrade&#39;;</span>
+        <span class="l l-Scalar l-Scalar-Plain">proxy_set_header Host $host;</span>
+        <span class="l l-Scalar l-Scalar-Plain">proxy_cache_bypass $http_upgrade;</span>
+    <span class="l l-Scalar l-Scalar-Plain">}</span>
+<span class="l l-Scalar l-Scalar-Plain">}</span>
+</code></pre></div></li> <li>Setting up and configuring the nginx service looks as follows. <div class=highlight><pre><span></span><code><span class=c1>#command: htpasswd -c /etc/nginx/htpasswd.users</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">htpasswd generation</span>
+  <span class=nt>htpasswd</span><span class=p>:</span>
+    <span class=nt>path</span><span class=p>:</span> <span class=s>&quot;/etc/nginx/htpasswd.users&quot;</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>basic_auth_username</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>password</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>basic_auth_password</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>owner</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+    <span class=nt>group</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+    <span class=nt>mode</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">0644</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx virtualhost configuration</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>src</span><span class=p>:</span> <span class=s>&quot;templates/nginxdefault.j2&quot;</span>
+    <span class=nt>dest</span><span class=p>:</span> <span class=s>&quot;/etc/nginx/sites-available/default&quot;</span>
+
+  <span class=nt>notify</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">restart nginx</span>
+</code></pre></div></li> </ul> <h3 id=installing-beats-to-send-logs-to-elastic-stack>Installing Beats to send logs to Elastic Stack<a class=headerlink href=#installing-beats-to-send-logs-to-elastic-stack title="Permanent link">&para;</a></h3> <ul> <li>We are going to install Filebeat to send SSH and web server logs to the Elastic Stack: <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding elastic gpg key for filebeat</span>
+  <span class=nt>apt_key</span><span class=p>:</span>
+    <span class=nt>url</span><span class=p>:</span> <span class=s>&quot;https://artifacts.elastic.co/GPG-KEY-elasticsearch&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding the elastic repository</span>
+  <span class=nt>apt_repository</span><span class=p>:</span>
+    <span class=nt>repo</span><span class=p>:</span> <span class=s>&quot;deb</span><span class=nv> </span><span class=s>https://artifacts.elastic.co/packages/5.x/apt</span><span class=nv> </span><span class=s>stable</span><span class=nv> </span><span class=s>main&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing filebeat</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">apt-transport-https</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">filebeat</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding filebeat to the startup programs</span>
+  <span class=nt>service</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">filebeat</span>
+    <span class=nt>enabled</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class=nt>notify</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">start filebeat</span>
+</code></pre></div></li> <li>Configure the Filebeat to send both SSH and web server logs to Elastic Stack, to process and index in near real-time. <div class=highlight><pre><span></span><code><span class=nt>filebeat</span><span class=p>:</span>
+  <span class=nt>prospectors</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span>
+      <span class=nt>paths</span><span class=p>:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/var/log/auth.log</span>
+        <span class=c1># - /var/log/syslog</span>
+        <span class=c1># - /var/log/*.log</span>
+      <span class=nt>document_type</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">sshlog</span>
+    <span class="p p-Indicator">-</span>
+      <span class=nt>paths</span><span class=p>:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/var/log/nginx/access.log</span>
+      <span class=nt>document_type</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">weblog</span>
+
+  <span class=nt>registry_file</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/var/lib/filebeat/registry</span>
+
+<span class=nt>output</span><span class=p>:</span>
+ <span class=nt>logstash</span><span class=p>:</span>
+   <span class=nt>hosts</span><span class=p>:</span> <span class="p p-Indicator">[</span><span class=s>&quot;{{</span><span class=nv> </span><span class=s>logstash_server_ip</span><span class=nv> </span><span class=s>}}:5044&quot;</span><span class="p p-Indicator">]</span>
+   <span class=nt>bulk_max_size</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">1024</span>
+   <span class=nt>ssl</span><span class=p>:</span>
+    <span class=nt>certificate_authorities</span><span class=p>:</span> <span class="p p-Indicator">[</span><span class=s>&quot;/etc/pki/tls/certs/logstash-forwarder.crt&quot;</span><span class="p p-Indicator">]</span>
+
+<span class=nt>logging</span><span class=p>:</span>
+ <span class=nt>files</span><span class=p>:</span>
+   <span class=nt>rotateeverybytes</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">10485760</span> <span class=c1># = 10MB</span>
+</code></pre></div></li> </ul> <h3 id=elastalert-for-alerting>ElastAlert for alerting<a class=headerlink href=#elastalert-for-alerting title="Permanent link">&para;</a></h3> <ul> <li>First, we need to install the prerequisites for setting up ElastAlert. <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing pre requisuites for elastalert</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python-pip</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python-dev</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">libffi-dev</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">libssl-dev</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python-setuptools</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">build-essential</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing elastalert</span>
+  <span class=nt>pip</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">elastalert</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">creating elastalert directories</span>
+  <span class=nt>file</span><span class=p>:</span> 
+    <span class=nt>path</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">directory</span>
+    <span class=nt>mode</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">0755</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/opt/elastalert/rules</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/opt/elastalert/config</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">creating elastalert configuration</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>src</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.src</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>dest</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.dst</span><span class=nv> </span><span class=s>}}&quot;</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;elastalert-config.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;/opt/elastalert/config/config.yml&#39;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;elastalert-service.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;/lib/systemd/system/elastalert.service&#39;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;elastalert-sshrule.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;/opt/elastalert/rules/ssh-bruteforce.yml&#39;</span> <span class="p p-Indicator">}</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">enable elastalert service</span>
+  <span class=nt>service</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">elastalert</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">started</span>
+    <span class=nt>enabled</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+</code></pre></div></li> <li>Creating a simple startup script so that ElastAlert will be used as a system service. <div class=highlight><pre><span></span><code><span class=o>[</span>Unit<span class=o>]</span>
+<span class=nv>Description</span><span class=o>=</span>elastalert
+<span class=nv>After</span><span class=o>=</span>multi-user.target
+
+<span class=o>[</span>Service<span class=o>]</span>
+<span class=nv>Type</span><span class=o>=</span>simple
+<span class=nv>WorkingDirectory</span><span class=o>=</span>/opt/elastalert
+<span class=nv>ExecStart</span><span class=o>=</span>/usr/local/bin/elastalert --config /opt/elastalert/config/config.yml
+
+<span class=o>[</span>Install<span class=o>]</span>
+<span class=nv>WantedBy</span><span class=o>=</span>multi-user.target
+</code></pre></div></li> </ul> <h3 id=configuring-the-lets-encrypt-service>Configuring the Let's Encrypt service<a class=headerlink href=#configuring-the-lets-encrypt-service title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">adding certbot ppa</span>
+  <span class=nt>apt_repository</span><span class=p>:</span>
+    <span class=nt>repo</span><span class=p>:</span> <span class=s>&quot;ppa:certbot/certbot&quot;</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install certbot</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python-certbot-nginx</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">check if we have generated a cert already</span>
+  <span class=nt>stat</span><span class=p>:</span>
+    <span class=nt>path</span><span class=p>:</span> <span class=s>&quot;/etc/letsencrypt/live/{{</span><span class=nv> </span><span class=s>website_domain_name</span><span class=nv> </span><span class=s>}}/fullchain.pem&quot;</span>
+    <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">cert_stats</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">run certbot to generate the certificates</span>
+  <span class=nt>shell</span><span class=p>:</span> <span class=s>&quot;certbot</span><span class=nv> </span><span class=s>certonly</span><span class=nv> </span><span class=s>--standalone</span><span class=nv> </span><span class=s>-d</span><span class=nv> </span><span class=s>{{</span><span class=nv> </span><span class=s>website_domain_name</span><span class=nv> </span><span class=s>}}</span><span class=nv> </span><span class=s>--email</span><span class=nv> </span><span class=s>{{</span><span class=nv> </span><span class=s>service_admin_email</span><span class=nv> </span><span class=s>}}</span><span class=nv> </span><span class=s>--non-interactive</span><span class=nv> </span><span class=s>--agree-tos&quot;</span>
+  <span class=nt>when</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">cert_stats.stat.exists == False</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">configuring site files</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>src</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">website.conf</span>
+    <span class=nt>dest</span><span class=p>:</span> <span class=s>&quot;/etc/nginx/sites-available/{{</span><span class=nv> </span><span class=s>website_domain_name</span><span class=nv> </span><span class=s>}}&quot;</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restart nginx</span>
+  <span class=nt>service</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restarted</span>
+</code></pre></div> <h3 id=elastalert-rule-configuration>ElastAlert rule configuration<a class=headerlink href=#elastalert-rule-configuration title="Permanent link">&para;</a></h3> <ul> <li>Assuming that you already have Elastic Stack installed and logging SSH logs, use the following ElastAlert rule to trigger SSH attack IP blacklisting. <div class=highlight><pre><span></span><code><span class=nt>es_host</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+<span class=nt>es_port</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">9200</span>
+<span class=nt>name</span><span class=p>:</span> <span class=s>&quot;SSH</span><span class=nv> </span><span class=s>Bruteforce</span><span class=nv> </span><span class=s>attack</span><span class=nv> </span><span class=s>alert&quot;</span>
+<span class=nt>type</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">frequency</span>
+<span class=nt>index</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">filebeat-*</span>
+<span class=nt>num_events</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
+<span class=nt>timeframe</span><span class=p>:</span>
+  <span class=nt>minutes</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class=c1># For more info: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl.html</span>
+
+<span class=nt>filter</span><span class=p>:</span>
+<span class="p p-Indicator">-</span> <span class=nt>query</span><span class=p>:</span>
+    <span class=nt>query_string</span><span class=p>:</span>
+      <span class=nt>query</span><span class=p>:</span> <span class=s>&#39;_type:sshlog</span><span class=nv> </span><span class=s>AND</span><span class=nv> </span><span class=s>login:failed</span><span class=nv> </span><span class=s>AND</span><span class=nv> </span><span class=s>(username:</span><span class=nv> </span><span class=s>&quot;ubuntu&quot;</span><span class=nv> </span><span class=s>OR</span><span class=nv> </span><span class=s>username:</span><span class=nv> </span><span class=s>&quot;root&quot;)&#39;</span>
+
+<span class=nt>alert</span><span class=p>:</span>
+  <span class="p p-Indicator">-</span> <span class=nt>slack</span><span class=p>:</span>
+      <span class=nt>slack_webhook_url</span><span class=p>:</span> <span class=s>&quot;https://hooks.slack.com/services/xxxxx&quot;</span>
+      <span class=nt>slack_username_override</span><span class=p>:</span> <span class=s>&quot;attack-bot&quot;</span>
+      <span class=nt>slack_emoji_override</span><span class=p>:</span> <span class=s>&quot;robot_face&quot;</span>
+  <span class="p p-Indicator">-</span> <span class=nt>command</span><span class=p>:</span> <span class="p p-Indicator">[</span><span class=s>&quot;/usr/bin/curl&quot;</span><span class="p p-Indicator">,</span> <span class=s>&quot;https://xxxxxxxxxxx.execute-api.us-east-1.amazonaws.com/dev/zzzzzzzzzzzzzz/ip/inframonitor/%(ip)s&quot;</span><span class="p p-Indicator">]</span>
+
+<span class=nt>realert</span><span class=p>:</span>
+  <span class=nt>minutes</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+</code></pre></div></li> <li>For more references, visit <a href=https://elastalert.readthedocs.io/en/latest/running_elastalert.html>https://elastalert.readthedocs.io/en/latest/running_elastalert.html</a>.</li> </ul> <h2 id=serverless-automated-defense>Serverless Automated Defense<a class=headerlink href=#serverless-automated-defense title="Permanent link">&para;</a></h2> <ul> <li>If we can get a notification for an attack, we can set up and do the following:<ul> <li>Call an AWS Lambda function</li> <li>Send the attacker's IP address information to this AWS Lambda function endpoint</li> <li>Use the code deployed in the Lambda function to call the VPC network access list API and block the attacker's IP address</li> </ul> </li> <li>To ensure that we don't fill up the ACLs with attacker IPs, we can combine this approach with AWS DynamoDB to store this information for a short duration and remove it from the block list.</li> <li>As soon as an attack is detected, the alerter sends the IP to the blacklist lambda endpoint via an HTTPS request. </li> <li>The IP is blocked using the network ACL and the record of it is maintained in DynamoDB. </li> <li>If the IP is currently blocked already, then the expiry time for the rule will be extended in the DynamoDB.</li> <li>An expiry handler function is periodically triggered, which removes expired rules from DynamoDB and ACL accordingly.</li> </ul> <h3 id=setup>Setup<a class=headerlink href=#setup title="Permanent link">&para;</a></h3> <ul> <li>The setup involves the following steps:<ul> <li>Obtain IAM credentials</li> <li>Create a table in DynamoDB</li> <li>Configure the lambda function based on requirement</li> <li>Deploy code to AWS Lambda</li> <li>Configure Cloudwatch to periodic invocation</li> </ul> </li> <li>The entire setup is automated, except for obtaining the IAM credentials and configuring the function based on requirements.</li> </ul> <h3 id=configuration>Configuration<a class=headerlink href=#configuration title="Permanent link">&para;</a></h3> <ul> <li>The following parameters are configurable before deployment:<ul> <li>region: AWS region to deploy in. This needs to be the same as the region where the VPC network resides.</li> <li>accessToken: The accessToken that will be used to authenticate the requests to the blacklist endpoint.</li> <li>aclLimit: The maximum number of rules an ACL can handle. The maximum limit in AWS is 20 by default.</li> <li>ruleStartId: The starting ID for rules in the ACL.</li> <li>aclID: The ACL ID of the network where the rules will be applied.</li> <li>tableName: The unique table name in DynamoDB, created for each VPC to be defended.</li> <li>ruleValidity: The duration for which a rule is valid, after which the IP will be unblocked. <div class=highlight><pre><span></span><code><span class=c1>// Configure the following in the config.js file</span>
+<span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=nx>region</span><span class=o>:</span> <span class=s2>&quot;us-east-1&quot;</span><span class=p>,</span>                                        <span class=c1>// AWS Region to deploy in</span>
+    <span class=nx>accessToken</span><span class=o>:</span> <span class=s2>&quot;YOUR_R4NDOM_S3CR3T_ACCESS_TOKEN_GOES_HERE&quot;</span><span class=p>,</span>   <span class=c1>// Accesstoken to make requests to blacklist</span>
+    <span class=nx>aclLimit</span><span class=o>:</span> <span class=mf>20</span><span class=p>,</span>                                               <span class=c1>// Maximum number of acl rules</span>
+    <span class=nx>ruleStartId</span><span class=o>:</span> <span class=mf>10</span><span class=p>,</span>                                            <span class=c1>// Starting id for acl entries</span>
+    <span class=nx>aclId</span><span class=o>:</span> <span class=s2>&quot;YOUR_ACL_ID&quot;</span><span class=p>,</span>                                       <span class=c1>// AclId that you want to be managed</span>
+    <span class=nx>tableName</span><span class=o>:</span> <span class=s2>&quot;blacklist_ip&quot;</span><span class=p>,</span>                                  <span class=c1>// DynamoDB table that will be created</span>
+    <span class=nx>ruleValidity</span><span class=o>:</span> <span class=mf>5</span>                                             <span class=c1>// Validity of Blacklist rule in minutes </span>
+<span class=p>}</span>
+</code></pre></div></li> </ul> </li> <li>Make sure to modify at least the aclId, accessToken, and region based on your setup. </li> <li>To modify the lambda deployment configuration use the serverless.yml file <div class=highlight><pre><span></span><code><span class=nn>...</span>
+
+<span class=nt>functions</span><span class=p>:</span>
+  <span class=nt>blacklist</span><span class=p>:</span>
+    <span class=nt>handler</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">handler.blacklistip</span>
+    <span class=nt>events</span><span class=p>:</span>
+     <span class="p p-Indicator">-</span> <span class=nt>http</span><span class=p>:</span>
+         <span class=nt>path</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">blacklistip</span>
+         <span class=nt>method</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">get</span>
+
+  <span class=nt>handleexpiry</span><span class=p>:</span>
+    <span class=nt>handler</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">handler.handleexpiry</span>
+    <span class=nt>events</span><span class=p>:</span>
+     <span class="p p-Indicator">-</span> <span class=nt>schedule</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">rate(1 minute)</span>
+
+<span class=nn>...</span>
+</code></pre></div></li> <li>For example, the rate at which the expiry function is triggered and the endpoint URL for the blacklist function can be modified using the YML file. But the defaults are already optimal. <div class=highlight><pre><span></span><code><span class=c1># The playbook looks as follows:</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing node run time and npm</span>
+  <span class=nt>apt</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">nodejs</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">npm</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing serverless package</span>
+  <span class=nt>npm</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>global</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">serverless</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">aws-sdk</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">copy the setup files</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>src</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.src</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>dest</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item.dst</span><span class=nv> </span><span class=s>}}&quot;</span>
+
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;config.js.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;/opt/serverless/config.js&#39;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;handler.js.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;/opt/serverless/handler.js&#39;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;iamRoleStatements.json.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;/opt/serverless/iamRoleStatements.json&#39;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;initDb.js.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;/opt/serverless/initDb.js&#39;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;serverless.yml.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;/opt/serverless/serverless.yml&#39;</span> <span class="p p-Indicator">}</span>
+    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class=nt> src</span><span class=p>:</span> <span class=s>&#39;aws-credentials.j2&#39;</span><span class="p p-Indicator">,</span><span class=nt> dst</span><span class=p>:</span> <span class=s>&#39;~/.aws/credentials&#39;</span> <span class="p p-Indicator">}</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">create dynamo db table</span>
+  <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">node initDb.js</span>
+  <span class=nt>args</span><span class=p>:</span>
+    <span class=nt>chdir</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/serverless/</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">deploy the serverless</span>
+  <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">serverless deploy</span>
+  <span class=nt>args</span><span class=p>:</span>
+    <span class=nt>chdir</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/serverless/</span>
+</code></pre></div></li> <li>The current setup for AWS Lambda is to block the IP address against network ACL. This can be reused with other API endpoints, like a firewall dynamic block list and other security devices.</li> <li>The blacklist endpoint is responsible for blocking an IP address.</li> <li>The URL looks like the following: <a href="https://lambda_url/blacklistipaccessToken=ACCESS_TOKEN&ip=IP_ADDRESS">https://lambda_url/blacklistipaccessToken=ACCESS_TOKEN&amp;ip=IP_ADDRESS</a></li> <li>The query parameters are as follows:<ul> <li>IP_ADDRESS: This is the IP address to be blocked</li> <li>ACCESS_TOKEN: The accessToken to authenticate the request</li> </ul> </li> </ul> <h3 id=automated-defense-lambda-in-action>Automated defense lambda in action<a class=headerlink href=#automated-defense-lambda-in-action title="Permanent link">&para;</a></h3> <ul> <li>When the ElastAlert detects an SSH brute force attack, it will trigger a request to lambda endpoint by providing the attacker's IP address. Then our automated defense platform will trigger a network ACL blocklist rule. </li> <li>This can be configurable to say for how much time it should be blocked.</li> </ul> </article> </div> </div> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2018 - 2019 Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script> <script src=../../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>

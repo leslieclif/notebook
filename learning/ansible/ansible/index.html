@@ -1,0 +1,1132 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/learning/ansible/ansible/ rel=canonical><link rel="shortcut icon" href=../../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-7.0.3"><title>Ansible - Leslie's Online Notebook</title><link rel=stylesheet href=../../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#introduction class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Ansible </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Linux <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Linux data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Linux </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../linux/linux.md class=md-nav__link> Linux </a> </li> <li class=md-nav__item> <a href=../../../linux/security.md class=md-nav__link> Security </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5 checked> <label class=md-nav__link for=__nav_5> Ansible <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ansible data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Ansible </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> Ansible <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> Ansible </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#introduction class=md-nav__link> Introduction </a> </li> <li class=md-nav__item> <a href=#documentation-on-cmdline class=md-nav__link> Documentation on cmdline </a> </li> <li class=md-nav__item> <a href=#setup-server class=md-nav__link> Setup Server </a> <nav class=md-nav aria-label="Setup Server"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#default-configuration class=md-nav__link> Default Configuration </a> </li> <li class=md-nav__item> <a href=#enabling-ssh-on-the-vm class=md-nav__link> Enabling SSH on the VM </a> </li> <li class=md-nav__item> <a href=#access-vm-over-ssh class=md-nav__link> Access VM over SSH </a> </li> <li class=md-nav__item> <a href=#copy-files-recursively-from-local-desktop-to-remote-server class=md-nav__link> Copy files recursively from local desktop to remote server </a> </li> <li class=md-nav__item> <a href=#target-docker-containers-for-ansible-controller class=md-nav__link> Target Docker containers for Ansible controller </a> </li> <li class=md-nav__item> <a href=#issues-installing-ansible-and-its-dependencies class=md-nav__link> Issues installing Ansible and its dependencies </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#ansible-directory-structure-as-per-best-practises class=md-nav__link> Ansible Directory Structure as per Best Practises </a> </li> <li class=md-nav__item> <a href=#ansible-inventory class=md-nav__link> Ansible Inventory </a> <nav class=md-nav aria-label="Ansible Inventory"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#creating-an-inventory-file-and-adding-hosts class=md-nav__link> Creating an inventory file and adding hosts </a> </li> <li class=md-nav__item> <a href=#using-host-groups class=md-nav__link> Using host groups </a> </li> <li class=md-nav__item> <a href=#adding-host-and-group-variables-to-your-inventory class=md-nav__link> Adding host and group variables to your inventory </a> </li> <li class=md-nav__item> <a href=#special-host-management-using-patterns class=md-nav__link> Special host management using patterns </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#webapp--installation-instructions-for-centos-7 class=md-nav__link> WebApp Installation Instructions for Centos 7 </a> <nav class=md-nav aria-label="WebApp  Installation Instructions for Centos 7"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#install-python-pip-and-dependencies-on-centos-7 class=md-nav__link> Install Python Pip and dependencies on Centos 7 </a> </li> <li class=md-nav__item> <a href=#install-mysql-server-on-centos-7 class=md-nav__link> Install MySQL Server on Centos 7 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#setting-up-ansible-to-run-on-localhost-always class=md-nav__link> Setting up Ansible to run on localhost always </a> <nav class=md-nav aria-label="Setting up Ansible to run on localhost always"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#install-ansible class=md-nav__link> Install ansible </a> </li> <li class=md-nav__item> <a href=#make-some-relevant-config-files class=md-nav__link> Make some relevant config files </a> </li> <li class=md-nav__item> <a href=#make-a-test-playbook-and-run class=md-nav__link> Make a test playbook and run </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#executing-ansible-playbook class=md-nav__link> Executing Ansible Playbook </a> <nav class=md-nav aria-label="Executing Ansible Playbook"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#launching-ansible-situational-commands class=md-nav__link> Launching Ansible situational commands </a> </li> <li class=md-nav__item> <a href=#launching-ansible-playbook-situational-commands class=md-nav__link> Launching Ansible Playbook situational commands </a> </li> <li class=md-nav__item> <a href=#launching-ansible-vault-situational-commands class=md-nav__link> Launching Ansible Vault situational commands </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#understanding-the-playbook-framework class=md-nav__link> Understanding the playbook framework </a> <nav class=md-nav aria-label="Understanding the playbook framework"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#defining-plays-and-tasks class=md-nav__link> Defining plays and tasks </a> </li> <li class=md-nav__item> <a href=#understanding-roles class=md-nav__link> Understanding roles </a> <nav class=md-nav aria-label="Understanding roles"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#setting-up-role-based-variables-and-dependencies class=md-nav__link> Setting up role-based variables and dependencies </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#ansible-playbook-examples class=md-nav__link> Ansible Playbook Examples </a> <nav class=md-nav aria-label="Ansible Playbook Examples"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#using-ansible-system-variables-in-jinja2-templates class=md-nav__link> Using ansible system variables in Jinja2 Templates </a> </li> <li class=md-nav__item> <a href=#async class=md-nav__link> Async </a> </li> <li class=md-nav__item> <a href=#deployment-strategy-and-forks class=md-nav__link> Deployment Strategy and Forks </a> </li> <li class=md-nav__item> <a href=#error-handling class=md-nav__link> Error Handling </a> </li> <li class=md-nav__item> <a href=#jinja2-templating class=md-nav__link> Jinja2 Templating </a> </li> <li class=md-nav__item> <a href=#lookups class=md-nav__link> Lookups </a> </li> <li class=md-nav__item> <a href=#tags class=md-nav__link> Tags </a> </li> <li class=md-nav__item> <a href=#includes-outdated-after-20 class=md-nav__link> Includes (Outdated after 2.0) </a> </li> <li class=md-nav__item> <a href=#roles class=md-nav__link> Roles </a> </li> <li class=md-nav__item> <a href=#ansible-galaxy class=md-nav__link> Ansible Galaxy </a> </li> <li class=md-nav__item> <a href=#ansible-galaxy-useful-commands class=md-nav__link> ansible-galaxy useful commands </a> </li> <li class=md-nav__item> <a href=#environment-variables class=md-nav__link> Environment Variables </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#ansible-best-practises class=md-nav__link> Ansible Best Practises </a> <nav class=md-nav aria-label="Ansible Best Practises"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#inventory-files class=md-nav__link> Inventory Files </a> </li> <li class=md-nav__item> <a href=#the-proper-approach-to-defining-group-and-host-variables class=md-nav__link> The proper approach to defining group and host variables </a> </li> <li class=md-nav__item> <a href=#using-top-level-playbooks class=md-nav__link> Using top-level playbooks </a> </li> <li class=md-nav__item> <a href=#leveraging-version-control-tools class=md-nav__link> Leveraging version control tools </a> </li> <li class=md-nav__item> <a href=#setting-os-and-distribution-variances class=md-nav__link> Setting OS and distribution variances </a> </li> <li class=md-nav__item> <a href=#setting-task-execution-delegation class=md-nav__link> Setting task execution delegation </a> </li> <li class=md-nav__item> <a href=#using-the-run_once-option class=md-nav__link> Using the run_once option </a> </li> <li class=md-nav__item> <a href=#running-playbooks-locally class=md-nav__link> Running playbooks locally </a> </li> <li class=md-nav__item> <a href=#working-with-proxies-and-jump-hosts class=md-nav__link> Working with proxies and jump hosts </a> </li> <li class=md-nav__item> <a href=#configuring-playbook-prompts class=md-nav__link> Configuring playbook prompts </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#ansible-security-best-practices class=md-nav__link> Ansible Security Best Practices </a> <nav class=md-nav aria-label="Ansible Security Best Practices"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#working-with-ansible-vault class=md-nav__link> Working with Ansible Vault </a> <nav class=md-nav aria-label="Working with Ansible Vault"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#how-to-use-ansible-vault-with-variables-and-files class=md-nav__link> How to use Ansible Vault with variables and files </a> </li> <li class=md-nav__item> <a href=#ansible-vault-single-encrypted-variable class=md-nav__link> Ansible Vault single encrypted variable </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#setting-up-and-using-ansible-galaxy class=md-nav__link> Setting up and using Ansible Galaxy </a> </li> <li class=md-nav__item> <a href=#ansible-controller-machine-security class=md-nav__link> Ansible controller machine security </a> <nav class=md-nav aria-label="Ansible controller machine security"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#explanation-of-ansible-os-hardening-playbook class=md-nav__link> Explanation of Ansible OS hardening playbook </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#best-practices-and-reference-playbook-projects class=md-nav__link> Best practices and reference playbook projects </a> <nav class=md-nav aria-label="Best practices and reference playbook projects"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#debops--your-debian-based-data-center-in-a-box class=md-nav__link> DebOps – your Debian-based data center in a box </a> </li> <li class=md-nav__item> <a href=#algo--set-up-a-personal-ipsec-vpn-in-the-cloud class=md-nav__link> Algo – set up a personal IPSEC VPN in the cloud </a> </li> <li class=md-nav__item> <a href=#openstack-ansible class=md-nav__link> OpenStack-Ansible </a> </li> <li class=md-nav__item> <a href=#awx--open-source-version-of-ansible-tower class=md-nav__link> AWX – open source version of Ansible Tower </a> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../k8s/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../../k8s/install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../../python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../vagrant/ class=md-nav__link> Vagrant </a> </li> <li class=md-nav__item> <a href=../../terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../../docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_8 type=checkbox id=__nav_8> <label class=md-nav__link for=__nav_8> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_8> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../devops/ class=md-nav__link> Index </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#introduction class=md-nav__link> Introduction </a> </li> <li class=md-nav__item> <a href=#documentation-on-cmdline class=md-nav__link> Documentation on cmdline </a> </li> <li class=md-nav__item> <a href=#setup-server class=md-nav__link> Setup Server </a> <nav class=md-nav aria-label="Setup Server"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#default-configuration class=md-nav__link> Default Configuration </a> </li> <li class=md-nav__item> <a href=#enabling-ssh-on-the-vm class=md-nav__link> Enabling SSH on the VM </a> </li> <li class=md-nav__item> <a href=#access-vm-over-ssh class=md-nav__link> Access VM over SSH </a> </li> <li class=md-nav__item> <a href=#copy-files-recursively-from-local-desktop-to-remote-server class=md-nav__link> Copy files recursively from local desktop to remote server </a> </li> <li class=md-nav__item> <a href=#target-docker-containers-for-ansible-controller class=md-nav__link> Target Docker containers for Ansible controller </a> </li> <li class=md-nav__item> <a href=#issues-installing-ansible-and-its-dependencies class=md-nav__link> Issues installing Ansible and its dependencies </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#ansible-directory-structure-as-per-best-practises class=md-nav__link> Ansible Directory Structure as per Best Practises </a> </li> <li class=md-nav__item> <a href=#ansible-inventory class=md-nav__link> Ansible Inventory </a> <nav class=md-nav aria-label="Ansible Inventory"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#creating-an-inventory-file-and-adding-hosts class=md-nav__link> Creating an inventory file and adding hosts </a> </li> <li class=md-nav__item> <a href=#using-host-groups class=md-nav__link> Using host groups </a> </li> <li class=md-nav__item> <a href=#adding-host-and-group-variables-to-your-inventory class=md-nav__link> Adding host and group variables to your inventory </a> </li> <li class=md-nav__item> <a href=#special-host-management-using-patterns class=md-nav__link> Special host management using patterns </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#webapp--installation-instructions-for-centos-7 class=md-nav__link> WebApp Installation Instructions for Centos 7 </a> <nav class=md-nav aria-label="WebApp  Installation Instructions for Centos 7"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#install-python-pip-and-dependencies-on-centos-7 class=md-nav__link> Install Python Pip and dependencies on Centos 7 </a> </li> <li class=md-nav__item> <a href=#install-mysql-server-on-centos-7 class=md-nav__link> Install MySQL Server on Centos 7 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#setting-up-ansible-to-run-on-localhost-always class=md-nav__link> Setting up Ansible to run on localhost always </a> <nav class=md-nav aria-label="Setting up Ansible to run on localhost always"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#install-ansible class=md-nav__link> Install ansible </a> </li> <li class=md-nav__item> <a href=#make-some-relevant-config-files class=md-nav__link> Make some relevant config files </a> </li> <li class=md-nav__item> <a href=#make-a-test-playbook-and-run class=md-nav__link> Make a test playbook and run </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#executing-ansible-playbook class=md-nav__link> Executing Ansible Playbook </a> <nav class=md-nav aria-label="Executing Ansible Playbook"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#launching-ansible-situational-commands class=md-nav__link> Launching Ansible situational commands </a> </li> <li class=md-nav__item> <a href=#launching-ansible-playbook-situational-commands class=md-nav__link> Launching Ansible Playbook situational commands </a> </li> <li class=md-nav__item> <a href=#launching-ansible-vault-situational-commands class=md-nav__link> Launching Ansible Vault situational commands </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#understanding-the-playbook-framework class=md-nav__link> Understanding the playbook framework </a> <nav class=md-nav aria-label="Understanding the playbook framework"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#defining-plays-and-tasks class=md-nav__link> Defining plays and tasks </a> </li> <li class=md-nav__item> <a href=#understanding-roles class=md-nav__link> Understanding roles </a> <nav class=md-nav aria-label="Understanding roles"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#setting-up-role-based-variables-and-dependencies class=md-nav__link> Setting up role-based variables and dependencies </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#ansible-playbook-examples class=md-nav__link> Ansible Playbook Examples </a> <nav class=md-nav aria-label="Ansible Playbook Examples"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#using-ansible-system-variables-in-jinja2-templates class=md-nav__link> Using ansible system variables in Jinja2 Templates </a> </li> <li class=md-nav__item> <a href=#async class=md-nav__link> Async </a> </li> <li class=md-nav__item> <a href=#deployment-strategy-and-forks class=md-nav__link> Deployment Strategy and Forks </a> </li> <li class=md-nav__item> <a href=#error-handling class=md-nav__link> Error Handling </a> </li> <li class=md-nav__item> <a href=#jinja2-templating class=md-nav__link> Jinja2 Templating </a> </li> <li class=md-nav__item> <a href=#lookups class=md-nav__link> Lookups </a> </li> <li class=md-nav__item> <a href=#tags class=md-nav__link> Tags </a> </li> <li class=md-nav__item> <a href=#includes-outdated-after-20 class=md-nav__link> Includes (Outdated after 2.0) </a> </li> <li class=md-nav__item> <a href=#roles class=md-nav__link> Roles </a> </li> <li class=md-nav__item> <a href=#ansible-galaxy class=md-nav__link> Ansible Galaxy </a> </li> <li class=md-nav__item> <a href=#ansible-galaxy-useful-commands class=md-nav__link> ansible-galaxy useful commands </a> </li> <li class=md-nav__item> <a href=#environment-variables class=md-nav__link> Environment Variables </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#ansible-best-practises class=md-nav__link> Ansible Best Practises </a> <nav class=md-nav aria-label="Ansible Best Practises"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#inventory-files class=md-nav__link> Inventory Files </a> </li> <li class=md-nav__item> <a href=#the-proper-approach-to-defining-group-and-host-variables class=md-nav__link> The proper approach to defining group and host variables </a> </li> <li class=md-nav__item> <a href=#using-top-level-playbooks class=md-nav__link> Using top-level playbooks </a> </li> <li class=md-nav__item> <a href=#leveraging-version-control-tools class=md-nav__link> Leveraging version control tools </a> </li> <li class=md-nav__item> <a href=#setting-os-and-distribution-variances class=md-nav__link> Setting OS and distribution variances </a> </li> <li class=md-nav__item> <a href=#setting-task-execution-delegation class=md-nav__link> Setting task execution delegation </a> </li> <li class=md-nav__item> <a href=#using-the-run_once-option class=md-nav__link> Using the run_once option </a> </li> <li class=md-nav__item> <a href=#running-playbooks-locally class=md-nav__link> Running playbooks locally </a> </li> <li class=md-nav__item> <a href=#working-with-proxies-and-jump-hosts class=md-nav__link> Working with proxies and jump hosts </a> </li> <li class=md-nav__item> <a href=#configuring-playbook-prompts class=md-nav__link> Configuring playbook prompts </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#ansible-security-best-practices class=md-nav__link> Ansible Security Best Practices </a> <nav class=md-nav aria-label="Ansible Security Best Practices"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#working-with-ansible-vault class=md-nav__link> Working with Ansible Vault </a> <nav class=md-nav aria-label="Working with Ansible Vault"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#how-to-use-ansible-vault-with-variables-and-files class=md-nav__link> How to use Ansible Vault with variables and files </a> </li> <li class=md-nav__item> <a href=#ansible-vault-single-encrypted-variable class=md-nav__link> Ansible Vault single encrypted variable </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#setting-up-and-using-ansible-galaxy class=md-nav__link> Setting up and using Ansible Galaxy </a> </li> <li class=md-nav__item> <a href=#ansible-controller-machine-security class=md-nav__link> Ansible controller machine security </a> <nav class=md-nav aria-label="Ansible controller machine security"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#explanation-of-ansible-os-hardening-playbook class=md-nav__link> Explanation of Ansible OS hardening playbook </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#best-practices-and-reference-playbook-projects class=md-nav__link> Best practices and reference playbook projects </a> <nav class=md-nav aria-label="Best practices and reference playbook projects"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#debops--your-debian-based-data-center-in-a-box class=md-nav__link> DebOps – your Debian-based data center in a box </a> </li> <li class=md-nav__item> <a href=#algo--set-up-a-personal-ipsec-vpn-in-the-cloud class=md-nav__link> Algo – set up a personal IPSEC VPN in the cloud </a> </li> <li class=md-nav__item> <a href=#openstack-ansible class=md-nav__link> OpenStack-Ansible </a> </li> <li class=md-nav__item> <a href=#awx--open-source-version-of-ansible-tower class=md-nav__link> AWX – open source version of Ansible Tower </a> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>Ansible</h1> <h2 id=introduction>Introduction<a class=headerlink href=#introduction title="Permanent link">&para;</a></h2> <div class="admonition note"> <p class=admonition-title>Note</p> <p><strong>The rule of thumb is if you can script it, you can create a playbook for it.</strong></p> </div> <ul> <li><a href=https://www.digitalocean.com/community/tutorials/configuration-management-101-writing-ansible-playbooks>Ansible 101</a></li> <li><a href=https://www.digitalocean.com/community/cheatsheets/how-to-use-ansible-cheat-sheet-guide>Ansible Cheat Sheet</a></li> <li><a href=https://docs.openstack.org/project-deploy-guide/openstack-ansible/ocata/app-security.html>App Security</a></li> <li><a href=https://github.com/nfaction/ansible-tips-and-tricks/wiki>Ansible Tips and Tricks</a></li> <li><a href=https://github.com/do-community/ansible-practice>DO Practise examples</a> &amp; <a href=https://www.digitalocean.com/community/tutorial_series/how-to-write-ansible-playbooks>Explaination</a> &amp; <a href=https://www.digitalocean.com/community/tags/ansible>Tutorials</a></li> <li><a href=https://yaml.org/refcard.html>YAML Spec Ref Card</a></li> <li><a href=https://github.com/mmumshad/udemy-ansible-assignment>Full Application on Cloud</a></li> <li><a href=https://opensource.com/article/20/1/ansible-playbooks-lessons>Maintaining Playbooks - Pitfalls</a></li> </ul> <h2 id=documentation-on-cmdline>Documentation on cmdline<a class=headerlink href=#documentation-on-cmdline title="Permanent link">&para;</a></h2> <div class=highlight><pre><span></span><code><span class=c1># System outputs the man page for debug module</span>
+ansible-doc debug     
+ansible-doc -l <span class=p>|</span> grep aws  <span class=c1># List all plugins and then grep for aws plugins</span>
+ansible-doc -s shell       <span class=c1># Shows snippets on how to use the plugins</span>
+</code></pre></div> <h2 id=setup-server>Setup Server<a class=headerlink href=#setup-server title="Permanent link">&para;</a></h2> <h3 id=default-configuration>Default Configuration<a class=headerlink href=#default-configuration title="Permanent link">&para;</a></h3> <ul> <li>ansible.cfg and hosts files are present inside <code>/etc/ansible</code></li> <li>Testing ansible on Ubuntu WSL <code>ansible localhost -m ping</code></li> </ul> <h3 id=enabling-ssh-on-the-vm>Enabling SSH on the VM<a class=headerlink href=#enabling-ssh-on-the-vm title="Permanent link">&para;</a></h3> <ul> <li>If you need SSH enabled on the system, follow the below steps:</li> <li>Ensure the <code>/etc/apt/sources.list</code> file has been updated as per above</li> <li>Run the command: apt-get update </li> <li>Run the command: apt-get install openssh-server</li> <li>Run the command: service sshd start</li> </ul> <div class=highlight><pre><span></span><code>ssh-keygen -t rsa -C <span class=s2>&quot;ansible&quot;</span>
+
+<span class=c1>#OR</span>
+
+<span class=c1># Generate an SSH key pair for future connections to the VM instances (run the command exactly as it is):</span>
+ssh-keygen -t rsa  -b <span class=m>4096</span> -f ~/.ssh/ansible-user -C ansible-user -P <span class=s2>&quot;&quot;</span>
+<span class=c1>#Add the SSH private key to the ssh-agent:</span>
+ssh-add ~/.ssh/ansible-user
+<span class=c1>#Verify that the key was added to the ssh-agent:</span>
+$ ssh-add -l
+</code></pre></div> <h3 id=access-vm-over-ssh>Access VM over SSH<a class=headerlink href=#access-vm-over-ssh title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>ssh vagrant@127.0.0.1 -p <span class=m>2222</span> -i ~/.ssh/insecure_private_key
+</code></pre></div> <h3 id=copy-files-recursively-from-local-desktop-to-remote-server>Copy files recursively from local desktop to remote server<a class=headerlink href=#copy-files-recursively-from-local-desktop-to-remote-server title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>scp -r ./scripts vagrant@127.0.0.1:/home/vagrant -p <span class=m>2222</span> -i ~/.ssh/insecure_private_key
+</code></pre></div> <h3 id=target-docker-containers-for-ansible-controller>Target Docker containers for Ansible controller<a class=headerlink href=#target-docker-containers-for-ansible-controller title="Permanent link">&para;</a></h3> <p>The <a href=https://github.com/mmumshad/ubuntu-ssh-enabled>Docker file</a> used to create the ubuntu-ssh-enabled Docker image is located here.</p> <h3 id=issues-installing-ansible-and-its-dependencies>Issues installing Ansible and its dependencies<a class=headerlink href=#issues-installing-ansible-and-its-dependencies title="Permanent link">&para;</a></h3> <p>Once the Debian VM is up and running make the following changes to the /etc/apt/sources.list file to get the Ansible installation working right.</p> <div class=highlight><pre><span></span><code>deb http://security.debian.org/ jessie/updates main contrib
+deb-src http://security.debian.org/ jessie/updates main contrib
+deb http://ftp.debian.org/debian/ jessie-updates main contrib
+deb-src http://ftp.debian.org/debian/ jessie-updates main contrib
+deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main
+deb http://ftp.de.debian.org/debian sid main
+</code></pre></div> <h2 id=ansible-directory-structure-as-per-best-practises>Ansible Directory Structure as per Best Practises<a class=headerlink href=#ansible-directory-structure-as-per-best-practises title="Permanent link">&para;</a></h2> <ul> <li>This is the directory layout of this repository with explanation.</li> </ul> <div class=highlight><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">production.ini</span>            <span class=c1># inventory file for production stage</span>
+<span class="l l-Scalar l-Scalar-Plain">development.ini</span>           <span class=c1># inventory file for development stage</span>
+<span class="l l-Scalar l-Scalar-Plain">test.ini</span>                  <span class=c1># inventory file for test stage</span>
+<span class="l l-Scalar l-Scalar-Plain">vpass</span>                     <span class=c1># ansible-vault password file</span>
+                          <span class=c1># This file should not be committed into the repository</span>
+                          <span class=c1># therefore file is ignored by git</span>
+<span class=c1>########################## This segration can be done if there are changes in variable values between environments</span>
+<span class="l l-Scalar l-Scalar-Plain">├── inventories</span>
+<span class="l l-Scalar l-Scalar-Plain">│   ├── development</span>
+<span class="l l-Scalar l-Scalar-Plain">│   │   ├── group_vars</span>
+<span class="l l-Scalar l-Scalar-Plain">│   │   │   └── app.yml</span>
+<span class="l l-Scalar l-Scalar-Plain">│   │   ├── hosts</span>
+<span class="l l-Scalar l-Scalar-Plain">│   │   └── host_vars</span>
+<span class="l l-Scalar l-Scalar-Plain">│   └── production</span>
+<span class="l l-Scalar l-Scalar-Plain">│   ├── group_vars</span>
+<span class="l l-Scalar l-Scalar-Plain">│   │   └── app.yml</span>
+<span class="l l-Scalar l-Scalar-Plain">│   ├── hosts</span>
+<span class="l l-Scalar l-Scalar-Plain">│   └── host_vars</span>
+<span class="l l-Scalar l-Scalar-Plain">##########################</span>
+<span class="l l-Scalar l-Scalar-Plain">group_vars/</span>
+    <span class="l l-Scalar l-Scalar-Plain">all/</span>                  <span class=c1># variables under this directory belongs all the groups</span>
+        <span class="l l-Scalar l-Scalar-Plain">apt.yml</span>           <span class=c1># ansible-apt role variable file for all groups</span>
+    <span class="l l-Scalar l-Scalar-Plain">webservers/</span>           <span class=c1># here we assign variables to webservers groups</span>
+        <span class="l l-Scalar l-Scalar-Plain">apt.yml</span>           <span class=c1># Each file will correspond to a role i.e. apt.yml</span>
+        <span class="l l-Scalar l-Scalar-Plain">nginx.yml</span>         <span class=c1># &quot;&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">postgresql/</span>           <span class=c1># here we assign variables to postgresql groups</span>
+        <span class="l l-Scalar l-Scalar-Plain">postgresql.yml</span>    <span class=c1># Each file will correspond to a role i.e. postgresql</span>
+        <span class="l l-Scalar l-Scalar-Plain">postgresql-password.yml</span>   <span class=c1># Encrypted password file</span>
+<span class="l l-Scalar l-Scalar-Plain">plays/</span>
+    <span class="l l-Scalar l-Scalar-Plain">ansible.cfg</span>           <span class=c1># Ansible.cfg file that holds all ansible config</span>
+    <span class="l l-Scalar l-Scalar-Plain">webservers.yml</span>        <span class=c1># playbook for webserver tier</span>
+    <span class="l l-Scalar l-Scalar-Plain">postgresql.yml</span>        <span class=c1># playbook for postgresql tier</span>
+
+<span class="l l-Scalar l-Scalar-Plain">roles/</span>
+    <span class="l l-Scalar l-Scalar-Plain">roles_requirements.yml# All the information about the roles</span>
+    <span class="l l-Scalar l-Scalar-Plain">external/</span>             <span class=c1># All the roles that are in git or ansible galaxy</span>
+                          <span class=c1># Roles that are in roles_requirements.yml file will be downloaded into this directory</span>
+    <span class="l l-Scalar l-Scalar-Plain">internal/</span>             <span class=c1># All the roles that are not public</span>
+      <span class="l l-Scalar l-Scalar-Plain">common/</span>             <span class=c1># common role</span>
+        <span class="l l-Scalar l-Scalar-Plain">tasks/</span>            <span class=c1>#</span>
+            <span class="l l-Scalar l-Scalar-Plain">main.yml</span>      <span class=c1># installing basic tasks</span>
+<span class="l l-Scalar l-Scalar-Plain">scripts/</span>
+    <span class="l l-Scalar l-Scalar-Plain">setup/</span>                 <span class=c1># All the setup files for updating roles and ansible dependencies</span>
+</code></pre></div> <h2 id=ansible-inventory>Ansible Inventory<a class=headerlink href=#ansible-inventory title="Permanent link">&para;</a></h2> <h3 id=creating-an-inventory-file-and-adding-hosts>Creating an inventory file and adding hosts<a class=headerlink href=#creating-an-inventory-file-and-adding-hosts title="Permanent link">&para;</a></h3> <ul> <li>Ansible supports two types of inventory—static and dynamic</li> <li>Static inventories are by their very nature static; they are unchanging unless a human being goes and manually edits them.</li> <li>Even in small, closed environments, static inventories are a great way to manage your environment, especially when changes to the infrastructure are infrequent. <div class=highlight><pre><span></span><code><span class=c1># Sample inventory file in INI format</span>
+<span class="l l-Scalar l-Scalar-Plain">target1.example.com ansible_host=192.168.81.142 ansible_port=3333</span>
+<span class="l l-Scalar l-Scalar-Plain">target2.example.com ansible_port=3333 ansible_user=danieloh</span>
+<span class="l l-Scalar l-Scalar-Plain">target3.example.com ansible_host=192.168.81.143 ansible_port=5555</span>
+</code></pre></div><ul> <li>ansible_host: If the inventory hostname cannot be accessed directly—perhaps because it is not in DNS, for example, this variable contains the hostname or IP address that Ansible will connect to instead.</li> <li>ansible_port: By default, Ansible attempts all communication over port 22 for SSH—if you have an SSH daemon running on another port, you can tell Ansible about it using this variable.</li> <li>ansible_user: By default, Ansible will attempt to connect to the remote host using the current user account you are running the Ansible command from—you can override this in several ways, of which this is one.</li> </ul> </li> <li>Hence, the preceding three hosts can be summarized as follows:<ul> <li>The target1.example.com host should be connected to using the 192.168.81.142 IP address, on port 3333.</li> <li>The target2.example.com host should be connected to on port 3333 also, but this time using the danieloh user rather than the account running the Ansible command.</li> <li>The target3.example.com host should be connected to using the 192.168.81.143 IP address, on port 5555.</li> </ul> </li> </ul> <h3 id=using-host-groups>Using host groups<a class=headerlink href=#using-host-groups title="Permanent link">&para;</a></h3> <ul> <li>Let's assume you have a simple three-tier web architecture, with multiple hosts in each tier for high availability and/or load balancing. The three tiers in this architecture might be the following:<ul> <li>Frontend servers</li> <li>Application servers</li> <li>Database servers</li> </ul> </li> <li>To keep the examples clear and concise, we'll assume that you can access all servers using their <strong>Fully Qualified Domain Names (FQDNs)</strong>, and hence won't add any host variables into these inventory files. <div class=highlight><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">loadbalancer.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[frontends]</span>
+<span class="l l-Scalar l-Scalar-Plain">frt01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">frt02.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[apps]</span>
+<span class="l l-Scalar l-Scalar-Plain">app01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">app02.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[databases]</span>
+<span class="l l-Scalar l-Scalar-Plain">dbms01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">dbms02.example.com</span>
+</code></pre></div></li> <li> <p>We have created three groups called frontends, apps, and databases. Note that, in INI-formatted inventories, group names go inside square braces. Under each group name goes the server names that belong in each group, so the preceding example shows two servers in each group. Notice the outlier at the top, loadbalancer.example.com — this host isn't in any group. <strong>All ungrouped hosts must go at the very top of an INI-formatted file.</strong></p> </li> <li> <p>The preceding inventory stands in its own right, but what if our frontend servers are built on Ubuntu, and the app and database servers are built on CentOS? There will be some fundamental differences in the ways we handle these hosts — for example, we might use the apt module to manage packages on Ubuntu and the yum module on CentOS. <div class=highlight><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">loadbalancer.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[frontends]</span>
+<span class="l l-Scalar l-Scalar-Plain">frt01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">frt02.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[apps]</span>
+<span class="l l-Scalar l-Scalar-Plain">app01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">app02.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[databases]</span>
+<span class="l l-Scalar l-Scalar-Plain">dbms01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">dbms02.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[centos:children]</span>
+<span class="l l-Scalar l-Scalar-Plain">apps</span>
+<span class="l l-Scalar l-Scalar-Plain">databases</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ubuntu:children]</span>
+<span class="l l-Scalar l-Scalar-Plain">frontends</span>
+</code></pre></div></p> </li> <li>With the use of the children keyword in the group definition (inside the square braces), we can create groups of groups; hence, we can perform clever groupings to help our playbook design without having to specify each host more than once. <div class=highlight><pre><span></span><code>ansible -i hostgroups-yml centos -m shell -a <span class=s1>&#39;echo hello-yaml&#39;</span> -f <span class=m>5</span>
+</code></pre></div></li> <li>This is a powerful way of managing your inventory and making it easy to run commands on just the hosts you want to. The possibility of creating multiple groups makes life simple and easy, especially when you want to run different tasks on different groups of servers.</li> <li>Let's assume you have 100 app servers, all named sequentially, as follows: app01 to app100 <div class=highlight><pre><span></span><code><span class="p p-Indicator">[</span><span class=nv>apps</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">app[01:100].prod.com</span>
+</code></pre></div></li> <li>The following inventory snippet actually produces an inventory with the same 100 app servers that we could create manually.</li> </ul> <h3 id=adding-host-and-group-variables-to-your-inventory>Adding host and group variables to your inventory<a class=headerlink href=#adding-host-and-group-variables-to-your-inventory title="Permanent link">&para;</a></h3> <p>-Suppose that we need to set two variables for each of our two frontend servers. These are not special Ansible variables, but instead are variables entirely of our own choosing. - https_port, which defines the port that the frontend proxy should listen on - lb_vip, which defines the FQDN of the load-balancer in front of the frontend servers - You can assign variables to a host group as well as to hosts individually. <div class=highlight><pre><span></span><code><span class="p p-Indicator">[</span><span class=nv>frontends</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">frt01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">frt02.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[frontends:vars]</span>
+<span class="l l-Scalar l-Scalar-Plain">https_port=8443</span>
+<span class="l l-Scalar l-Scalar-Plain">lb_vip=lb.example.com</span>
+</code></pre></div> - There will be times when you want to work with host variables for individual hosts, and times when group variables are more relevant. - It is also worth noting that <strong>host variables override group variables</strong>, so if we need to change the connection port to 8444 on the frt01.example.com one, we could do this as follows <div class=highlight><pre><span></span><code><span class="p p-Indicator">[</span><span class=nv>frontends</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">frt01.example.com https_port=8444</span>
+<span class="l l-Scalar l-Scalar-Plain">frt02.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[frontends:vars]</span>
+<span class="l l-Scalar l-Scalar-Plain">https_port=8443</span>
+<span class="l l-Scalar l-Scalar-Plain">lb_vip=lb.example.com</span>
+</code></pre></div> - Right now, our examples are small and compact and only contain a handful of groups and variables; however, when you scale this up to a full infrastructure of servers, using a single flat inventory file could, once again, become unmanageable. - Luckily, Ansible also provides a solution to this. Two specially-named directories, <strong>host_vars and group_vars</strong>, are automatically searched for appropriate variable content if they exist within the playbook directory. - Under the host_vars directory, we'll create a file with the name of our host that needs the proxy setting, with .yml appended to it (that is, frt01.example.com.yml). <div class=highlight><pre><span></span><code><span class=nn>---</span>
+<span class=nt>https_port</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">8444</span>
+</code></pre></div> - Under the group_vars directory, create a YAML file named after the group to which we want to assign variables (that is, frontends.yml) <div class=highlight><pre><span></span><code><span class=nn>---</span>
+<span class=nt>https_port</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">8443</span>
+<span class=nt>lb_vip</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">lb.example.com</span>
+</code></pre></div> - Finally, we will create our inventory file as before, except that it contains no variables. <div class=highlight><pre><span></span><code><span class=c1># Final directory structure should look like this</span>
+<span class="l l-Scalar l-Scalar-Plain">├── group_vars</span>
+<span class="l l-Scalar l-Scalar-Plain">│   └── frontends.yml</span>
+<span class="l l-Scalar l-Scalar-Plain">├── host_vars</span>
+<span class="l l-Scalar l-Scalar-Plain">│   └── frt01.example.com.yml</span>
+<span class="l l-Scalar l-Scalar-Plain">└── inventory</span>
+</code></pre></div></p> <div class="admonition note"> <p class=admonition-title>Note</p> <p>If you define the same variable at both a group level and a child group level, the variable at the child group level takes precedence.</p> </div> <ul> <li>Consider our earlier inventory where we used child groups to differentiate between CentOS and Ubuntu hosts — if we add a variable with the same name to both the ubuntu child group and the frontends group (which is a child of the ubuntu group) as follows, what will the outcome be? <div class=highlight><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">loadbalancer.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[frontends]</span>
+<span class="l l-Scalar l-Scalar-Plain">frt01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">frt02.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[frontends:vars]</span>
+<span class="l l-Scalar l-Scalar-Plain">testvar=childgroup</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[apps]</span>
+<span class="l l-Scalar l-Scalar-Plain">app01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">app02.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[databases]</span>
+<span class="l l-Scalar l-Scalar-Plain">dbms01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">dbms02.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[centos:children]</span>
+<span class="l l-Scalar l-Scalar-Plain">apps</span>
+<span class="l l-Scalar l-Scalar-Plain">databases</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ubuntu:children]</span>
+<span class="l l-Scalar l-Scalar-Plain">frontends</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ubuntu:vars]</span>
+<span class="l l-Scalar l-Scalar-Plain">testvar=group</span>
+</code></pre></div></li> <li><strong>Debugging variable at host level</strong> <div class=highlight><pre><span></span><code>ansible -i hostgroups-children-vars-ini ubuntu -m debug -a <span class=s2>&quot;var=testvar&quot;</span>
+<span class=c1># Output</span>
+frt01.example.com <span class=p>|</span> <span class=nv>SUCCESS</span> <span class=o>=</span>&gt; <span class=o>{</span>
+    <span class=s2>&quot;testvar&quot;</span>: <span class=s2>&quot;childgroup&quot;</span>
+<span class=o>}</span>
+frt02.example.com <span class=p>|</span> <span class=nv>SUCCESS</span> <span class=o>=</span>&gt; <span class=o>{</span>
+    <span class=s2>&quot;testvar&quot;</span>: <span class=s2>&quot;childgroup&quot;</span>
+<span class=o>}</span>
+</code></pre></div></li> <li>It's important to note that the frontends group is a child of the ubuntu group in this inventory (hence, the group definition is [ubuntu:children]), and so the variable value we set at the frontends group level wins as this is the child group in this scenario.</li> </ul> <h3 id=special-host-management-using-patterns>Special host management using patterns<a class=headerlink href=#special-host-management-using-patterns title="Permanent link">&para;</a></h3> <ul> <li>Let's look at how Ansible can work with patterns to figure out which hosts a command (or playbook) should be run against. <div class=highlight><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">loadbalancer.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[frontends]</span>
+<span class="l l-Scalar l-Scalar-Plain">frt01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">frt02.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[apps]</span>
+<span class="l l-Scalar l-Scalar-Plain">app01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">app02.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[databases]</span>
+<span class="l l-Scalar l-Scalar-Plain">dbms01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">dbms02.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[centos:children]</span>
+<span class="l l-Scalar l-Scalar-Plain">apps</span>
+<span class="l l-Scalar l-Scalar-Plain">databases</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[ubuntu:children]</span>
+<span class="l l-Scalar l-Scalar-Plain">frontends</span>
+</code></pre></div></li> <li>We shall use the &ndash;list-hosts switch with the ansible command to see which hosts Ansible would operate on. <div class=highlight><pre><span></span><code>ansible -i hostgroups-children-ini all --list-hosts
+
+<span class=c1># The asterisk character has the same effect as all, but needs to be quoted in single quotes for the shell to interpret the command properly</span>
+ansible -i hostgroups-children-ini <span class=s1>&#39;*&#39;</span> --list-hosts
+
+<span class=c1># Use : to specify a logical OR, meaning &quot;apply to hosts either in this group or that group,&quot; </span>
+ansible -i hostgroups-children-ini frontends:apps --list-hosts
+
+<span class=c1># Use ! to exclude a specific group—you can combine this with other characters such as : to show all hosts except those in the apps group. # Again, ! is a special character in the shell and so you must quote your pattern string in single quotes for it to work.</span>
+ansible -i hostgroups-children-ini <span class=s1>&#39;all:!apps&#39;</span> --list-hosts
+
+<span class=c1># Use :&amp; to specify a logical AND between two groups, for example, if we want all hosts that are in the centos group and the apps group .</span>
+ansible -i hostgroups-children-ini <span class=s1>&#39;centos:&amp;apps&#39;</span> --list-hosts
+
+<span class=c1># Use * wildcards </span>
+ansible -i hostgroups-children-ini <span class=s1>&#39;db*.example.com&#39;</span> --list-hosts
+
+<span class=c1># Another way you can limit which hosts a command is run on is to use the --limit switch with Ansible. </span>
+ansible-playbook -i hostgroups-children-ini site.yml --limit frontends:apps
+</code></pre></div></li> </ul> <h2 id=webapp--installation-instructions-for-centos-7>WebApp Installation Instructions for Centos 7<a class=headerlink href=#webapp--installation-instructions-for-centos-7 title="Permanent link">&para;</a></h2> <h3 id=install-python-pip-and-dependencies-on-centos-7>Install Python Pip and dependencies on Centos 7<a class=headerlink href=#install-python-pip-and-dependencies-on-centos-7 title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code>sudo yum install -y epel-release python python-pip
+sudo pip install flask flask-mysql
+</code></pre></div> If you come across a certification validation error while running the above command, please use the below command. <div class=highlight><pre><span></span><code>sudo pip install --trusted-host files.pythonhosted.org --trusted-host pypi.org --trusted-host pypi.python.org flask flask-mysql
+</code></pre></div></p> <h3 id=install-mysql-server-on-centos-7>Install MySQL Server on Centos 7<a class=headerlink href=#install-mysql-server-on-centos-7 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm
+sudo yum update
+sudo yum -y install mysql-server
+sudo service mysql start
+
+The <span class=nb>complete</span> playbook to get the same workin on CentOS is here:
+https://github.com/kodekloudhub/simple_web_application
+</code></pre></div> <h2 id=setting-up-ansible-to-run-on-localhost-always>Setting up Ansible to run on localhost always<a class=headerlink href=#setting-up-ansible-to-run-on-localhost-always title="Permanent link">&para;</a></h2> <ul> <li>Beneficial when testing roles or playbooks in docker images</li> <li>Remember: To set the <code>hosts</code> parameter matches in <code>ansible.cfg</code></li> <li>This is useful for debugging ansible modules and syntax without having to use VMs or test in dev environments.</li> </ul> <h3 id=install-ansible>Install ansible<a class=headerlink href=#install-ansible title="Permanent link">&para;</a></h3> <ul> <li><code>pip install ansible</code></li> </ul> <h3 id=make-some-relevant-config-files>Make some relevant config files<a class=headerlink href=#make-some-relevant-config-files title="Permanent link">&para;</a></h3> <ul> <li><code>~/.ansible.cfg</code>:</li> </ul> <div class=highlight><pre><span></span><code><span class="p p-Indicator">[</span><span class=nv>defaults</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">inventory = ~/.ansible-hosts</span>
+</code></pre></div> <ul> <li><code>~/.ansible-hosts</code>:</li> </ul> <div class=highlight><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">localhost ansible_connection=local</span>
+</code></pre></div> <h3 id=make-a-test-playbook-and-run>Make a test playbook and run<a class=headerlink href=#make-a-test-playbook-and-run title="Permanent link">&para;</a></h3> <ul> <li><code>helloworld.yml</code>:</li> </ul> <p><div class=highlight><pre><span></span><code><span class=nn>---</span>
+
+<span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>shell</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">echo &#39;hello world&#39;</span>
+</code></pre></div> - run!</p> <div class=highlight><pre><span></span><code>ansible-playbook helloworld.yml
+</code></pre></div> <h2 id=executing-ansible-playbook>Executing Ansible Playbook<a class=headerlink href=#executing-ansible-playbook title="Permanent link">&para;</a></h2> <h3 id=launching-ansible-situational-commands>Launching Ansible situational commands<a class=headerlink href=#launching-ansible-situational-commands title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># To check the inventory file </span>
+ansible-inventory --list -y
+<span class=c1># Test Connection </span>
+ansible all -m ping -u root
+<span class=c1># Ask for Sudo password</span>
+ansible all -m ping --ask-pass
+<span class=c1># Using a specific SSH private key and a user</span>
+ansible -m ping hosts --private-key<span class=o>=</span>~/.ssh/keys/id_rsa -u centos
+<span class=c1># Check the disk usage of all servers </span>
+ansible all -a <span class=s2>&quot;df -h&quot;</span> -u root
+<span class=c1># Check the time of `uptime` each host in a group **servers** </span>
+ansible servers -a <span class=s2>&quot;uptime&quot;</span> -u root
+<span class=c1># Specify multiple hosts by separating their names with colons</span>
+ansible server1:server2 -m ping -u root
+<span class=c1># Get system dat in json format of target</span>
+ansible target1 -i myhosts -m setup --private-key<span class=o>=</span>~/.ssh/ansible-user -u root
+<span class=c1># Filter json output</span>
+ansible target1 -i myhosts -m setup -a <span class=s2>&quot;filter=*ipv4*&quot;</span> --private-key<span class=o>=</span>~/.ssh/ansible-user -u root
+ansible all -i myhosts -m setup -a <span class=s2>&quot;filter=*ipv4*&quot;</span> --private-key<span class=o>=</span>~/.ssh/ansible-user -u root
+</code></pre></div> <h3 id=launching-ansible-playbook-situational-commands>Launching Ansible Playbook situational commands<a class=headerlink href=#launching-ansible-playbook-situational-commands title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>ansible-playbook -i myhosts site.yml
+<span class=c1># Ask for Sudo password</span>
+ansible-playbook myplaybook.yml --ask-become-pass
+<span class=c1># Or use the -K option</span>
+ansible-playbook -i inventory myplaybook.yml -u sammy -K
+<span class=c1># Execute a play without making any changes to the remote servers</span>
+ansible-playbook myplaybook.yml --list-tasks
+<span class=c1># List all hosts that would be affected by a play</span>
+ansible-playbook myplaybook.yml --list-hosts
+ansible-playbook -i myhosts playbooks/atmo_playbook.yml --user atmouser
+<span class=c1># Passing variables which executing playbooks</span>
+ansible-playbook playbooks/atmo_playbook.yml -e <span class=s2>&quot;ATMOUSERNAME=atmouser&quot;</span>
+ansible host01 -i myhosts -m copy -a <span class=s2>&quot;src=test.txt dest=/tmp/&quot;</span>
+ansible host01 -i myhosts -m file -a <span class=s2>&quot;dest=/tmp/test mode=644 state=directory&quot;</span>
+ansible host01 -i myhosts -m apt -a <span class=s2>&quot;name=sudo state=latest&quot;</span>
+ansible host01 -i myhosts -m shell -a <span class=s2>&quot;echo </span><span class=nv>$TERM</span><span class=s2>&quot;</span>
+ansible host01 -i myhosts -m <span class=nb>command</span> -a <span class=s2>&quot;mkdir folder1&quot;</span>
+<span class=c1># Run playbook on one host</span>
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --limit <span class=s2>&quot;host1&quot;</span>
+<span class=c1># Run playbook on multiple hosts</span>
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --limit <span class=s2>&quot;host1,host2&quot;</span>
+<span class=c1># Flush Ansible memory f pevious runs</span>
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --flush-cache
+<span class=c1># Dry run mode</span>
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --check
+<span class=c1># Starts playbook execution from an intermediate task, task name should match</span>
+ansible-playbook myplaybook.yml --start-at-task<span class=o>=</span><span class=s2>&quot;Set Up Nginx&quot;</span>
+<span class=c1># Increasing debug verbosity</span>
+ansible-playbook myplaybook.yml -v
+ansible-playbook myplaybook.yml -vvvv
+</code></pre></div> <h3 id=launching-ansible-vault-situational-commands>Launching Ansible Vault situational commands<a class=headerlink href=#launching-ansible-vault-situational-commands title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Create new encrypted file, enter password</span>
+ansible-vault encrypt credentials.yml
+<span class=c1># View the contents of encrypted file</span>
+ansible-vault view credentials.yml
+<span class=c1># Edit the encrypted file</span>
+ansible-vault edit credentials.yml
+<span class=c1># Permanently decrypt the file</span>
+ansible-vault decrypt credentials.yml
+<span class=c1># Creating multiple vaults per env like dev, prod  </span>
+<span class=c1># create a new vault ID named dev that uses prompt as password source. </span>
+<span class=c1># Prompt will ask you to enter a password, or a valid path to a password file. </span>
+ansible-vault create --vault-id dev@prompt credentials_dev.yml
+ansible-vault create --vault-id prod@prompt credentials_prod.yml
+<span class=c1># Editing , Decrypting multiple vaults</span>
+ansible-vault edit credentials_dev.yml --vault-id dev@prompt
+<span class=c1># Using Password file when using 3rd party automation</span>
+ansible-vault create --vault-id dev@path/to/passfile credentials_dev.yml
+<span class=c1># Running playbooks with encrypted password</span>
+ansible-playbook myplaybook.yml --ask-vault-pass
+<span class=c1># Passing password file</span>
+ansible-playbook myplaybook.yml --vault-password-file my_vault_password.py
+<span class=c1># Passing multi env password </span>
+ansible-playbook myplaybook.yml --vault-id dev@prompt
+ansible-playbook myplaybook.yml --vault-id dev@vault_password.py --vault-id test@prompt --vault-id ci@prompt
+<span class=c1># To change the vault password for key rotation</span>
+ansible-vault rekey credentials.yml
+</code></pre></div> <h2 id=understanding-the-playbook-framework>Understanding the playbook framework<a class=headerlink href=#understanding-the-playbook-framework title="Permanent link">&para;</a></h2> <ul> <li>A playbook allows you to manage multiple configurations and complex deployments on many machines simply and easily. </li> <li>This is one of the key benefits of using Ansible for the delivery of complex applications. </li> <li>With playbooks, you can organize your tasks in a logical structure as tasks are (generally) executed in the order they are written, allowing you to have a good deal of control over your automation processes. <div class=highlight><pre><span></span><code><span class=c1># Example inventory</span>
+<span class="p p-Indicator">[</span><span class=nv>frontends</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">frt01.example.com https_port=8443</span>
+<span class="l l-Scalar l-Scalar-Plain">frt02.example.com http_proxy=proxy.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[frontends:vars]</span>
+<span class="l l-Scalar l-Scalar-Plain">ntp_server=ntp.frt.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">proxy=proxy.frt.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[apps]</span>
+<span class="l l-Scalar l-Scalar-Plain">app01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">app02.example.com</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[webapp:children]</span>
+<span class="l l-Scalar l-Scalar-Plain">frontends</span>
+<span class="l l-Scalar l-Scalar-Plain">apps</span>
+
+<span class="l l-Scalar l-Scalar-Plain">[webapp:vars]</span>
+<span class="l l-Scalar l-Scalar-Plain">proxy_server=proxy.webapp.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">health_check_retry=3</span>
+<span class="l l-Scalar l-Scalar-Plain">health_check_interal=60</span>
+</code></pre></div></li> <li>Create a simple playbook to run on the hosts in the frontends host group defined in our inventory file. We can set the user that will access the hosts using the remote_user directive in the playbook <div class=highlight><pre><span></span><code><span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">frontends</span>
+  <span class=nt>remote_user</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">danieloh</span>
+
+  <span class=nt>tasks</span><span class=p>:</span>
+  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">simple connection test</span>
+    <span class=nt>ping</span><span class=p>:</span>
+    <span class=nt>remote_user</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">danieloh</span>
+</code></pre></div></li> <li>The ignore_errors directive to this task to ensure that our playbook doesn't fail if the ls command fails (for example, if the directory we're trying to list doesn't exist). <div class=highlight><pre><span></span><code>  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">run a simple command</span>
+    <span class=nt>shell</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/bin/ls -al /nonexistent</span>
+    <span class=nt>ignore_errors</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+</code></pre></div></li> </ul> <h3 id=defining-plays-and-tasks>Defining plays and tasks<a class=headerlink href=#defining-plays-and-tasks title="Permanent link">&para;</a></h3> <ul> <li>So far when we have worked with playbooks, we have been creating one single play per playbook (which logically is the minimum you can do). However, you can have more than one play in a playbook, and a "play" in Ansible terms is simply a set of tasks (and roles, handlers, and other Ansible facets) associated with a host (or group of hosts). </li> <li>A task is the smallest possible element of a play and is responsible for running a single module with a set of arguments to achieve a specific goal.</li> </ul> <h3 id=understanding-roles>Understanding roles<a class=headerlink href=#understanding-roles title="Permanent link">&para;</a></h3> <ul> <li>Roles are designed to enable you to efficiently and effectively reuse Ansible code. </li> <li>They always follow a known structure and often will include sensible default values for variables, error handling, handlers, and so on. </li> <li>The process of creating roles is in fact very simple—Ansible will (by default) look within the same directory as you are running your playbook from for a roles/ directory.</li> <li>The role name is derived from the subdirectory name—there is no need to create complex metadata or anything else—it really is that simple. </li> <li>Within each subdirectory goes a fixed directory structure that tells Ansible what the tasks, default variables, handlers, and so on are for each role.</li> <li>The roles/ directory is not the only play Ansible will look for roles—this is the first directory it will look in, but it will then look in /etc/ansible/roles for any additional roles. </li> </ul> <h4 id=setting-up-role-based-variables-and-dependencies>Setting up role-based variables and dependencies<a class=headerlink href=#setting-up-role-based-variables-and-dependencies title="Permanent link">&para;</a></h4> <ul> <li>The Ansible role directory structure allows for role-specific variables to be declared in two locations. Although, at first, the difference between these two locations may not seem obvious, it is of fundamental importance.</li> <li>Roles based variables can go in one of two locations:<ul> <li>defaults/main.yml</li> <li>vars/main.yml</li> </ul> </li> <li>Variables that go in the defaults/ directory are one of the lowest in terms of precedence and so are easily overwritten. This location is where you would put variables that you want to override easily, but where you don't want to leave a variable undefined. For example, if you are installing Apache Tomcat, you might build a role to install a specific version. However, you don't want the role to exit with an error if someone forgets to set the version—rather, you would prefer to set a sensible default such as 7.0.76, which can then be overridden with inventory variables or on the command line (using the -e or &ndash;extra-vars switches). In this way, you know the role will work even without someone explicitly setting this variable, but it can easily be changed to a newer Tomcat version if desired.</li> <li>Variables that go in the vars/ directory, however, come much higher up on Ansible's variable precedence ordering. This will not be overridden by inventory variables, and so should be used for variable data that it is more important to keep static. Of course, this is not to say they can't be overridden—the -e or &ndash;extra-vars switches are the highest order of precedence in Ansible and so will override anything else that you define. </li> <li>Most of the time, you will probably make use of the defaults/ based variables alone, but there will doubtless be times when having the option of variables higher up the precedence ordering becomes valuable to your automation, and so it is vital to know that this option is available to you. </li> </ul> <div class="admonition note"> <p class=admonition-title>Note</p> <p>I recommend that you make extensive use of the debug statement and test your playbook design to make sure that you don't fall foul of this during your playbook development.</p> </div> <h2 id=ansible-playbook-examples>Ansible Playbook Examples<a class=headerlink href=#ansible-playbook-examples title="Permanent link">&para;</a></h2> <ul> <li>Install Software only if it doesn't exist <div class=highlight><pre><span></span><code>  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing python2 minimal</span>
+    <span class=nt>raw</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">test -e /usr/bin/python || (apt -y update &amp;&amp; apt install -y python-minimal)</span>
+</code></pre></div></li> <li>Install latest software version <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">host01</span>
+<span class=nn>---</span>
+    <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class=nt>tasks</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ensure latest sysstat is installed</span>
+        <span class=nt>apt</span><span class=p>:</span>
+          <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">sysstat</span>
+          <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">latest</span>
+</code></pre></div></li> <li>Install software on all hosts <div class=highlight><pre><span></span><code><span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install apache</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+  <span class=nt>sudo</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install apache2</span>
+      <span class=nt>apt</span><span class=p>:</span>
+        <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apache2</span>
+        <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+        <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">latest</span>
+</code></pre></div></li> <li>Copy file only when it does not exists <div class=highlight><pre><span></span><code><span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">host01</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+  <span class="p p-Indicator">-</span> <span class=nt>stat</span><span class=p>:</span>
+      <span class=nt>path</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/home/ubuntu/folder1/something.j2</span>
+    <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">st</span>
+
+  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Template to copy file</span>
+    <span class=nt>template</span><span class=p>:</span>
+      <span class=nt>src</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">./something.j2</span>
+      <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/home/ubuntu/folder1/something.j2</span>
+      <span class=nt>mode</span><span class=p>:</span> <span class=s>&#39;0644&#39;</span>
+    <span class=nt>when</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">st.stat.exists == False</span>
+</code></pre></div></li> <li>Add users using Loops <div class=highlight><pre><span></span><code><span class=c1># Looping</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">add several users</span>
+  <span class=nt>user</span><span class=p>:</span>
+    <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class=nt>groups</span><span class=p>:</span> <span class=s>&quot;developer&quot;</span>
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">raj</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">david</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">john</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">lauren</span>
+</code></pre></div></li> <li>Using Looping with debug <div class=highlight><pre><span></span><code><span class=c1># show all the hosts in the inventory</span>
+<span class="p p-Indicator">-</span> <span class=nt>debug</span><span class=p>:</span>
+    <span class=nt>msg</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>groups[&#39;all&#39;]</span><span class=nv> </span><span class=s>}}&quot;</span>
+<span class=c1># show all the hosts in the current play</span>
+<span class="p p-Indicator">-</span> <span class=nt>debug</span><span class=p>:</span>
+    <span class=nt>msg</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>item</span><span class=nv> </span><span class=s>}}&quot;</span>
+  <span class=nt>with_items</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>play_hosts</span><span class=nv> </span><span class=s>}}&quot;</span>
+</code></pre></div></li> <li>Conditionals <div class=highlight><pre><span></span><code><span class=c1># This Playbook will add Java Packages to different systems (handling Ubuntu/Debian OS)</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">debian | ubuntu | add java ppa repo</span>
+  <span class=nt>apt_repository</span><span class=p>:</span>
+    <span class="l l-Scalar l-Scalar-Plain">repo=ppa:webupd8team/java</span>
+    <span class="l l-Scalar l-Scalar-Plain">state=present</span>
+  <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  <span class=nt>when</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ansible_distribution == &#39;Ubuntu&#39;</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">debian | ensure the webupd8 launchpad apt repository is present</span>
+    <span class="l l-Scalar l-Scalar-Plain">apt_repository</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">repo=&quot;{{ item }} http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">update_cache=yes</span>
+      <span class="l l-Scalar l-Scalar-Plain">state=present</span>
+    <span class="l l-Scalar l-Scalar-Plain">with_items</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">deb</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">deb-src</span>
+  <span class=" -Error">  </span><span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  <span class=nt>when</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ansible_distribution == &#39;Debian&#39;</span>
+</code></pre></div></li> <li>Full Play <div class=highlight><pre><span></span><code><span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install software</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">host01</span>
+  <span class=nt>sudo</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Update and upgrade apt packages</span>
+      <span class=nt>apt</span><span class=p>:</span>
+        <span class=nt>upgrade</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">dist</span>
+        <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+        <span class=nt>cache_valid_time</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">86400</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install software</span>
+      <span class=nt>apt</span><span class=p>:</span>
+        <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;{{item}}&quot;</span>
+        <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+        <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installed</span>
+      <span class=nt>with_items</span><span class=p>:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">postgresql</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">postgresql-contrib</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">libpq-dev</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python-psycopg2</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure the Nginx service is running</span>
+      <span class=nt>service</span><span class=p>:</span>
+        <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">started</span>
+        <span class=nt>enabled</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure the PostgreSQL service is running</span>
+      <span class=nt>service</span><span class=p>:</span>
+        <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">postgresql</span>
+        <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">started</span>
+        <span class=nt>enabled</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+<span class=c1>#file: vars.yml</span>
+<span class=nn>---</span>
+<span class=nt>var</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
+
+<span class=c1>#file: playbook.yml</span>
+<span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+  <span class=nt>vars_files</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">vars.yml</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>debug</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">msg=&quot;Variable &#39;var&#39; is set to {{ var }}&quot;</span>
+
+<span class=c1>#host variables - Variables are defined inline for individual host</span>
+  <span class="p p-Indicator">[</span><span class=nv>group1</span><span class="p p-Indicator">]</span>
+  <span class="l l-Scalar l-Scalar-Plain">host1 http_port=80</span>
+  <span class="l l-Scalar l-Scalar-Plain">host2 http_port=303</span>
+<span class=c1>#group variables - Variables are applied to entire group of hosts</span>
+  <span class="p p-Indicator">[</span><span class=nv>group1</span><span class="p p-Indicator">:</span><span class=nv>vars</span><span class="p p-Indicator">]</span>
+  <span class="l l-Scalar l-Scalar-Plain">ntp_server= example.com</span>
+  <span class="l l-Scalar l-Scalar-Plain">proxy=proxy.example.com</span>
+</code></pre></div></li> <li>Full Play - Deploying an Nginx static site on Ubuntu <div class=highlight><pre><span></span><code><span class=c1># playbook.yml</span>
+<span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+  <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  <span class=nt>vars</span><span class=p>:</span>
+    <span class=nt>server_name</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>ansible_default_ipv4.address</span><span class=nv> </span><span class=s>}}&quot;</span>
+    <span class=nt>document_root</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/var/www</span>
+    <span class=nt>app_root</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">html_demo_site-main</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Update apt cache and install Nginx</span>
+      <span class=nt>apt</span><span class=p>:</span>
+        <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">latest</span>
+        <span class=nt>update_cache</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Copy website files to the server&#39;s document root</span>
+      <span class=nt>copy</span><span class=p>:</span>
+        <span class=nt>src</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>app_root</span><span class=nv> </span><span class=s>}}&quot;</span>
+        <span class=nt>dest</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>document_root</span><span class=nv> </span><span class=s>}}&quot;</span>
+        <span class=nt>mode</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">preserve</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Apply Nginx template</span>
+      <span class=nt>template</span><span class=p>:</span>
+        <span class=nt>src</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">files/nginx.conf.j2</span>
+        <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/nginx/sites-available/default</span>
+      <span class=nt>notify</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Restart Nginx</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Enable new site</span>
+      <span class=nt>file</span><span class=p>:</span>
+        <span class=nt>src</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/nginx/sites-available/default</span>
+        <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/nginx/sites-enabled/default</span>
+        <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">link</span>
+      <span class=nt>notify</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Restart Nginx</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Allow all access to tcp port 80</span>
+      <span class=nt>ufw</span><span class=p>:</span>
+        <span class=nt>rule</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">allow</span>
+        <span class=nt>port</span><span class=p>:</span> <span class=s>&#39;80&#39;</span>
+        <span class=nt>proto</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">tcp</span>
+
+  <span class=nt>handlers</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Restart Nginx</span>
+      <span class=nt>service</span><span class=p>:</span>
+        <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">restarted</span>
+
+<span class=c1># Copy the static files and unzip to folder root</span>
+<span class="l l-Scalar l-Scalar-Plain">curl -L https://github.com/do-community/html_demo_site/archive/refs/heads/main.zip -o html_demo.zip</span>
+<span class=c1># files/nginx.conf.j2</span>
+<span class="l l-Scalar l-Scalar-Plain">server {</span>
+  <span class="l l-Scalar l-Scalar-Plain">listen 80;</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">root {{ document_root }}/{{ app_root }};</span>
+  <span class="l l-Scalar l-Scalar-Plain">index index.html index.htm;</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">server_name {{ server_name }};</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">location / {</span>
+   <span class="l l-Scalar l-Scalar-Plain">default_type &quot;text/html&quot;;</span>
+   <span class="l l-Scalar l-Scalar-Plain">try_files $uri.html $uri $uri/ =404;</span>
+  <span class="l l-Scalar l-Scalar-Plain">}</span>
+<span class=err>}</span>
+
+<span class=c1># Executing the playbook with sammy user and prompting for password</span>
+<span class="l l-Scalar l-Scalar-Plain">ansible-playbook -i inventory playbook.yml -u sammy -K</span>
+</code></pre></div></li> </ul> <h3 id=using-ansible-system-variables-in-jinja2-templates>Using ansible system variables in Jinja2 Templates<a class=headerlink href=#using-ansible-system-variables-in-jinja2-templates title="Permanent link">&para;</a></h3> <ul> <li>Whenever you run Playbook, Ansible by default collects information (facts) about each host</li> <li>like host IP address, CPU type, disk space, operating system information etc. <div class=highlight><pre><span></span><code>ansible host01 -i myhosts -m setup
+</code></pre></div></li> <li>Create Dynamic templates </li> <li>Consider you need the IP address of all the servers in you web group using 'group' variable <div class=highlight><pre><span></span><code>  <span class=o>{</span>% <span class=k>for</span> host <span class=k>in</span> groups.web %<span class=o>}</span>
+
+  server <span class=o>{{</span> host.inventory_hostname <span class=o>}}</span> <span class=o>{{</span> host.ansible_default_ipv4.address <span class=o>}}</span>:8080
+
+  <span class=o>{</span>% endfor %<span class=o>}</span>
+</code></pre></div></li> <li>Create a Webservice entry in Nginx <div class=highlight><pre><span></span><code>  <span class=o>{</span>% <span class=k>for</span> host <span class=k>in</span> groups.<span class=o>[</span><span class=s1>&#39;jenkins&#39;</span><span class=o>]</span> %<span class=o>}</span>
+  
+  define host <span class=o>{</span>
+    use         linux-server
+    host_name   <span class=o>{{</span> host <span class=o>}}</span>
+    <span class=nb>alias</span>       <span class=o>{{</span> host <span class=o>}}</span>
+    address     <span class=o>{{</span> hostvars<span class=o>[</span>host<span class=o>]</span>.ansible_default_ipv4.address <span class=o>}}</span>
+    hostgroups  jenkins
+  <span class=o>}</span>
+  
+  <span class=o>{</span>% endfor %<span class=o>}</span>
+  <span class=c1># service checks to be applied to the webserver</span>
+  <span class=o>{</span>% <span class=k>if</span> <span class=nv>jenkins_uses_proxy</span> <span class=o>==</span> <span class=nb>true</span> %<span class=o>}</span>
+  
+  define service <span class=o>{</span>
+    use                     local-service
+    hostgroup_name          jenkins
+    service_description     HTTP
+    check_command           check_jenkins_http
+    notifications_enabled   <span class=m>1</span>
+  <span class=o>}</span>
+
+  <span class=o>{</span>% endif %<span class=o>}</span>
+</code></pre></div></li> <li>Get a list of all the variables associated with the current host with the help of hostvars and inventory_hostname variables. <div class=highlight><pre><span></span><code><span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">built-in variables</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>debug</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">var=hostvars[inventory_hostname]</span>
+</code></pre></div></li> <li>Using register variables <div class=highlight><pre><span></span><code><span class=c1># register variable stores the output, after executing command module, in contents variable</span>
+<span class=c1># stdout is used to access string content of register variable</span>
+<span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">check registered variable for emptiness</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">list contents of the directory in the host</span>
+      <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ls /home/ubuntu</span>
+      <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">contents</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">check dir is empty</span>
+      <span class=nt>debug</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">msg=&quot;Directory is empty&quot;</span>
+      <span class=nt>when</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">contents.stdout == &quot;&quot;</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">check dir has contents</span>
+      <span class=nt>debug</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">msg=&quot;Directory is not empty&quot;</span>
+      <span class=nt>when</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">contents.stdout != &quot;&quot;</span>
+</code></pre></div></li> <li>Variable Precedence =&gt; Command Line &gt; Playbook &gt; Facts &gt; Roles</li> <li>CLI: While running the playbook in Command Line redefine the variable <div class=highlight><pre><span></span><code><span class=c1># Passing runtime values in plays</span>
+ansible-playbook -i myhosts test.yml --extra-vars <span class=s2>&quot;ansible_bios_version=Ansible&quot;</span>
+</code></pre></div></li> </ul> <h3 id=async>Async<a class=headerlink href=#async title="Permanent link">&para;</a></h3> <ul> <li>async - How long to run the task</li> <li>poll - How frequently to check the task status. Default is 10 seconds</li> <li>async_status - Check status of an async task</li> </ul> <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a mysql DB</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">db_server</span>
+  <span class=nt>roles</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysql_db</span>
+
+<span class="p p-Indicator">-</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a Web Server</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web_server</span>
+  <span class=nt>roles</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">python</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">flask_web</span>
+
+<span class=c1># Below task will run the async in parallel as poll is 0 and register the output </span>
+<span class="p p-Indicator">-</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Monitor Web Application for 6 Minutes</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web_server</span>
+  <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/monitor_webapp.py</span>
+  <span class=nt>async</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">360</span>
+  <span class=nt>poll</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+  <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">webapp_result</span>
+  
+<span class="p p-Indicator">-</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Monitor Database for 6 Minutes</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">db_server</span>
+  <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/opt/monitor_database.py</span>
+  <span class=nt>async</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">360</span>
+  <span class=nt>poll</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
+  <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">database_result</span>
+<span class=c1># To avoid job from completing, async_status can be used to poll all async jobs have completed</span>
+<span class="p p-Indicator">-</span> 
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Check status of async task</span>
+  <span class=nt>async_status</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">jid={{ webapp_result.ansible_job_id }}</span>
+  <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">job_result</span>
+  <span class=nt>until</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">job_result.finished</span>
+  <span class=nt>retries</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
+</code></pre></div> <h3 id=deployment-strategy-and-forks>Deployment Strategy and Forks<a class=headerlink href=#deployment-strategy-and-forks title="Permanent link">&para;</a></h3> <ul> <li>Serial - Default: All tasks are run after the previous once completes</li> <li>Free: Once the task completes in a host, it continues next execution without waiting for other hosts</li> <li>Batch: Based on serial, but takes action on multiple host (Rolling Updates)</li> <li>Forks: Deployment on multiple servers</li> </ul> <p><div class=highlight><pre><span></span><code><span class=c1># Runs playbook on 2 servers at a time</span>
+<span class="p p-Indicator">-</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a web application</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">app_servers</span>
+  <span class=nt>serial</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+  <span class=nt>vars</span><span class=p>:</span>
+    <span class=nt>db_name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">employee_db</span>
+    <span class=nt>db_user</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">db_user</span>
+    <span class=nt>db_password</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Passw0rd</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Install MySQL database</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Start Mysql Service</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Create Application Database</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Create Application DB User</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Install Python Flask dependencies</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Copy web-server code</span>
+
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Start web-application</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Deploy based on random rolling strategy</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a web application</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">app_servers</span>
+  <span class=nt>serial</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Deploy based on percentage</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a web application</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">app_servers</span>
+  <span class=nt>serial</span><span class=p>:</span> <span class=s>&quot;20%&quot;</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Runs playbook to fail early, suppose there are 10 servers</span>
+<span class="p p-Indicator">-</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a web application</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">app_servers</span>
+  <span class=nt>serial</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+  <span class=nt>max_fail_percentage</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">50</span>
+<span class=c1># The number of failed hosts must exceed the value of max_fail_percentage; if it is equal, the play continues. </span>
+<span class=c1># So, in our example, if exactly 50% of our hosts failed, the play would still continue. </span>
+
+<span class=c1># The first task has a special clause under it that we use to deliberately simulate a failure—this line starts with failed_when and we use it to tell the task that if it runs this task on the first tow hosts in the batch, then it should deliberately fail this task regardless of the result; otherwise, it should allow the task to run as normal.</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">A task that will sometimes fail</span>
+      <span class=nt>debug</span><span class=p>:</span>
+        <span class=nt>msg</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">This might fail</span>
+      <span class=nt>failed_when</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">inventory_hostname in ansible_play_batch[0:3]</span>
+<span class=c1># We&#39;ll add a second task that will always succeed. </span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">A task that will succeed</span>
+      <span class=nt>debug</span><span class=p>:</span>
+        <span class=nt>msg</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Success!</span>
+</code></pre></div> - We have also deliberately set up a failure condition that causes three of the hosts in the first batch of 5 (60%) to fail. <div class=highlight><pre><span></span><code>ansible-playbook -i morehosts maxfail.yml
+</code></pre></div> - We deliberately failed three of the first batch of 5, exceeding the threshold for max_fail_percentage that we set. - This immediately causes the play to abort and the second task is not performed on the first batch of 5. - You will also notice that the second batch of 5, out of the 10 hosts, is never processed, so our play was truly aborted. - This is exactly the behavior you would want to see to prevent a failed update from rolling out across a cluster. - Through the careful use of batches and max_fail_percentage, you can safely run automated tasks across an entire cluster without the fear of breaking the entire cluster in the event of an issue. <div class=highlight><pre><span></span><code><span class=c1># Deploy based on completion</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a web application</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">app_servers</span>
+  <span class=nt>strategy</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">free</span>
+</code></pre></div></p> <h3 id=error-handling>Error Handling<a class=headerlink href=#error-handling title="Permanent link">&para;</a></h3> <ul> <li><a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html>Playbook Error Handling</a></li> <li>We would like Ansible to stop execution of the entire playbook if a single server was to fail. <div class=highlight><pre><span></span><code><span class=c1># To fail playbook on any failure and stop processing on all servers</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a web application</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">app_servers</span>
+  <span class=nt>any_errors_fatal</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>  <span class=c1># This will stop all processing</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># To avoid failure of playbook due to an insignificant task</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy a web application</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">app_servers</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>mail</span><span class=p>:</span>
+        <span class=nt>to</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">devops@abc.com</span>
+        <span class=nt>subject</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Server Deployed!</span>
+        <span class=nt>body</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Webserver is live!</span>
+      <span class=nt>ignore_errors</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>    <span class=c1># Add this to ignore task failure</span>
+    
+    <span class="p p-Indicator">-</span> <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">cat /var/log/server.log</span>
+      <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">command_output</span>
+      <span class=nt>failed_when</span><span class=p>:</span> <span class=s>&quot;&#39;ERROR&#39;</span><span class=nv> </span><span class=s>in</span><span class=nv> </span><span class=s>command_output.stdout&quot;</span>   <span class=c1># Conditional failure of task</span>
+</code></pre></div></li> </ul> <h3 id=jinja2-templating>Jinja2 Templating<a class=headerlink href=#jinja2-templating title="Permanent link">&para;</a></h3> <ul> <li>Templating: A process a generating dynamic content or expressions</li> <li>String Manipulation - <a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html#filters-for-formatting-data>Filters</a> <div class=highlight><pre><span></span><code><span class=c1># Substitution</span>
+<span class="l l-Scalar l-Scalar-Plain">The name is {{ my_name }}</span>
+<span class="l l-Scalar l-Scalar-Plain"># Uppercase</span>
+<span class="l l-Scalar l-Scalar-Plain">The name is {{ my_name | upper }}</span>
+<span class="l l-Scalar l-Scalar-Plain"># Lowercase</span>
+<span class="l l-Scalar l-Scalar-Plain">The name is {{ my_name | lower }}</span>
+<span class="l l-Scalar l-Scalar-Plain"># Titlecase</span>
+<span class="l l-Scalar l-Scalar-Plain">The name is {{ my_name | title }}</span>
+<span class="l l-Scalar l-Scalar-Plain"># Replace</span>
+<span class="l l-Scalar l-Scalar-Plain">The name is {{ my_name | replace(&quot;Bond&quot;, &quot;Bourne&quot;) }}</span>
+<span class="l l-Scalar l-Scalar-Plain"># Default value</span>
+<span class="l l-Scalar l-Scalar-Plain">The name is {{ first_name | default(&quot;James&quot;) }} {{ my_name }}</span>
+</code></pre></div></li> <li>Filters - List and Set <div class=highlight><pre><span></span><code><span class=c1># Min</span>
+<span class="p p-Indicator">{{</span> <span class="p p-Indicator">[</span><span class=nv>1</span><span class="p p-Indicator">,</span><span class=nv>2</span><span class="p p-Indicator">,</span><span class=nv>3</span><span class="p p-Indicator">]</span> <span class=err>|</span> <span class=nv>min</span> <span class="p p-Indicator">}}</span>     <span class="l l-Scalar l-Scalar-Plain">=&gt; 1</span>
+<span class="l l-Scalar l-Scalar-Plain"># Max</span>
+<span class="l l-Scalar l-Scalar-Plain">{{ [1,2,3] | min }}     =&gt; 3</span>
+<span class="l l-Scalar l-Scalar-Plain"># Unique</span>
+<span class="l l-Scalar l-Scalar-Plain">{{ [1,2,3,2] | unique }}     =&gt; 1,2,3</span>
+<span class="l l-Scalar l-Scalar-Plain"># Union</span>
+<span class="l l-Scalar l-Scalar-Plain">{{ [1,2,3,4] | union([4,5]) }}     =&gt; 1,2,3,4,5</span>
+<span class="l l-Scalar l-Scalar-Plain"># Intersect</span>
+<span class="l l-Scalar l-Scalar-Plain">{{ [1,2,3,4] | intersect([4,5]) }}     =&gt; 4</span>
+<span class="l l-Scalar l-Scalar-Plain">{{ 100 | random }}       =&gt; generates random number between 1 to 100</span>
+<span class="l l-Scalar l-Scalar-Plain"># Join</span>
+<span class="l l-Scalar l-Scalar-Plain">{{ [&quot;The&quot;,&quot;name&quot;,&quot;is&quot;,&quot;Bond&quot;] | join(&quot; &quot;)}} =&gt; The name is Bond</span>
+</code></pre></div></li> <li>Filters - File <div class=highlight><pre><span></span><code><span class="p p-Indicator">{{</span> <span class=s>&quot;/etc/hosts&quot;</span> <span class=err>|</span> <span class=nv>basename</span> <span class="p p-Indicator">}}</span>       <span class="l l-Scalar l-Scalar-Plain">=&gt; hosts</span>
+</code></pre></div></li> <li>Filters - expanduser <div class=highlight><pre><span></span><code><span class=nt>tasks</span><span class=p>:</span>
+  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure the SSH key is present on OpenStack</span>
+    <span class=nt>os_keypair</span><span class=p>:</span>
+      <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+      <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ansible_key</span>
+      <span class=nt>public_key_file</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>&#39;~&#39;</span><span class=nv> </span><span class=s>|</span><span class=nv> </span><span class=s>expanduser</span><span class=nv> </span><span class=s>}}/.ssh/id_rsa.pub&quot;</span>
+</code></pre></div></li> </ul> <h3 id=lookups>Lookups<a class=headerlink href=#lookups title="Permanent link">&para;</a></h3> <ul> <li><a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_lookups.html>Lookups</a>: To get data from another source on the system <div class=highlight><pre><span></span><code><span class=c1># Credentials File csv</span>
+Hostname,Password
+web_server,Passw0rd
+db_server,Passw0rd
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Format - Type of file, Value to Lookup, File to Lookup, Delimiter</span>
+<span class=nt>vars</span><span class=p>:</span>
+  <span class=nt>ansible_ssh_pass</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>lookup(&#39;csvfile&#39;,</span><span class=nv> </span><span class=s>&#39;web_server</span><span class=nv> </span><span class=s>file=/tmp/credentials.csv</span><span class=nv> </span><span class=s>delimiter=,&#39;)</span><span class=nv> </span><span class=s>}}&quot;</span>    <span class="l l-Scalar l-Scalar-Plain">=&gt; Passw0rd</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Credentials File ini</span>
+
+<span class=o>[</span>web_server<span class=o>]</span>
+<span class=nv>password</span><span class=o>=</span>Passw0rd
+
+<span class=o>[</span>db_server<span class=o>]</span>
+<span class=nv>password</span><span class=o>=</span>Passw0rd
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Format - Type of file, Value to Lookup, File to Lookup, Delimiter</span>
+<span class=nt>vars</span><span class=p>:</span>
+  <span class=nt>ansible_ssh_pass</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>lookup(&#39;ini&#39;,</span><span class=nv> </span><span class=s>&#39;password</span><span class=nv> </span><span class=s>section=web_server</span><span class=nv>  </span><span class=s>file=/tmp/credentials.ini&#39;)</span><span class=nv> </span><span class=s>}}&quot;</span>    <span class="l l-Scalar l-Scalar-Plain">=&gt; Passw0rd</span>
+</code></pre></div></li> </ul> <h3 id=tags>Tags<a class=headerlink href=#tags title="Permanent link">&para;</a></h3> <ul> <li>Tags are names pinned on individual tasks, roles or an entire play, that allows you to run or skip parts of your Playbook.</li> <li>Tags can help you while testing certain parts of your Playbook. <div class=highlight><pre><span></span><code><span class=c1># tag.yml</span>
+<span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Play1-install apache</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+  <span class=nt>sudo</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install apache2</span>
+      <span class=nt>apt</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">name=apache2 update_cache=yes state=latest</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">displaying &quot;hello world&quot;</span>
+      <span class=nt>debug</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">msg=&quot;hello world&quot;</span>
+      <span class=nt>tags</span><span class=p>:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">tag1</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Play2-install nginx</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+  <span class=nt>sudo</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  <span class=nt>tags</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">tag2</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install nginx</span>
+      <span class=nt>apt</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">name=nginx update_cache=yes state=latest</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">debug module displays message in control machine</span>
+      <span class=nt>debug</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">msg=&quot;have a good day&quot;</span>
+      <span class=nt>tags</span><span class=p>:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mymessage</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">shell module displays message in host machine.</span>
+      <span class=nt>shell</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">echo &quot;yet another task&quot;</span>
+      <span class=nt>tags</span><span class=p>:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mymessage</span>
+</code></pre></div></li> <li>Executing above play using tags <div class=highlight><pre><span></span><code><span class=c1># displays the list of tasks in the Playbook</span>
+ansible-playbook -i myhosts tag.yml --list-tasks 
+<span class=c1># displays only tags in your Playbook</span>
+ansible-playbook -i myhosts tag.yml --list-tags 
+<span class=c1># executes only certain tasks which are tagged as tag1 and mymessage</span>
+ansible-playbook -i myhosts tag.yml --tags <span class=s2>&quot;tag1,mymessage&quot;</span> 
+</code></pre></div></li> </ul> <h3 id=includes-outdated-after-20>Includes (Outdated after 2.0)<a class=headerlink href=#includes-outdated-after-20 title="Permanent link">&para;</a></h3> <ul> <li>Ansible gives you the flexibility of organizing your tasks through include keyword, that introduces more abstraction and make your Playbook more easily maintainable, reusable and powerful. <div class=highlight><pre><span></span><code><span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">testing includes</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+  <span class=nt>sudo</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>include</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apache.yml</span>
+    <span class="p p-Indicator">-</span> <span class=nt>include</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">content.yml</span>
+    <span class="p p-Indicator">-</span> <span class=nt>include</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">create_folder.yml</span>
+    <span class="p p-Indicator">-</span> <span class=nt>include</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">content.yml</span>
+<span class="p p-Indicator">-</span> <span class=nt>include</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx.yml</span>  
+<span class=c1>#  apache.yml will not have hosts &amp; tasks but nginx.yml as a separate play will have tasks and can run independently</span>
+
+<span class=c1>#nginx.yml</span>
+<span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">installing nginx</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+  <span class=nt>sudo</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">install nginx</span>
+      <span class=nt>apt</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">name=nginx update_cache=yes state=latest</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">displaying message</span>
+      <span class=nt>debug</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">msg=&quot;yayy!! nginx installed&quot;</span>
+</code></pre></div></li> </ul> <h3 id=roles>Roles<a class=headerlink href=#roles title="Permanent link">&para;</a></h3> <ul> <li>A Role is completely self contained or encapsulated and completely reusable <div class=highlight><pre><span></span><code><span class=c1># cat ansible.cfg</span>
+  <span class="p p-Indicator">[</span><span class=nv>defaults</span><span class="p p-Indicator">]</span>
+  <span class="l l-Scalar l-Scalar-Plain">host_key_checking=False</span>
+  <span class="l l-Scalar l-Scalar-Plain">inventory = /etc/ansible/myhosts</span>
+  <span class="l l-Scalar l-Scalar-Plain">log_path = /home/scrapbook/tutorial/output.txt</span>
+  <span class="l l-Scalar l-Scalar-Plain">roles_path = /home/scrapbook/tutorial/roles/</span>
+<span class="l l-Scalar l-Scalar-Plain"># master-playbook.yml</span>
+<span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">my first role in ansible</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+  <span class=nt>sudo</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  <span class=nt>roles</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">sample_role</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">sample_role2</span>
+<span class=c1># sample_role/tasks/main.yml</span>
+<span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>include</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx.yml</span>
+<span class="p p-Indicator">-</span> <span class=nt>include</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">copy-template.yml</span>
+<span class="p p-Indicator">-</span> <span class=nt>include</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">copy-static.yml</span>
+<span class=c1># sample_role/tasks/nginx.yml</span>
+<span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Installs nginx</span>
+  <span class=nt>apt</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">pkg=nginx state=installed update_cache=true</span>
+  <span class=nt>notify</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">start nginx</span>
+<span class=c1># sample_role/handlers/main.yml</span>
+<span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">start nginx</span>
+  <span class=nt>service</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">name=nginx state=started</span>
+<span class=c1># sample_role/tasks/copy-template.yml</span>
+<span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">sample template - x</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>src</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">template-file.j2</span>
+    <span class=nt>dest</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">/home/ubuntu/copy-template-file.j2</span>
+  <span class=nt>with_items</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">var_x</span>
+<span class=c1># sample_role/vars/main.yml</span>
+<span class=nt>var_x</span><span class=p>:</span>
+  <span class="p p-Indicator">-</span> <span class=s>&#39;variable</span><span class=nv> </span><span class=s>x&#39;</span>
+<span class=nt>var_y</span><span class=p>:</span>
+  <span class="p p-Indicator">-</span> <span class=s>&#39;variable</span><span class=nv> </span><span class=s>y&#39;</span>
+<span class=c1># sample_role/tasks/copy-static.yml # Ensure some-file.txt is present under files folder of the role</span>
+<span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Copy a file</span>
+  <span class=nt>copy</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">src=some-file.txt dest=/home/ubuntu/file1.txt</span>
+</code></pre></div></li> <li>Executing the play <div class=highlight><pre><span></span><code><span class=c1># Let us run the master_playbook and check the output:</span>
+ansible-playbook -i myhosts master_playbook.yml
+</code></pre></div></li> </ul> <h3 id=ansible-galaxy>Ansible Galaxy<a class=headerlink href=#ansible-galaxy title="Permanent link">&para;</a></h3> <ul> <li>ansible-galaxy is command line tool for scaffolding the creation of directory structure needed for organizing your code ansible-galaxy init sample_role</li> </ul> <h3 id=ansible-galaxy-useful-commands>ansible-galaxy useful commands<a class=headerlink href=#ansible-galaxy-useful-commands title="Permanent link">&para;</a></h3> <ul> <li>Install a Role from Ansible Galaxy</li> <li>To use others role, visit <a href=https://galaxy.ansible.com/ >https://galaxy.ansible.com/</a> and search for the role that will achieve your goal.</li> <li>Goal: Install Apache in the host machines.</li> </ul> <div class=highlight><pre><span></span><code><span class=c1># Ensure that roles_path are defined in ansible.cfg for a role to successfully install.</span>
+<span class=c1># Here, apache is role name and geerlingguy is name of the user in GitHub who created the role.</span>
+ansible-galaxy install geerlingguy.apache
+<span class=c1># Forcefully Recreate Role</span>
+ansible-galaxy init geerlingguy.apache --force
+<span class=c1># Listing Installed Roles</span>
+ansible-galaxy list
+<span class=c1># Remove an Installed Role</span>
+ansible-galaxy remove geerlingguy.apache
+</code></pre></div> <h3 id=environment-variables>Environment Variables<a class=headerlink href=#environment-variables title="Permanent link">&para;</a></h3> <ul> <li>Ansible recommends maintaining inventory file for each environment, instead of keeping all your hosts in a single inventory.</li> <li>Each environment directory has one inventory file (hosts) and group_vars directory.</li> </ul> <h2 id=ansible-best-practises>Ansible Best Practises<a class=headerlink href=#ansible-best-practises title="Permanent link">&para;</a></h2> <h3 id=inventory-files>Inventory Files<a class=headerlink href=#inventory-files title="Permanent link">&para;</a></h3> <ul> <li>To show you a great way of setting up your directory structure for a simple role-based playbook that has two different inventories — one for a development environment and one for a production environment. <div class=highlight><pre><span></span><code><span class=c1># inventories/development/hosts</span>
+<span class="p p-Indicator">[</span><span class=nv>app</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">app01.dev.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">app02.dev.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain"># inventories/development/group_vars</span>
+<span class=nn>---</span>
+<span class=nt>http_port</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+
+<span class=c1># inventories/production/hosts</span>
+<span class="p p-Indicator">[</span><span class=nv>app</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">app01.prod.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">app02.prod.example.com</span>
+<span class=c1># inventories/production/group_vars</span>
+<span class=nn>---</span>
+<span class=nt>http_port</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">80</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># To run it on the development inventory</span>
+ansible-playbook -i inventories/development/hosts site.yml
+<span class=c1># To run it on the production inventory </span>
+ansible-playbook -i inventories/production/hosts site.yml
+</code></pre></div></li> <li>However, there are always differences between the two environments, not just in the hostnames, but also sometimes in the parameters, the load balancer names, the port numbers, and so on—the list can seem endless.</li> <li>Try and reuse the same playbooks for all of your environments that run the same code. For example, if you deploy a web app in your development environment, you should be confident that your playbooks will deploy the same app in the production environment</li> <li>This means that not only are you testing your application deployments and code, you are also testing your Ansible playbooks and roles as part of your overall testing process.</li> <li>Your inventories for each environment should be kept in separate directory trees, but all roles, playbooks, plugins, and modules (if used) should be in the same directory structure (this should be the case for both environments).</li> <li>It is normal for different environments to require different authentication credentials; you should keep these separate not only for security but also to ensure that playbooks are not accidentally run in the wrong environment.</li> <li>Your playbooks should be in your version control system, just as your code is. This enables you to track changes over time and ensure that everyone is working from the same copy of the automation code.</li> </ul> <h3 id=the-proper-approach-to-defining-group-and-host-variables>The proper approach to defining group and host variables<a class=headerlink href=#the-proper-approach-to-defining-group-and-host-variables title="Permanent link">&para;</a></h3> <ul> <li>First and foremost, you should always pay attention to variable precedence. </li> <li>Host variables are always of a higher order of precedence than group variables; so, you can override any group variable with a host variable. This behavior is useful if you take advantage of it in a controlled manner, but can yield unexpected results if you are not aware of it.</li> <li>There is a special group variables definition called all, which is applied to all inventory groups. This has a lower order of precedence than specifically defined group variables.</li> <li>What happens if you define the same variable twice in two groups? If this happens, both groups have the same order of precedence, so which one wins? <div class=highlight><pre><span></span><code><span class="p p-Indicator">[</span><span class=nv>app</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">app01.dev.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">app02.dev.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain"># inventories/development/group_vars/all.yml</span> 
+<span class=nn>---</span>
+<span class=nt>http_port</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
+<span class=c1># inventories/development/group_vars/app.yml</span>
+<span class=nn>---</span>
+<span class=nt>http_port</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">8081</span>
+<span class=c1># site.yml</span>
+<span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Play using best practise directory structure</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Display the value of our inventory variable</span>
+      <span class=nt>debug</span><span class=p>:</span>
+        <span class=nt>var</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">http_port</span>
+</code></pre></div> <div class=highlight><pre><span></span><code>ansible-playbook -i inventories/development/hosts site.yml
+</code></pre></div></li> <li>As expected, the variable definition in the specific group won, which is in line with the order of precedence documented for Ansible. </li> <li>Now, let's see what happens if we define the same variable twice in two specifically named groups. To complete this example, we'll create a child group, called centos, and another group that could notionally contain hosts built to a new build standard, called newcentos, which both application servers will be a member of. <div class=highlight><pre><span></span><code><span class="p p-Indicator">[</span><span class=nv>app</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">app01.dev.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">app02.dev.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">[centos:children]</span>
+<span class="l l-Scalar l-Scalar-Plain">app</span>
+<span class="l l-Scalar l-Scalar-Plain">[newcentos:children]</span>
+<span class="l l-Scalar l-Scalar-Plain">app</span>
+<span class="l l-Scalar l-Scalar-Plain"># inventories/development/group_vars/centos.yml</span>
+<span class=nn>---</span>
+<span class=nt>http_port</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">8082</span>
+<span class=c1># inventories/development/group_vars/newcentos.yml</span>
+<span class=nn>---</span>
+<span class=nt>http_port</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">8083</span>
+</code></pre></div></li> <li>We've now defined the same variable four times at the group level! <div class=highlight><pre><span></span><code>ansible-playbook -i inventories/development/hosts site.yml
+</code></pre></div></li> <li>The value we entered in newcentos.yml won—but why? The Ansible documentation states that where identical variables are defined at the group level in the inventory (the one place you can do this), the one from the last-loaded group wins. Groups are processed in alphabetical order and newcentos is the group with the name beginning furthest down the alphabet—so, its value of http_port was the value that won.</li> <li>Just for completeness, we can override all of this by leaving the group_vars directory untouched, but adding a file called inventories/development/host_vars/app01.dev.example.com.yml <div class=highlight><pre><span></span><code><span class=nn>---</span>
+<span class=nt>http_port</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">9090</span>
+</code></pre></div></li> <li>We will see that the value we defined at the host level completely overrides any value that we set at the group level for app01.dev.example.com. app02.dev.example.com is unaffected as we did not define a host variable for it, so the next highest level of precedence—the group variable from the newcentos group—won</li> </ul> <h3 id=using-top-level-playbooks>Using top-level playbooks<a class=headerlink href=#using-top-level-playbooks title="Permanent link">&para;</a></h3> <ul> <li>Imagine handing a playbook directory structure with 100 different playbooks to a new system administrator—how would they know which ones to run and in which circumstances? The task of training someone to use the playbooks would be immense and would simply move complexity from one area to another.</li> <li>The most important thing is that, on receipt of a new playbook directory structure, a new operator at least knows what the starting point for both running the playbooks, and understanding the code is. </li> <li>If the top-level playbook they encounter is always site.yml, then at least everyone knows where to start. </li> <li>Through the clever use of roles and the import_* and include_* statements, you can split your playbook up into logical portions of reusable code, all from one playbook file. </li> </ul> <h3 id=leveraging-version-control-tools>Leveraging version control tools<a class=headerlink href=#leveraging-version-control-tools title="Permanent link">&para;</a></h3> <ul> <li>Any changes to your Ansible code could mean big changes to your environment, and possibly even whether an important production service works or not. </li> <li>As a result, it is vital that you maintain a version history of your Ansible code and that everyone works from the same version. </li> </ul> <h3 id=setting-os-and-distribution-variances>Setting OS and distribution variances<a class=headerlink href=#setting-os-and-distribution-variances title="Permanent link">&para;</a></h3> <ul> <li>This playbook demonstrates how you can group differing plays using an Ansible fact so that the OS distribution determines which play in a playbook gets run. <div class=highlight><pre><span></span><code><span class=c1># osvariants.yml - It will also contain a single task.</span>
+<span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Play to demonstrate group_by module</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">all</span>
+
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Create inventory groups based on host facts</span>
+      <span class=nt>group_by</span><span class=p>:</span>
+        <span class=nt>key</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">os_{{ ansible_facts[&#39;distribution&#39;] }}</span>
+</code></pre></div></li> <li><strong>group_by</strong> module: It dynamically creates new inventory groups based on the key that we specify — in this example, we are creating groups based on a key comprised of the os_ fixed string, followed by the OS distribution fact obtained from the Gathering Facts stage. </li> <li>The original inventory group structure is preserved and unmodified, but all the hosts are also added to the newly created groups according to their facts.</li> <li>So, the two servers in our simple inventory remain in the app group, but if they are based on Ubuntu, they will be added to a newly created inventory group called os_Ubuntu. Similarly, if they are based on CentOS, they will be added to a group called os_CentOS. <div class=highlight><pre><span></span><code><span class=c1># Play definition to the same playbook file to install Apache on CentOS</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Play to install Apache on CentOS</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">os_CentOS</span>    <span class=c1># Refer to the Dynamic group</span>
+  <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Install Apache on CentOS</span>
+      <span class=nt>yum</span><span class=p>:</span>
+        <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">httpd</span>
+        <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+<span class=c1># Add a third Play definition, this time for installing the apache2 package on Ubuntu using the apt module</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Play to install Apache on Ubuntu</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">os_Ubuntu</span>
+  <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Install Apache on Ubuntu</span>
+      <span class=nt>apt</span><span class=p>:</span>
+        <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apache2</span>
+        <span class=nt>state</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+</code></pre></div> <div class=highlight><pre><span></span><code>ansible-playbook -i hosts osvariants.yml
+</code></pre></div></li> <li>Notice how the task to install Apache on CentOS was run. It was run this way because the group_by module created a group called os_CentOS and our second play only runs on hosts in the group called os_CentOS. As there were no servers running on Ubuntu in the inventory, the os_Ubuntu group was never created and so the third play does not run. We receive a warning about the fact that there is no host pattern that matches os_Ubuntu, but the playbook does not fail—it simply skips this play.</li> <li>It is up to you to choose the coding style most appropriate to you. You can make use of the group_by module, as detailed here, or write your tasks in blocks and add a when clause to the blocks so that they only run when a certain fact-based condition is met (for example, the OS distribution is CentOS)—or perhaps even a combination of the two. The choice is ultimately yours and these different examples are provided to empower you with multiple options that you can choose between to create the best possible solution for your scenario. </li> </ul> <h3 id=setting-task-execution-delegation>Setting task execution delegation<a class=headerlink href=#setting-task-execution-delegation title="Permanent link">&para;</a></h3> <ul> <li>We have assumed that all the tasks are executed on each host in the inventory in turn. </li> <li>However, what if you need to run one or two tasks on a different host? </li> <li>For example, we have talked about the concept of automating upgrades on clusters. </li> <li>Logically, however, we would want to automate the entire process, including the removal of each host in turn from the load balancer and its return after the task is completed. </li> <li>Although we still want to run our play across our entire inventory, we certainly don't want to run the load balancer commands from those hosts. </li> <li>Imagine that you have a shell script (or other executables) that you can call that can add and remove hosts to and from a load balancer. <div class=highlight><pre><span></span><code><span class=c1># remove_from_loadbalancer.sh</span>
+<span class=c1>#!/bin/sh</span>
+<span class=nb>echo</span> Removing <span class=nv>$1</span> from load balancer...
+
+<span class=c1># add_to_loadbalancer.sh</span>
+<span class=c1>#!/bin/sh</span>
+<span class=nb>echo</span> Adding <span class=nv>$1</span> to load balancer...
+</code></pre></div> <div class=highlight><pre><span></span><code><span class="p p-Indicator">[</span><span class=nv>frontends</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">frt01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">frt02.example.com</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Play to demonstrate task delegation</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">frontends</span>
+
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Remove host from the load balancer</span>
+      <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">./remove_from_loadbalancer.sh {{ inventory_hostname }}</span>
+      <span class=nt>args</span><span class=p>:</span>
+        <span class=nt>chdir</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>playbook_dir</span><span class=nv> </span><span class=s>}}&quot;</span>
+      <span class=nt>delegate_to</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deploy code to host</span>
+      <span class=nt>debug</span><span class=p>:</span>
+        <span class=nt>msg</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment code would go here....</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Add host back to the load balancer</span>
+      <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">./add_to_loadbalancer.sh {{ inventory_hostname }}</span>
+      <span class=nt>args</span><span class=p>:</span>
+        <span class=nt>chdir</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>playbook_dir</span><span class=nv> </span><span class=s>}}&quot;</span>
+      <span class=nt>delegate_to</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+</code></pre></div></li> <li>We are using the command module to call the script we created earlier, passing the hostname from the inventory being removed from the load balancer to the script. </li> <li>We use the chdir argument with the <strong>playbook_dir</strong> magic variable to tell Ansible that the script is to be run from the same directory as the playbook.</li> <li><strong>The special part of this task is the delegate_to directive, which tells Ansible that even though we're iterating through an inventory that doesn't contain localhost, we should run this action on localhost (we aren't copying the script to our remote hosts, so it won't run if we attempt to run it from there).</strong></li> <li>Deploy task has no delegate_to directive, and so it is actually run on the remote host from the inventory (as desired):</li> <li>Finally, we add the host back to the load balancer using the second script we created earlier. This task is almost identical to the first. <div class=highlight><pre><span></span><code>ansible-playbook -i hosts delegate.yml
+</code></pre></div></li> <li>Notice how even though Ansible is working through the inventory (which doesn't feature localhost), the load balancer-related scripts are actually run from localhost, while the upgrade task is performed directly on the remote host. </li> <li> <p>In truth, you can delegate any task to localhost, or even another non-inventory host. You could, for example, run an <strong>rsync command</strong> delegated to localhost to copy files to remote hosts using a similar task definition to the previous one. This is useful because although Ansible has a copy module, it can't perform the advanced recursive copy and update functions that rsync is capable of.</p> </li> <li> <p>Note that you can choose to use a form of shorthand notation in your playbooks (and roles) for delegate_to, called <strong>local_action</strong>. This allows you to specify a task on a single line that would ordinarily be run with <strong>delegate_to:</strong> localhost added below it. <div class=highlight><pre><span></span><code><span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Second task delegation example</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">frontends</span>
+
+  <span class=nt>tasks</span><span class=p>:</span>
+  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Perform an rsync from localhost to inventory hosts</span>
+    <span class=nt>local_action</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">command rsync -a /tmp/ {{ inventory_hostname }}:/tmp/target/</span>
+</code></pre></div></p> </li> <li>The preceding shorthand notation is equivalent to the following: <div class=highlight><pre><span></span><code><span class=nt>tasks</span><span class=p>:</span>
+  <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Perform an rsync from localhost to inventory hosts</span>
+    <span class=nt>command</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">rsync -a /tmp/ {{ inventory_hostname }}:/tmp/target/</span>
+    <span class=nt>delegate_to</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+</code></pre></div></li> <li>If we run this playbook, we can see that local_action does indeed run rsync from localhost, enabling us to efficiently copy whole directory trees across to remote servers in the inventory. <div class=highlight><pre><span></span><code>ansible-playbook -i hosts delegate2.yml
+</code></pre></div></li> </ul> <h3 id=using-the-run_once-option>Using the run_once option<a class=headerlink href=#using-the-run_once-option title="Permanent link">&para;</a></h3> <ul> <li>When working with clusters, you will sometimes encounter a task that should only be executed once for the entire cluster. </li> <li>For example, you might want to upgrade the schema of a clustered database.</li> <li>Instead, you can write your code as you normally would, but make use of the special run_once directive for any tasks you want to run only once on your inventory. For example, let's reuse the 10-host inventory. <div class=highlight><pre><span></span><code><span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Play to demonstrate the run_once directive</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">frontends</span>
+
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Upgrade database schema</span>
+      <span class=nt>debug</span><span class=p>:</span>
+        <span class=nt>msg</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Upgrading database schema...</span>
+      <span class=nt>run_once</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div> <div class=highlight><pre><span></span><code>ansible-playbook -i morehosts runonce.yml
+</code></pre></div></li> <li>Notice that, just as desired, although the playbook was run on all 10 hosts (and, indeed, gathered facts from all 10 hosts), we only ran the upgrade task on one host. </li> <li><strong>It's important to note that the run_once option applies per batch of servers, so if we add serial: 5 to our play definition (running our play in two batches of 5 on our inventory of 10 servers), the schema upgrade task actually runs twice! It runs once as requested, but once per batch of servers, not once for the entire inventory. Be careful of this nuance when working with this directive in a clustered environment.</strong></li> </ul> <h3 id=running-playbooks-locally>Running playbooks locally<a class=headerlink href=#running-playbooks-locally title="Permanent link">&para;</a></h3> <ul> <li>It is important to note that when we talk about running a playbook locally with Ansible, it is not the same as talking about running it on localhost. </li> <li>If we run a playbook on localhost, Ansible actually sets up an SSH connection to localhost (it doesn't differentiate its behavior or attempt to detect whether a host in the inventory is local or remote - it simply tries faithfully to connect). <div class=highlight><pre><span></span><code><span class=c1># Inventory file</span>
+<span class="p p-Indicator">[</span><span class=nv>local</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">localhost ansible_connection=local</span>
+</code></pre></div></li> <li>We've added a special variable to our localhost entry <code>ansible_connection</code> variable which defines which protocol is used to connect to this inventory host. So, we have told it to use a direct local connection instead of an SSH-based connectivity (which is the default).</li> <li>Note that this special value for the ansible_connection variable actually overrides the hostname you have put in your inventory. So, if we change our inventory to look as follows, Ansible will not even attempt to connect to the remote host called frt01.example.com it will connect locally to the machine running the playbook (without SSH). <div class=highlight><pre><span></span><code><span class="p p-Indicator">[</span><span class=nv>local</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">frt01.example.com ansible_connection=local</span>
+</code></pre></div></li> <li>The presence of ansible_connection=local meant that this command was run on the local machine without using SSH.</li> <li>This ability to run commands locally without the need to set up SSH connectivity, SSH keys, and so on can be incredibly valuable, especially if you need to get things up and running quickly on your local machine. </li> </ul> <h3 id=working-with-proxies-and-jump-hosts>Working with proxies and jump hosts<a class=headerlink href=#working-with-proxies-and-jump-hosts title="Permanent link">&para;</a></h3> <ul> <li>Often, when it comes to configuring core network devices, these are isolated from the main network via a proxy or jump host. </li> <li>Ansible lends itself well to automating network device configuration as most of it is performed over SSH: however, this is only helpful in a scenario where Ansible can either be installed and operated from the jump host or, better yet, can operate via a host such as this.</li> <li>Let's assume that you have two Cumulus Networks switches in your network (these are based on a special distribution of Linux for switching hardware, which is very similar to Debian). These two switches have the cmls01.example.com and cmls02.example.com hostnames, but both can only be accessed from a host called bastion.example.com. <div class=highlight><pre><span></span><code><span class="p p-Indicator">[</span><span class=nv>switches</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">cmls01.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">cmls02.example.com</span>
+<span class="l l-Scalar l-Scalar-Plain">[switches:vars]</span>
+<span class="l l-Scalar l-Scalar-Plain">ansible_ssh_common_args=&#39;-o ProxyCommand=&quot;ssh -W %h:%p -q bastion.example.com&quot;&#39;</span>
+</code></pre></div></li> <li>This special variable content <strong>ansible_ssh_common_args</strong> tells Ansible to add extra options when it sets up an SSH connection, including to proxy via the bastion.example.com host. The -W %h:%p options tell SSH to proxy the connection and to connect to the host specified by %h (this is either cmls01.example.com or cmls02.example.com) on the port specified by %p (usually port 22). <div class=highlight><pre><span></span><code>ansible -i switches -m ping all
+</code></pre></div></li> <li>On the surface, Ansible works just as it normally does and connects successfully to the two hosts. </li> <li>However, behind the scenes it proxies via bastion.example.com. </li> <li>Note that this simple example assumes that you are connecting to both the bastion host and switches using the same username and SSH credentials (or in this case, keys). </li> </ul> <h3 id=configuring-playbook-prompts>Configuring playbook prompts<a class=headerlink href=#configuring-playbook-prompts title="Permanent link">&para;</a></h3> <ul> <li>All of our playbooks have had their data specified for them at run time in variables we defined within the playbook. </li> <li>However, what if you actually want to obtain information from someone during a playbook run? </li> <li>Perhaps you want to obtain a password from a user for an authentication task without storing it anywhere.</li> <li>Ansible can prompt you for user input and store the input in a variable for future processing.</li> <li>We will prompt for two variables, one for a user ID and one for a password. One will be echoed to the screen, while the other won't be, by setting private: yes <div class=highlight><pre><span></span><code><span class=nn>---</span>
+<span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">A simple play to demonstrate prompting in a playbook</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">frontends</span>
+  <span class=nt>vars_prompt</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">loginid</span>
+      <span class=nt>prompt</span><span class=p>:</span> <span class=s>&quot;Enter</span><span class=nv> </span><span class=s>your</span><span class=nv> </span><span class=s>username&quot;</span>
+      <span class=nt>private</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">password</span>
+      <span class=nt>prompt</span><span class=p>:</span> <span class=s>&quot;Enter</span><span class=nv> </span><span class=s>your</span><span class=nv> </span><span class=s>password&quot;</span>
+      <span class=nt>private</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Proceed with login</span>
+      <span class=nt>debug</span><span class=p>:</span>
+        <span class=nt>msg</span><span class=p>:</span> <span class=s>&quot;Logging</span><span class=nv> </span><span class=s>in</span><span class=nv> </span><span class=s>as</span><span class=nv> </span><span class=s>{{</span><span class=nv> </span><span class=s>loginid</span><span class=nv> </span><span class=s>}}...&quot;</span>
+</code></pre></div> <div class=highlight><pre><span></span><code>ansible-playbook -i hosts prompt.yml
+</code></pre></div></li> </ul> <h2 id=ansible-security-best-practices>Ansible Security Best Practices<a class=headerlink href=#ansible-security-best-practices title="Permanent link">&para;</a></h2> <h3 id=working-with-ansible-vault>Working with Ansible Vault<a class=headerlink href=#working-with-ansible-vault title="Permanent link">&para;</a></h3> <ul> <li>It's really important to use Ansible Vault to store all the secret information in our playbooks.</li> <li>Some of the really good use cases include how we can use these playbooks without changing our version control systems, CI/CD integration pipelines, and so on.</li> </ul> <h4 id=how-to-use-ansible-vault-with-variables-and-files>How to use Ansible Vault with variables and files<a class=headerlink href=#how-to-use-ansible-vault-with-variables-and-files title="Permanent link">&para;</a></h4> <ul> <li>Let's take an example of installing MySQL server in an Ubuntu operating system using the following playbook. </li> <li>As per the Ansible documentation, it's easy and better to store Vault variables and normal variables differently. <div class=highlight><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">├── group_vars</span>
+<span class="l l-Scalar l-Scalar-Plain">│   └── mysql.yml</span> <span class=c1># contains vault secret values</span>
+<span class="l l-Scalar l-Scalar-Plain">├── hosts</span>
+<span class="l l-Scalar l-Scalar-Plain">├── main.yml</span>
+<span class="l l-Scalar l-Scalar-Plain">└── roles</span>
+    <span class="l l-Scalar l-Scalar-Plain">└── mysqlsetup</span>
+        <span class="l l-Scalar l-Scalar-Plain">└── tasks</span>
+            <span class="l l-Scalar l-Scalar-Plain">└── main.yml</span>
+</code></pre></div></li> <li>Now, if we see the group_vars/main.yml file, the content looks as shown in the codeblock. It contains the secrets variable to use in the playbook, called mysql_root_password. <div class=highlight><pre><span></span><code><span class=nt>mysql_root_password</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">supersecretpassword​</span>
+</code></pre></div></li> <li>To encrypt the vault file, we will use the following command and it then prompts for the password to protect <div class=highlight><pre><span></span><code>ansible-vault encrypt group_vars/mysql.yml
+<span class=c1># Now, to execute the playbook run the following command, it will prompt for the vault password</span>
+ansible-playbook --ask-vault-pass -i hosts main.yml
+</code></pre></div></li> <li>We can also pass the ansible-vault password file with playbook execution by specifying flag, it helps in our continuous integration and pipeline platforms.</li> <li>The following file contains the password which used to encrypt the mysql.yml file. <div class=highlight><pre><span></span><code>cat ~/.vaultpassword
+
+thisisvaultpassword
+
+<span class=c1># To pass the vault password file through the command line, use the following command when executing playbooks</span>
+ansible-playbook --vault-password-file ~/.vaultpassword -i hosts main.yml
+</code></pre></div></li> </ul> <div class="admonition note"> <p class=admonition-title>Note</p> <p>Make sure to give proper permissions for this file, so others cannot access this file using chmod. Also, it's good practice to add this file to your .gitignore, so it will not be version controlled when pushing playbooks. Vault password file can be an executable script, which can retrieve data stored somewhere securely rather than having to keep the key in plain text on disk and relying on file permissions to keep it safe. We can also use system environment variables such as ANSIBLE_VAULT_PASSWORD_FILE=~/.vaultpassword and Ansible will use this while executing playbooks.</p> </div> <h4 id=ansible-vault-single-encrypted-variable>Ansible Vault single encrypted variable<a class=headerlink href=#ansible-vault-single-encrypted-variable title="Permanent link">&para;</a></h4> <ul> <li>It allows us to use vaulted variables with the !vault tag in YAML files</li> <li>This playbook is used to perform reverse IP lookups using the ViewDNS API.</li> <li>We want to secure api_key as it contains sensitive information. <div class=highlight><pre><span></span><code><span class=c1># We use the  ansible-vault encrypt_string command to perform this encryption. </span>
+<span class=c1># Here, we used echo with the -n flag to remove the new line</span>
+<span class=nb>echo</span> -n <span class=s1>&#39;53ff4ad63849e6977cb652763g7b7c64e2fa42a&#39;</span> <span class=p>|</span> ansible-vault encrypt_string --stdin-name <span class=s1>&#39;api_key&#39;</span>
+</code></pre></div></li> <li>We can place the variable, inside the playbook variables and execute the playbook as normal, using ansible-playbook with the &ndash;ask-vault-pass option. <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ViewDNS domain information</span>
+  <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+  <span class=nt>vars</span><span class=p>:</span>
+    <span class=nt>domain</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">google.com</span>
+    <span class=nt>api_key</span><span class=p>:</span> <span class=kt>!vault</span> <span class="p p-Indicator">|</span>
+          <span class=no>$ANSIBLE_VAULT;1.1;AES256</span>
+          <span class=no>36623761316238613461326466326162373764353437393733343334376161336630333532626465</span>
+          <span class=no>6662383435303930303164353664643639303761353664330a393365633237306530653963353764</span>
+          <span class=no>64626237313738656530373639653739656564316161663831653431623832336635393637653330</span>
+          <span class=no>6632663563363264340a323537356166653338396135376161323435393730306133626635376539</span>
+          <span class=no>37383861653239326336613837666237636463396465393662666561393132343166666334653465</span>
+          <span class=no>6265386136386132363534336532623061646438363235383334</span>
+    <span class=nt>output_type</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">json</span>
+  
+  <span class=nt>tasks</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class=s>&quot;getting</span><span class=nv> </span><span class=s>{{</span><span class=nv> </span><span class=s>domain</span><span class=nv> </span><span class=s>}}</span><span class=nv> </span><span class=s>server</span><span class=nv> </span><span class=s>info&quot;</span>
+      <span class=nt>uri</span><span class=p>:</span>
+        <span class=nt>url</span><span class=p>:</span> <span class=s>&quot;https://api.viewdns.info/reverseip/?host={{</span><span class=nv> </span><span class=s>domain</span><span class=nv> </span><span class=s>}}&amp;apikey={{</span><span class=nv> </span><span class=s>api_key</span><span class=nv> </span><span class=s>}}&amp;output={{</span><span class=nv> </span><span class=s>output_type</span><span class=nv> </span><span class=s>}}&quot;</span>
+        <span class=nt>method</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">GET</span>
+      <span class=nt>register</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">results</span>
+  
+    <span class="p p-Indicator">-</span> <span class=nt>debug</span><span class=p>:</span>
+        <span class=nt>msg</span><span class=p>:</span> <span class=s>&quot;{{</span><span class=nv> </span><span class=s>results.json</span><span class=nv> </span><span class=s>}}&quot;</span>
+</code></pre></div></li> <li>Playbook being executed will be automatically decrypted after we provide it with the given password. <div class=highlight><pre><span></span><code>ansible-playbook --ask-vault-pass -i hosts main.yml
+</code></pre></div></li> </ul> <h3 id=setting-up-and-using-ansible-galaxy>Setting up and using Ansible Galaxy<a class=headerlink href=#setting-up-and-using-ansible-galaxy title="Permanent link">&para;</a></h3> <ul> <li>Is an official centralized hub for finding, sharing, and reusing Ansible roles. </li> <li>This allows the community to share and collaborate on Ansible playbooks, and allows new users to quickly get started with using Ansible. </li> <li>To share our custom-written roles with the community, we can publish them to Ansible Galaxy using GitHub authentication.</li> <li>We can install or include roles direct from GitHub by specifying the GitHub URL. </li> <li>This allows the use of private version control systems as local inventories of playbook roles. <div class=highlight><pre><span></span><code>ansible-galaxy install git+https://github.com/geerlingguy/ansible-role-composer.git
+</code></pre></div></li> </ul> <h3 id=ansible-controller-machine-security>Ansible controller machine security<a class=headerlink href=#ansible-controller-machine-security title="Permanent link">&para;</a></h3> <ul> <li>The controller machine for Ansible requires SSH and Python to be installed and configured. </li> <li>Ansible has a very low attack surface. </li> </ul> <div class="admonition note"> <p class=admonition-title>Note</p> <p>In January 2017, multiple security issues were found by a company called <a href=https://www.computest.nl/advisories/CT-2017-0109_Ansible.txt>Computest</a>. This vulnerability was dubbed owning the farm, since compromising the controller would imply that all the nodes could potentially be compromised.</p> </div> <ul> <li>The controller machine should be a hardened server and treated with all the seriousness that it deserves. </li> <li>In the vulnerability that was disclosed, if a node gets compromised attackers could leverage that to attack and gain access to the controller. - Once they have access, the could extend their control over all the other nodes being managed by the controller.</li> <li>Since the attack surface is already very limited, the best we can do is ensure that the server stays secure and hardened.</li> </ul> <h4 id=explanation-of-ansible-os-hardening-playbook>Explanation of Ansible OS hardening playbook<a class=headerlink href=#explanation-of-ansible-os-hardening-playbook title="Permanent link">&para;</a></h4> <ul> <li>The following playbook is created by DevSec for Linux baselines. </li> <li>It covers most of the required hardening checks based on multiple standards, which includes Ubuntu Security Features, NSA Guide to Secure Configuration, ArchLinux System Hardening and other. </li> <li>This can be improved if required by adding more tasks (or) roles.</li> <li>Ansible OS Hardening Playbook covers<ul> <li>Configures package management, that is, allows only signed packages</li> <li>Removes packages with known issues</li> <li>Configures pam and the pam_limits module</li> <li>Shadow password suite configuration</li> <li>Configures system path permissions</li> <li>Disables core dumps through soft limits</li> <li>Restricts root logins to system console</li> <li>Sets SUIDs</li> <li>Configures kernel parameters through sysctl <div class=highlight><pre><span></span><code><span class=c1># download the os-hardening role from Ansible Galaxy</span>
+ansible-galaxy install dev-sec.os-hardening
+</code></pre></div></li> </ul> </li> <li>Call that role in your playbook and execute it to perform the baseline hardening, and also change the variables as required. Refer to <a href=https://galaxy.ansible.com/dev-sec/os-hardening>https://galaxy.ansible.com/dev-sec/os-hardening</a> for more detailed options. <div class=highlight><pre><span></span><code><span class="p p-Indicator">-</span> <span class=nt>hosts</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">localhost</span>
+  <span class=nt>become</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+
+  <span class=nt>roles</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dev-sec.os-hardening</span>
+<span class=c1># Execute the playbook</span>
+<span class="l l-Scalar l-Scalar-Plain">ansible-playbook main.yml</span>
+</code></pre></div></li> </ul> <h3 id=best-practices-and-reference-playbook-projects>Best practices and reference playbook projects<a class=headerlink href=#best-practices-and-reference-playbook-projects title="Permanent link">&para;</a></h3> <ul> <li>Projects such as Algo, DebOps, and OpenStack are large Ansible playbook projects that are well maintained and secure by default.</li> </ul> <h4 id=debops--your-debian-based-data-center-in-a-box>DebOps – your Debian-based data center in a box<a class=headerlink href=#debops--your-debian-based-data-center-in-a-box title="Permanent link">&para;</a></h4> <ul> <li><a href=https://debops.org>DebOps</a> is a project created by Maciej Delmanowski. It contains a collection of various Ansible playbooks that can be used for Debian and Ubuntu hosts. </li> <li>This project has more than 128 Ansible roles, which are customized for production use cases and work with multiple environments.</li> <li>We can see a list of available playbook services at <a class="magiclink magiclink-github magiclink-repository" href=https://github.com/debops/debops-playbooks title="GitHub Repository: debops/debops-playbooks">debops/debops-playbooks</a></li> <li>There are two different ways we can quickly get started with a DebOps setup:<ul> <li>Vagrant setup</li> <li>Docker setup</li> </ul> </li> </ul> <h4 id=algo--set-up-a-personal-ipsec-vpn-in-the-cloud>Algo – set up a personal IPSEC VPN in the cloud<a class=headerlink href=#algo--set-up-a-personal-ipsec-vpn-in-the-cloud title="Permanent link">&para;</a></h4> <ul> <li>Algo from Trail of Bits provides Ansible roles and scripts to automate the installation of a personal IPSEC VPN.</li> <li>By running the Ansible playbooks, you get a complete hardened VPN server, and deployments to all major cloud providers are already configured (<a href=https://github.com/trailofbits/algo/blob/master/docs/deploy-from-ansible.md>https://github.com/trailofbits/algo/blob/master/docs/deploy-from-ansible.md</a>).</li> </ul> <h4 id=openstack-ansible>OpenStack-Ansible<a class=headerlink href=#openstack-ansible title="Permanent link">&para;</a></h4> <ul> <li>Not only does this project use Ansible playbooks extensively, but their security documentation is also worth reading and emulating. </li> <li>The best part is that all of the security configuration is declarative security codified in Ansible playbooks.</li> <li>Documentation on this project is available at <a href=https://docs.openstack.org/project-deploy-guide/openstack-ansible/ocata/app-security.html>https://docs.openstack.org/project-deploy-guide/openstack-ansible/ocata/app-security.html</a>.</li> </ul> <h4 id=awx--open-source-version-of-ansible-tower>AWX – open source version of Ansible Tower<a class=headerlink href=#awx--open-source-version-of-ansible-tower title="Permanent link">&para;</a></h4> <ul> <li>AWX provides a web-based user interface, REST API, and task engine built on top of Ansible. </li> <li>AWX can be used with the tower-CLI tool and client library.</li> <li>Get started with AWX here: <a class="magiclink magiclink-github magiclink-repository" href=https://github.com/ansible/awx title="GitHub Repository: ansible/awx">ansible/awx</a>.</li> <li>Get started with tower-cli here: <a class="magiclink magiclink-github magiclink-repository" href=https://github.com/ansible/tower-cli/ title="GitHub Repository: ansible/tower-cli">ansible/tower-cli</a>.</li> </ul> <p><div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div> <div class=highlight><pre><span></span><code>
+</code></pre></div></p> </article> </div> </div> </main> <footer class=md-footer> <nav class="md-footer__inner md-grid" aria-label=Footer> <a href=../../../server/mobile/ class="md-footer__link md-footer__link--prev" rel=prev> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </div> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Previous </span> Mobile </div> </div> </a> <a href=../../../k8s/ class="md-footer__link md-footer__link--next" rel=next> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Next </span> Kubernetes </div> </div> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg> </div> </a> </nav> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2018 - 2019 Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script> <script src=../../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>
