@@ -1,4 +1,3 @@
-
 !!! info "Vagrant is not able to run on Windows 10 + WLS2"
 # Windows setup
 * vagrant plugin install vagrant-vbguest
@@ -131,4 +130,7 @@ set VAGRANT_LOG=INFO
 # Debug SSH
 set VAGRANT_PREFER_SYSTEM_BIN=0
 vagrant ssh --debug
-
+- Running this command will show which identity file is being used
+```BASH
+vagrant ssh-config | grep IdentityFile
+```

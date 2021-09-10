@@ -66,7 +66,7 @@ ssh-keygen -t rsa  -b 4096 -f ~/.ssh/ansible-user -C ansible-user
 
 - [Adding SSH Keys to servers](https://www.digitalocean.com/docs/droplets/how-to/add-ssh-keys/)
 - [SSH Client Config](https://www.digitalocean.com/community/tutorials/how-to-configure-custom-connection-options-for-your-ssh-client)
-
+- [Test SSH connections](https://www.cyberciti.biz/faq/how-to-set-up-ssh-keys-on-linux-unix/)
 Edit setings on the new terminal to make Ubuntu as the default terminal. Also set the fontFace and 
 https://www.the-digital-life.com/en/awesome-wsl-wsl2-terminal/
 - [Create Sudo User](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-ubuntu-20-04-quickstart)

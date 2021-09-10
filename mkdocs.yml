@@ -25,15 +25,18 @@ nav:
     - server/index.md
     - Installation: server/install.md
     - Mobile: server/mobile.md
+  - Linux:
+    - Linux: linux/linux.md
+    - Security: linux/security.md
+  - Ansible:
+    - Ansible: learning/ansible/ansible.md
   - Kubernetes:
     - k8s/index.md
     - Installation: k8s/install.md
   - Learning:
-    - Linux: learning/linux.md
     - Git: learning/git.md
     - Python: learning/python.md
     - Vagrant: learning/vagrant.md
-    - Ansible: learning/ansible.md
     - Terraform: learning/terraform.md
     - Docker: learning/docker/docker-notes.md
     - Kubernetes: learning/k8s/k8s-notes.md
