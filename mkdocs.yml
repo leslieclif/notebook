@@ -24,10 +24,7 @@ nav:
   - Server:
     - server/index.md
     - Installation: server/install.md
-    - Mobile: server/mobile.md
-  - Linux:
-    - Linux: linux/linux.md
-    - Security: linux/security.md
+    - Mobile: server/mobile.md    
   - Ansible:
     - Ansible: learning/ansible/ansible.md
   - Kubernetes:
@@ -40,6 +37,8 @@ nav:
     - Terraform: learning/terraform.md
     - Docker: learning/docker/docker-notes.md
     - Kubernetes: learning/k8s/k8s-notes.md
+    - Linux: learning/linux/linux.md
+    - Linux_Security: learning/linux/security.md
   - Devops:
     - devops/index.md    
      
