@@ -110,3 +110,14 @@ https://www.techdrabble.com/ansible/36-install-ansible-molecule-vagrant-on-windo
 # VSCode
 [Key Shortcuts](https://github.com/microsoft/vscode-tips-and-tricks)
 [Mastering Terminal](https://www.growingwiththeweb.com/2017/03/mastering-vscodes-terminal.html)
+
+# Examples
+[TLS Certificate - Manual](https://github.com/justmeandopensource/docker/blob/master/docker-compose-files/docker-registry/docs/Generate%20certificates%20for%20TLS%20registry.md)
+
+# PI
+- [TFTP Boot](https://netboot.xyz/docs/booting/tftp/)
+- [Boot Methods](https://williamlam.com/2020/07/two-methods-to-network-boot-raspberry-pi-4.html)
+- [Network Boot from Ubuntu](https://blockdev.io/network-booting-a-raspberry-pi-3/)
+- [K3s Cluster with Netboot](https://blog.alexellis.io/state-of-netbooting-raspberry-pi-in-2021/s)
+- []()
+- []()
