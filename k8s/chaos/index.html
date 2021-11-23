@@ -1,0 +1,471 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/k8s/chaos/ rel=canonical><link rel="shortcut icon" href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-7.0.3"><title>Chaos Enginnering - Leslie's Online Notebook</title><link rel=stylesheet href=../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#chaos-enginnering class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Chaos Enginnering </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Ansible <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ansible data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Ansible </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../learning/ansible/ansible/ class=md-nav__link> Ansible </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../learning/git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../../learning/python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../learning/vagrant/ class=md-nav__link> Vagrant </a> </li> <li class=md-nav__item> <a href=../../learning/terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../../learning/docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../learning/k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../learning/linux/linux/ class=md-nav__link> Linux </a> </li> <li class=md-nav__item> <a href=../../learning/linux/security/ class=md-nav__link> Linux_Security </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../devops/ class=md-nav__link> Index </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#chaos-enginnering class=md-nav__link> Chaos Enginnering </a> <nav class=md-nav aria-label="Chaos Enginnering"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#pure-chaos class=md-nav__link> Pure Chaos </a> </li> <li class=md-nav__item> <a href=#chaos-mesh class=md-nav__link> Chaos Mesh </a> </li> <li class=md-nav__item> <a href=#litmus class=md-nav__link> Litmus </a> </li> <li class=md-nav__item> <a href=#chaoskube class=md-nav__link> Chaoskube </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>Chaos Enginnering</h1> <h2 id=chaos-enginnering>Chaos Enginnering<a class=headerlink href=#chaos-enginnering title="Permanent link">&para;</a></h2> <ul> <li>Generating Random number <div class=highlight><pre><span></span><code><span class=nv>d</span><span class=o>=</span><span class=k>$((</span> <span class=o>(</span> RANDOM <span class=o>%</span> <span class=m>10</span> <span class=o>)</span>  <span class=o>+</span> <span class=m>1</span> <span class=k>))</span>
+</code></pre></div></li> <li><a href=https://github.com/wuestkamp/cka-example-environments>Example Cluster with examples</a></li> </ul> <h3 id=pure-chaos>Pure Chaos<a class=headerlink href=#pure-chaos title="Permanent link">&para;</a></h3> <ul> <li><a href=https://artifacthub.io/packages/helm/twuni/docker-registry>Install Registry</a> <div class=highlight><pre><span></span><code><span class=c1># It&#39;s helpful to have a container registry during the build, push, and deploy phases. There is no need to shuttle private images over the internet.</span>
+helm repo add twuni https://helm.twun.io
+helm install registry twuni/docker-registry <span class=se>\</span>
+  --version <span class=m>1</span>.10.0 <span class=se>\</span>
+  --namespace kube-system <span class=se>\</span>
+  --set service.type<span class=o>=</span>NodePort <span class=se>\</span>
+  --set service.nodePort<span class=o>=</span><span class=m>31500</span>
+kubectl get service --namespace kube-system
+<span class=c1># Assign an environment variable to the common registry location</span>
+<span class=nb>export</span> <span class=nv>REGISTRY</span><span class=o>=</span><span class=m>2886795330</span>-31500-kira01.environments.katacoda.com
+<span class=c1># It will be a few moments before the registry deployment reports it&#39;s Available</span>
+kubectl get deployments registry-docker-registry --namespace kube-system
+<span class=c1># Once the registry is serving, inspect the contents of the empty registry</span>
+curl <span class=nv>$REGISTRY</span>/v2/_catalog <span class=p>|</span> jq -c
+</code></pre></div></li> <li>Install Sample Application <div class=highlight><pre><span></span><code><span class=c1># Let&#39;s create a small collection of applications. </span>
+<span class=c1># you will create a deployment of applications that log random messages. </span>
+kubectl create namespace learning-place
+<span class=c1># Run the random-logger container in a Pod to start generating continuously random logging events</span>
+kubectl create deployment random-logger --image<span class=o>=</span>chentex/random-logger -n learning-place
+kubectl scale deployment/random-logger --replicas<span class=o>=</span><span class=m>10</span> -n learning-place
+kubectl get pods -n learning-place
+</code></pre></div></li> <li><a href=https://github.com/chentex/random-logger>Random Logger</a></li> <li>Snowflake Melter <div class=highlight><pre><span></span><code><span class=c1># The most common chaos for Kubernetes is to periodically and randomly terminate Pods.</span>
+<span class=c1># To define the terminator, all we need is a container that has some logic in it to find the application Pods you just started and terminate them. The Kubernetes API offers all the control we need to find and remove Pods.</span>
+
+<span class=c1># We&#39;ll choose Python as we can import a helpful Kubernetes API and the script can be loaded into a Python container. </span>
+
+<span class=c1># cat snowflake_melter.py</span>
+<span class=kn>from</span> <span class=nn>kubernetes</span> <span class=kn>import</span> <span class=n>client</span><span class=p>,</span> <span class=n>config</span>
+<span class=kn>import</span> <span class=nn>random</span>
+
+<span class=c1># Access Kubernetes</span>
+<span class=n>config</span><span class=o>.</span><span class=n>load_incluster_config</span><span class=p>()</span>
+<span class=n>v1</span><span class=o>=</span><span class=n>client</span><span class=o>.</span><span class=n>CoreV1Api</span><span class=p>()</span>
+
+<span class=c1># List Namespaces</span>
+<span class=n>all_namespaces</span> <span class=o>=</span> <span class=n>v1</span><span class=o>.</span><span class=n>list_namespace</span><span class=p>()</span>
+
+<span class=c1># Get Pods from namespaces annotated with chaos marker</span>
+<span class=n>pod_candidates</span> <span class=o>=</span> <span class=p>[]</span>
+<span class=k>for</span> <span class=n>namespace</span> <span class=ow>in</span> <span class=n>all_namespaces</span><span class=o>.</span><span class=n>items</span><span class=p>:</span>
+    <span class=k>if</span> <span class=p>(</span>    <span class=n>namespace</span><span class=o>.</span><span class=n>metadata</span><span class=o>.</span><span class=n>annotations</span> <span class=ow>is</span> <span class=ow>not</span> <span class=kc>None</span> 
+        <span class=ow>and</span> <span class=n>namespace</span><span class=o>.</span><span class=n>metadata</span><span class=o>.</span><span class=n>annotations</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=s2>&quot;chaos&quot;</span><span class=p>,</span> <span class=kc>None</span><span class=p>)</span> <span class=o>==</span> <span class=s1>&#39;yes&#39;</span>
+       <span class=p>):</span>
+        <span class=n>pods</span> <span class=o>=</span> <span class=n>v1</span><span class=o>.</span><span class=n>list_namespaced_pod</span><span class=p>(</span><span class=n>namespace</span><span class=o>.</span><span class=n>metadata</span><span class=o>.</span><span class=n>name</span><span class=p>)</span>
+        <span class=n>pod_candidates</span><span class=o>.</span><span class=n>extend</span><span class=p>(</span><span class=n>pods</span><span class=o>.</span><span class=n>items</span><span class=p>)</span>
+
+<span class=c1># Determine how many Pods to remove</span>
+<span class=n>removal_count</span> <span class=o>=</span> <span class=n>random</span><span class=o>.</span><span class=n>randint</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>pod_candidates</span><span class=p>))</span>
+<span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>pod_candidates</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>:</span>
+    <span class=nb>print</span><span class=p>(</span><span class=s2>&quot;Found&quot;</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>pod_candidates</span><span class=p>),</span> <span class=s2>&quot;pods and melting&quot;</span><span class=p>,</span> <span class=n>removal_count</span><span class=p>,</span> <span class=s2>&quot;of them.&quot;</span><span class=p>)</span>
+<span class=k>else</span><span class=p>:</span>
+    <span class=nb>print</span><span class=p>(</span><span class=s2>&quot;No eligible Pods found with annotation chaos=yes.&quot;</span><span class=p>)</span>
+
+<span class=c1># Remove a few Pods</span>
+<span class=k>for</span> <span class=n>_</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>removal_count</span><span class=p>):</span>
+    <span class=n>pod</span> <span class=o>=</span> <span class=n>random</span><span class=o>.</span><span class=n>choice</span><span class=p>(</span><span class=n>pod_candidates</span><span class=p>)</span>
+    <span class=n>pod_candidates</span><span class=o>.</span><span class=n>remove</span><span class=p>(</span><span class=n>pod</span><span class=p>)</span>
+    <span class=nb>print</span><span class=p>(</span><span class=s2>&quot;Removing pod&quot;</span><span class=p>,</span> <span class=n>pod</span><span class=o>.</span><span class=n>metadata</span><span class=o>.</span><span class=n>name</span><span class=p>,</span> <span class=s2>&quot;from namespace&quot;</span><span class=p>,</span> <span class=n>pod</span><span class=o>.</span><span class=n>metadata</span><span class=o>.</span><span class=n>namespace</span><span class=p>,</span> <span class=s2>&quot;.&quot;</span><span class=p>)</span>
+    <span class=n>body</span> <span class=o>=</span> <span class=n>client</span><span class=o>.</span><span class=n>V1DeleteOptions</span><span class=p>()</span>
+    <span class=n>v1</span><span class=o>.</span><span class=n>delete_namespaced_pod</span><span class=p>(</span><span class=n>pod</span><span class=o>.</span><span class=n>metadata</span><span class=o>.</span><span class=n>name</span><span class=p>,</span> <span class=n>pod</span><span class=o>.</span><span class=n>metadata</span><span class=o>.</span><span class=n>namespace</span><span class=p>,</span> <span class=n>body</span><span class=o>=</span><span class=n>body</span><span class=p>)</span>
+</code></pre></div></li> <li>Dockerfile <div class=highlight><pre><span></span><code><span class=c1># cat Dockerfile</span>
+<span class=c1># ARGS at this level referenced only by FROMs</span>
+ARG <span class=nv>BASE_IMAGE</span><span class=o>=</span>python:3.8.5-alpine3.12
+
+<span class=c1># --------------------------------------</span>
+<span class=c1># Build dependencies in build stage</span>
+<span class=c1># --------------------------------------</span>
+FROM <span class=si>${</span><span class=nv>BASE_IMAGE</span><span class=si>}</span> as builder
+    
+WORKDIR /app
+
+<span class=c1># Cache installed dependencies between builds</span>
+COPY ./requirements.txt ./requirements.txt
+RUN pip install -r ./requirements.txt --user
+
+<span class=c1># --------------------------------------</span>
+<span class=c1># Create final container loaded with app</span>
+<span class=c1># --------------------------------------</span>
+
+FROM <span class=si>${</span><span class=nv>BASE_IMAGE</span><span class=si>}</span>
+
+LABEL <span class=nv>scenario</span><span class=o>=</span>pure-chaos
+
+ENV <span class=nv>USER</span><span class=o>=</span>docker <span class=nv>GROUP</span><span class=o>=</span>docker <span class=se>\</span>
+    <span class=nv>UID</span><span class=o>=</span><span class=m>12345</span> <span class=nv>GID</span><span class=o>=</span><span class=m>23456</span> <span class=se>\</span>
+    <span class=nv>HOME</span><span class=o>=</span>/app <span class=nv>PYTHONUNBUFFERED</span><span class=o>=</span><span class=m>1</span>
+
+<span class=c1># Create user/group</span>
+RUN addgroup --gid <span class=s2>&quot;</span><span class=si>${</span><span class=nv>GID</span><span class=si>}</span><span class=s2>&quot;</span> <span class=s2>&quot;</span><span class=si>${</span><span class=nv>GROUP</span><span class=si>}</span><span class=s2>&quot;</span> <span class=se>\</span>
+    <span class=o>&amp;&amp;</span> adduser <span class=se>\</span>
+    --disabled-password <span class=se>\</span>
+    --gecos <span class=s2>&quot;&quot;</span> <span class=se>\</span>
+    --home <span class=s2>&quot;</span><span class=k>$(</span><span class=nb>pwd</span><span class=k>)</span><span class=s2>&quot;</span> <span class=se>\</span>
+    --ingroup <span class=s2>&quot;</span><span class=si>${</span><span class=nv>GROUP</span><span class=si>}</span><span class=s2>&quot;</span> <span class=se>\</span>
+    --no-create-home <span class=se>\</span>
+    --uid <span class=s2>&quot;</span><span class=si>${</span><span class=nv>UID</span><span class=si>}</span><span class=s2>&quot;</span> <span class=se>\</span>
+    <span class=s2>&quot;</span><span class=si>${</span><span class=nv>USER</span><span class=si>}</span><span class=s2>&quot;</span>
+
+WORKDIR <span class=si>${</span><span class=nv>HOME</span><span class=si>}</span>
+
+<span class=c1># TODO, will switching user work?</span>
+<span class=c1># USER ${USER}</span>
+
+COPY --from<span class=o>=</span>builder /root/.local /usr/local
+COPY --chown<span class=o>=</span><span class=si>${</span><span class=nv>USER</span><span class=si>}</span>:<span class=si>${</span><span class=nv>GROUP</span><span class=si>}</span> . .
+
+CMD <span class=o>[</span><span class=s2>&quot;python&quot;</span>, <span class=s2>&quot;snowflake_melter.py&quot;</span><span class=o>]</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># cat requirements.txt</span>
+<span class=nv>kubernetes</span><span class=o>==</span><span class=m>11</span>.0.0
+</code></pre></div></li> <li>Build and Push Image <div class=highlight><pre><span></span><code><span class=nb>export</span> <span class=nv>IMAGE</span><span class=o>=</span><span class=nv>$REGISTRY</span>/snowflake_melter:0.1.0
+docker build -t <span class=nv>$IMAGE</span> .
+docker push <span class=nv>$IMAGE</span>
+curl <span class=nv>$REGISTRY</span>/v2/_catalog <span class=p>|</span> jq
+</code></pre></div></li> <li>Invoke Chaos <div class=highlight><pre><span></span><code><span class=c1># Run your newly created application as a Kubernetes CronJob</span>
+kubectl create cronjob snowflake-melter --image<span class=o>=</span><span class=nv>$IMAGE</span> --schedule<span class=o>=</span><span class=s1>&#39;*/1 * * * *&#39;</span>
+<span class=c1># The chaos CronJob is will now be running once a minute. More flexible chaos systems would randomize this period. </span>
+kubectl get cronjobs
+<span class=c1># At the beginning of the next minute on the clock, the CronJob will create a new Pod. </span>
+kubectl get pods
+<span class=c1># Every minute a new Pod will create and run the chaos logic. Kubernetes automatically purges the older Job Pods. Getting the logs from all the Jobs is a bit tricky, but there is a common client tool called Stern that collates and displays logs from related Pods.</span>
+stern snowflake-melter --container-state terminated --since 2m --timestamps
+<span class=c1># You will discover in the logs that the code is reporting that it&#39;s not finding Pods that are eligible for deleting.</span>
+</code></pre></div></li> <li>Target the Chaos <div class=highlight><pre><span></span><code><span class=c1># The current logic for the chaotic Pod deletion requires a namespace to be annotated with chaos=yes. Assign the random-logger Pods as chaos targets by annotating the learning-place namespace.</span>
+kubectl annotate namespace learning-place <span class=nv>chaos</span><span class=o>=</span>yes
+kubectl describe namespace learning-place
+<span class=c1># The next time chaos Job runs it will see this annotation and the interesting work will be reported. </span>
+watch kubectl get pods -n learning-place
+</code></pre></div></li> <li>For real applications, if scaled correctly, all this chaos and resilience will be happening behind the scenes in the cluster while your users experience no downtime or delays.</li> <li>You could modify the Python code a bit more and go crazy with other Kubernetes API calls to create clever forms of havoc.</li> </ul> <h3 id=chaos-mesh>Chaos Mesh<a class=headerlink href=#chaos-mesh title="Permanent link">&para;</a></h3> <p>Chaos Mesh is a cloud native Chaos Engineering platform that orchestrates chaos on Kubernetes environments. At the current stage, it has the following components: - <strong>Chaos Operator</strong>: the core component for chaos orchestration; fully open source. - <strong>Chaos Dashboard</strong>: a Web UI for managing, designing, and monitoring Chaos Experiments; under development. Choas Mesh is one of the better chaos engines for Kubernetes because: 1. In a short amount of time there has been heavy community support and it's a CNCF sandbox project. 2. It's a native experience to Kubernetes leveraging the Operator Pattern and CRDs permitting IaC with your pipelines. 3. If you have followed the best practices by applying plenty of labels and annotations to your Deployments, then there is no need to make modifications to your apps for your chaos experiments. 4. There are a wide variety of experiment types, not just Pod killing. 5. Installs with a Helm chart and you have complete control over the engine with CRDs. - Install Chaos Mesh <div class=highlight><pre><span></span><code>kubectl create namespace chaos-mesh
+<span class=c1># Add the chart repository for the Helm chart to be installed</span>
+helm search repo chaos-mesh -l
+helm repo add chaos-mesh https://charts.chaos-mesh.org
+helm install chaos-mesh chaos-mesh/chaos-mesh <span class=se>\</span>
+  --version v2.0.0 <span class=se>\</span>
+  --namespace chaos-mesh <span class=se>\</span>
+  --set chaosDaemon.runtime<span class=o>=</span>containerd <span class=se>\</span>
+  --set chaosDaemon.socketPath<span class=o>=</span>/run/containerd/containerd.sock
+<span class=c1># Verify</span>
+kubectl get deployments,pods,services --namespace chaos-mesh
+</code></pre></div> The control plane components for the Chaos Mesh are: 1. <strong>chaos=controller-manager</strong>: This is used to schedule and manage the lifecycle of chaos experiments. (This is a misnomer. This should be just named controller, not controller-manager, as it's the controller based on the Operator Pattern. The controller-manager is the Kubernetes control plane component that manages all the controllers like this one). 2. <strong>chaos-daemon</strong>: These are the Pods that control the chaos mesh. The Pods run on every cluster Node and are wrapped in a DaemonSet. These DaemonSets have privileged system permissions to access each Node's network, cgroups, chroot, and other resources that are accessed based on your experiments. 3. <strong>chaos-dashboard</strong>: An optional web interface providing you an alternate means to administer the engine and experiments. Its use is for convenience and any production use of the engine should be through the YAML resources for the Chaos Mesh CRDs. - Chaos Mesh Dashboard The chaos dashboard is accessible via a NodePort. For this scenario we need the nodePort at a specific value, rather than its current random port number. Set the nodePort to a specific port: <div class=highlight><pre><span></span><code>kubectl patch service chaos-dashboard -n chaos-mesh --type<span class=o>=</span><span class=s1>&#39;json&#39;</span> --patch<span class=o>=</span><span class=s1>&#39;[{&quot;op&quot;: &quot;replace&quot;, &quot;path&quot;: &quot;/spec/ports/0/nodePort&quot;, &quot;value&quot;:31111}]&#39;</span>
+<span class=c1># With the correct port value set, the web interface for Chaos Mesh dashboard can be seen from the tab Chaos Mesh above the command-line area or this link: https://2886795275-31111-kira01.environments.katacoda.com/.</span>
+</code></pre></div> - There are no experiments yet, but take a few moments to explore the general layout of the dashboard. There is a way through the user interface to create, update, and delete experiments. - Chaos Mesh Experiment Types ============================================================ Category Type Experiment Description</p> <hr> <p>Pod Lifecycle Pod Failure Killing pods. Pod Lifecycle Pod Kill Pods becoming unavailable. Pod Lifecycle Container Kill Killing containers in pods. Network Partition Separate Pods into independent subnets by blocking communication between them. Network Loss Inject network communication loss. Network Delay Inject network communication latency. Network Duplication Inject packet duplications. Network Corrupt Inject network communication corruption. Network Bandwidth Limit the network bandwidth. I/O Delay Inject delay during I/O. I/O Errno Inject error during I/O. I/O Delay and Errno Inject both delays and errors with I/O. Linux Kernel Inject kernel errors into pods. Clock Offset Inject clock skew into pods. Stress CPU Simulate pod CPU stress. Stress Memory Simulate pod memory stress. Stress CPU &amp; Memory Simulate both CPU and memory stress on Pods.</p> <p><div class=highlight><pre><span></span><code><span class=c1># cat web-show-deployment.yaml </span>
+<span class=nt>apiVersion</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class=nt>kind</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class=nt>metadata</span><span class=p>:</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web-show</span>
+  <span class=nt>labels</span><span class=p>:</span>
+    <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web-show</span>
+<span class=nt>spec</span><span class=p>:</span>
+  <span class=nt>replicas</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+  <span class=nt>selector</span><span class=p>:</span>
+    <span class=nt>matchLabels</span><span class=p>:</span>
+      <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web-show</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>metadata</span><span class=p>:</span>
+      <span class=nt>labels</span><span class=p>:</span>
+        <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web-show</span>
+    <span class=nt>spec</span><span class=p>:</span>
+      <span class=nt>containers</span><span class=p>:</span>
+        <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web-show</span>
+          <span class=nt>image</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">pingcap/web-show</span>
+          <span class=nt>imagePullPolicy</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Always</span>
+          <span class=nt>command</span><span class=p>:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">/usr/local/bin/web-show</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">--target-ip=$(TARGET_IP)</span>
+          <span class=nt>env</span><span class=p>:</span>
+            <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">TARGET_IP</span>
+              <span class=nt>valueFrom</span><span class=p>:</span>
+                <span class=nt>configMapKeyRef</span><span class=p>:</span>
+                  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web-show-context</span>
+                  <span class=nt>key</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">target.ip</span>
+          <span class=nt>ports</span><span class=p>:</span>
+            <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web-port</span>
+              <span class=nt>containerPort</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">8081</span>
+              <span class=nt>hostPort</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">8081</span>
+
+<span class=c1># cat web-show-service.yaml </span>
+<span class=nt>apiVersion</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class=nt>kind</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Service</span>
+<span class=nt>metadata</span><span class=p>:</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web-show</span>
+  <span class=nt>labels</span><span class=p>:</span>
+    <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web-show</span>
+<span class=nt>spec</span><span class=p>:</span>
+  <span class=nt>selector</span><span class=p>:</span>
+    <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web-show</span>
+  <span class=nt>type</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">NodePort</span>
+  <span class=nt>ports</span><span class=p>:</span>
+  <span class="p p-Indicator">-</span> <span class=nt>port</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">8081</span>
+    <span class=nt>protocol</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">TCP</span>
+    <span class=nt>targetPort</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">8081</span>
+    <span class=nt>nodePort</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">30081</span>
+
+<span class=c1># cat nginx.yaml </span>
+<span class=nt>apiVersion</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class=nt>kind</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class=nt>metadata</span><span class=p>:</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+  <span class=nt>annotations</span><span class=p>:</span>
+    <span class=nt>deployment.kubernetes.io/revision</span><span class=p>:</span> <span class=s>&quot;1&quot;</span>
+  <span class=nt>labels</span><span class=p>:</span>
+    <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class=nt>spec</span><span class=p>:</span>
+  <span class=nt>replicas</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">8</span>
+  <span class=nt>selector</span><span class=p>:</span>
+    <span class=nt>matchLabels</span><span class=p>:</span>
+      <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>metadata</span><span class=p>:</span>
+      <span class=nt>labels</span><span class=p>:</span>
+        <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class=nt>chaos</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">blast-here</span>
+    <span class=nt>spec</span><span class=p>:</span>
+      <span class=nt>containers</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=nt>image</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class=nn>---</span>
+<span class=nt>apiVersion</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class=nt>kind</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class=nt>metadata</span><span class=p>:</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">shine-on-you-crazy-diamond</span> 
+<span class=nt>spec</span><span class=p>:</span>
+  <span class=nt>replicas</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+  <span class=nt>selector</span><span class=p>:</span>
+    <span class=nt>matchLabels</span><span class=p>:</span>
+      <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">cant-touch-dis</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>metadata</span><span class=p>:</span>
+      <span class=nt>labels</span><span class=p>:</span>
+        <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">cant-touch-dis</span>
+    <span class=nt>spec</span><span class=p>:</span>
+      <span class=nt>containers</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=nt>image</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+
+<span class=c1># cat network-delay-experiment.yaml </span>
+<span class=nt>apiVersion</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">chaos-mesh.org/v1alpha1</span>
+<span class=nt>kind</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">NetworkChaos</span>
+<span class=nt>metadata</span><span class=p>:</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web-show-network-delay</span>
+<span class=nt>spec</span><span class=p>:</span>
+  <span class=nt>action</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">delay</span>
+  <span class=nt>mode</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">one</span>
+  <span class=nt>selector</span><span class=p>:</span>
+    <span class=nt>namespaces</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
+    <span class=nt>labelSelectors</span><span class=p>:</span>
+      <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web-show</span>
+  <span class=nt>delay</span><span class=p>:</span>
+    <span class=nt>latency</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">10ms</span>
+
+<span class=c1># cat scheduled-network-delay-experiment.yaml </span>
+<span class=nt>apiVersion</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">chaos-mesh.org/v1alpha1</span>
+<span class=nt>kind</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Schedule</span>
+<span class=nt>metadata</span><span class=p>:</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web-show-scheduled-network-delay</span>
+<span class=nt>spec</span><span class=p>:</span>
+  <span class=nt>schedule</span><span class=p>:</span> <span class=s>&#39;@every</span><span class=nv> </span><span class=s>60s&#39;</span>
+  <span class=nt>type</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">NetworkChaos</span>
+  <span class=nt>historyLimit</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+  <span class=nt>concurrencyPolicy</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Forbid</span>
+  <span class=nt>networkChaos</span><span class=p>:</span>
+    <span class=nt>action</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">delay</span>
+    <span class=nt>mode</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">one</span>
+    <span class=nt>selector</span><span class=p>:</span>
+      <span class=nt>namespaces</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
+      <span class=nt>labelSelectors</span><span class=p>:</span>
+        <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">web-show</span>
+    <span class=nt>delay</span><span class=p>:</span>
+      <span class=nt>latency</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">10ms</span>
+    <span class=nt>duration</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">30s</span>
+
+<span class=c1># cat pod-removal-experiment.yaml </span>
+<span class=nt>apiVersion</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">chaos-mesh.org/v1alpha1</span>
+<span class=nt>kind</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Schedule</span>
+<span class=nt>metadata</span><span class=p>:</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">pod-kill-example</span>
+  <span class=nt>namespace</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">chaos-mesh</span>
+<span class=nt>spec</span><span class=p>:</span>
+  <span class=nt>schedule</span><span class=p>:</span> <span class=s>&#39;@every</span><span class=nv> </span><span class=s>15s&#39;</span>
+  <span class=nt>type</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">PodChaos</span>
+  <span class=nt>historyLimit</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
+  <span class=nt>concurrencyPolicy</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Forbid</span>
+  <span class=nt>podChaos</span><span class=p>:</span>
+    <span class=nt>action</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">pod-kill</span>
+    <span class=nt>mode</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">one</span>
+    <span class=nt>selector</span><span class=p>:</span>
+      <span class=nt>namespaces</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">chaos-sandbox</span>
+      <span class=nt>labelSelectors</span><span class=p>:</span>
+        <span class=nt>chaos</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">blast-here</span>
+</code></pre></div> - Network Delay Experiment <div class=highlight><pre><span></span><code><span class=c1># Install an example application as a target for the experiment. This application is designed by the Chaos Mesh project as a hello world example for your first experiment.</span>
+<span class=c1># The application needs an environment variable for the TARGET_IP, which is the cluster IP, so this context you provide as a ConfigMap. That ConfigMap variable is referenced in the Deployment YAML.</span>
+<span class=nv>TARGET_IP</span><span class=o>=</span><span class=k>$(</span>kubectl get pod -n kube-system -o wide<span class=p>|</span> grep kube-controller <span class=p>|</span> head -n <span class=m>1</span> <span class=p>|</span> awk <span class=s1>&#39;{print $6}&#39;</span><span class=k>)</span>
+kubectl create configmap web-show-context --from-literal<span class=o>=</span>target.ip<span class=o>=</span><span class=si>${</span><span class=nv>TARGET_IP</span><span class=si>}</span>
+
+kubectl apply -f web-show-deployment.yaml
+kubectl apply -f web-show-service.yaml
+
+<span class=c1># With the web-show application running, its web interface can be accessed from the &quot;Web Show&quot; above the command-line area or this link: https://2886795275-30081-kira01.environments.katacoda.com/</span>
+
+<span class=c1># Define Experiment</span>
+kubectl get crds    <span class=c1># The Chaos Mesh has installed several custom resources</span>
+<span class=c1># You can reference these resources to create declarative YAML manifests that define your experiment. </span>
+
+<span class=c1># For your first experiment, you will impose a network delay. The delay is defined in the NetworkChaos manifest </span>
+
+<span class=c1># The experiment declares that a 10ms network delay should be injected. The delay will only be applied to the target service labeled &quot;app&quot;: &quot;web-show&quot;.</span>
+<span class=c1># This is the **blast radius**.</span>
+kubectl get deployments,pods -l <span class=nv>app</span><span class=o>=</span><span class=s1>&#39;web-show&#39;</span>
+<span class=c1># Apply Experiment</span>
+kubectl apply -f network-delay-experiment.yaml
+<span class=c1># The experiment is now running.</span>
+kubectl get NetworkChaos
+<span class=c1># The application has a built-in graph that will show the latency it&#39;s experiencing. With the experiment applied you will see the 10ms delay. </span>
+
+<span class=c1># Update Experiment</span>
+<span class=c1># At any time you can change the YAML declaration and apply further experiment updates.</span>
+kubectl apply -f network-delay-experiment.yaml
+<span class=c1># The experiment can be paused</span>
+kubectl annotate networkchaos web-show-network-delay experiment.chaos-mesh.org/pause<span class=o>=</span><span class=nb>true</span>
+<span class=c1># and resumed</span>
+kubectl annotate networkchaos web-show-network-delay experiment.chaos-mesh.org/pause-
+
+<span class=c1># Since the NetworkChaos is like any other Kubernetes resource, the experiment can be easily removed.</span>
+kubectl delete -f network-delay-experiment.yaml
+</code></pre></div> - Scheduled Experiment <div class=highlight><pre><span></span><code><span class=c1># This experiment will inject network chaos periodically: 10ms network delay should be injected every minute that lasts for 30 seconds</span>
+<span class=c1># Apply Scheduled Experiment</span>
+kubectl apply -f scheduled-network-delay-experiment.yaml
+
+<span class=c1># The schedule experiment is now running. Scheduled experiment will not create NetworkChaos object immediately, intead it creates an Schedule object called web-show-scheduled-network-delay</span>
+kubectl get Schedule
+<span class=c1># NetworkChaos is very similar with what between CronJob and Job: Schedule will spawn NetworkChaos when trigger by @every 60s.</span>
+kubectl get NetworkChaos -w
+<span class=c1># The experiment can be paused</span>
+kubectl annotate schedule web-show-scheduled-network-delay experiment.chaos-mesh.org/pause<span class=o>=</span><span class=nb>true</span>
+<span class=c1># and resumed:</span>
+kubectl annotate schedule web-show-scheduled-network-delay experiment.chaos-mesh.org/pause-
+</code></pre></div> - Pod Removal Experiment <div class=highlight><pre><span></span><code><span class=c1># Install an example application as a target for the experiment. It&#39;s just a deployment of the common Nginx web server with Pod replications. Apply the Deployment to the chaos-sandbox namespace.</span>
+kubectl create namespace chaos-sandbox
+kubectl apply -f nginx.yaml -n chaos-sandbox
+<span class=c1># The experiment declares that the specific pod should be killed every 15s. The removal will only be applied to the target pod labeled &quot;chaos&quot;: &quot;blast here&quot;, which is the blast radius.</span>
+<span class=c1># Apply Experiment</span>
+kubectl apply -f pod-removal-experiment.yaml
+kubectl get Schedule -n chaos-mesh
+<span class=c1># Based on the cron time in the experiment, watch the Pods randomly terminate and new ones start.</span>
+watch kubectl get -n chaos-sandbox deployments,pods,services
+<span class=c1># Notice the blast radius is targeting only the nginx Pods, while the shine-on-you-crazy-diamond Pods remain undisturbed.</span>
+</code></pre></div></p> <h3 id=litmus>Litmus<a class=headerlink href=#litmus title="Permanent link">&para;</a></h3> <p>Litmus is a toolset to do cloud native chaos engineering. Litmus provides tools to orchestrate chaos on Kubernetes to help SREs find weaknesses in their deployments. SREs use Litmus to run chaos experiments initially in the staging environment and eventually in production to find bugs and vulnerabilities. Fixing the weaknesses leads to increased resilience of the system. - Litmus offers you these compelling features: 1. Kubernetes native CRDs to manage chaos. Using chaos API, orchestration, scheduling, and complex workflow management can be orchestrated declaratively. 2. Most of the generic chaos experiments are readily available for you to get started with your initial chaos engineering needs. 3. An SDK is available in GO, Python, and Ansible. A basic experiment structure is created quickly using SDK and developers and SREs just need to add the chaos logic to make a new experiment. 4. It's simple to complex chaos workflows are easy to construct. Use GitOps and the chaos workflows to scale your chaos engineering efforts and increase the resilience of your Kubernetes platform.</p> <p><div class=highlight><pre><span></span><code><span class=c1># For this scenario, we&#39;ll install the standard NGINX application and make it a target. Install NGINX into the default namespace.</span>
+kubectl create deploy nginx --image<span class=o>=</span>nginx
+kubectl get deployments,pods --show-labels
+</code></pre></div> - Install Litmus Operator <div class=highlight><pre><span></span><code><span class=c1># The recommended way to start Litmus is by installing the Litmus Operator. </span>
+kubectl apply -f https://litmuschaos.github.io/litmus/litmus-operator-v1.8.0.yaml
+kubectl get namespaces
+<span class=c1># In the list, you see litmus as a new namespace.</span>
+<span class=c1># An operator is a custom Kubernetes controller that uses custom resources (CR) to manage applications and their components. The Litmus Operator is comprised of a few controllers maintaining the CRs. </span>
+kubectl get crds <span class=p>|</span> grep litmus
+<span class=c1># Check the Litmus API resources are available</span>
+kubectl api-resources <span class=p>|</span> grep litmus
+kubectl get all -n litmus
+</code></pre></div> - The key components and object associated with Litmus are: 1. RBAC for chaotic administration access targeted objects on your cluster. 2. The Litmus controller that manages the custom resources and the following apps: - <strong>ChaosEngine</strong>: A resource to link a Kubernetes application or Kubernetes node to a ChaosExperiment. ChaosEngine is watched by Litmus' Chaos-Operator which then invokes Chaos-Experiments. - <strong>ChaosExperiment</strong>: A resource to group the configuration parameters of a chaos experiment. ChaosExperiment CRs are created by the operator when experiments are invoked by ChaosEngine. - <strong>ChaosResult</strong>: A resource to hold the results of a chaos-experiment. The Chaos-exporter reads the results and exports the metrics into a configured Prometheus server. - Install Chaos Experiments - These experiments are installed on your cluster as Litmus resources declarations in the form of the Kubernetes CRDs. Because the chaos experiments are just Kubernetes YAML manifests, these experiments are published on <a href=https://hub.litmuschaos.io/ >Chaos Hub</a>. - <a href=https://hub.litmuschaos.io/generic/pod-delete>generic/pod-delete</a> <div class=highlight><pre><span></span><code>kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.8.0?file<span class=o>=</span>charts/generic/pod-delete/experiment.yaml
+<span class=c1># Verify the pod-delete experiment has been installed</span>
+kubectl get chaosexperiments
+
+<span class=c1># Setup RBAC with Service Account</span>
+<span class=c1># A service account should be created to allow ChaosEngine to run experiments in your application namespace.</span>
+kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.8.0?file<span class=o>=</span>charts/generic/pod-delete/rbac.yaml
+<span class=c1># Verify the ServiceAccount RBAC rules have been applied for pod-delete-sa</span>
+kubectl get serviceaccount,role,rolebinding
+
+<span class=c1># Annotate Application</span>
+<span class=c1># In this case, we&#39;ll annotate the NGINX deployment with litmuschaos.io/chaos=&quot;true&quot;</span>
+kubectl annotate deploy/nginx litmuschaos.io/chaos<span class=o>=</span><span class=s2>&quot;true&quot;</span>
+<span class=c1># Verify the annotation has been applied</span>
+kubectl get deployment nginx -o<span class=o>=</span>custom-columns<span class=o>=</span><span class=s1>&#39;ANNOTATIONS:metadata.annotations&#39;</span>
+
+<span class=c1># Run the Experiment</span>
+kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.8.0?file<span class=o>=</span>charts/generic/pod-delete/engine.yaml
+<span class=c1># Start watching the Pods in the default namespace</span>
+watch -n <span class=m>1</span> kubectl get pods
+<span class=c1># In a moment an nginx-chaos-runner Pod will start. This Pod is created by the Litmus engine based on the experiment criteria. </span>
+<span class=c1># In a moment, the chaos-runner will create a new Pod called pod-delete-&lt;hash&gt;. This Pod is responsible for the actual Pod deletion. </span>
+<span class=c1># Shortly after the pod-delete-&lt;hash&gt; Pod starts, you&#39;ll notice the NGINX Pod is killed. </span>
+
+<span class=c1># Observe and Verify Experiments</span>
+kubectl describe chaosresult nginx-chaos-pod-delete
+
+<span class=c1># The status.verdict is set to Awaited when the experiment is in progress, eventually changing to either Pass or Fail. </span>
+</code></pre></div></p> <h3 id=chaoskube>Chaoskube<a class=headerlink href=#chaoskube title="Permanent link">&para;</a></h3> <ul> <li>Chaoskube periodically kills random Pods in your Kubernetes cluster, which allows you to test how your system behaves under arbitrary Pod failures. </li> <li><a href=https://github.com/helm/charts/tree/master/stable/chaoskube#configuration>Helm Input</a> <div class=highlight><pre><span></span><code>kubectl version --short <span class=o>&amp;&amp;</span> <span class=se>\</span>
+kubectl get componentstatus <span class=o>&amp;&amp;</span> <span class=se>\</span>
+kubectl get nodes <span class=o>&amp;&amp;</span> <span class=se>\</span>
+kubectl cluster-info
+
+helm version --short
+
+kubectl create namespace chaoskube
+helm repo add chaoskube https://linki.github.io/chaoskube
+<span class=c1># Install the chart</span>
+<span class=c1># The interval parameter instructs Chaoskube to kill Pods every 20 seconds. </span>
+<span class=c1># The targeted Pods are any with the label app-purpose=chaos, and the kube-system namespace has to be explicitly excluded (!) from the list of namespaces to look for Pods to kill. </span>
+helm install chaoskube chaoskube/chaoskube <span class=se>\</span>
+  --version<span class=o>=</span><span class=m>0</span>.1.0 <span class=se>\</span>
+  --namespace chaoskube <span class=se>\</span>
+  --set image.tag<span class=o>=</span>v0.21.0 <span class=se>\</span>
+  --set <span class=nv>dryRun</span><span class=o>=</span><span class=nb>false</span> <span class=se>\</span>
+  --set <span class=s1>&#39;namespaces=!kube-system&#39;</span> <span class=se>\</span>
+  --set <span class=nv>labels</span><span class=o>=</span>app-purpose<span class=o>=</span>chaos <span class=se>\</span>
+  --set <span class=nv>interval</span><span class=o>=</span>20s
+
+kubectl get -n chaoskube deployments
+kubectl rollout -n chaoskube status deployment chaoskube
+
+<span class=c1># You can periodically check the Chaoskube log to see its Pod killing activity. </span>
+<span class=nv>POD</span><span class=o>=</span><span class=k>$(</span>kubectl -n chaoskube get pods -l<span class=o>=</span><span class=s1>&#39;app.kubernetes.io/instance=chaoskube&#39;</span> --output<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.items[0].metadata.name}&#39;</span><span class=k>)</span>
+kubectl -n chaoskube logs -f <span class=nv>$POD</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># nginx.yaml </span>
+<span class=nt>apiVersion</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class=nt>kind</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class=nt>metadata</span><span class=p>:</span>
+  <span class=nt>annotations</span><span class=p>:</span>
+    <span class=nt>deployment.kubernetes.io/revision</span><span class=p>:</span> <span class=s>&quot;1&quot;</span>
+  <span class=nt>labels</span><span class=p>:</span>
+    <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+    <span class=nt>app-purpose</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">chaos</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class=nt>spec</span><span class=p>:</span>
+  <span class=nt>replicas</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">8</span>
+  <span class=nt>selector</span><span class=p>:</span>
+    <span class=nt>matchLabels</span><span class=p>:</span>
+      <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>metadata</span><span class=p>:</span>
+      <span class=nt>labels</span><span class=p>:</span>
+        <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class=nt>app-purpose</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">chaos</span>
+    <span class=nt>spec</span><span class=p>:</span>
+      <span class=nt>containers</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=nt>image</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+        <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+
+<span class=c1># cat ghost.yaml </span>
+<span class=nt>apiVersion</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<span class=nt>kind</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<span class=nt>metadata</span><span class=p>:</span>
+  <span class=nt>annotations</span><span class=p>:</span>
+    <span class=nt>deployment.kubernetes.io/revision</span><span class=p>:</span> <span class=s>&quot;1&quot;</span>
+  <span class=nt>labels</span><span class=p>:</span>
+    <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ghost</span>
+    <span class=nt>app-purpose</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">chaos</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ghost</span>
+<span class=nt>spec</span><span class=p>:</span>
+  <span class=nt>replicas</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+  <span class=nt>selector</span><span class=p>:</span>
+    <span class=nt>matchLabels</span><span class=p>:</span>
+      <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ghost</span>
+  <span class=nt>template</span><span class=p>:</span>
+    <span class=nt>metadata</span><span class=p>:</span>
+      <span class=nt>labels</span><span class=p>:</span>
+        <span class=nt>app</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ghost</span>
+        <span class=nt>app-purpose</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">chaos</span>
+    <span class=nt>spec</span><span class=p>:</span>
+      <span class=nt>containers</span><span class=p>:</span>
+      <span class="p p-Indicator">-</span> <span class=nt>image</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ghost:3.11.0-alpine</span>
+        <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ghost</span>
+</code></pre></div></li> <li>The Deployments and Pods are labeled to mark these Pods as potential victim targets of the Chaoskube Pod killer. </li> <li>The Deployment and Pod template have the label <code>app-purpose: chaos</code> that makes the Pod an eligible target for Chaoskube. The label is provided as a configuration value during the Helm chart installation. <div class=highlight><pre><span></span><code>kubectl apply -f nginx.yaml
+kubectl create namespace more-apps
+kubectl create --namespace more-apps 
+kubectl apply -f ghost.yaml
+</code></pre></div></li> <li>Observe the Chaos</li> <li>Notice as Pods are deleted every 20 secs, the Kubernetes resilience feature is making sure they are restored. <div class=highlight><pre><span></span><code>watch kubectl get deployments,pods --all-namespaces -l app-purpose<span class=o>=</span>chaos
+</code></pre></div></li> <li>In a real chaos testing platform, you should complement this Pod killing activity with automated tests to ensure these disruptions are either unnoticed or acceptable for your business processes.</li> </ul> </article> </div> </div> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2018 - 2019 Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script> <script src=../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>
