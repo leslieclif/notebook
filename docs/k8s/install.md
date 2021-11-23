@@ -12,6 +12,7 @@
 # Verification
 - Networking
 ```BASH
+vagrant ssh k8s-m-1
 # Check Routing within the master node
 sudo apt-get install net-tools
 route           # Displays the routing network
@@ -22,6 +23,7 @@ mkdir -p ~/.kube
 vagrant port k8s-m-1        # Find the SSH port of the k8s-m-1 server
 # Copy the file using scp (ssh password is vagrant)
 scp -P 2222 vagrant@127.0.0.1:/home/vagrant/.kube/config ~/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 # Get Cluster Information
 kubectl cluster-info
 # Get Master Node Component health

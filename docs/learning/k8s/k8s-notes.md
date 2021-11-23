@@ -6,6 +6,7 @@
 - [Operator Hub](https://operatorhub.io/)
 - [Awesome Operator List](https://github.com/operator-framework/awesome-operators)
 - [Creating EKS using Terraform](https://medium.com/swlh/kubernetes-launching-a-full-eks-cluster-in-13-steps-more-or-less-59451d3b115c)
+- [Kubernetes Prompt](https://github.com/jonmosco/kube-ps1)
 # Why Kubernetes
 - Orchestration: Next logical step in journey to faster DevOps
 - First, understand why you *may* need orchestration

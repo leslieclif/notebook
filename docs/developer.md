@@ -119,5 +119,5 @@ https://www.techdrabble.com/ansible/36-install-ansible-molecule-vagrant-on-windo
 - [Boot Methods](https://williamlam.com/2020/07/two-methods-to-network-boot-raspberry-pi-4.html)
 - [Network Boot from Ubuntu](https://blockdev.io/network-booting-a-raspberry-pi-3/)
 - [K3s Cluster with Netboot](https://blog.alexellis.io/state-of-netbooting-raspberry-pi-in-2021/s)
-- []()
+- [DHCP, TFTP and NFS](https://thenewstack.io/bare-metal-in-a-cloud-native-world/)
 - []()

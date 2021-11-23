@@ -27,7 +27,7 @@ resource "docker_container" "nginx" {
 + A script can be written to add new instances, and **it can be reused**.
 + **Faster process**, no/less human involvement.
 # IaC Implemetation Approaches
-##Declarative
+## Declarative
 + Focuses on the **desired end state of infrastructure (Functional)**.
 + **Tools** perform the **necessary actions to reach that state**.
 + Automatically takes care of the **order and executes it**.
@@ -186,7 +186,7 @@ Where virtual_network_id is a unique name and "${azurerm_virtual_network.test.lo
 # Benefits of Modules
 * **Code reuse**: When there is a need to provision the group of resources on another resource at the same time, a module can be used instead of copying the same code. It helps in resolving the bugs easily. If you want to make changes, changing the code in one place is enough.
 * **Abstraction layer**: It makes complex configurations easier to conceptualize.
-For example, if you like to add vault(Another harshicop's tool for managing secrets) cluster to the environment, it requires dozens of components. Instead of worrying about individual components, it gives ready-to-use vault cluster.
+For example, if you like to add vault(Another hashicorp's tool for managing secrets) cluster to the environment, it requires dozens of components. Instead of worrying about individual components, it gives ready-to-use vault cluster.
 * **Black box**: To create a vault, you only need some configuration parameters without worrying about the complexity. You don't need any knowledge on how to install vault, configuring vault cluster and working of the vault. You can create a working cluster in a few minutes.
 * **Best practices in organization**: When a module is created, you can give it to the other teams. It helps in easily developing the infrastructure.
 * **Versioned artifacts: They are immutable artifacts and can be promoted from one environment to others.
@@ -229,10 +229,10 @@ variable "name" {
 variable "resource_group" {
  default = "user-nuqo"
   } 
- variable "location" { 
+variable "location" { 
  default = "East US"
   }  
-  variable "name" {
+variable "name" {
    type = "list"
    default = ["A","B","C"]
   }
@@ -253,12 +253,12 @@ For example, a vnet has to be created only, if the variable number of vnets is 3
 **variables.tf**
 ``` 
 variable "no_of_vnets" {
-   default= 3
+   default = 3
 }
 ```
 **main.tf**
 ``` 
-count = "${var.no_of_vnets ==3 ?1  : 0}"
+count = "${var.no_of_vnets == 3 ? 1 : 0}"
 ```
 * First, it will execute the ternary operator. If it is true, it takes the output as 1 or else 0.
 * Now, in the above case, the output is 1, the count becomes one, and the vnet is created.

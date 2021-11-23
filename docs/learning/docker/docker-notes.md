@@ -70,12 +70,12 @@ docker container logs webhost
 
 ```DOCKER
 docker run --name mongo -d mongo
-docker container top - process list in one container
+docker container top      # process list in one container
 docker stop mongo
 docker ps
 docker start mongo
-docker container inspect - details of one container config
-docker container stats - performance stats for all containers
+docker container inspect  # details of one container config
+docker container stats    # performance stats for all containers
 ```
 ## The Mighty Hub: Using Docker Hub Registry Images
 ```DOCKER
@@ -471,7 +471,7 @@ RUN groupadd --gid 1000 node \
 - [Seccomp Profile](https://docs.docker.com/engine/security/seccomp/)
 
 # Docker Context
-- Start a node on paly with Docker
+- Start a node on play with Docker
 - Copy the IP of the node
 - Set the Docker Context with the Host Name of the node and port 2375
 - Contexts are created in the home folder of user called `.docker/context`
@@ -500,7 +500,7 @@ for c in `docker context ls -q`; do `docker -c $c run hello-world`; done
 - Using Env variables in [Dockerfile](https://github.com/BretFisher/php-docker-good-defaults/blob/master/Dockerfile)
 - Override Env variables in [Docker Compose file](https://github.com/BretFisher/php-docker-good-defaults/blob/master/docker-compose.yml) say for Dev testing
 - Using Env variables in [Docker Entrypoint](https://github.com/BretFisher/php-docker-good-defaults/blob/master/docker-php-entrypoint) to write into Application config files during start up.
-- Secrets and Application specific config goes into specific ENV var blocks. Tis can be changed. Defaults or data specific to SERVER or LANGUAGE goes to another ENV block and can be kept static. This avoids them being set for each ENV.
+- Secrets and Application specific config goes into specific ENV var blocks. This can be changed. Defaults or data specific to SERVER or LANGUAGE goes to another ENV block and can be kept static. This avoids them being set for each ENV.
 - Encrypting traffic for local development use [Lets Encrypt](https://letsencrypt.org/docs/certificates-for-localhost/) ad store them in .cert folder in Home Directory.
 - Encrypting traffic for production use Lets Encrypt and maybe [Traefik](https://traefik.io/) as Front proxy. See [example](https://github.com/BretFisher/dogvscat) using Swarm
 - COPY vs ADD. Use COPY to copy artefacts in the same repo to the image. Use ADD when you want to download something from the Internet or to untar or unzip. You can also replace using wget statements with ADD.
