@@ -250,7 +250,7 @@ Technical debt includes anything the team must do to deploy production quality c
 > "Fundamentally, if somebody wants to get in, they're getting in...accept that. What we tell clients is: number one, you're in the fight, whether you thought you were or not. Number two, you almost certainly are penetrated." -- Michael Hayden, Former Director of NSA and CIA
 
 - The mindset shift to a DevSecOps culture includes an important thinking about not only **preventing** breaches, but **assuming** them as well.
-
+```
 ============================================================
 **Preventing breaches**     **Assuming breaches**
 ------------------------------------------------------------
@@ -258,7 +258,7 @@ Threat models	            War game exercises
 Code reviews	            Central security monitors
 Security testing	        Live site penetration tests
 Security development lifecycle (SDL)	
-
+```
 - The most important thing to focus on is that practicing techniques that assume breaches helps the team answer questions about their security on their own time, so they don't have to figure it all out during a real security emergency.
 
 > Common questions the team needs to think through:
@@ -278,6 +278,7 @@ Security development lifecycle (SDL)
 - Poor secret management is the cause of many breaches, as is social engineering. 
 
 > Attack vectors
+```
 ============================================================
 **Privilege**	                            **Attack**
 ------------------------------------------------------------
@@ -287,7 +288,7 @@ Can they modify source	                    Inject code
 Can they modify the build/release process?	Inject code, run scripts
 Can they access a test environment?	        If a production environment takes a dependency on the test environment, exploit it
 Can they access the production environment?	So many options...
-
+```
 > How can the **blue team** defend against this?
 >> 1. Store secrets in protected vaults
 >> 1. Remove local admin accounts

@@ -180,29 +180,41 @@
 - Another advantage of a deployment pattern is that it gives us a chance to run tests that should really happen in production.
 ## Types of deployment patterns
 ![Deployment-Strategies](../assets/images/deployment-strategies.png)
-1. **Blue-green deployment**: A blue-green deployment reduces risk and downtime by running two identical environments. These environments are called blue and green. At any time, only one of the environments is live. A blue-green deployment typically involves a router or load balancer that helps control the flow of traffic.
+1. **Blue-green deployment**: A blue-green deployment reduces risk and downtime by running two identical environments. These environments are called blue and green. At any time, only one of the environments is live. A blue-green deployment typically involves a router or load balancer that helps control the flow of traffic.<br>
+
 ![Blue-green-deployment](../assets/images/blue-green-deployment.png)
+
 - Let's say blue is live. As we prepare a new release, we do our final tests in the green environment. After the software is working in the green environment, we just switch the router so that all incoming requests go to the green environment.
 - Blue-green deployment also gives us a fast way to do a rollback. If anything goes wrong in the green environment, then we just switch the router back to the blue environment.
 - A blue-green deployment is something Ops can control. Switching a router is straightforward. It's easy and sounds safe. And in a blue-green deployment, management has an environment to evaluate. When they give the OK, we can easily switch.
-2. **Canary releases**: A `canary` release is a way to identify potential problems early without exposing all users to the issue. The idea is that we expose a new feature to only a small subset of users before we make it available to everyone.
+2. **Canary releases**: A `canary` release is a way to identify potential problems early without exposing all users to the issue. The idea is that we expose a new feature to only a small subset of users before we make it available to everyone.<br>
+
 ![Canary-deployment](../assets/images/canary-deployment.png)
+
 - In a canary release, we monitor what happens when we release the feature. If the release has problems, then we apply a fix. After the canary release is known to be stable, we move it to the actual production environment.
 - For example: You have a new feature for your website, and you're ready to deploy it. However, this feature is risky because it changes the way your users interact with the site. You can use canary release to a small group of early adopters **who have signed up** to see new features.
-3. **Feature toggles**: Feature toggles let us "flip a switch" at runtime. We can deploy new software without exposing any other new or changed functionality to our users.
+3. **Feature toggles**: Feature toggles let us "flip a switch" at runtime. We can deploy new software without exposing any other new or changed functionality to our users.<br>
+
 ![Feature-toggles](../assets/images/feature-toggles.png)
+
 - In this deployment pattern, we build new features behind a toggle. When a release occurs, the feature is "off" so that it doesn't affect the production software. Depending on how we configure the toggle, we can flip the switch to "on" and expose it how we want.
 - The big advantage to the feature toggles pattern is that it helps us avoid too much branching. Merging branches can be painful.
-4. **Dark launches**: A `dark launch` is similar to a canary release or switching a feature toggle. Rather than expose a new feature to everyone, in a dark launch we release the feature to a small set of users.
+4. **Dark launches**: A `dark launch` is similar to a canary release or switching a feature toggle. Rather than expose a new feature to everyone, in a dark launch we release the feature to a small set of users.<br>
+
 ![Dark-launches](../assets/images/dark-launches.png)
+
 - Those users don't know they're testing the feature for us. We don't even highlight the new feature to them. That's why it's called a dark launch. The software is gradually or unobtrusively released to users so we can get feedback and can test performance.
 - For example: You're not sure how your users will react to your new feature. You want to release your feature to a small, **random sample of users** to see how they react. 
-5. **A/B testing**: A/B testing compares two versions of a webpage or app to determine which one performs better. A/B testing is like an experiment.
+5. **A/B testing**: A/B testing compares two versions of a webpage or app to determine which one performs better. A/B testing is like an experiment. <br>
+
 ![A-B-testing](../assets/images/a-b-testing.png)
+
 - In A/B testing, we randomly show users two or more variations of a page. Then we use statistical analysis to decide which variation performs better for our goals.
 - For example: The marketing team has asked you to add a banner to your company's website. They have two versions of this banner. They want to know which version produces more clickthroughs. You can use A/B testing deployment pattern to help the marketing team identify the better version.
-6. **Progressive-exposure deployment**: Progressive-exposure deployment is sometimes called ring-based deployment. It's another way to limit how changes affect users while making sure that those changes are valid in a production environment.
+6. **Progressive-exposure deployment**: Progressive-exposure deployment is sometimes called ring-based deployment. It's another way to limit how changes affect users while making sure that those changes are valid in a production environment. <br>
+
 ![Progressive-exposure-deployment](../assets/images/progressive-exposure-deployment.png)
+
 - Rings are basically an extension of the canary stage. The canary release releases to a stage to measure effect. Adding another ring is essentially the same idea.
 - In a ring-based deployment, we deploy changes to risk-tolerant customers first. Then we progressively roll out to a larger set of customers.
 ## Choosing the right deployment pattern
