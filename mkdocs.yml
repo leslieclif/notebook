@@ -18,6 +18,13 @@ nav:
   - Home: 
     - Installation: index.md
     - Developer Setup: developer.md
+  - Devops:
+    - devops/index.md
+    - CI: devops/ci.md
+    - CD: devops/cd.md
+    - IAC: devops/iac.md
+    - GitOps: devops/gitops.md
+    - Skills: devops/devops-engineer.md
   - IDE:
     - ide/index.md
     - Markdown: ide/markdown.md
@@ -38,9 +45,7 @@ nav:
     - Docker: learning/docker/docker-notes.md
     - Kubernetes: learning/k8s/k8s-notes.md
     - Linux: learning/linux/linux.md
-    - Linux_Security: learning/linux/security.md
-  - Devops:
-    - devops/index.md    
+    - Linux_Security: learning/linux/security.md   
      
 # Theme
 theme:

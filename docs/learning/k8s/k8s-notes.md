@@ -168,7 +168,7 @@ curl <hostname>.<namespace>.svc.cluster.local
 >**Declarative**: Focus on what a program should accomplish
 - Example: "I'd like a cup of coffee"
 > **Imperative**: I boil water, scoop out 42 grams of medium-fine
-grounds, poor over 700 grams of water, etc.
+grounds, pour over 700 grams of water, etc.
 
 > **Declarative**: "Barista, I'd like a a cup of coffee".
 (Barista is the engine that works through the
@@ -355,8 +355,7 @@ deployments until you're good at the basics
 - Kubernetes has limited built-in templating, versioning, tracking,
 and management of your apps
 - **Helm** is the most popular
-- **[Compose on Kubernetes](https://github.com/docker/compose-on-kubernetes/tree/master/docs)** comes with Docker
-Desktop
+- **[Compose on Kubernetes](https://github.com/docker/compose-on-kubernetes/tree/master/docs)** comes with Docker Desktop
 - Remember these are optional, and your distro may have a preference
 - Most distros support Helm
 ### Templating YAML
