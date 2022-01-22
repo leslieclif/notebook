@@ -11,7 +11,7 @@ docs_dir: './docs/'
 repo_name: 'notebook'
 
 # Copyright
-copyright: 'Copyright &copy; 2018 - 2019 Leslie'
+copyright: 'Copyright &copy; 2022 - Leslie'
 
 # Navigation  
 nav:
