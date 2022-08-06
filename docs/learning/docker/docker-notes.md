@@ -58,17 +58,18 @@ apt-get update && apt-get install procps
 - You can have many containers running off the same image
 - Docker's default image "registry" is called **Docker Hub**
 
-```DOCKER
+```BASH
 docker container run --publish 80:80 --detach --name webhost nginx
 docker container run -it # start new container interactively
 docker container exec -it # run additional command in existing container
 docker container ls -a
 docker container logs webhost
+docker logs <container-id> 2>&1 | grep <search>   # Push all logs to host terminal
 ```
-
+- **NOTE**: When you say `docker pull nginx`, basically the image is being pulled from `library\nginx`
 ## Container VS. VM: It's Just a Process
 
-```DOCKER
+```BASH
 docker run --name mongo -d mongo
 docker container top      # process list in one container
 docker stop mongo
@@ -78,17 +79,17 @@ docker container inspect  # details of one container config
 docker container stats    # performance stats for all containers
 ```
 ## The Mighty Hub: Using Docker Hub Registry Images
-```DOCKER
+```BASH
 docker pull nginx
 docker image ls
 ```
 ## Images and Their Layers: Discover the Image Cache
-```DOCKER
+```BASH
 docker history nginx:latest
 docker image inspect nginx
 ```
 ## Image Tagging and Pushing to Docker Hub
-```DOCKER
+```BASH
 docker pull nginx:latest
 docker image ls
 docker image tag nginx bretfisher/nginx
@@ -98,7 +99,7 @@ docker image push bretfisher/nginx
 docker image push bretfisher/nginx bretfisher/nginx:testing
 ```
 ## Getting a Shell Inside Containers: No Need for SSH
-```DOCKER
+```BASH
 docker container exec -it mysql -- bash
 docker container run -it alpine -- bash
 docker container run -it alpine -- sh
@@ -119,7 +120,7 @@ without -p
 - Best practice is to create a new virtual network for each app:
 - network "my_web_app" for mysql and php/apache containers
 - network "my_api" for mongo and nodejs containers
-```DOCKER
+```BASH
 docker container run -p 80:80 --name webhost -d nginx
 docker container port webhost
 docker container inspect --format '{{ .NetworkSettings.IPAddress }}' webhost
@@ -130,7 +131,7 @@ docker container inspect --format '{{ .NetworkSettings.IPAddress }}' webhost
 - Create a network `docker network create --driver`
 - Attach a network to container `docker network connect`
 - Detach a network from container `docker network disconnect`
-```DOCKER
+```BASH
 docker network ls
 docker network inspect bridge
 docker network create my_app_net
@@ -148,13 +149,13 @@ network
 security!
 - Containers shouldn't rely on IP's for inter-communication
 - DNS for friendly names is built-in if you use custom networks
-```DOCKER
+```BASH
 docker container run -d --name my_nginx --network my_app_net nginx
 docker container exec -it my_nginx ping new_nginx
 docker container exec -it new_nginx ping my_nginx
 ```
 ## DNS Round Robin Testing
-```DOCKER
+```BASH
 docker network create dude
 docker container run -d --net dude --net-alias search elasticsearch:2
 docker container ls
@@ -174,7 +175,7 @@ data?
 - Two ways: Volumes and Bind Mounts
 - *Volumes*: make special location outside of container UFS
 - *Bind Mounts*: link container path to host path
-```DOCKER
+```BASH
 docker container run -d --name mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=True -v mysql-db:/var/lib/mysql mysql
 docker volume ls
 docker volume inspect mysql-db
@@ -184,13 +185,13 @@ docker volume inspect mysql-db
 - Usecase: When you are changing files on laptop which you want to serve in the app
 - It can be run only during `docker run` as there is no explicit volume command in the dockerfile
 - the volume will be mounted in the working directory of the container
-```DOCKER
+```BASH
 docker container run -d --name nginx -p 80:80 -v $(pwd):/usr/share/nginx/html nginx
 docker container exec -it nginx -- bash
 cd /usr/share/nginx/html && ls -la
 ```
 - docker log streaming
-```DOCKER
+```BASH
 docker container logs -f <container name>
 ```
 ## Database Passwords in Containers
@@ -212,13 +213,13 @@ automation with those YAML files
 used with `docker-compose -f`
 - Not a production-grade tool but ideal for local development and test
 - Two most common commands are:
-```DOCKER
+```BASH
 docker-compose up # setup volumes/networks and start all containers
 docker-compose down # stop all containers and remove cont/vol/net
 ```
 ## Trying Out Basic Compose Commands
 
-```DOCKER
+```BASH
 docker-compose up
 docker-compose up -d  # Running compose in bacground
 docker-compose down
@@ -246,7 +247,7 @@ docker-compose up --build
 - Replicates logs amongst Managers via mutual TLS in "control plane"
 ## Create Your First Service and Scale it Locally
 
-```DOCKER
+```BASH
 docker info # swarm is down by default
 docker swarm init # start swarm
 docker node ls
@@ -263,12 +264,12 @@ docker container ls
 ## Creating a 3-Node Swarm Cluster
 *docker-machine + VirtualBox*
 - Free and runs locally, but requires a machine with 8GB memory
-```DOCKER
+```BASH
 docker-machine create node1
 docker-machine ssh node1
 docker-machine env node1
 ```
-```DOCKER
+```BASH
 docker swarm init
 docker swarm init --advertise-addr node1
 docker node ls
@@ -276,7 +277,7 @@ docker node update --role manager node2 # Update role to existing node
 docker swarm join-token manager # Shows join token for manager role
 docker service create --replicas 3 alpine ping 8.8.8.8 # Creates service with 3 replicas and starts ping process
 ```
-```DOCKER
+```BASH
 docker service ls
 docker service ps <service name>
 docker node ps
@@ -284,7 +285,7 @@ docker node ps node2
 ```
 ## Scaling Out with Overlay Networking
 
-```DOCKER
+```BASH
 # Create Backend network
 docker network create --driver overlay mydrupal
 docker network ls
@@ -297,12 +298,12 @@ docker service create --name drupal --network mydrupal -p 80:80 drupal
 docker service inspect drupal
 ```
 ## Scaling Out with Routing Mesh
-```DOCKER
+```BASH
 docker service create --name search --replicas 3 -p 9200:9200 elasticsearch:2
 docker service ps search
 ```
 ## Create a Multi-Service Multi-Node Web App
-```DOCKER
+```BASH
 docker network create -d overlay backend
 docker network create -d overlay frontend
 docker service create --name vote -p 80:80 --network frontend \
@@ -325,7 +326,7 @@ services, networks, and volumes
 - Stacks manages all those objects for us, including overlay network
 per stack. Adds stack name to start of their name
 - Compose now ignores `deploy:`, Swarm ignores `build:`
-```DOCKER
+```BASH
 docker stack deploy -c example-voting-app-stack.yml voteapp
 docker stack ls
 docker stack services voteapp
@@ -337,7 +338,7 @@ What is a Secret?
 - TLS certificates and keys
 - SSH keys
 - Any data you would prefer not be "on front page of news"
-```DOCKER
+```BASH
 docker secret create psql_usr psql_usr.txt
 echo "myDBpassWORD" | docker secret create psql_pass - TAB COMPLETION
 docker secret inspect psql_usr
@@ -353,7 +354,7 @@ Single set of Compose files for:
 - Local `docker-compose up` development environment
 - Remote `docker-compose up` CI environment
 - Remote `docker stack deploy` production environment
-```DOCKER
+```BASH
 docker-compose -f docker-compose.yml -f docker-compose.test.yml up -d
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml config
 ```
@@ -372,7 +373,7 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml config
  `docker service update --env-add NODE_ENV=production --publish-rm 8080`
 - Change number of replicas of two services
  `docker service scale web=8 api=6`
-```DOCKER
+```BASH
 docker service create -p 8088:80 --name web nginx:1.13.7
 docker service scale web=5
 docker service update --image nginx:1.13.6 web
@@ -388,13 +389,13 @@ docker service rm web
 - Three container states: starting, healthy, unhealthy
 - Much better then "is binary still running?"
 - Options for healthcheck command
-```DOCKER
+```BASH
 --interval=DURATION (default: 30s)
 --timeout=DURATION (default: 30s)
 --start-period=DURATION (default: 0s) (17.09+)
 --retries=N (default: 3)
 ```
-```DOCKER
+```BASH
 docker container run --name p2 -d --health-cmd="pg_isready \
 -U postgres || exit 1" postgres
 docker service create --name p2 --health-cmd="pg_isready \
@@ -406,7 +407,7 @@ docker service create --name p2 --health-cmd="pg_isready \
 - Storage cleanup via Garbage Collection
 - Enable Hub caching via "--registry-mirror"
 
-```DOCKER
+```BASH
 # Run the registry image
 docker container run -d -p 5000:5000 --name registry registry
 # Re-tag an existing image and push it to your new registry
@@ -424,7 +425,7 @@ docker container rm registry
 docker container run -d -p 5000:5000 --name registry -v $(pwd)/registry-data:/var/lib/registry registry
 ```
 ## Using Docker Registry With Swarm
-```DOCKER
+```BASH
 docker node ls
 docker service create --name registry --publish 5000:5000 registry
 docker service ps registry
@@ -454,7 +455,7 @@ docker service ps nginx
 - [Docker Bench](https://github.com/docker/docker-bench-security)
 - [CIS Docker checklist](https://www.cisecurity.org/benchmark/docker/)
 - Running Docker as non root user
-```DOCKER
+```BASH
 # Creating non root user in alpine
 RUN addgroup -g 1000 node \
     && adduser -u 1000 -G node -s /bin/sh -D node
@@ -476,7 +477,7 @@ RUN groupadd --gid 1000 node \
 - Set the Docker Context with the Host Name of the node and port 2375
 - Contexts are created in the home folder of user called `.docker/context`
 
-```DOCKER
+```BASH
 docker context create --docker "host=tcp://<Host Name>:2375" <context-name>
 docker context ls
 docker context use <context-name>

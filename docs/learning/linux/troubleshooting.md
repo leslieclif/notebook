@@ -1,6 +1,17 @@
 # Troubleshooting
 
 ???+ note "Scenarios"
+    
+    ??? summary "OS Debugging"
+        ```BASH
+        uname                               # Shows kernal
+        uname -o                            # Shows OS
+        uname -m                            # Shows computer architecture x86_64 (64 bit), x86 (32 bit)
+        lsb_release -a                      # Distro version
+        # kernel logs will be shown in dmesg command that are in memory. Will be lost at server restart.
+        tail -f /var/log/kern.log           # Shows the kernel logs that are persisted even after restart.
+        /usr/include/linux/capabilities.h   # Shows the Linux capabilities that are enabled
+        ```
 
     ??? summary "Server Not reachable"
         ```BASH
@@ -116,9 +127,7 @@
         # Owner of the source file can only create symbolic links
         # Destination where the file will land should also have read permissions for the group or others
         ```
-    ??? summary "Write Errors"
-        ```BASH
-        ```
+
     ??? summary "Utility"
         ```BASH
         ```

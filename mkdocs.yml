@@ -19,7 +19,7 @@ nav:
     - Installation: index.md
     - Developer Setup: developer.md
   - Devops:
-    - devops/index.md
+    - Devops: devops/index.md
     - CI: devops/ci.md
     - CD: devops/cd.md
     - IAC: devops/iac.md
@@ -46,7 +46,8 @@ nav:
     - Kubernetes: learning/k8s/k8s-notes.md
     - Linux: learning/linux/linux.md
     - Linux_Security: learning/linux/security.md   
-     
+    - Linux_Firewall: learning/linux/firewall.md
+
 # Theme
 theme:
   name: 'material'

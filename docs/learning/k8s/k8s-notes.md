@@ -20,14 +20,14 @@
 ## Install Kubernetes
 - Linux - Microk8s
 Install SNAP first using apt-get
-```DOCKER
+```BASH
 sudo snap install microk8s --classic --channel=1.17/stable # Install specific k8s version
 microk8s.enable dns # Enbale DNS 
 microk8s.status # Check status
 ```
 
 - Windows - Minikube
-```DOCKER
+```BASH
 minikube start --kubernetes-version='1.17.4' # Install specific k8s version
 minikube ip # IP of the machine
 minikube status # Check status 
@@ -41,7 +41,7 @@ minikube stop # Stop minkube service
 ## Our First Pod With Kubectl run
 - Two ways to deploy Pods (containers): Via commands, or via YAML
 - Object hieracrhy - Pods -> ReplicaSet -> Deployment
-```DOCKER
+```BASH
 kubectl run my-nginx --image nginx # Creates a single pod
 kubectl run nginx-pod --generator=run-pod/v1 --
 image nginx # Another way to create pod
@@ -53,7 +53,7 @@ expose # Using Dry run option
 ```
 ## Scaling ReplicaSets
 
-```DOCKER
+```BASH
 kubectl create deployment my-apache --image httpd
 kubectl scale deploy/my-apache --replicas 2 # Scale up by 2
 kubectl scale deployment my-apache --replicas 2 # Scale up by 2
@@ -61,7 +61,7 @@ kubectl get all
 ```
 ## Inspecting Kubernetes Objects
 
-```DOCKER
+```BASH
 kubectl get deploy,pods # Get multiple resources in one line
 kubectl get pods -o wide # Get all pods, in wide format (gives more info)
 kubectl get pods --show-labels # Get all pods and show labels
@@ -101,7 +101,7 @@ kubectl delete pod/my-apache-<pod id> # Deletes a single instance
 - Adds CNAME DNS record to CoreDNS only
 - Not used for Pods, but for giving pods a DNS name to use for something outside Kubernetes
 
-```DOCKER
+```BASH
 # To show how to reach a ClusterIP deployment which is only accessible from the cluster in a Laptop
 kubectl create deployment httpenv --image=bretfisher/httpenv # simple http server
 kubectl scale deployment/httpenv --replicas=5
@@ -127,7 +127,7 @@ that publishes the --port on localhost
 1. You can still run the command, it'll just stay at
 - LoadBalancer recieves the packet on 8888, then transfers it to the Nodeport of the Node and then to the ClusterIP of the service.
 "pending" (but its NodePort works)
-```DOCKER
+```BASH
 kubectl expose deployment/httpenv --port 8888 --name httpenv-np --type NodePort
 kubectl get services
 curl localhost:<Node Port> # Get this from svc output
@@ -141,7 +141,7 @@ kubectl delete service/httpenv-lb deployment/httpenv
 - Internal DNS is provided by CoreDNS
 - Services also have a FQDN
 > curl `<hostname>.<namespace>.svc.cluster.local`
-```DOCKER
+```BASH
 curl <hostname>
 kubectl get namespaces
 curl <hostname>.<namespace>.svc.cluster.local
@@ -382,113 +382,113 @@ and management of your apps
 - Context changes kubectl cluster and namespace
 - See `~/.kube/config` file
 > `kubectl config get-contexts`
-```DOCKER 
+```BASH 
 # Selectively show output of Kube config
 kubectl config get-contexts -o name
 ```
 > `kubectl config set*`
 
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```
-```DOCKER
+```BASH
 ```

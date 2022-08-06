@@ -44,7 +44,7 @@
         Using the Manual
         There are 8 sections in the manual. Important are 1, 5 and 8 sections
         ```BASH
-        man –k <search term>	    # Search the manual for pages matching <search term>.
+        man -k <search term>	    # Search the manual for pages matching <search term>.
         man -k tmux                 # example of searching for tmux in the manual pages
         man -k "list directory contents" # Double quote seraches complete words 
         man 1 tmux                  # Opens section 1 of tmux manual page, 1 is default and can be ignored
@@ -120,7 +120,7 @@
         ls -ld                  # Detailed folder information
         # Change Directories
         cd -	                # Helps to switch directories. Like a Toggle (Alt + Tab) in windows
-        cd  / cd ~	            # User Home directory from anywhere
+        cd  OR cd ~	            # User Home directory from anywhere
         cd ..                   # Back to parent directory of CWD
         ``` 
     ??? summary "Wildcards"
@@ -157,7 +157,7 @@
         # Copy Operations
         cp /data/sales/file1 /data/mkt/file1
         cp /data/sales/* .                  # Copy all files to CWD
-        cp -r /data/sales /data/backup      # Copy folder to backup folder
+        cp -r /data/sales /data/backup      # Copy sales folder to backup folder
         # Move and Rename Operations
         mv file1 file2                      # Rename file in the same folder
         mv /data/mkt/ /data/hr              # Rename folder, Note the slash after first folder
@@ -1036,6 +1036,7 @@ nmap localhost          # shows all open ports used by localhost
 nmap 192.168.0.3        # shows open ports at remote host
 nmap –v 192.168.0.3     # verbose mode
 nmap –iL ip.txt         # input file containing all ip address to be scanned
+nmap -p 80,443 192.168.0.3 -P0  # Scan 2 ports without using ping. This is done if iptables is blocking ping
 ```
 ### netstat
 ```BASH

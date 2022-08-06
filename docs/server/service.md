@@ -17,3 +17,24 @@ Verify that it's running:
 ```BASH
 $ sudo systemctl status raddit
 ```
+
+# TFTP Server
+- TFTP service is used to distribute network packages at boot time.
+
+```BASH
+# Install packages
+sudo apt install xinetd tftpd tftp
+# Verify the tftp service configuration
+vi /etc/xinetd.d/tdtftp
+# Create the directory where bin packages will be stored
+mkdir -p /tftpboot
+# Update file permissions so anyone can read and write to this directory
+sudo chmod -R 777 /tftpboot 
+sudo chown -R nobody /tftpboot
+# Restart the service
+systemctl restart xinetd.service
+# Verify if service is working by opening tftp client
+tftp
+get <filename>          # Downloads file to the current directory on the client
+# quit to exit the tftp session
+```
