@@ -1,11 +1,27 @@
+alias k=kubectl                         # will already be pre-configured
+
+export do="--dry-run=client -o yaml"    # k create deploy nginx --image=nginx $do
+
+export now="--force --grace-period 0"   # k delete pod x $now
+
+alias ke='kubectl explain'
+alias pe='k explain po --recursive'
+alias kgp='k get po'
+alias kns='k config set-context --current --namespace'
+
 https://hackernoon.com/ckad-and-cka-certifications-which-to-take-first-and-how-to-prepare-bh4437mc
 https://www.nisheetsinvhal.com/how-i-scored-a-perfect-100-on-cka/
 
 - [CNCF Tips](https://docs.linuxfoundation.org/tc-docs/certification/tips-cka-and-ckad)
 ```BASH
+# Vim config to be set in the exam terminal
+echo "set ts=2 sts=2 sw=2 et number ai" >> ~/.vimrc
+
+source ~/.vimrc
 # This command will ensure that you set the namespace correctly for your current context. 
 kubectl config view --minify | grep namespace 
-
+# To test the service, launch a temporary POD with curl
+kubectl curl --image=alpine/curl -it --rm  -- sh
 # Aliases
 ######## Choose any style
 # Step 1: enabled auto-complete feature in the bash shell after setting the aliases
@@ -17,6 +33,7 @@ alias kr='k run'
 alias krun="k run -h | grep '# ' -A2"
 alias kg='k get'
 alias kd='k describe'
+alias ke='kubectl explain'
 alias kaf='k apply -f'
 alias kdf='k delete -f'
 alias kdp='k delete po'
@@ -43,6 +60,11 @@ kns default
 kubectl -n test1 get pods
 # Now run the last command but in different namespace like test2
 ^test1^test2
+```
+```BASH
+# Show all the Cert files in ETCD configuration
+cat /etc/kubernetes/manifest/etcd.yaml | grep file
+
 ```
 ```BASH
 # *** Important - Store the YAML files in home folder wth question number, so in case of review, you can verify and apply it say in correct namespace
@@ -79,11 +101,13 @@ po      Pod
 rs      ReplciaSet
 deploy  Deployment
 svc     Service
+ds      DaemonSet
 ns      Namespace
 netpol  Network Policy
 pv      Persistent Volume
 pvc     Persistent Volume Claims
 sa      Service Account
+sts     StatefulSets
 ```
 - Implicit Commands
 ```BASH
@@ -120,7 +144,7 @@ kubectl run nginx -image=nginx \
     --restart=Never \
     --port=80 \
     --namespace=myname \
-    --command --serviceaccount=mysa1 \
+    --serviceaccount=mysa1 \
     --env=HOSTNAME=local \
     --labels=bu=finance,env=dev \ 
     --requests='cpu=100m,memory=256Mi' \ 
@@ -129,13 +153,14 @@ kubectl run nginx -image=nginx \
 
 kubectl create deployment frontend --replicas=2 \
     --labels=run=load-balancer-example --image=busybox  --port=8080
-kubectl expose deployment frontend --type=NodePort --name=frontend-service --port=6262 --target-port=8080
+kubectl expose deployment frontend --type=NodePort --name=frontend-service --port=6262 --target-port=8080 # OR
+kubectl create service clusterip my-cs --tcp=5678:8080 --dry-run -o yaml 
 kubectl set serviceaccount deployment frontend myuser
-kubectl create service clusterip my-cs --tcp=5678:8080 --dry-run -o yaml
+
 
 # If we specify two selectors separated by a comma, only the objects that satisfy both will be returned. This is a logical AND operation:
 kubectl get pods --selector="bu=finance,env=dev"
-# We can also ask if a label is one of a set of values. Here we ask for all pods where the app label is set to alpacaor bandicoot (which will be all six pods):
+# We can also ask if a label is one of a set of values. Here we ask for all pods where the app label is set to alpaca bandicoot (which will be all six pods):
 kubectl get pods --selector="env in (dev,test)"
 
 # Use of grep when selector filter doesnt work
@@ -149,7 +174,7 @@ k describe pod <pod-name> | grep -i events -A 10
 k api-resources | grep -i "resource name"
 k api-versions | grep -i "api_group name"
 # Example:
-k api-resources | grep -i deploy # -> produces apps in APIGROUPS collumn
+k api-resources | grep -i deploy # -> produces apps in APIGROUPS column
 k api-versions | grep -i apps # -> produces apps/v1
 # Quickly find kube api server setting
 # When is it useful: since on all the exams, kubernetes services are running as pods, it is faster to check settings with grep rather than move to folder and look at the file.
@@ -218,7 +243,7 @@ kubectl run wordpress --image=wordpress --expose --port=8989 --restart=Never -o 
 # Command shouls always at the end and all kubectl options before this
 kubectl run test --image=busybox --restart=Never --dry-run=client -o yaml -- /bin/sh -c 'echo test;sleep 100' > yamlfile.yaml 
 # OR
-kubectl run test --image=busybox --restart=Never --dry-run=client -o yaml -- command sleep 100 > yamlfile.yaml
+kubectl run test --image=busybox --restart=Never --dry-run=client -o yaml -- command sleep 1000 > yamlfile.yaml
 
 # (Notice that -- /bin/sh comes at the end. This will create yaml file.)
 kubectl run busybox --image=busybox --dry-run=client -o yaml --restart=Never -- /bin/sh -c "while true; do echo hello; echo hello again;done" > pod.yaml
@@ -244,7 +269,7 @@ done
     alias krh='kubectl run --help | more'
     alias kgh='kubectl get --help | more'
     alias c='clear'
-    alias kd='kubectl describe pod'
+    alias kd='kubectl describe'
     alias ke='kubectl explain'
     alias kf='kubectl create -f'
     alias kg='kubectl get pods --show-labels'
@@ -293,7 +318,7 @@ source ~/.vimrc
 
 Shortcuts
 <linenumber>G               # Go to line number
-:set paste                  # Tells vim to shutdown autoindent and makes it redy for paste
+:set paste                  # Tells vim to shutdown autoindent and makes it ready for paste
 # Say you copy paste in wrong position and want to tab all the lines
 shift + v + arrow up or down # selects all the lines for movement
 <number of places to indent>+> # 2> will indent by 2 places all the selected lines

@@ -30,7 +30,8 @@ done
 ```BASH
 ssh-keygen -t rsa  -b 4096 -f ~/.ssh/raddit-user -C raddit-user
 ```
-ssh-keygen -t rsa  -b 4096 -f ~/.ssh/ansible-user -C ansible-user
+- `-C` is the comment, you can also write `-C 'keys generated on 20th Oct 2022'`
+`ssh-keygen -t rsa  -b 4096 -f ~/.ssh/ansible-user -C ansible-user`
 
 1. Using the .ssh config files (~/.ssh/config)
 ```BASH
@@ -55,6 +56,8 @@ ssh-keygen -t rsa  -b 4096 -f ~/.ssh/ansible-user -C ansible-user
         or
         ssh mysite.com # if you setup the User setting in config
 ```
+1. Copy ssh keys to an existing server
+`ssh-copy-id root@192.168.0.10` - This will copy default public key `id_rsa.pub` to server 192.168.0.10 in `.ssh/authorized_key` file under root user.
 # Ubuntu
 1. Use bootable USB created using ventoy
 1. Press F12 at startup and select the bootable USB, select Ubuntu is image to begin installation

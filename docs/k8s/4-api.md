@@ -112,7 +112,7 @@ key                         key is set
 !key                        key is not set
 
 - Filter output using jq
-`kubectl get pods -n kube-system calico -ojson | jq .metadata.labels`
+`kubectl get pods -n kube-system calico -o json | jq .metadata.labels`
 
 ## Debugging Commands
 ```BASH
