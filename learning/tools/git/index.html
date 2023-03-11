@@ -1,0 +1,542 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/learning/tools/git/ rel=canonical><link rel="shortcut icon" href=../../../assets/images/favicon.png><meta name=generator content="mkdocs-1.4.1, mkdocs-material-7.0.3"><title>Git - Leslie's Online Notebook</title><link rel=stylesheet href=../../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#git class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Git </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../devops/ class=md-nav__link> Devops </a> </li> <li class=md-nav__item> <a href=../../../devops/ci/ class=md-nav__link> CI </a> </li> <li class=md-nav__item> <a href=../../../devops/cd/ class=md-nav__link> CD </a> </li> <li class=md-nav__item> <a href=../../../devops/iac/ class=md-nav__link> IAC </a> </li> <li class=md-nav__item> <a href=../../../devops/gitops/ class=md-nav__link> GitOps </a> </li> <li class=md-nav__item> <a href=../../../devops/devops-engineer/ class=md-nav__link> Skills </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Ansible <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ansible data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Ansible </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ansible/ansible/ class=md-nav__link> Ansible </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../k8s/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../../k8s/install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../../python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../vagrant/ class=md-nav__link> Vagrant </a> </li> <li class=md-nav__item> <a href=../../terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../../docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../linux/linux/ class=md-nav__link> Linux </a> </li> <li class=md-nav__item> <a href=../../linux/security/ class=md-nav__link> Linux_Security </a> </li> <li class=md-nav__item> <a href=../../linux/firewall/ class=md-nav__link> Linux_Firewall </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#git class=md-nav__link> Git </a> <nav class=md-nav aria-label=Git> <ul class=md-nav__list> <li class=md-nav__item> <a href=#tldr class=md-nav__link> TL;DR </a> </li> <li class=md-nav__item> <a href=#authentication class=md-nav__link> Authentication </a> </li> <li class=md-nav__item> <a href=#configuration class=md-nav__link> Configuration </a> <nav class=md-nav aria-label=Configuration> <ul class=md-nav__list> <li class=md-nav__item> <a href=#remotes class=md-nav__link> Remotes </a> <nav class=md-nav aria-label=Remotes> <ul class=md-nav__list> <li class=md-nav__item> <a href=#push-to-multiple-git-remotes-with-the-one-command class=md-nav__link> Push to multiple git remotes with the one command </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#aliases class=md-nav__link> Aliases </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#manage-changes class=md-nav__link> Manage changes </a> <nav class=md-nav aria-label="Manage changes"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#create-a-patch class=md-nav__link> Create a patch </a> </li> <li class=md-nav__item> <a href=#apply-a-patch class=md-nav__link> Apply a patch </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#the-stash-stack class=md-nav__link> The stash stack </a> </li> <li class=md-nav__item> <a href=#branches class=md-nav__link> Branches </a> <nav class=md-nav aria-label=Branches> <ul class=md-nav__list> <li class=md-nav__item> <a href=#checkout-an-existing-remote-branch class=md-nav__link> Checkout an existing remote branch </a> </li> <li class=md-nav__item> <a href=#delete-a-branch class=md-nav__link> Delete a branch </a> </li> <li class=md-nav__item> <a href=#delete-branches-which-have-been-merged-or-are-otherwise-absent-from-a-remote class=md-nav__link> Delete branches which have been merged or are otherwise absent from a remote. </a> </li> <li class=md-nav__item> <a href=#merge-the-master-branch-into-a-feature-branch class=md-nav__link> Merge the master branch into a feature branch </a> </li> <li class=md-nav__item> <a href=#rebase-a-branch-on-top-of-another class=md-nav__link> Rebase a branch on top of another </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#tags class=md-nav__link> Tags </a> </li> <li class=md-nav__item> <a href=#convert-a-normal-repository-to-a-bare-one class=md-nav__link> Convert a normal repository to a bare one </a> </li> <li class=md-nav__item> <a href=#lfs-extension class=md-nav__link> LFS extension </a> </li> <li class=md-nav__item> <a href=#submodules class=md-nav__link> Submodules </a> </li> <li class=md-nav__item> <a href=#remove-a-file-from-a-commit class=md-nav__link> Remove a file from a commit </a> </li> <li class=md-nav__item> <a href=#remove-a-file-from-the-repository class=md-nav__link> Remove a file from the repository </a> </li> <li class=md-nav__item> <a href=#troubleshooting class=md-nav__link> Troubleshooting </a> <nav class=md-nav aria-label=Troubleshooting> <ul class=md-nav__list> <li class=md-nav__item> <a href=#debug class=md-nav__link> Debug </a> </li> <li class=md-nav__item> <a href=#gpg-cannot-sign-a-commit class=md-nav__link> GPG cannot sign a commit </a> </li> <li class=md-nav__item> <a href=#git-does-not-accept-self-signed-certificates class=md-nav__link> Git does not accept self-signed certificates </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#further-readings class=md-nav__link> Further readings </a> </li> <li class=md-nav__item> <a href=#sources class=md-nav__link> Sources </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>Git</h1> <h2 id=git>Git<a class=headerlink href=#git title="Permanent link">&para;</a></h2> <ol> <li><a href=#tldr>TL;DR</a></li> <li><a href=#authentication>Authentication</a></li> <li><a href=#configuration>Configuration</a></li> <li><a href=#remotes>Remotes</a><ol> <li><a href=#push-to-multiple-git-remotes-with-the-one-command>Push to multiple git remotes with the one command</a></li> </ol> </li> <li><a href=#aliases>Aliases</a></li> <li><a href=#manage-changes>Manage changes</a></li> <li><a href=#create-a-patch>Create a patch</a></li> <li><a href=#apply-a-patch>Apply a patch</a></li> <li><a href=#the-stash-stack>The stash stack</a></li> <li><a href=#branches>Branches</a></li> <li><a href=#checkout-an-existing-remote-branch>Checkout an existing remote branch</a></li> <li><a href=#delete-a-branch>Delete a branch</a></li> <li><a href=#delete-branches-which-have-been-merged-or-are-otherwise-absent-from-a-remote>Delete branches which have been merged or are otherwise absent from a remote.</a></li> <li><a href=#merge-the-master-branch-into-a-feature-branch>Merge the master branch into a feature branch</a></li> <li><a href=#rebase-a-branch-on-top-of-another>Rebase a branch on top of another</a></li> <li><a href=#tags>Tags</a></li> <li><a href=#convert-a-normal-repository-to-a-bare-one>Convert a normal repository to a bare one</a></li> <li><a href=#lfs-extension>LFS extension</a></li> <li><a href=#submodules>Submodules</a></li> <li><a href=#remove-a-file-from-a-commit>Remove a file from a commit</a></li> <li><a href=#remove-a-file-from-the-repository>Remove a file from the repository</a></li> <li><a href=#troubleshooting>Troubleshooting</a></li> <li><a href=#debug>Debug</a></li> <li><a href=#gpg-cannot-sign-a-commit>GPG cannot sign a commit</a></li> <li><a href=#git-does-not-accept-self-signed-certificates>Git does not accept self-signed certificates</a></li> <li><a href=#further-readings>Further readings</a></li> <li><a href=#sources>Sources</a></li> </ol> <h3 id=tldr>TL;DR<a class=headerlink href=#tldr title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Set your identity.</span>
+git config <span class=s1>&#39;user.name&#39;</span> <span class=s1>&#39;User Name&#39;</span>
+git config --global <span class=s1>&#39;user.email&#39;</span> <span class=s1>&#39;user@email.com&#39;</span>
+
+<span class=c1># Avoid issues when collaborating from different platforms.</span>
+git config --local <span class=s1>&#39;core.autocrlf&#39;</span> <span class=s1>&#39;input&#39;</span>
+git config --local <span class=s1>&#39;core.autocrlf&#39;</span> <span class=s1>&#39;true&#39;</span>
+
+<span class=c1># Create aliases.</span>
+git config --local <span class=s1>&#39;alias.co&#39;</span> <span class=s1>&#39;checkout&#39;</span>
+git config --global <span class=s1>&#39;alias.unstage&#39;</span> <span class=s1>&#39;reset HEAD --&#39;</span>
+git config <span class=s1>&#39;alias.funct&#39;</span> <span class=s1>&#39;!f() { sh_command ; sh_command | sh_command ; } &amp;&amp; f&#39;</span>
+
+<span class=c1># Show git&#39;s configuration.</span>
+git config --list
+git config --list --show-scope
+git config --list --show-origin
+
+<span class=c1># Render all current settings&#39; values.</span>
+git config --list <span class=se>\</span>
+  <span class=p>|</span> awk -F <span class=s1>&#39;=&#39;</span> <span class=s1>&#39;{print $1}&#39;</span> <span class=p>|</span> sort -u <span class=se>\</span>
+  <span class=p>|</span> xargs -I <span class=o>{}</span> sh -c <span class=s1>&#39;printf &quot;{}=&quot; &amp;&amp; git config --get {}&#39;</span>
+
+<span class=c1># Get a default value if the setting has none.</span>
+<span class=c1># Does not work on sections alone.</span>
+git config --get --default <span class=s1>&#39;not-set&#39;</span> <span class=s1>&#39;filter.lfs.cleaned&#39;</span>
+
+<span class=c1># Create or reinitialize a repository.</span>
+git init
+git init --initial-branch <span class=s1>&#39;main&#39;</span> <span class=s1>&#39;path/to/repo&#39;</span>
+git init --bare <span class=s1>&#39;path/to/repo.git&#39;</span>
+
+<span class=c1># Clone a repository.</span>
+git clone <span class=s1>&#39;https://github.com:user/repo.git&#39;</span>
+git clone --bare <span class=s1>&#39;git@github.com:user/repo.git&#39;</span> <span class=s1>&#39;path/to/clone&#39;</span>
+git clone --recurse-submodules <span class=s1>&#39;ssh@git.server:user/repo.git&#39;</span>
+git clone --depth <span class=m>1</span> <span class=s1>&#39;ssh@git.server:user/repo.git&#39;</span>
+git clone <span class=s1>&#39;https://token@github.com/user/repo&#39;</span>
+git <span class=se>\</span>
+  -c http.extraHeader<span class=o>=</span><span class=s2>&quot;Authorization: Basic </span><span class=k>$(</span><span class=nb>echo</span> -n <span class=s2>&quot;user:pat&quot;</span> <span class=p>|</span> base64<span class=k>)</span><span class=s2>&quot;</span> <span class=se>\</span>
+  clone <span class=s1>&#39;https://dev.azure.com/org/project/_git/repo&#39;</span>
+
+<span class=c1># Convert a normal repository to a bare one.</span>
+git clone --bare <span class=s1>&#39;repository&#39;</span> <span class=s1>&#39;path/to/bare/clone.git&#39;</span>
+
+<span class=c1># Unshallow a clone.</span>
+git pull --unshallow
+
+<span class=c1># Get objects and refs but do not incorporate them.</span>
+git fetch
+
+<span class=c1># Get changes and merge them.</span>
+git pull --all
+git pull --verify-signatures
+git pull <span class=s1>&#39;remote&#39;</span> <span class=s1>&#39;branch&#39;</span>
+
+<span class=c1># Show what files changed.</span>
+git status
+git status --verbose
+
+<span class=c1># Show changes in a repository.</span>
+git diff
+git diff --staged <span class=s1>&#39;commit_hash&#39;</span>
+git diff <span class=s1>&#39;commit_hash_1..commit_hash_2&#39;</span>
+git diff <span class=s1>&#39;branch_1&#39;</span> <span class=s1>&#39;branch_2&#39;</span>
+git diff --word-diff<span class=o>=</span><span class=s1>&#39;color&#39;</span>
+git log -p <span class=s1>&#39;feature&#39;</span> --not <span class=s1>&#39;master&#39;</span>
+
+<span class=c1># Just show changes between two files.</span>
+git diff --no-index <span class=s1>&#39;path/to/file/a&#39;</span> <span class=s1>&#39;path/to/file/b&#39;</span>
+
+<span class=c1># Stage changes for commit.</span>
+git add .
+git add --all
+git add <span class=s1>&#39;path/to/file&#39;</span>
+
+<span class=c1># Interactively review chunks of changes.</span>
+git add --patch <span class=s1>&#39;path/to/file&#39;</span>
+
+<span class=c1># Commit changes.</span>
+git commit --message <span class=s1>&#39;message&#39;</span>
+git commit --message <span class=s1>&#39;whatever&#39;</span> --gpg-sign
+git commit --allow-empty --allow-empty-message
+git commit --date<span class=o>=</span><span class=s1>&#39;Jun 13 18:30:25 IST 2015&#39;</span>
+git commit --date<span class=o>=</span><span class=s2>&quot;</span><span class=k>$(</span>date --date<span class=o>=</span><span class=s1>&#39;2 days ago&#39;</span><span class=k>)</span><span class=s2>&quot;</span>
+
+<span class=c1># Edit the last commit&#39;s message.</span>
+git commit --amend
+git commit --amend --message <span class=s1>&#39;message&#39;</span>
+
+<span class=c1># Change the last commit&#39;s author.</span>
+git config <span class=s1>&#39;user.name&#39;</span> <span class=s1>&#39;user name&#39;</span>
+git config <span class=s1>&#39;user.email&#39;</span> <span class=s1>&#39;user.email@mail.com&#39;</span>
+git commit --amend --reset-author
+
+<span class=c1># Sign the last commit.</span>
+git commit --amend --no-edit --gpg-sign
+
+<span class=c1># Show commits which would be pushed.</span>
+git log @<span class=o>{</span>u<span class=o>}</span>..
+
+<span class=c1># Revert a commit but keep the history of the event as a separate commit.</span>
+git revert <span class=s1>&#39;commit_hash&#39;</span>
+
+<span class=c1># Interactively rebase the last 7 commits.</span>
+git rebase -i <span class=s1>&#39;@~7&#39;</span>
+
+<span class=c1># List remotes.</span>
+git remote --verbose
+
+<span class=c1># Add a new remote.</span>
+git remote add <span class=s1>&#39;gitlab&#39;</span> <span class=s1>&#39;git@gitlab.com:user/repo.git&#39;</span>
+
+<span class=c1># Set a new URL for an existing remote.</span>
+git remote set-url <span class=s1>&#39;gitlab&#39;</span> <span class=s1>&#39;git@gitlab.com:user/repo.git&#39;</span>
+
+<span class=c1># Push committed changes.</span>
+git push
+git push <span class=s1>&#39;remote&#39;</span> <span class=s1>&#39;branch_1&#39;</span> <span class=s1>&#39;branch_N&#39;</span>
+git push <span class=s1>&#39;git@github.com:user/repo.git&#39;</span>
+git push --all --force
+
+<span class=c1># Show the repository&#39;s history.</span>
+git reflog
+git log -p
+
+<span class=c1># Visualize the repository&#39;s history.</span>
+git log --graph --full-history --all --color --decorate --oneline
+
+<span class=c1># Show and verify signatures.</span>
+git log --show-signature -1
+
+<span class=c1># Remove staged and working directory changes.</span>
+git reset --hard
+git reset --hard <span class=s1>&#39;origin/main&#39;</span>
+
+<span class=c1># Go back 4 commits.</span>
+git reset --hard <span class=s1>&#39;HEAD~4&#39;</span>
+
+<span class=c1># Remove untracked files.</span>
+git clean -f -d
+
+<span class=c1># Remove ignored files.</span>
+git clean -f -d -x
+
+<span class=c1># Show who committed which line.</span>
+git blame <span class=s1>&#39;path/to/file&#39;</span>
+
+<span class=c1># List changed files in a given commit.</span>
+git diff-tree --no-commit-id --name-only -r <span class=s1>&#39;commit_hash&#39;</span>
+
+<span class=c1># Create patches.</span>
+git diff &gt; <span class=s1>&#39;file.patch&#39;</span>
+git diff --output <span class=s1>&#39;file.patch&#39;</span> --cached
+git format-patch -5 <span class=s1>&#39;commit_hash&#39;</span>
+git format-patch <span class=s1>&#39;HEAD~3&#39;</span> -o <span class=s1>&#39;dir&#39;</span>
+git format-patch <span class=s1>&#39;HEAD~2&#39;</span> --stdout &gt; <span class=s1>&#39;single/file.patch&#39;</span>
+
+<span class=c1># Create a full patch of the unstaged changes.</span>
+git add . <span class=o>&amp;&amp;</span> git commit -m <span class=s1>&#39;uncommitted&#39;</span> <span class=se>\</span>
+  <span class=o>&amp;&amp;</span> git format-patch <span class=s1>&#39;HEAD~1&#39;</span> <span class=o>&amp;&amp;</span> git reset <span class=s1>&#39;HEAD~1&#39;</span>
+
+<span class=c1># Apply a patch to the current index.</span>
+git apply <span class=s1>&#39;file.patch&#39;</span>
+
+<span class=c1># Apply commits from a patch.</span>
+git am <span class=s1>&#39;file.patch&#39;</span>
+
+<span class=c1># Stash changes locally.</span>
+git stash
+git stash push <span class=s1>&#39;message&#39;</span>
+
+<span class=c1># List all the stashed changes.</span>
+git stash list
+
+<span class=c1># Apply the most recent change and remove them from the stash stack.</span>
+git stash pop
+
+<span class=c1># Apply a stash, but don&#39;t remove it from the stack.</span>
+git stash apply stash@<span class=o>{</span><span class=m>6</span><span class=o>}</span>
+
+<span class=c1># Remove a single stash entry from the stash stack.</span>
+<span class=c1># Defaults to the current one.</span>
+git stash drop
+git stash drop stash@<span class=o>{</span><span class=m>2</span><span class=o>}</span>
+
+<span class=c1># Remove all the stash entries.</span>
+<span class=c1># Those will then be pruned and may be impossible to recover.</span>
+git stash clear
+
+<span class=c1># Apply only the changes made within a given commit.</span>
+git cherry-pick <span class=s1>&#39;commit_hash&#39;</span>
+
+<span class=c1># Create a branch.</span>
+git branch <span class=s1>&#39;branch_name&#39;</span>
+git switch -c <span class=s1>&#39;branch_name&#39;</span>
+git checkout -b <span class=s1>&#39;local_branch_name&#39;</span> <span class=s1>&#39;remote/branch_name&#39;</span>
+
+<span class=c1># Create a bare branch without any commits.</span>
+git checkout --orphan <span class=s1>&#39;branch_name&#39;</span>
+
+<span class=c1># List branches.</span>
+git branch -a
+
+<span class=c1># Rename a branch.</span>
+git branch --move <span class=s1>&#39;old_name&#39;</span> <span class=s1>&#39;new_name&#39;</span>
+
+<span class=c1># Switch branches.</span>
+git switch <span class=s1>&#39;branch_name&#39;</span>
+git checkout <span class=s1>&#39;branch_name&#39;</span>
+git checkout -
+
+<span class=c1># Set an existing branch to track a remote branch.</span>
+git branch -u <span class=s1>&#39;remote_name/upstream-branch&#39;</span>
+
+<span class=c1># Get the current branch.</span>
+git branch --show-current         <span class=c1># git &gt; v2.22</span>
+git rev-parse --abbrev-ref <span class=s1>&#39;HEAD&#39;</span>
+
+<span class=c1># Delete local branches.</span>
+git branch --delete <span class=s1>&#39;branch_name&#39;</span>
+git branch -D <span class=s1>&#39;branch_name&#39;</span>
+
+<span class=c1># Delete remote branches.</span>
+git push <span class=s1>&#39;remote_name&#39;</span> <span class=s1>&#39;:branch_name&#39;</span>
+git push <span class=s1>&#39;remote_name&#39;</span> --delete <span class=s1>&#39;branch_name&#39;</span>
+
+<span class=c1># Delete both local and remote branches.</span>
+git branch --delete --remotes <span class=s1>&#39;branch_name&#39;</span>
+
+<span class=c1># Sync the local branch list.</span>
+git fetch --prune
+
+<span class=c1># Remove all stale branches.</span>
+git remote prune <span class=s1>&#39;branch_name&#39;</span>
+
+<span class=c1># Delete branches which have been merged or are otherwise absent from a remote.</span>
+git branch --merged <span class=p>|</span> grep -vE <span class=s1>&#39;(^\*|master|main|dev)&#39;</span> <span class=p>|</span> xargs git branch -d
+git fetch -p <span class=se>\</span>
+  <span class=o>&amp;&amp;</span> awk <span class=s1>&#39;/origin/&amp;&amp;/gone/{print $1}&#39;</span> &lt;<span class=o>(</span>git branch -vv<span class=o>)</span> <span class=p>|</span> xargs git branch -d
+
+<span class=c1># List all tags.</span>
+git tag
+
+<span class=c1># Create annotated tags.</span>
+git tag --annotate <span class=s1>&#39;v0.1.0&#39;</span>
+git tag -as <span class=s1>&#39;v1.2.0-r0&#39;</span> -m <span class=s1>&#39;signed annotated tag for v1.2.0 release 0&#39;</span>
+git tag -a <span class=s1>&#39;1.1.9&#39;</span> <span class=s1>&#39;9fceb02&#39;</span>
+
+<span class=c1># Create lightweight tags.</span>
+git tag <span class=s1>&#39;v0.1.1-rc0&#39;</span>
+git tag <span class=s1>&#39;1.12.1&#39;</span> <span class=s1>&#39;HEAD&#39;</span>
+
+<span class=c1># Push specific tags.</span>
+git push <span class=s1>&#39;remote_name&#39;</span> <span class=s1>&#39;v1.5&#39;</span>
+
+<span class=c1># Push annotated tags only.</span>
+git push --follow-tags
+
+<span class=c1># Push all tags.</span>
+git push --tags
+
+<span class=c1># Delete local tags.</span>
+git tag -d <span class=s1>&#39;v1.4-lw&#39;</span>
+
+<span class=c1># Delete remote tags.</span>
+git push <span class=s1>&#39;remote_name&#39;</span> --delete <span class=s1>&#39;v1.4-lw&#39;</span>
+
+<span class=c1># Sync the local tags list.</span>
+git fetch --prune-tags
+
+<span class=c1># Rebase a branch on top of another.</span>
+git rebase <span class=s1>&#39;branch_name&#39;</span>
+git rebase <span class=s1>&#39;remote_name/upstream_branch_name&#39;</span> <span class=s1>&#39;local-branch_name&#39;</span>
+git pull --rebase<span class=o>=</span><span class=s1>&#39;interactive&#39;</span> <span class=s1>&#39;remote_name&#39;</span> <span class=s1>&#39;branch_name&#39;</span>
+
+<span class=c1># Change the date of an existing commit.</span>
+git filter-branch --env-filter <span class=se>\</span>
+  <span class=s1>&#39;if [ $GIT_COMMIT = 119f9ecf58069b265ab22f1f97d2b648faf932e0 ]</span>
+<span class=s1>   then</span>
+<span class=s1>     export GIT_AUTHOR_DATE=&quot;Fri Jan 2 21:38:53 2009 -0800&quot;</span>
+<span class=s1>     export GIT_COMMITTER_DATE=&quot;Sat May 19 01:01:01 2007 -0700&quot;</span>
+<span class=s1>   fi&#39;</span>
+
+<span class=c1># Sign all commits from now on.</span>
+git config --global <span class=s1>&#39;user.signingKey&#39;</span> <span class=s1>&#39;KEY_ID_IN_SHORT_FORMAT&#39;</span>
+git config --local <span class=s1>&#39;commit.gpgSign&#39;</span> <span class=nb>true</span>
+
+<span class=c1># Import commits from another repo.</span>
+git --git-dir<span class=o>=</span><span class=s1>&#39;path/to/other-repo/.git&#39;</span> format-patch -k -1 --stdout <span class=s1>&#39;commit_hash&#39;</span> <span class=se>\</span>
+<span class=p>|</span> git am -3 -k
+
+<span class=c1># Get the top-level directory of the current repository.</span>
+git rev-parse --show-toplevel
+
+<span class=c1># Update all submodules.</span>
+git submodule update --init --recursive
+
+<span class=c1># Show the first commit that has the string &quot;cool&quot; in its message body.</span>
+git show :/cool
+</code></pre></div> <h3 id=authentication>Authentication<a class=headerlink href=#authentication title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Use credentials in the URL.</span>
+git clone <span class=s1>&#39;https://username:password@host/path/to/repo&#39;</span>
+git clone <span class=s1>&#39;https://token@github.com/user/repo&#39;</span>
+
+<span class=c1># Use headers.</span>
+<span class=nv>BASIC_AUTH</span><span class=o>=</span><span class=s1>&#39;username:password&#39;</span>   <span class=c1># or &#39;username:token&#39;, or &#39;:token&#39;</span>
+<span class=nv>BASIC_AUTH_B64</span><span class=o>=</span><span class=s2>&quot;</span><span class=k>$(</span><span class=nb>printf</span> <span class=s2>&quot;</span><span class=nv>$BASIC_AUTH</span><span class=s2>&quot;</span> <span class=p>|</span> base64<span class=k>)</span><span class=s2>&quot;</span>
+git <span class=se>\</span>
+  -c http.extraHeader<span class=o>=</span><span class=s2>&quot;Authorization: Basic </span><span class=si>${</span><span class=nv>BASIC_AUTH_B64</span><span class=si>}</span><span class=s2>&quot;</span>
+  clone <span class=s1>&#39;https://dev.azure.com/organizationName/projectName/_git/repoName&#39;</span>
+</code></pre></div> <h3 id=configuration>Configuration<a class=headerlink href=#configuration title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Required to be able to commit changes.</span>
+git config --local <span class=s1>&#39;user.email&#39;</span> <span class=s1>&#39;me@me.info&#39;</span>
+git config --local <span class=s1>&#39;user.name&#39;</span> <span class=s1>&#39;Me&#39;</span>
+
+<span class=c1># Avoid issues when collaborating from different platforms.</span>
+<span class=c1># &#39;input&#39; on unix, &#39;true&#39; on windows, &#39;false&#39; only if you know what you are doing.</span>
+git config --local <span class=s1>&#39;core.autocrlf&#39;</span> <span class=s1>&#39;input&#39;</span>
+
+<span class=c1># Sign commits by default.</span>
+<span class=c1># Get the GPG key short ID with `gpg --list-keys --keyid-format short`.</span>
+git config --local <span class=s1>&#39;user.signingKey&#39;</span> <span class=s1>&#39;KEY_ID_IN_SHORT_FORMAT&#39;</span>
+git config --local <span class=s1>&#39;commit.gpgSign&#39;</span> <span class=nb>true</span>
+
+<span class=c1># Pull submodules by default.</span>
+git config --global <span class=s1>&#39;submodule.recurse&#39;</span> <span class=nb>true</span>
+
+<span class=c1># Use a Personal Access Token to authenticate.</span>
+git config http.extraHeader<span class=o>=</span><span class=s2>&quot;Authorization: Basic </span><span class=k>$(</span><span class=nb>echo</span> -n <span class=s1>&#39;user:pat&#39;</span> <span class=p>|</span> base64<span class=k>)</span><span class=s2>&quot;</span>
+</code></pre></div> <p>To show the current configuration use the <code>--list</code> option:</p> <div class=highlight><pre><span></span><code>git config --list
+git config --list --show-scope
+git config --list --global --show-origin
+</code></pre></div> <p>The configuration is shown in full for the requested scope (or all if not specified), but it might include the same setting multiple times if it shows up in multiple scopes.<br> Render the current value of a setting using the <code>--get</code> option:</p> <div class=highlight><pre><span></span><code><span class=c1># Get the current user.name value.</span>
+git config --get <span class=s1>&#39;user.name&#39;</span>
+
+<span class=c1># Render all current settings&#39; values.</span>
+<span class=c1># Gets the settings names, then requests the current value for each.</span>
+git config --list <span class=se>\</span>
+  <span class=p>|</span> awk -F <span class=s1>&#39;=&#39;</span> <span class=s1>&#39;{print $1}&#39;</span> <span class=p>|</span> sort -u <span class=se>\</span>
+  <span class=p>|</span> xargs -I <span class=o>{}</span> sh -c <span class=s1>&#39;printf &quot;{}=&quot; &amp;&amp; git config --get {}&#39;</span>
+</code></pre></div> <h4 id=remotes>Remotes<a class=headerlink href=#remotes title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># Add a remote.</span>
+git remote add <span class=s1>&#39;gitlab&#39;</span> <span class=s1>&#39;git@gitlab.com:user/my-awesome-repo.git&#39;</span>
+
+<span class=c1># Add other push URLs to an existing remote.</span>
+git remote set-url --push --add <span class=s1>&#39;origin&#39;</span> <span class=s1>&#39;https://exampleuser@example.com/path/to/repo1&#39;</span>
+
+<span class=c1># Change a remote&#39;s URL.</span>
+git remote set-url <span class=s1>&#39;origin&#39;</span> <span class=s1>&#39;git@github.com:user/new-repo-name.git&#39;</span>
+</code></pre></div> <h5 id=push-to-multiple-git-remotes-with-the-one-command>Push to multiple git remotes with the one command<a class=headerlink href=#push-to-multiple-git-remotes-with-the-one-command title="Permanent link">&para;</a></h5> <p>To always push to <code>repo1</code>, <code>repo2</code>, and <code>repo3</code>, but always pull only from <code>repo1</code>, set up the remote 'origin' as follows:</p> <div class=highlight><pre><span></span><code>git remote add origin https://exampleuser@example.com/path/to/repo1
+git remote set-url --push --add origin https://exampleuser@example.com/path/to/repo1
+git remote set-url --push --add origin https://exampleuser@example.com/path/to/repo2
+git remote set-url --push --add origin https://exampleuser@example.com/path/to/repo3
+</code></pre></div> <div class=highlight><pre><span></span><code>[remote &quot;origin&quot;]
+    url = https://exampleuser@example.com/path/to/repo1
+    pushUrl = https://exampleuser@example.com/path/to/repo1
+    pushUrl = https://exampleuser@example.com/path/to/repo2
+    pushUrl = https://exampleuser@example.com/path/to/repo3
+    fetch = +refs/heads/*:refs/remotes/origin/*
+</code></pre></div> <p>To only pull from <code>repo1</code> but push to <code>repo1</code> and <code>repo2</code> for a specific branch <code>specialBranch</code>:</p> <div class=highlight><pre><span></span><code>[remote &quot;origin&quot;]
+    url = ssh://git@aaa.xxx.com:7999/yyy/repo1.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+    …
+[remote &quot;specialRemote&quot;]
+    url = ssh://git@aaa.xxx.com:7999/yyy/repo1.git
+    pushUrl = ssh://git@aaa.xxx.com:7999/yyy/repo1.git
+    pushUrl = ssh://git@aaa.xxx.com:7999/yyy/repo2.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+    …
+[branch &quot;specialBranch&quot;]
+    remote = origin
+    pushRemote = specialRemote
+    …
+</code></pre></div> <p>See <a href=https://git-scm.com/docs/git-config#git-config-branchltnamegtremote>https://git-scm.com/docs/git-config#git-config-branchltnamegtremote</a>.</p> <h4 id=aliases>Aliases<a class=headerlink href=#aliases title="Permanent link">&para;</a></h4> <p>Simple aliases to git commands can be added like aliases to a shell:</p> <div class=highlight><pre><span></span><code><span class=k>[alias]</span><span class=w></span>
+<span class=w>  </span><span class=na>caa</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>commit -a --amend -C HEAD</span><span class=w></span>
+<span class=w>  </span><span class=na>ls</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>log --oneline</span><span class=w></span>
+<span class=w>  </span><span class=na>statsu</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>status</span><span class=w></span>
+</code></pre></div> <p>But simple aliases have limitations:</p> <ul> <li>they can't have parameters</li> <li>you can't execute multiple git commands in a single alias</li> <li>you can't use <code>|</code> (pipes) or <code>grep</code></li> </ul> <p><code>git</code> allows you to escape to a shell using <code>!</code> (bang); this opens a new world of possibilities for aliases:</p> <ul> <li>use shell expansions and parameters</li> <li>use multiple git commands</li> <li>use pipes and all command line tools</li> </ul> <p>Those commands need to be wrapped into a one-line function definition:</p> <div class=highlight><pre><span></span><code><span class=k>[alias]</span><span class=w></span>
+<span class=w>  </span><span class=na>new</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>!sh -c &#39;git log $1@{1}..$1@{0} &quot;$@&quot;&#39;</span><span class=w></span>
+<span class=w>  </span><span class=na>pull-from-all</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&quot;!f() { \</span><span class=w></span>
+<span class=w>      </span><span class=na>git remote show \</span><span class=w></span>
+<span class=w>      </span><span class=na>| xargs -I{} -P0 -n1 git pull {} ${1-$(git branch --show-current)} \</span><span class=w></span>
+<span class=w>      </span><span class=c1>; } &amp;&amp; f&quot;</span><span class=w></span>
+<span class=w>  </span><span class=na>subtree-add</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s>&quot;!f() { git subtree add --prefix $2 $1 master --squash ; } ; f&quot;</span><span class=w></span>
+</code></pre></div> <h3 id=manage-changes>Manage changes<a class=headerlink href=#manage-changes title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Show changes relative to the current index (not yet staged).</span>
+git diff
+
+<span class=c1># Show changes in the staged files only.</span>
+git diff --staged
+
+<span class=c1># Show changes relative to &#39;commit&#39; (defaults to HEAD if not given).</span>
+<span class=c1># Alias of `--staged`.</span>
+git diff --cached <span class=s1>&#39;commit_hash&#39;</span>
+
+<span class=c1># Show changes relative to a different branch.</span>
+git diff <span class=s1>&#39;branch_name&#39;</span>
+
+<span class=c1># Show changes between commits.</span>
+<span class=c1># Separating the commits with `..` is optional.</span>
+git diff <span class=s1>&#39;commit_hash_1&#39;</span> <span class=s1>&#39;commit_hash_2&#39;</span>
+git diff <span class=s1>&#39;commit_hash_1..commit_hash_2&#39;</span>
+
+<span class=c1># Show changes between branches.</span>
+<span class=c1># Separating the branches with `..` is optional.</span>
+git diff <span class=s1>&#39;branch_name_1&#39;</span> <span class=s1>&#39;branch_name_2&#39;</span>
+git diff <span class=s1>&#39;branch_name_1..branch_name_2&#39;</span>
+
+<span class=c1># Show a word diff using &#39;mode&#39; to delimit changed words for emphasis.</span>
+<span class=c1># &#39;mode&#39; defaults to &#39;plain&#39;.</span>
+<span class=c1># &#39;mode&#39; must be one of &#39;color&#39;, &#39;none&#39;, &#39;plain&#39; or &#39;porcelain&#39;.</span>
+git diff --word-diff<span class=o>=</span><span class=s1>&#39;porcelain&#39;</span>
+
+<span class=c1># Just show changes between two files.</span>
+<span class=c1># DO NOT consider them part of of the repository.</span>
+<span class=c1># This can be used to diff any two files.</span>
+git diff --no-index <span class=s1>&#39;path/to/file/A&#39;</span> <span class=s1>&#39;path/to/file/B&#39;</span>
+</code></pre></div> <h4 id=create-a-patch>Create a patch<a class=headerlink href=#create-a-patch title="Permanent link">&para;</a></h4> <p>Just save the output from <code>git diff</code> to get a patch file:</p> <div class=highlight><pre><span></span><code><span class=c1># Just the current changes.</span>
+<span class=c1># No staged nor committed files.</span>
+git diff &gt; <span class=s1>&#39;file.patch&#39;</span>
+
+<span class=c1># Staged files only.</span>
+git diff --output <span class=s1>&#39;file.patch&#39;</span> --cached
+</code></pre></div> <p>The output from <code>git diff</code> just shows changes to <strong>text</strong> files by default, no metadata or other information about commits or branches.<br> To get a whole commit with all its metadata and binary changes, use <code>git format-patch</code>:</p> <div class=highlight><pre><span></span><code><span class=c1># Include 5 commits starting with &#39;commit&#39; and going backwards.</span>
+git format-patch -5 <span class=s1>&#39;commit_hash&#39;</span>
+
+<span class=c1># Include 3 commits starting from HEAD and save the patches in &#39;dir&#39;.</span>
+git format-patch <span class=s1>&#39;HEAD~3&#39;</span> -o <span class=s1>&#39;dir&#39;</span>
+
+<span class=c1># Include 2 commits from HEAD and save them as a single file.</span>
+git format-patch <span class=s1>&#39;HEAD~2&#39;</span> --stdout &gt; <span class=s1>&#39;single/file.patch&#39;</span>
+
+<span class=c1># Create a full patch of the unstaged changes.</span>
+git add . <span class=o>&amp;&amp;</span> git commit -m <span class=s1>&#39;uncommitted&#39;</span> <span class=se>\</span>
+  <span class=o>&amp;&amp;</span> git format-patch <span class=s1>&#39;HEAD~1&#39;</span> <span class=o>&amp;&amp;</span> git reset <span class=s1>&#39;HEAD~1&#39;</span>
+</code></pre></div> <h4 id=apply-a-patch>Apply a patch<a class=headerlink href=#apply-a-patch title="Permanent link">&para;</a></h4> <p>Use <code>git apply</code> to apply a patch file to the current index:</p> <div class=highlight><pre><span></span><code>git apply <span class=s1>&#39;file.patch&#39;</span>
+</code></pre></div> <p>The changes from the patch are unstaged and no commits are created.<br> To apply all commits from a patch, use <code>git am</code> on a patch created with <code>git format-patch</code>:</p> <div class=highlight><pre><span></span><code>git am <span class=s1>&#39;file.patch&#39;</span>
+</code></pre></div> <p>The commits are applied one after the other and registered in the repository's logs.</p> <h3 id=the-stash-stack>The stash stack<a class=headerlink href=#the-stash-stack title="Permanent link">&para;</a></h3> <p>The <em>stash</em> is a changelist separated from the one in the current working directory.<br> <code>git stash</code> will save the current changes there and cleans the working directory. You can (re-)apply changes from the stash at any time:</p> <div class=highlight><pre><span></span><code><span class=c1># Stash changes locally.</span>
+git stash
+
+<span class=c1># Stash changes with a message.</span>
+git stash save <span class=s1>&#39;message&#39;</span>
+
+<span class=c1># List all the stashed changes.</span>
+git stash list
+
+<span class=c1># Apply the most recent change and remove them from the stash stack.</span>
+git stash pop
+
+<span class=c1># Apply a stash, but don&#39;t remove it from the stack.</span>
+git stash apply stash@<span class=o>{</span><span class=m>6</span><span class=o>}</span>
+</code></pre></div> <h3 id=branches>Branches<a class=headerlink href=#branches title="Permanent link">&para;</a></h3> <h4 id=checkout-an-existing-remote-branch>Checkout an existing remote branch<a class=headerlink href=#checkout-an-existing-remote-branch title="Permanent link">&para;</a></h4> <p>This creates a local branch tracking an existing remote branch.</p> <div class=highlight><pre><span></span><code>$ git checkout -b <span class=s1>&#39;local-branch&#39;</span> <span class=s1>&#39;remote/existing-branch&#39;</span>
+Branch <span class=s1>&#39;local-branch&#39;</span> <span class=nb>set</span> up to track remote branch <span class=s1>&#39;existing-branch&#39;</span> from <span class=s1>&#39;remote&#39;</span>.
+Switched to a new branch <span class=s1>&#39;local-branch&#39;</span>
+</code></pre></div> <h4 id=delete-a-branch>Delete a branch<a class=headerlink href=#delete-a-branch title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># Delete local branches.</span>
+git branch --delete <span class=s1>&#39;local-branch&#39;</span>
+git branch -D <span class=s1>&#39;local-branch&#39;</span>
+
+<span class=c1># Delete remote branches.</span>
+git push <span class=s1>&#39;remote&#39;</span> <span class=s1>&#39;:feat-branch&#39;</span>
+git push <span class=s1>&#39;remote&#39;</span> --delete <span class=s1>&#39;feat-branch&#39;</span>
+
+<span class=c1># Delete both local and remote branches.</span>
+git branch --delete --remotes <span class=s1>&#39;feat-branch&#39;</span>
+</code></pre></div> <h4 id=delete-branches-which-have-been-merged-or-are-otherwise-absent-from-a-remote>Delete branches which have been merged or are otherwise absent from a remote.<a class=headerlink href=#delete-branches-which-have-been-merged-or-are-otherwise-absent-from-a-remote title="Permanent link">&para;</a></h4> <p>Command source [here][prune local branches that do not exist on remote anymore].</p> <div class=highlight><pre><span></span><code><span class=c1># Branches merged on the remote are tagged as &#39;gone&#39; in `git branch -vv`&#39;s output.</span>
+git fetch -p <span class=se>\</span>
+  <span class=o>&amp;&amp;</span> awk <span class=s1>&#39;/origin/&amp;&amp;/gone/{print $1}&#39;</span> &lt;<span class=o>(</span>git branch -vv<span class=o>)</span> <span class=p>|</span> xargs git branch -d
+
+<span class=c1># Retain the current, &#39;master&#39;, &#39;main&#39; and &#39;dev*&#39; branches in all cases.</span>
+git branch --merged <span class=p>|</span> grep -vE <span class=s1>&#39;(^\*|master|main|dev)&#39;</span> <span class=p>|</span> xargs git branch -d
+</code></pre></div> <h4 id=merge-the-master-branch-into-a-feature-branch>Merge the master branch into a feature branch<a class=headerlink href=#merge-the-master-branch-into-a-feature-branch title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>git stash pull
+git checkout <span class=s1>&#39;master&#39;</span>
+git pull
+git checkout <span class=s1>&#39;feature&#39;</span>
+git pull
+git merge --no-ff <span class=s1>&#39;master&#39;</span>
+git stash pop
+</code></pre></div> <div class=highlight><pre><span></span><code>git checkout <span class=s1>&#39;feature&#39;</span>
+git pull <span class=s1>&#39;origin&#39;</span> <span class=s1>&#39;master&#39;</span>
+</code></pre></div> <h4 id=rebase-a-branch-on-top-of-another>Rebase a branch on top of another<a class=headerlink href=#rebase-a-branch-on-top-of-another title="Permanent link">&para;</a></h4> <p><code>git rebase</code> takes the commits in a branch and appends them on top of the commits in a different branch. The commits to rebase are previously saved into a temporary area and then reapplied to the new branch, one by one, in order.</p> <div class=highlight><pre><span></span><code><span class=c1># Rebase main on top of the current branch.</span>
+git rebase <span class=s1>&#39;main&#39;</span>
+
+<span class=c1># Rebase an upstream branch on top of a local branch.</span>
+git rebase <span class=s1>&#39;remote/upstream-branch&#39;</span> <span class=s1>&#39;local-branch&#39;</span>
+
+<span class=c1># Rebase the current branch onto the *upstream* &#39;master&#39; branch.</span>
+git pull --rebase<span class=o>=</span><span class=s1>&#39;interactive&#39;</span> <span class=s1>&#39;origin&#39;</span> <span class=s1>&#39;master&#39;</span>
+</code></pre></div> <h3 id=tags>Tags<a class=headerlink href=#tags title="Permanent link">&para;</a></h3> <p><em>Annotated</em> tags are stored as full objects in git's database:</p> <div class=highlight><pre><span></span><code><span class=c1># Create annotated tags.</span>
+git tag --annotate <span class=s1>&#39;v0.1.0&#39;</span>
+
+<span class=c1># Create and sign annotated tags.</span>
+git tag -as <span class=s1>&#39;v1.2.0-r0&#39;</span> -m <span class=s2>&quot;signed annotated tag for v1.2.0 release 0&quot;</span>
+
+<span class=c1># Tag specific commits.</span>
+git tag -a <span class=s1>&#39;1.1.9&#39;</span> <span class=s1>&#39;9fceb02&#39;</span>
+
+<span class=c1># Push all annotated tags only.</span>
+git push --follow-tags
+</code></pre></div> <p>while <em>lightweight</em> tags are stored as a pointer to a specific commit:</p> <div class=highlight><pre><span></span><code><span class=c1># Create lightweight tags.</span>
+git tag <span class=s1>&#39;v0.1.1-rc0&#39;</span>
+git tag <span class=s1>&#39;1.12.1&#39;</span> <span class=s1>&#39;HEAD&#39;</span>
+</code></pre></div> <p>Type-generic tag operations:</p> <div class=highlight><pre><span></span><code><span class=c1># Push specific tags.</span>
+git push <span class=s1>&#39;origin&#39;</span> <span class=s1>&#39;v1.5&#39;</span>
+
+<span class=c1># Push all tags</span>
+git push --tags
+
+<span class=c1># Delete specific local tags only.</span>
+git tag -d <span class=s1>&#39;v1.4-lw&#39;</span>
+
+<span class=c1># Delete specific remote tags only.</span>
+git push <span class=s1>&#39;origin&#39;</span> --delete <span class=s1>&#39;v1.4-lw&#39;</span>
+</code></pre></div> <h3 id=convert-a-normal-repository-to-a-bare-one>Convert a normal repository to a bare one<a class=headerlink href=#convert-a-normal-repository-to-a-bare-one title="Permanent link">&para;</a></h3> <p>The <a href=https://git-scm.com/book/en/v2/Git-on-the-Server-Getting-Git-on-a-Server>preferred method</a> is to create a bare clone of the normal repository:</p> <div class=highlight><pre><span></span><code>git clone --bare <span class=s1>&#39;repository&#39;</span> <span class=s1>&#39;repository.git&#39;</span>
+</code></pre></div> <h3 id=lfs-extension>LFS extension<a class=headerlink href=#lfs-extension title="Permanent link">&para;</a></h3> <ol> <li>Install the extension:</li> </ol> <div class=highlight><pre><span></span><code>apt install <span class=s1>&#39;git-lfs&#39;</span>
+brew install <span class=s1>&#39;git-lfs&#39;</span>
+dnf install <span class=s1>&#39;git-lfs&#39;</span>
+pacman -S <span class=s1>&#39;git-lfs&#39;</span>
+</code></pre></div> <ol> <li>If the package manager did not enable it system-wide, enable the extension for your user account:</li> </ol> <div class=highlight><pre><span></span><code>git lfs install
+</code></pre></div> <p>Without any options, this will only setup the "lfs" smudge and clean filters if they are not already set.</p> <ol> <li>Configure file tracking from inside the repository:</li> </ol> <div class=highlight><pre><span></span><code>git lfs track <span class=s2>&quot;*.exe&quot;</span>
+git lfs track <span class=s2>&quot;enormous_file.*&quot;</span>
+</code></pre></div> <ol> <li>Add the <code>.gitattributes</code> file to the traced files:</li> </ol> <div class=highlight><pre><span></span><code>git add <span class=s1>&#39;.gitattributes&#39;</span>
+git commit -m <span class=s2>&quot;lfs configured&quot;</span>
+</code></pre></div> <h3 id=submodules>Submodules<a class=headerlink href=#submodules title="Permanent link">&para;</a></h3> <p>See <a href=https://chrisjean.com/git-submodules-adding-using-removing-and-updating/ >Git Submodules: Adding, Using, Removing, Updating</a> for more information.</p> <div class=highlight><pre><span></span><code><span class=c1># Add a submodule to an existing repository.</span>
+git submodule add <span class=s1>&#39;https://github.com/ohmyzsh/ohmyzsh&#39;</span> <span class=s1>&#39;lib/ohmyzsh&#39;</span>
+
+<span class=c1># Clone a repository which has submodules.</span>
+git clone --recursive <span class=s1>&#39;keybase://public/bananas/dotfiles&#39;</span>
+git clone --recurse-submodules <span class=s1>&#39;ohmyzsh&#39;</span> <span class=s1>&#39;keybase://public/bananas/dotfiles&#39;</span>
+
+<span class=c1># Update an existing repository which has submodules.</span>
+git pull --recurse-submodules
+</code></pre></div> <p>To delete a submodule the procedure is more complicated:</p> <ol> <li>De-init the submodule:</li> </ol> <div class=highlight><pre><span></span><code>git submodule deinit <span class=s1>&#39;lib/ohmyzsh&#39;</span>
+</code></pre></div> <p>This wil also remove its entry from <code>$REPO_ROOT/.git/config</code>.</p> <ol> <li>Remove the submodule from the repository's index:</li> </ol> <div class=highlight><pre><span></span><code>git rm -rf <span class=s1>&#39;lib/ohmyzsh&#39;</span>
+</code></pre></div> <p>This wil also remove its entry from <code>$REPO_ROOT/.gitmodules</code>.</p> <ol> <li>Commit the changes.</li> </ol> <h3 id=remove-a-file-from-a-commit>Remove a file from a commit<a class=headerlink href=#remove-a-file-from-a-commit title="Permanent link">&para;</a></h3> <p>See <a href=https://devconnected.com/how-to-remove-files-from-git-commit/ >remove files from git commit</a>.</p> <h3 id=remove-a-file-from-the-repository>Remove a file from the repository<a class=headerlink href=#remove-a-file-from-the-repository title="Permanent link">&para;</a></h3> <ol> <li><strong>Unstage</strong> the file using <code>git reset</code>; specify HEAD as the source:</li> </ol> <div class=highlight><pre><span></span><code>git reset HEAD <span class=s1>&#39;secret-file&#39;</span>
+</code></pre></div> <ol> <li><strong>Remove</strong> the file from the repository's index:</li> </ol> <div class=highlight><pre><span></span><code>git rm --cached <span class=s1>&#39;secret-file&#39;</span>
+</code></pre></div> <ol> <li>Check the file is no longer in the index:</li> </ol> <div class=highlight><pre><span></span><code>$ git ls-files <span class=p>|</span> grep <span class=s1>&#39;secret-file&#39;</span>
+$
+</code></pre></div> <ol> <li>Add the file to <code>.gitignore</code> or remove it from the working directory.</li> <li>Amend the most recent commit from your repository:</li> </ol> <div class=highlight><pre><span></span><code>git commit --amend
+</code></pre></div> <h3 id=troubleshooting>Troubleshooting<a class=headerlink href=#troubleshooting title="Permanent link">&para;</a></h3> <h4 id=debug>Debug<a class=headerlink href=#debug title="Permanent link">&para;</a></h4> <p>When everything else fails, enable tracing:</p> <div class=highlight><pre><span></span><code><span class=nb>export</span> <span class=nv>GIT_TRACE</span><span class=o>=</span><span class=m>1</span>
+</code></pre></div> <h4 id=gpg-cannot-sign-a-commit>GPG cannot sign a commit<a class=headerlink href=#gpg-cannot-sign-a-commit title="Permanent link">&para;</a></h4> <blockquote> <div class=highlight><pre><span></span><code>error: gpg failed to sign the data
+fatal: failed to write commit object
+</code></pre></div> </blockquote> <p>If <code>gnupg2</code> and <code>gpg-agent</code> 2.x are used, be sure to set the environment variable <code>GPG_TTY</code>, specially <code>zsh</code> users using <code>Powerlevel10k</code> with Instant Prompt enabled.</p> <div class=highlight><pre><span></span><code><span class=nb>export</span> <span class=nv>GPG_TTY</span><span class=o>=</span><span class=k>$(</span>tty<span class=k>)</span>
+</code></pre></div> <h4 id=git-does-not-accept-self-signed-certificates>Git does not accept self-signed certificates<a class=headerlink href=#git-does-not-accept-self-signed-certificates title="Permanent link">&para;</a></h4> <p>Disable certificate verification:</p> <div class=highlight><pre><span></span><code><span class=nb>export</span> <span class=nv>GIT_SSL_NO_VERIFY</span><span class=o>=</span><span class=nb>true</span>
+git -c http.sslVerify<span class=o>=</span><span class=nb>false</span> …
+</code></pre></div> <h3 id=further-readings>Further readings<a class=headerlink href=#further-readings title="Permanent link">&para;</a></h3> <ul> <li>The official <a href=https://git-lfs.github.com/ >LFS website</a></li> <li>Git <a href=https://git-scm.com/docs/git>docs</a></li> <li><a href=https://git-scm.com/book/en/v2/Git-Basics-Tagging>Tagging</a></li> <li><a href=https://git-scm.com/book/en/v2/Git-on-the-Server-Getting-Git-on-a-Server>Getting Git on a Server</a></li> <li><a href=https://git-scm.com/docs/git-config>git-config reference</a></li> </ul> <h3 id=sources>Sources<a class=headerlink href=#sources title="Permanent link">&para;</a></h3> <ul> <li><a href=https://stackoverflow.com/questions/6245570/how-to-get-the-current-branch-name-in-git#6245587>How to get the current branch name in Git?</a></li> <li><a href=https://chrisjean.com/git-submodules-adding-using-removing-and-updating/ >Git Submodules: Adding, Using, Removing, Updating</a></li> <li><a href=https://devconnected.com/how-to-add-and-update-git-submodules/ >How to add and update git submodules</a></li> <li><a href=https://stackoverflow.com/questions/4611512/is-there-a-way-to-make-git-pull-automatically-update-submodules#49427199>Is there a way to make git pull automatically update submodules?</a></li> <li><a href=https://careerkarma.com/blog/git-change-remote/ >How to change a git remote</a></li> <li><a href=https://stackoverflow.com/questions/44657989/why-cant-i-delete-a-branch-in-a-remote-gitlab-repository#44658277>Why can't I delete a branch in a remote GitLab repository?</a></li> <li><a href=https://www.freecodecamp.org/news/how-to-delete-a-git-branch-both-locally-and-remotely/ >How to Delete a Git Branch Both Locally and Remotely</a></li> <li><a href=https://stackoverflow.com/questions/39494631/gpg-failed-to-sign-the-data-fatal-failed-to-write-commit-object-git-2-10-0>gpg failed to sign the data fatal: failed to write commit object</a></li> <li><a href=https://stackoverflow.com/questions/5785549/able-to-push-to-all-git-remotes-with-the-one-command>Able to push to all git remotes with the one command?</a></li> <li><a href=https://stackoverflow.com/questions/5159185/create-a-git-patch-from-the-uncommitted-changes-in-the-current-working-directory>Create a git patch from the uncommitted changes in the current working directory</a></li> <li><a href=https://stackoverflow.com/questions/41882919/is-there-a-way-to-gpg-sign-all-previous-commits>Is there a way to gpg sign all previous commits?</a></li> <li><a href=https://opensource.com/article/22/4/git-tips>10 Git tips we can't live without</a></li> <li><a href=https://stackoverflow.com/questions/5257553/coloring-white-space-in-git-diffs-output#5259137>Coloring white space in git-diff's output</a></li> <li><a href=https://riptutorial.com/git/example/1423/multiple-git-configurations>Multiple git configuration</a></li> <li><a href=https://stackoverflow.com/questions/49278577/how-to-improve-gits-diff-highlighting#49281425>How to improve git's diff highlighting?</a></li> <li><a href=https://stackoverflow.com/questions/957928/is-there-a-way-to-get-the-git-root-directory-in-one-command/#957978>Get the repository's root directory</a></li> <li><a href=https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch/#1787014>How do I check out a remote Git branch</a> on <a href=https://stackoverflow.com>StackOverflow</a></li> <li><a href=https://dev.to/heroku/how-to-manage-your-secrets-with-git-crypt-56ih>How to manage your secrets with git-crypt</a></li> <li>Question about <a href=https://stackoverflow.com/questions/7929369/how-to-rebase-local-branch-with-remote-master/#18442755>how to rebase a local branch with remote master</a></li> <li>Question about how to <a href=https://stackoverflow.com/questions/16955980/git-merge-master-into-feature-branch>merge master into a feature branch</a></li> <li>Question about how to [prune local branches that do not exist on remote anymore]</li> <li>Question about how to <a href=https://stackoverflow.com/questions/6199889/rebasing-remote-branches-in-git/#6204804>rebase remote branches</a></li> <li>Quick guide about <a href=https://medium.com/@gabriellamedas/git-rebase-and-git-rebase-onto-a6a3f83f9cce>git rebase</a></li> <li>Quick guide about how to <a href=https://devconnected.com/how-to-remove-files-from-git-commit/ >remove files from git commit</a></li> <li><a href=https://www.atlassian.com/blog/git/advanced-git-aliases>One weird trick for powerful Git aliases</a></li> <li><a href=https://stackoverflow.com/questions/53106546/cannot-clone-git-from-azure-devops-using-pat#53182981>Cannot clone git from Azure DevOps using PAT</a></li> </ul> </article> </div> </div> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2022 - Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.fb4a9340.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing"}, "version": null}</script> <script src=../../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>

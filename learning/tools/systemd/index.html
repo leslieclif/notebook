@@ -1,0 +1,155 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/learning/tools/systemd/ rel=canonical><link rel="shortcut icon" href=../../../assets/images/favicon.png><meta name=generator content="mkdocs-1.4.1, mkdocs-material-7.0.3"><title>Systemd - Leslie's Online Notebook</title><link rel=stylesheet href=../../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#systemd class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Systemd </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../devops/ class=md-nav__link> Devops </a> </li> <li class=md-nav__item> <a href=../../../devops/ci/ class=md-nav__link> CI </a> </li> <li class=md-nav__item> <a href=../../../devops/cd/ class=md-nav__link> CD </a> </li> <li class=md-nav__item> <a href=../../../devops/iac/ class=md-nav__link> IAC </a> </li> <li class=md-nav__item> <a href=../../../devops/gitops/ class=md-nav__link> GitOps </a> </li> <li class=md-nav__item> <a href=../../../devops/devops-engineer/ class=md-nav__link> Skills </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Ansible <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ansible data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Ansible </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ansible/ansible/ class=md-nav__link> Ansible </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../k8s/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../../k8s/install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../../python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../vagrant/ class=md-nav__link> Vagrant </a> </li> <li class=md-nav__item> <a href=../../terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../../docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../linux/linux/ class=md-nav__link> Linux </a> </li> <li class=md-nav__item> <a href=../../linux/security/ class=md-nav__link> Linux_Security </a> </li> <li class=md-nav__item> <a href=../../linux/firewall/ class=md-nav__link> Linux_Firewall </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#systemd class=md-nav__link> Systemd </a> <nav class=md-nav aria-label=Systemd> <ul class=md-nav__list> <li class=md-nav__item> <a href=#tldr class=md-nav__link> TL;DR </a> </li> <li class=md-nav__item> <a href=#user-services class=md-nav__link> User services </a> </li> <li class=md-nav__item> <a href=#keep-past-boots-record-persistent-logging class=md-nav__link> Keep past boots record (persistent logging) </a> </li> <li class=md-nav__item> <a href=#resolved class=md-nav__link> Resolved </a> <nav class=md-nav aria-label=Resolved> <ul class=md-nav__list> <li class=md-nav__item> <a href=#disable-systemd-resolved class=md-nav__link> Disable systemd-resolved </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#sources class=md-nav__link> Sources </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>Systemd</h1> <h2 id=systemd>Systemd<a class=headerlink href=#systemd title="Permanent link">&para;</a></h2> <h3 id=tldr>TL;DR<a class=headerlink href=#tldr title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># List all available units.</span>
+systemctl list-unit-files
+
+<span class=c1># List failed units only.</span>
+systemctl list-units --state<span class=o>=</span>failed
+
+<span class=c1># Start services.</span>
+sudo systemctl start adb.service
+systemctl --user start keybase.service
+
+<span class=c1># Restart services.</span>
+sudo systemctl restart bluetooth.service
+systemctl --user restart davmail.service
+
+<span class=c1># Stop services.</span>
+sudo systemctl stop cups.service
+systemctl --user stop davmail.service
+
+<span class=c1># Enable services on boot.</span>
+sudo systemctl <span class=nb>enable</span> sshd.service
+sudo systemctl <span class=nb>enable</span> --now docker.service
+systemctl --user <span class=nb>enable</span> --now davmail.service
+
+<span class=c1># Disable services from boot.</span>
+sudo systemctl disable clamav-freshclam.service
+sudo systemctl disable --now gdm.service
+systemctl --user disable --now davmail.service
+
+<span class=c1># Suspend the system.</span>
+<span class=c1># Saves the state to RAM only.</span>
+systemctl <span class=nb>suspend</span>
+
+<span class=c1># Hibernate the system.</span>
+<span class=c1># Saves the state to disk only.</span>
+systemctl hibernate
+
+<span class=c1># Suspend the system in hybrid mode.</span>
+<span class=c1># Saves the state to *both* RAM *and* disk.</span>
+systemctl hybrid-sleep
+
+<span class=c1># Suspend the system, then hibernate after some time.</span>
+<span class=c1># Saves the state to RAM initially, and if not interrupted within the specified</span>
+<span class=c1># delay then wake up using an RTC alarm and hibernate.</span>
+<span class=c1># Specify such delay in HibernateDelaySec in systemd-sleep.conf(5).</span>
+systemctl suspend-then-hibernate
+
+<span class=c1># Show log entries.</span>
+journalctl
+journalctl -f
+journalctl -n <span class=m>20</span>
+journalctl -o json-pretty
+journalctl --no-pager
+journalctl --utc
+
+<span class=c1># Show what boots the system has logs about.</span>
+journalctl --list-boots
+
+<span class=c1># Display logs from specific boots only.</span>
+<span class=c1># Persistent logging needs to be enabled.</span>
+journalctl -b
+journalctl -b -3
+
+<span class=c1># Display logs in a specific time window</span>
+journalctl --since yesterday
+journalctl --since <span class=s2>&quot;2015-01-10 17:15:00&quot;</span>
+journalctl --since <span class=m>09</span>:00 --until <span class=s2>&quot;1 hour ago&quot;</span>
+journalctl --since <span class=s2>&quot;2015-01-10&quot;</span> --until <span class=s2>&quot;2015-01-11 03:00&quot;</span>
+
+<span class=c1># Filter logs by unit.</span>
+journalctl -u nginx.service
+journalctl -u nginx.service -u php-fpm.service --since today
+
+<span class=c1># Filter logs by process, user id or group id.</span>
+journalctl <span class=nv>_PID</span><span class=o>=</span><span class=m>8088</span>
+journalctl <span class=nv>_UID</span><span class=o>=</span><span class=m>33</span> --since today
+journalctl -F _GID
+
+<span class=c1># Filter logs by path.</span>
+journalctl /usr/bin/bash
+
+<span class=c1># Display kernel logs only.</span>
+<span class=c1># Works like `dmesg`.</span>
+journalctl -k
+journalctl -k -b -5
+
+<span class=c1># Filter logs by priority.</span>
+journalctl -p err -b
+
+<span class=c1># Truncate the output.</span>
+journalctl --no-full
+
+<span class=c1># Print everything.</span>
+journalctl -a
+
+<span class=c1># Show current logs disk usage.</span>
+journalctl --disk-usage
+
+<span class=c1># Delete old logs.</span>
+sudo journalctl --vacuum-size<span class=o>=</span>1G
+sudo journalctl --vacuum-time<span class=o>=</span>1years
+
+<span class=c1># List available timezones.</span>
+timedatectl list-timezones
+
+<span class=c1># Set timezones.</span>
+sudo timedatectl set-timezone UTC
+sudo timedatectl set-timezone Europe/Dublin
+
+<span class=c1># Set the time.</span>
+sudo timedatectl set-time <span class=m>15</span>:58:30
+sudo timedatectl set-time <span class=s1>&#39;2015-11-20 16:14:50&#39;</span>
+
+<span class=c1># Set the hardware clock to UTC.</span>
+timedatectl set-local-rtc <span class=m>0</span>
+
+<span class=c1># Set the hardware clock to local timezone.</span>
+timedatectl set-local-rtc <span class=m>1</span>
+
+<span class=c1># Set automatic time sync.</span>
+sudo timedatectl set-ntp <span class=nb>true</span>
+sudo timedatectl set-ntp <span class=nb>false</span>
+
+<span class=c1># Check the time and timezones state.</span>
+timedatectl status
+
+<span class=c1># Show the current hostname state.</span>
+hostnamectl
+hostnamectl --pretty status
+hostnamectl --static status
+
+<span class=c1># Set hostnames.</span>
+hostnamectl set-hostname staticky --static
+hostnamectl set-hostname prettiky --pretty
+</code></pre></div> <h3 id=user-services>User services<a class=headerlink href=#user-services title="Permanent link">&para;</a></h3> <p>User's service files should be placed into <code>~/.config/systemd/user</code>:</p> <div class=highlight><pre><span></span><code>cat &gt; <span class=s2>&quot;</span><span class=si>${</span><span class=nv>HOME</span><span class=si>}</span><span class=s2>/.config/systemd/user/davmail.service&quot;</span> <span class=s>&lt;&lt;EOF</span>
+<span class=s>[Unit]</span>
+<span class=s>Description=Davmail</span>
+
+<span class=s>[Service]</span>
+<span class=s>ExecStart=/usr/bin/davmail -notray</span>
+
+<span class=s>[Install]</span>
+<span class=s>WantedBy=default.target</span>
+<span class=s>EOF</span>
+</code></pre></div> <p>and can be acted upon as normal using <code>systemctl</code>'s <code>--user</code> switch</p> <div class=highlight><pre><span></span><code>systemctl --user <span class=nb>enable</span> --now davmail.service
+systemctl --user status davmail.service
+</code></pre></div> <h3 id=keep-past-boots-record-persistent-logging>Keep past boots record (persistent logging)<a class=headerlink href=#keep-past-boots-record-persistent-logging title="Permanent link">&para;</a></h3> <p>Edit the journal configuration file and set the following option:</p> <div class=highlight><pre><span></span><code><span class=c1># file /etc/systemd/journald.conf</span><span class=w></span>
+<span class=k>[Journal]</span><span class=w></span>
+<span class=na>Storage</span><span class=o>=</span><span class=s>persistent</span><span class=w></span>
+</code></pre></div> <h3 id=resolved>Resolved<a class=headerlink href=#resolved title="Permanent link">&para;</a></h3> <h4 id=disable-systemd-resolved>Disable systemd-resolved<a class=headerlink href=#disable-systemd-resolved title="Permanent link">&para;</a></h4> <ol> <li>disable and stop the systemd-resolved service:</li> </ol> <div class=highlight><pre><span></span><code>sudo systemctl disable --now systemd-resolved.service
+</code></pre></div> <ol> <li>set NetworkManager to use the default DNS resolution.</li> </ol> <div class=highlight><pre><span></span><code><span class=c1># file /etc/NetworkManager/NetworkManager.conf</span><span class=w></span>
+<span class=k>[main]</span><span class=w></span>
+<span class=na>dns</span><span class=o>=</span><span class=s>default</span><span class=w></span>
+</code></pre></div> <ol> <li>delete <code>/etc/resolv.conf</code>:</li> </ol> <div class=highlight><pre><span></span><code>sudo unlink /etc/resolv.conf
+</code></pre></div> <ol> <li>restart NetworkManager</li> </ol> <div class=highlight><pre><span></span><code>sudo service network-manager restart
+</code></pre></div> <h3 id=sources>Sources<a class=headerlink href=#sources title="Permanent link">&para;</a></h3> <ul> <li><a href=https://askubuntu.com/questions/907246/how-to-disable-systemd-resolved-in-ubuntu>How to disable systemd-resolved in Ubuntu</a></li> <li><a href=https://unix.stackexchange.com/questions/341060/what-are-the-systemctl-options-to-list-all-failed-units/341061#341061>What are the systemctl options to list all failed units?</a></li> <li><a href=https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs>How To Use Journalctl to View and Manipulate Systemd Logs</a></li> <li><a href=https://www.tecmint.com/set-time-timezone-and-synchronize-time-using-timedatectl-command/ >How to Set Time, Timezone and Synchronize System Clock Using timedatectl Command</a></li> <li><a href=https://linuxhint.com/set-hostname-using-hostnamectl-command/ >How to Set Hostname Using Hostnamectl Command?</a></li> <li><a href=https://wiki.archlinux.org/title/Power_management#Suspend_and_hibernate>Suspend and hibernate</a></li> </ul> </article> </div> </div> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2022 - Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.fb4a9340.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing"}, "version": null}</script> <script src=../../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>

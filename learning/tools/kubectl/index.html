@@ -1,0 +1,424 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/learning/tools/kubectl/ rel=canonical><link rel="shortcut icon" href=../../../assets/images/favicon.png><meta name=generator content="mkdocs-1.4.1, mkdocs-material-7.0.3"><title>Kubectl - Leslie's Online Notebook</title><link rel=stylesheet href=../../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#kubectl class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Kubectl <!-- omit in toc --> </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../devops/ class=md-nav__link> Devops </a> </li> <li class=md-nav__item> <a href=../../../devops/ci/ class=md-nav__link> CI </a> </li> <li class=md-nav__item> <a href=../../../devops/cd/ class=md-nav__link> CD </a> </li> <li class=md-nav__item> <a href=../../../devops/iac/ class=md-nav__link> IAC </a> </li> <li class=md-nav__item> <a href=../../../devops/gitops/ class=md-nav__link> GitOps </a> </li> <li class=md-nav__item> <a href=../../../devops/devops-engineer/ class=md-nav__link> Skills </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Ansible <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ansible data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Ansible </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ansible/ansible/ class=md-nav__link> Ansible </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../k8s/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../../k8s/install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../../python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../vagrant/ class=md-nav__link> Vagrant </a> </li> <li class=md-nav__item> <a href=../../terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../../docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../linux/linux/ class=md-nav__link> Linux </a> </li> <li class=md-nav__item> <a href=../../linux/security/ class=md-nav__link> Linux_Security </a> </li> <li class=md-nav__item> <a href=../../linux/firewall/ class=md-nav__link> Linux_Firewall </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#kubectl class=md-nav__link> Kubectl </a> <nav class=md-nav aria-label="Kubectl "> <ul class=md-nav__list> <li class=md-nav__item> <a href=#table-of-contents class=md-nav__link> Table of contents </a> </li> <li class=md-nav__item> <a href=#tldr class=md-nav__link> TL;DR </a> </li> <li class=md-nav__item> <a href=#configuration class=md-nav__link> Configuration </a> <nav class=md-nav aria-label=Configuration> <ul class=md-nav__list> <li class=md-nav__item> <a href=#configure-access-to-multiple-clusters class=md-nav__link> Configure access to multiple clusters </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#create-resources class=md-nav__link> Create resources </a> </li> <li class=md-nav__item> <a href=#output-formatting class=md-nav__link> Output formatting </a> </li> <li class=md-nav__item> <a href=#verbosity-and-debugging class=md-nav__link> Verbosity and debugging </a> </li> <li class=md-nav__item> <a href=#further-readings class=md-nav__link> Further readings </a> </li> <li class=md-nav__item> <a href=#sources class=md-nav__link> Sources </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>Kubectl <!-- omit in toc --></h1> <h2 id=kubectl>Kubectl <a class=headerlink href=#kubectl title="Permanent link">&para;</a></h2> <p>Command line tool for communicating with a Kubernetes cluster's control plane using the Kubernetes API.</p> <p>Resource types are case <strong>in</strong>sensitive and can be specified in their singular, plural or abbreviated form for convenience:</p> <div class=highlight><pre><span></span><code><span class=c1># The two commands below are equivalent.</span>
+kubectl get deployment,replicasets,pods -A
+kubectl get deploy,rs,po -A
+</code></pre></div> <p>Use <code>kubectl api-resources</code> to check out the available resources and their abbreviations.</p> <p>Multiple resources types can be specified together, but only one resource name is accepted at a time.<br> Resource names are case sensitive and will filter the requested resources; use the <code>-l</code>, <code>--selector</code> option to get around filtering:</p> <div class=highlight><pre><span></span><code>kubectl get deployments,replicasets -A
+kubectl get pod etcd-minikube -n kube-system
+kubectl get pods -l <span class=nv>app</span><span class=o>=</span>nginx,tier<span class=o>=</span>frontend
+</code></pre></div> <h4 id=table-of-contents>Table of contents<a class=headerlink href=#table-of-contents title="Permanent link">&para;</a></h4> <ul> <li><a href=#tldr>TL;DR</a></li> <li><a href=#configuration>Configuration</a></li> <li><a href=#configure-access-to-multiple-clusters>Configure access to multiple clusters</a></li> <li><a href=#create-resources>Create resources</a></li> <li><a href=#output-formatting>Output formatting</a></li> <li><a href=#verbosity-and-debugging>Verbosity and debugging</a></li> <li><a href=#further-readings>Further readings</a></li> <li><a href=#sources>Sources</a></li> </ul> <h3 id=tldr>TL;DR<a class=headerlink href=#tldr title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Enable shell completion.</span>
+<span class=nb>source</span> &lt;<span class=o>(</span>kubectl completion bash<span class=o>)</span>
+<span class=nb>echo</span> <span class=s2>&quot;[[ </span><span class=nv>$commands</span><span class=s2>[kubectl] ]] &amp;&amp; source &lt;(kubectl completion zsh)&quot;</span> &gt;&gt; ~/.zshrc
+
+<span class=c1># Shot the merged configuration.</span>
+kubectl config view
+
+<span class=c1># Get specific values from the configuration.</span>
+kubectl config view -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.users[].name}&#39;</span>
+kubectl config view -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.users[*].name}&#39;</span>
+kubectl config view -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.users[?(@.name == &quot;e2e&quot;)].user.password}&#39;</span>
+
+<span class=c1># Set configuration values.</span>
+kubectl config set-context --current --namespace<span class=o>=</span>keda
+kubectl config set-context gce --user<span class=o>=</span>cluster-admin --namespace<span class=o>=</span>foo
+kubectl config set-credentials <span class=se>\</span>
+  kubeuser/foo.kubernetes.com --username<span class=o>=</span>kubeuser --password<span class=o>=</span>kubepassword
+
+<span class=c1># Delete configuration values.</span>
+kubectl config <span class=nb>unset</span> users.foo
+
+<span class=c1># Use multiple config files at once.</span>
+<span class=c1># This will temporarily merge them in one big configuration file.</span>
+<span class=nv>KUBECONFIG</span><span class=o>=</span><span class=s2>&quot;path/to/config1:path/to/configN&quot;</span>
+
+<span class=c1># List contexts.</span>
+kubectl config get-contexts
+kubectl config current-context
+
+<span class=c1># Set context as the default one.</span>
+kubectl config use-context docker-desktop
+kubectl config use-context gce
+
+<span class=c1># Display addresses of the master and services.</span>
+kubectl cluster-info
+
+<span class=c1># Dump the complete current cluster state.</span>
+kubectl cluster-info dump
+kubectl cluster-info dump --output-directory<span class=o>=</span>/path/to/cluster-state
+
+<span class=c1># List supported resources types along with their short name, API group, Kind,</span>
+<span class=c1># and whether they are namespaced.</span>
+kubectl api-resources
+kubectl api-resources --namespaced<span class=o>=</span><span class=nb>true</span>
+kubectl api-resources -o name
+kubectl api-resources -o wide
+kubectl api-resources --verbs<span class=o>=</span>list,get
+
+<span class=c1># Show the documentation about resources or their fields.</span>
+kubectl explain pods
+kubectl explain pods.spec.containers
+
+<span class=c1># List and filter resources.</span>
+kubectl get pods
+kubectl get pod/coredns-845757d86-47np2 -n kube-system
+kubectl get namespaces,pods --show-labels
+kubectl get services -A -o wide
+kubectl get rs --sort-by<span class=o>=</span>.metadata.name
+kubectl get pv --sort-by<span class=o>=</span>.spec.capacity.storage --no-headers
+kubectl get po --sort-by<span class=o>=</span><span class=s1>&#39;.status.containerStatuses[0].restartCount&#39;</span>
+kubectl get events --sort-by .metadata.creationTimestamp
+kubectl get pods --field-selector<span class=o>=</span>status.phase<span class=o>=</span>Running
+kubectl get node -l<span class=o>=</span><span class=s1>&#39;!node-role.kubernetes.io/master&#39;</span>
+kubectl get replicasets -l <span class=s1>&#39;environment in (prod, qa)&#39;</span>
+kubectl get deploy --selector <span class=s1>&#39;tier,tier notin (frontend)&#39;</span>
+
+<span class=c1># Extract information from resources&#39; definition.</span>
+kubectl get deployment nginx -o yaml
+kubectl get cm kube-root-ca.crt -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.data.ca\.crt}&#39;</span>
+kubectl get po -o<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.items..metadata.name}&#39;</span>
+kubectl get po -l <span class=nv>app</span><span class=o>=</span>redis -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.items[*].metadata.labels.version}&#39;</span>
+kubectl get nodes <span class=se>\</span>
+  -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.items[*].status.addresses[?(@.type==&quot;ExternalIP&quot;)].address}&#39;</span>
+
+<span class=c1># List all fields under &#39;.metadata&#39; regardless of their name.</span>
+kubectl get pods -A -o<span class=o>=</span>custom-columns<span class=o>=</span><span class=s1>&#39;DATA:metadata.*&#39;</span>
+
+<span class=c1># List images being run in a cluster.</span>
+kubectl get po -A -o<span class=o>=</span>custom-columns<span class=o>=</span><span class=s1>&#39;DATA:spec.containers[*].image&#39;</span>
+kubectl get po -A -o<span class=o>=</span>custom-columns<span class=o>=</span><span class=s1>&#39;DATA:spec.containers[?(@.image!=&quot;k8s.gcr.io/coredns:1.6.2&quot;)].image&#39;</span>
+
+<span class=c1># List all pods in status &#39;Shutdown&#39;.</span>
+kubectl get po -A <span class=se>\</span>
+  -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.items[?(@.status.reason==&quot;Shutdown&quot;)].metadata.name}&#39;</span>
+
+<span class=c1># List ready nodes.</span>
+kubectl get nodes <span class=se>\</span>
+  -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}&#39;</span> <span class=se>\</span>
+<span class=p>|</span> grep <span class=s2>&quot;Ready=True&quot;</span>
+
+<span class=c1># List all secrets currently in use by a Pod.</span>
+kubectl get pods -o json <span class=se>\</span>
+<span class=p>|</span> jq <span class=s1>&#39;.items[].spec.containers[].env[]?.valueFrom.secretKeyRef.name&#39;</span> <span class=se>\</span>
+<span class=p>|</span> grep -v null <span class=p>|</span> sort <span class=p>|</span> uniq
+
+<span class=c1># List the name of Pods belonging to a particular RC.</span>
+<span class=nv>SELECTOR</span><span class=o>=</span><span class=si>${</span><span class=k>$(</span>kubectl get rc my-rc --output<span class=o>=</span>json <span class=p>|</span> jq -j <span class=s1>&#39;.spec.selector | to_entries | .[] | &quot;\(.key)=\(.value),&quot;&#39;</span><span class=k>)</span><span class=p>%?</span><span class=si>}</span> kubectl get pods -l<span class=o>=</span><span class=nv>$SELECTOR</span> <span class=se>\</span>
+  -o<span class=o>=</span><span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.items..metadata.name}&#39;</span>
+
+<span class=c1># List the containerID of initContainers from all Pods.</span>
+<span class=c1># Helpful when cleaning up stopped containers while avoiding the removal of</span>
+<span class=c1># initContainers</span>
+kubectl get pods --all-namespaces <span class=se>\</span>
+  -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{range .items[*].status.initContainerStatuses[*]}{.containerID}{&quot;\n&quot;}{end}&#39;</span> <span class=se>\</span>
+<span class=p>|</span> cut -d/ -f3
+
+<span class=c1># Produce a period-delimited tree of all keys returned for nodes.</span>
+<span class=c1># Helpful when trying to locate a specific key within a complex nested JSON</span>
+<span class=c1># structure.</span>
+kubectl get nodes -o json <span class=p>|</span> jq -c <span class=s1>&#39;path(..)|[.[]|tostring]|join(&quot;.&quot;)&#39;</span>
+
+<span class=c1># Show detailed information about resources.</span>
+kubectl describe node pi
+kubectl describe deploy,rs,po -l <span class=nv>app</span><span class=o>=</span>redis
+
+<span class=c1># Create resources from manifests.</span>
+kubectl apply -f manifest.yaml
+kubectl apply -f path/to/m1.yaml -f ./m2.yaml
+kubectl apply -f dir/
+kubectl apply -f https://git.io/vPieo
+cat <span class=s>&lt;&lt;-EOF | kubectl apply -f -</span>
+<span class=s>  apiVersion: v1</span>
+<span class=s>  kind: Secret</span>
+<span class=s>  metadata:</span>
+<span class=s>    name: mysecret</span>
+<span class=s>  type: Opaque</span>
+<span class=s>  data:</span>
+<span class=s>    password: $(echo -n &quot;s33msi4&quot; | base64 -w0)</span>
+<span class=s>    username: $(echo -n &quot;jane&quot; | base64 -w0)</span>
+<span class=s>EOF</span>
+
+<span class=c1># Compare the current state of the cluster against the state it would be in if</span>
+<span class=c1># a manifest was applied</span>
+kubectl diff -f ./manifest.yaml
+
+<span class=c1># Start a Pod.</span>
+kubectl run nginx --image nginx
+kubectl run busybox --rm -it --image<span class=o>=</span>busybox -n keda -- sh
+
+<span class=c1># Start a Pod and write its specs into a file.</span>
+kubectl run nginx --image<span class=o>=</span>nginx --dry-run<span class=o>=</span>client -o yaml &gt; pod.yaml
+
+<span class=c1># Create a single instance deployment of &#39;nginx&#39;.</span>
+kubectl create deployment nginx --image<span class=o>=</span>nginx
+
+<span class=c1># Start a Job using an existing Job as template</span>
+kubectl create job backup-before-upgrade-13.6.2-to-13.9.2 <span class=se>\</span>
+  --from<span class=o>=</span>cronjob.batch/backup -n gitlab
+
+<span class=c1># Wait for a pod to be &#39;ready&#39;.</span>
+kubectl <span class=nb>wait</span> --for <span class=s1>&#39;condition=ready&#39;</span> --timeout 120s <span class=se>\</span>
+  pod -l <span class=s1>&#39;app.kubernetes.io/component=controller&#39;</span>
+
+<span class=c1># Update the &#39;image&#39; field of the &#39;www&#39; containers from the &#39;frontend&#39;</span>
+<span class=c1># Deployment.</span>
+<span class=c1># This starts a rolling update.</span>
+kubectl <span class=nb>set</span> image deployment/frontend <span class=nv>www</span><span class=o>=</span>image:v2
+
+<span class=c1># Show the history of resources, including the revision.</span>
+kubectl rollout <span class=nb>history</span> deployment/frontend
+
+<span class=c1># Rollback resources to the latest previous version.</span>
+kubectl rollout undo deployment/frontend
+
+<span class=c1># Rollback resources to a specific revision.</span>
+kubectl rollout undo deployment/frontend --to-revision<span class=o>=</span><span class=m>2</span>
+
+<span class=c1># Follow the rolling update status of the &#39;frontend&#39; Deployment until its</span>
+<span class=c1># completion.</span>
+kubectl rollout status -w deployment/frontend
+
+<span class=c1># Start a rolling restart of the &#39;frontend&#39; Deployment.</span>
+kubectl rollout restart deployment/frontend
+
+<span class=c1># Replace a Pod based on the JSON passed into stdin.</span>
+cat pod.json <span class=p>|</span> kubectl replace -f -
+
+<span class=c1># Force replacement, deletion and recreation (in this order) of resources.</span>
+<span class=c1># This Will cause a service outage.</span>
+kubectl replace --force -f ./pod.json
+
+<span class=c1># Create a service for a replicated &#39;nginx&#39;.</span>
+<span class=c1># Set it to serve on port 80 and connect to the containers on port 8000.</span>
+kubectl expose rc nginx --port<span class=o>=</span><span class=m>80</span> --target-port<span class=o>=</span><span class=m>8000</span>
+
+<span class=c1># Update a single-container Pod&#39;s image tag.</span>
+kubectl get pod mypod -o yaml <span class=se>\</span>
+<span class=p>|</span> sed <span class=s1>&#39;s/\(image: myimage\):.*$/\1:v4/&#39;</span> <span class=se>\</span>
+<span class=p>|</span> kubectl replace -f -
+
+<span class=c1># Add Labels to resources.</span>
+kubectl label pods nginx custom-name<span class=o>=</span>awesome
+
+<span class=c1># Add Annotations.</span>
+kubectl annotate pods alpine icon-url<span class=o>=</span>http://goo.gl/XXBTWq
+
+<span class=c1># Autoscale resources.</span>
+kubectl autoscale deployment foo --min<span class=o>=</span><span class=m>2</span> --max<span class=o>=</span><span class=m>10</span>
+
+<span class=c1># Partially update resources.</span>
+kubectl patch node k8s-node-1 -p <span class=s1>&#39;{&quot;spec&quot;:{&quot;unschedulable&quot;:true}}&#39;</span>
+
+<span class=c1># Update a container&#39;s image.</span>
+<span class=c1># &#39;spec.containers[*].name&#39; is required to specify the path of the merged key.</span>
+kubectl patch pod valid-pod <span class=se>\</span>
+  -p <span class=s1>&#39;{&quot;spec&quot;:{&quot;containers&quot;: [{&quot;name&quot;: &quot;kubernetes-serve-hostname&quot;,&quot;image&quot;:&quot;new image&quot;}]}}&#39;</span>
+
+<span class=c1># Update a container&#39;s image using a JSONPatch with positional arrays.</span>
+kubectl patch pod valid-pod --type<span class=o>=</span><span class=s1>&#39;json&#39;</span> <span class=se>\</span>
+  -p<span class=o>=</span><span class=s1>&#39;[{&quot;op&quot;: &quot;replace&quot;, &quot;path&quot;: &quot;/spec/containers/0/image&quot;, &quot;value&quot;:&quot;new image&quot;}]&#39;</span>
+
+<span class=c1># Disable a Deployment&#39;s livenessProbe using a JSONPatch with positional arrays.</span>
+kubectl patch deployment valid-deployment --type json <span class=se>\</span>
+  -p<span class=o>=</span><span class=s1>&#39;[{&quot;op&quot;: &quot;remove&quot;, &quot;path&quot;: &quot;/spec/template/spec/containers/0/livenessProbe&quot;}]&#39;</span>
+
+<span class=c1># Add a new element to a positional array.</span>
+kubectl patch sa default --type<span class=o>=</span><span class=s1>&#39;json&#39;</span> <span class=se>\</span>
+  -p<span class=o>=</span><span class=s1>&#39;[{&quot;op&quot;: &quot;add&quot;, &quot;path&quot;: &quot;/secrets/1&quot;, &quot;value&quot;: {&quot;name&quot;: &quot;whatever&quot; } }]&#39;</span>
+
+<span class=c1># Edit the service named docker-registry.</span>
+kubectl edit svc/docker-registry
+<span class=nv>KUBE_EDITOR</span><span class=o>=</span><span class=s2>&quot;nano&quot;</span> kubectl edit svc/docker-registry
+
+<span class=c1># Scale a replicaset named &#39;foo&#39; to 3</span>
+kubectl scale --replicas<span class=o>=</span><span class=m>3</span> rs/foo
+
+<span class=c1># Scale a resource specified in &quot;foo.yaml&quot; to 3 replicas.</span>
+kubectl scale --replicas<span class=o>=</span><span class=m>3</span> -f foo.yaml
+
+<span class=c1># If the Deployment named &#39;mysql&#39;&#39;s current size is 2, scale it to 3.</span>
+kubectl scale --current-replicas<span class=o>=</span><span class=m>2</span> --replicas<span class=o>=</span><span class=m>3</span> deployment/mysql
+
+<span class=c1># Scale multiple ReplicationControllers at once.</span>
+kubectl scale --replicas<span class=o>=</span><span class=m>5</span> rc/foo rc/bar rc/baz
+
+<span class=c1># Delete a Pod using the type and name specified in pod.json.</span>
+kubectl delete -f ./pod.json
+
+<span class=c1># Delete Pods and Services named &#39;baz&#39; and &#39;foo&#39;.</span>
+kubectl delete pod,service baz foo
+
+<span class=c1># Delete pods and services with Label name=myLabel.</span>
+kubectl delete pods,services -l <span class=nv>name</span><span class=o>=</span>myLabel
+
+<span class=c1># Delete all pods and services in namespace my-ns.</span>
+kubectl -n my-ns delete pod,svc --all
+
+<span class=c1># Delete all pods matching awk&#39;s pattern1 or pattern2.</span>
+kubectl get pods --no-headers <span class=se>\</span>
+<span class=p>|</span> awk <span class=s1>&#39;/pattern1|pattern2/{print $1}&#39;</span> <span class=se>\</span>
+<span class=p>|</span> xargs -n1 kubectl delete pods
+
+<span class=c1># Delete non-default service accounts.</span>
+kubectl get serviceaccounts <span class=se>\</span>
+  -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s2>&quot;{.items[?(@.metadata.name!=&#39;default&#39;)].metadata.name}&quot;</span> <span class=se>\</span>
+<span class=p>|</span> xargs -n1 kubectl delete serviceaccounts
+
+<span class=c1># Attach to a running container.</span>
+kubectl attach my-pod -i
+
+<span class=c1># Run command in existing Pods.</span>
+kubectl <span class=nb>exec</span> my-pod -- ls /
+kubectl <span class=nb>exec</span> my-pod -c my-container -- ls /
+
+<span class=c1># Show metrics for a given Pod and its containers.</span>
+kubectl top pod busybox --containers
+
+<span class=c1># Get logs from resources.</span>
+kubectl logs redis-0
+kubectl logs -l <span class=nv>name</span><span class=o>=</span>myLabel
+kubectl logs my-pod -c my-container
+
+<span class=c1># Follow logs.</span>
+kubectl logs -f my-pod
+kubectl logs -f my-pod -c my-container
+kubectl logs -f -l <span class=nv>name</span><span class=o>=</span>myLabel --all-containers
+
+<span class=c1># Get logs for a previous instantiation of a container.</span>
+kubectl logs nginx --previous
+
+<span class=c1># Get the logs of the first Pod matching ID.</span>
+kubectl logs <span class=k>$(</span>kubectl get pods --no-headers <span class=p>|</span> grep <span class=nv>$ID</span> <span class=p>|</span> awk <span class=s1>&#39;{print $2}&#39;</span><span class=k>)</span>
+
+<span class=c1># Verify user&#39;s permissions on the cluster.</span>
+kubectl auth can-i create roles
+kubectl auth can-i list pods
+
+<span class=c1># Taint a Node.</span>
+kubectl taint nodes node1 <span class=nv>key1</span><span class=o>=</span>value1:NoSchedule
+
+<span class=c1># Taint all nodes in a certain nodepool (Azure AKS).</span>
+kubectl get no -l <span class=s2>&quot;agentpool=nodepool1&quot;</span> -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.items[*].metadata.name}&#39;</span>
+<span class=p>|</span> xargs -n1 -I<span class=o>{}</span> -p kubectl taint nodes <span class=o>{}</span> <span class=nv>key1</span><span class=o>=</span>value1:NoSchedule
+
+<span class=c1># Remove a taint.</span>
+<span class=c1># Notice the &#39;-&#39; sign at the end.</span>
+kubectl taint nodes node1 <span class=nv>key1</span><span class=o>=</span>value1:NoSchedule-
+
+<span class=c1># If a taint with that key and effect already exists, replace its value.</span>
+kubectl taint nodes foo <span class=nv>dedicated</span><span class=o>=</span>special-user:NoSchedule
+
+<span class=c1># Mark Nodes as unschedulable.</span>
+kubectl cordon my-node
+
+<span class=c1># Mark my-node as schedulable.</span>
+kubectl uncordon my-node
+
+<span class=c1># Drain my-node in preparation for maintenance.</span>
+kubectl drain my-node
+
+<span class=c1># Show metrics for a given node.</span>
+kubectl top node my-node
+
+<span class=c1># Listen on port 5000 on the local machine and forward connections to port 6000</span>
+<span class=c1># of my-pod</span>
+kubectl port-forward my-pod <span class=m>5000</span>:6000
+</code></pre></div> <h3 id=configuration>Configuration<a class=headerlink href=#configuration title="Permanent link">&para;</a></h3> <p>The configuration files are loaded as follows:</p> <ol> <li>If the <code>--kubeconfig</code> flag is set, then only that file is loaded; the flag may only be set <strong>once</strong>, and no merging takes place:</li> </ol> <div class=highlight><pre><span></span><code>kubectl config --kubeconfig config.local view
+</code></pre></div> <ol> <li>If the <code>$KUBECONFIG</code> environment variable is set, then it is used as a list of paths following the normal path delimiting rules for your system; the files are merged:</li> </ol> <div class=highlight><pre><span></span><code><span class=nb>export</span> <span class=nv>KUBECONFIG</span><span class=o>=</span><span class=s2>&quot;/tmp/config.local:.kube/config.prod&quot;</span>
+</code></pre></div> <p>When a value is modified, it is modified in the file that defines the stanza; when a value is created, it is created in the first existing file; if no file in the chain exist, then the last file in the list is created with the configuration.</p> <ol> <li>If none of the above happens, <code>~/.kube/config</code> is used, and no merging takes place.</li> </ol> <p>The configuration file can be edited, or acted upon from the command line:</p> <div class=highlight><pre><span></span><code><span class=c1># Show the merged configuration.</span>
+kubectl config view
+<span class=nv>KUBECONFIG</span><span class=o>=</span><span class=s2>&quot;~/.kube/config:config.local&quot;</span> kubectl config view
+
+<span class=c1># Show specific values only.</span>
+kubectl config view -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.users[].name}&#39;</span>
+kubectl config view -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s1>&#39;{.users[?(@.name == &quot;e2e&quot;)].user.password}&#39;</span>
+
+<span class=c1># Add a new user that supports basic auth.</span>
+kubectl config set-credentials kubeuser/foo.kubernetes.com <span class=se>\</span>
+  --username<span class=o>=</span>kubeuser --password<span class=o>=</span>kubepassword
+
+<span class=c1># Delete user &#39;foo&#39;.</span>
+kubectl config <span class=nb>unset</span> users.foo
+
+<span class=c1># List the available contexts.</span>
+kubectl config get-contexts
+
+<span class=c1># Display the current default context name.</span>
+kubectl config current-context
+
+<span class=c1># Set the default context.</span>
+kubectl config use-context minikube
+
+<span class=c1># Permanently setup specific contexts.</span>
+kubectl config set-context --current --namespace<span class=o>=</span>ggckad-s2
+kubectl config set-context gce --user<span class=o>=</span>cluster-admin --namespace<span class=o>=</span>foo
+</code></pre></div> <h4 id=configure-access-to-multiple-clusters>Configure access to multiple clusters<a class=headerlink href=#configure-access-to-multiple-clusters title="Permanent link">&para;</a></h4> <p>See <a href=https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/ >configure access to multiple clusters</a> for details.</p> <h3 id=create-resources>Create resources<a class=headerlink href=#create-resources title="Permanent link">&para;</a></h3> <p>The preferred way to create resources is to define them inside <code>manifest</code>s and then apply those:</p> <div class=highlight><pre><span></span><code><span class=nn>---</span><span class=w></span>
+<span class=c1># file manifest.yaml</span><span class=w></span>
+<span class=nn>---</span><span class=w></span>
+<span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class=w></span>
+<span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span><span class=w></span>
+<span class=nt>metadata</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox-sleep</span><span class=w></span>
+<span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>containers</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox</span><span class=w></span>
+<span class=w>      </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox</span><span class=w></span>
+<span class=w>      </span><span class=nt>args</span><span class=p>:</span><span class=w></span>
+<span class=w>        </span><span class="p p-Indicator">-</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">sleep</span><span class=w></span>
+<span class=w>        </span><span class="p p-Indicator">-</span><span class=w> </span><span class=s>&quot;1000000&quot;</span><span class=w></span>
+<span class=nn>---</span><span class=w></span>
+<span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class=w></span>
+<span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span><span class=w></span>
+<span class=nt>metadata</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox-sleep-less</span><span class=w></span>
+<span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>containers</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox</span><span class=w></span>
+<span class=w>      </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox</span><span class=w></span>
+<span class=w>      </span><span class=nt>args</span><span class=p>:</span><span class=w></span>
+<span class=w>        </span><span class="p p-Indicator">-</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">sleep</span><span class=w></span>
+<span class=w>        </span><span class="p p-Indicator">-</span><span class=w> </span><span class=s>&quot;1000&quot;</span><span class=w></span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Apply the manifest.</span>
+kubectl apply -f manifest.yaml
+
+<span class=c1># Apply multiple manifests together.</span>
+kubectl apply -f path/to/m1.yaml -f m2.yaml
+
+<span class=c1># Apply all manifests in a directory.</span>
+kubectl apply -f ./dir
+
+<span class=c1># Apply a remote manifest.</span>
+kubectl apply -f https://git.io/vPieo
+
+<span class=c1># Define a manifest using HEREDOC and apply it.</span>
+cat <span class=s>&lt;&lt;EOF | kubectl apply -f -</span>
+<span class=s>apiVersion: v1</span>
+<span class=s>kind: Secret</span>
+<span class=s>metadata:</span>
+<span class=s>  name: mysecret</span>
+<span class=s>type: Opaque</span>
+<span class=s>data:</span>
+<span class=s>  password: $(echo -n &quot;s33msi4&quot; | base64 -w0)</span>
+<span class=s>  username: $(echo -n &quot;jane&quot; | base64 -w0)</span>
+<span class=s>EOF</span>
+</code></pre></div> <p>When subsequentially (re-)applying manifests, one can compare the current state of the cluster against the state it would be in if the manifest was applied:</p> <div class=highlight><pre><span></span><code>kubectl diff -f manifest.yaml
+</code></pre></div> <p>Resources can also be created using default values or specifying them on the command line:</p> <div class=highlight><pre><span></span><code><span class=c1># Start a Pod.</span>
+kubectl run nginx --image nginx
+kubectl run busybox --rm -it --image<span class=o>=</span>busybox -n keda -- sh
+
+<span class=c1># Start a Pod and write its specs into a file.</span>
+kubectl run nginx --image<span class=o>=</span>nginx --dry-run<span class=o>=</span>client -o yaml &gt; pod.yaml
+
+<span class=c1># Create a single instance deployment of &#39;nginx&#39;.</span>
+kubectl create deployment nginx --image<span class=o>=</span>nginx
+
+<span class=c1># Start a Job using an existing Job as template</span>
+kubectl create job backup-before-upgrade-13.6.2-to-13.9.2 <span class=se>\</span>
+  --from<span class=o>=</span>cronjob.batch/backup -n gitlab
+</code></pre></div> <h3 id=output-formatting>Output formatting<a class=headerlink href=#output-formatting title="Permanent link">&para;</a></h3> <p>Add the <code>-o</code>, <code>--output</code> option to a command:</p> <table> <thead> <tr> <th>Format</th> <th>Description</th> </tr> </thead> <tbody> <tr> <td><code>-o=custom-columns=&lt;spec&gt;</code></td> <td>Print a table using a comma separated list of custom columns</td> </tr> <tr> <td><code>-o=custom-columns-file=&lt;filename&gt;</code></td> <td>Print a table using the custom columns template in the &lt;filename&gt; file</td> </tr> <tr> <td><code>-o=json</code></td> <td>Output a JSON formatted API object</td> </tr> <tr> <td><code>-o=jsonpath=&lt;template&gt;</code></td> <td>Print the fields defined in a jsonpath expression</td> </tr> <tr> <td><code>-o=jsonpath-file=&lt;filename&gt;</code></td> <td>Print the fields defined by the jsonpath expression in the &lt;filename&gt; file</td> </tr> <tr> <td><code>-o=name</code></td> <td>Print only the resource name and nothing else</td> </tr> <tr> <td><code>-o=wide</code></td> <td>Output in the plain-text format with any additional information, and for pods, the node name is included</td> </tr> <tr> <td><code>-o=yaml</code></td> <td>Output a YAML formatted API object</td> </tr> </tbody> </table> <p>Examples using <code>-o=custom-columns</code>:</p> <div class=highlight><pre><span></span><code><span class=c1># Print all the container images running in the cluster.</span>
+kubectl get pods -A -o<span class=o>=</span>custom-columns<span class=o>=</span><span class=s1>&#39;DATA:spec.containers[*].image&#39;</span>
+
+<span class=c1># As above, but exclude &#39;k8s.gcr.io/coredns:1.6.2&#39; from the list.</span>
+kubectl get pods -A <span class=se>\</span>
+  -o<span class=o>=</span>custom-columns<span class=o>=</span><span class=s1>&#39;DATA:spec.containers[?(@.image!=&quot;k8s.gcr.io/coredns:1.6.2&quot;)].image&#39;</span>
+
+<span class=c1># Print all fields under &#39;metadata&#39; regardless of their name</span>
+kubectl get pods -A -o<span class=o>=</span>custom-columns<span class=o>=</span><span class=s1>&#39;DATA:metadata.*&#39;</span>
+</code></pre></div> <h3 id=verbosity-and-debugging>Verbosity and debugging<a class=headerlink href=#verbosity-and-debugging title="Permanent link">&para;</a></h3> <p>Verbosity is controlled through the <code>-v</code> flag, or <code>--v</code> followed by an integer representing the log level.</p> <p>General Kubernetes logging conventions and the associated log levels are described in the following table:</p> <table> <thead> <tr> <th>Verbosity</th> <th>Description</th> </tr> </thead> <tbody> <tr> <td><code>--v=0</code></td> <td>Generally useful for this to always be visible to a cluster operator.</td> </tr> <tr> <td><code>--v=1</code></td> <td>A reasonable default log level if you don't want verbosity.</td> </tr> <tr> <td><code>--v=2</code></td> <td>Useful steady state information about the service and important log messages that may correlate to significant changes in the system. This is the recommended default log level for most systems.</td> </tr> <tr> <td><code>--v=3</code></td> <td>Extended information about changes.</td> </tr> <tr> <td><code>--v=4</code></td> <td>Debug level verbosity.</td> </tr> <tr> <td><code>--v=6</code></td> <td>Display requested resources.</td> </tr> <tr> <td><code>--v=7</code></td> <td>Display HTTP request headers.</td> </tr> <tr> <td><code>--v=8</code></td> <td>Display HTTP request contents.</td> </tr> <tr> <td><code>--v=9</code></td> <td>Display HTTP request contents without truncation of contents.</td> </tr> </tbody> </table> <h3 id=further-readings>Further readings<a class=headerlink href=#further-readings title="Permanent link">&para;</a></h3> <ul> <li><a href=https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/ >Assigning Pods to Nodes</a></li> <li><a href=https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/ >Taints and Tolerations</a></li> <li><a href=https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands>Commands reference</a></li> <li><a href=https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/ >Configure access to multiple clusters</a></li> </ul> <h3 id=sources>Sources<a class=headerlink href=#sources title="Permanent link">&para;</a></h3> <ul> <li><a href=https://kubernetes.io/docs/reference/kubectl/cheatsheet>Cheatsheet</a></li> <li><a href=https://kubernetes.io/docs/tasks/run-application/run-single-instance-stateful-application/ >Run a single-instance stateful application</a></li> <li><a href=https://kubernetes.io/docs/tasks/run-application/run-replicated-stateful-application/ >Run a replicated stateful application</a></li> <li><a href=https://medium.com/@lizrice/accessing-an-application-on-kubernetes-in-docker-1054d46b64b1>Accessing an application on Kubernetes in Docker</a></li> </ul> </article> </div> </div> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2022 - Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.fb4a9340.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing"}, "version": null}</script> <script src=../../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>

@@ -1,0 +1,377 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/learning/linux/bash/ rel=canonical><link rel="shortcut icon" href=../../../assets/images/favicon.png><meta name=generator content="mkdocs-1.4.1, mkdocs-material-7.0.3"><title>Bash - Leslie's Online Notebook</title><link rel=stylesheet href=../../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#important class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Bash </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../devops/ class=md-nav__link> Devops </a> </li> <li class=md-nav__item> <a href=../../../devops/ci/ class=md-nav__link> CI </a> </li> <li class=md-nav__item> <a href=../../../devops/cd/ class=md-nav__link> CD </a> </li> <li class=md-nav__item> <a href=../../../devops/iac/ class=md-nav__link> IAC </a> </li> <li class=md-nav__item> <a href=../../../devops/gitops/ class=md-nav__link> GitOps </a> </li> <li class=md-nav__item> <a href=../../../devops/devops-engineer/ class=md-nav__link> Skills </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Ansible <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ansible data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Ansible </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ansible/ansible/ class=md-nav__link> Ansible </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../k8s/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../../k8s/install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../../python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../vagrant/ class=md-nav__link> Vagrant </a> </li> <li class=md-nav__item> <a href=../../terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../../docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../linux/ class=md-nav__link> Linux </a> </li> <li class=md-nav__item> <a href=../security/ class=md-nav__link> Linux_Security </a> </li> <li class=md-nav__item> <a href=../firewall/ class=md-nav__link> Linux_Firewall </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#important class=md-nav__link> Important </a> </li> <li class=md-nav__item> <a href=#bash class=md-nav__link> BASH </a> </li> <li class=md-nav__item> <a href=#shebang class=md-nav__link> SHEBANG </a> </li> <li class=md-nav__item> <a href=#variables class=md-nav__link> Variables </a> </li> <li class=md-nav__item> <a href=#user-input class=md-nav__link> User Input </a> </li> <li class=md-nav__item> <a href=#special-variables-and-positional-arguments class=md-nav__link> Special Variables and Positional Arguments </a> </li> <li class=md-nav__item> <a href=#if-elif-and-else-statements class=md-nav__link> If, Elif and Else Statements </a> </li> <li class=md-nav__item> <a href=#command-substitution class=md-nav__link> Command Substitution </a> </li> <li class=md-nav__item> <a href=#short-form-comparison class=md-nav__link> Short form Comparison </a> </li> <li class=md-nav__item> <a href=#string-comparison class=md-nav__link> String Comparison </a> </li> <li class=md-nav__item> <a href=#while-loop class=md-nav__link> While Loop </a> </li> <li class=md-nav__item> <a href=#case-statements class=md-nav__link> Case Statements </a> </li> <li class=md-nav__item> <a href=#functions class=md-nav__link> Functions </a> </li> <li class=md-nav__item> <a href=#variable-scopes class=md-nav__link> Variable scopes </a> </li> <li class=md-nav__item> <a href=#menus-in-bash class=md-nav__link> Menus in Bash </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>Bash</h1> <h3 id=important>Important<a class=headerlink href=#important title="Permanent link">&para;</a></h3> <ul> <li>Use Lowercase for user variables. UPPERCASE reserved for env variables set by the OS or Shell startup variables</li> <li>Run <code>man test</code> to find all testing conditions. For example to test if input is a file (-f) or a directory (-d)</li> <li>Use <code>[[ test ]]</code> as it is a best practise while testing conditions</li> <li>Arithmatic operations have to be enclosed by <code>(())</code></li> <li>Example: <code>a=5,b=6,c=$((a+b))</code></li> <li><code>kill -l</code> shows all kill signals that are available</li> </ul> <h3 id=bash>BASH<a class=headerlink href=#bash title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=nb>echo</span> <span class=nv>$0</span>                 <span class=c1># Shows the default shell that is configured</span>
+cat /etc/shells         <span class=c1># Shows all the configured shells for the user</span>
+cat /etc/passwd         <span class=c1># Shows the configured default shell for the user</span>
+
+<span class=c1># Script execution</span>
+<span class=nb>echo</span> <span class=nv>$PATH</span>              <span class=c1># Shows all the paths where the shell will look for executables</span>
+mkdir -p scripts        <span class=c1># Create a custom script directory to store common task scripts</span>
+<span class=nb>export</span> <span class=nv>PATH</span><span class=o>=</span><span class=s1>&#39;${PATH}:${HOME}/scripts&#39;</span> <span class=c1># Appends custom scripts directory to PATH variable</span>
+</code></pre></div> <h3 id=shebang>SHEBANG<a class=headerlink href=#shebang title="Permanent link">&para;</a></h3> <ul> <li>Shebang tells the shell which <strong>interpretor</strong> to use.</li> <li>Shebang is <strong>NOT</strong> a comment. <code>#!</code> tells shell its a shebang</li> <li>For python, it would be python interpretor, for shell scripts it would be bash. <div class=highlight><pre><span></span><code>which bash              <span class=c1># Shows the path where bash is installed for the user</span>
+which -a bash           <span class=c1># Shows all the paths for bash. Its a link</span>
+ls -li /bin/bash /usr/bin/bash      <span class=c1># Output shows the same INODE number, so it verfies that its the same bash file that is linked</span>
+<span class=c1># Inside the script file scripts/my_first_script.sh</span>
+<span class=c1>#!/bin/bash             # path of bash found from `which -a bash`      </span>
+<span class=c1># For Python</span>
+<span class=c1>#!/usr/bin/python       # path of which python</span>
+
+<span class=c1># Execution </span>
+<span class=c1># 1. Execute the script using full path</span>
+<span class=c1># 2. Execute the script from inside the directory</span>
+<span class=c1># 3. Execute the script using bash even if &#39;x&#39; permission is not present on the file</span>
+chmod -x my_first_script.sh
+<span class=c1># Example: bash my_first_script.sh</span>
+<span class=c1># This way you can override the &#39;Permission denied&#39; error that comes from Shebang directive</span>
+<span class=c1># Give executable permission</span>
+chmod +x my_first_script.sh
+
+<span class=c1># source command</span>
+<span class=c1># Scripts can be executed using .  or source notation.</span>
+<span class=c1># When . is used, the script is executed in a sub-shell</span>
+<span class=c1># When source is used, the script is executed in the same or current shell</span>
+./my_first_script.sh        <span class=c1># 1st Method of execution</span>
+. my_first_script.sh        <span class=c1># 2nd Method of execution</span>
+<span class=nb>source</span> my_first_script.sh   <span class=c1># 3rd Method of execution</span>
+</code></pre></div></li> </ul> <h3 id=variables>Variables<a class=headerlink href=#variables title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Create Variables</span>
+<span class=c1># 1. Direct assignment</span>
+<span class=nv>os</span><span class=o>=</span>Linux                <span class=c1># Without any spaces between =</span>
+<span class=nv>distro</span><span class=o>=</span><span class=s2>&quot;MX Linux&quot;</span>       <span class=c1># String variable </span>
+<span class=c1># No floating point variable can be defined in bash, only integers</span>
+<span class=c1># No special characters in variable names or starting name with number</span>
+<span class=c1># Display Variables</span>
+<span class=nb>echo</span> <span class=nv>$os</span>                <span class=c1># Display only var value</span>
+<span class=nb>echo</span> <span class=s2>&quot;I&#39;m learning </span><span class=nv>$distro</span><span class=s2>&quot;</span> <span class=c1># Display inside string using &quot;&quot;</span>
+<span class=nb>echo</span> <span class=s1>&#39;Im learning $distro&#39;</span>  <span class=c1># Using single quotes will print $distro as is and not expand the variable value</span>
+<span class=nb>echo</span> <span class=s2>&quot;Im learning \$os using </span><span class=nv>$distro</span><span class=s2>&quot;</span> <span class=c1># Using a single \ will escape the special character $ and print as string</span>
+
+<span class=c1># Display all variables in the env</span>
+<span class=nb>set</span>                     <span class=c1># Shows all set variables</span>
+env                     <span class=c1># Shows all env variables</span>
+printenv                <span class=c1># Shows all env variables</span>
+<span class=c1># Remove variables</span>
+<span class=nb>unset</span> os                <span class=c1># Remember there is no $</span>
+
+<span class=c1># Read-Only Variables (constant)</span>
+<span class=c1># Use declare syntax with -r option</span>
+<span class=nb>declare</span> -r <span class=nv>logdir</span><span class=o>=</span><span class=s2>&quot;/var/log&quot;</span>
+ls <span class=nv>$logdir</span>
+<span class=nv>logdir</span><span class=o>=</span>abc              <span class=c1># It will throw error &quot;readonly variable&quot;</span>
+<span class=nb>unset</span> logdir            <span class=c1># It will throw error &quot;readonly variable&quot;</span>
+</code></pre></div> <h3 id=user-input>User Input<a class=headerlink href=#user-input title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=nb>read</span> name               <span class=c1># It will wait for user to input name and press enter</span>
+<span class=nb>echo</span> <span class=nv>$name</span>              <span class=c1># Will show the value input by user</span>
+<span class=c1># Show helpful message</span>
+<span class=nb>read</span> -p <span class=s2>&quot;Enter IP Address: &quot;</span> ip     <span class=c1># This will display the message and wait for user input</span>
+<span class=c1># Hide the input user value</span>
+<span class=nb>read</span> -s -p <span class=s2>&quot;Enter password: &quot;</span> pass  <span class=c1># -s will not echo the input value that is typed</span>
+</code></pre></div> <h3 id=special-variables-and-positional-arguments>Special Variables and Positional Arguments<a class=headerlink href=#special-variables-and-positional-arguments title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Example</span>
+./script.sh ﬁlename1 dir1 <span class=m>10</span>.0.0.1
+<span class=c1># Where</span>
+<span class=nv>$0</span> is the name of the script itself <span class=o>(</span>script.sh<span class=o>)</span>.
+<span class=nv>$1</span> is the ﬁrst positional argument <span class=o>(</span>ﬁlename1<span class=o>)</span>
+<span class=nv>$2</span> is the second positional argument <span class=o>(</span>dir1<span class=o>)</span>
+<span class=nv>$3</span> is the last argument of the script <span class=o>(</span><span class=m>10</span>.0.0.1<span class=o>)</span>
+
+<span class=nv>$#</span> is the number of the positional arguments <span class=o>(</span>i.e total arguments passed<span class=o>)</span>
+<span class=s2>&quot;</span><span class=nv>$*</span><span class=s2>&quot;</span> is a string representation of all positional arguments: <span class=nv>$1</span>, <span class=nv>$2</span>, <span class=nv>$3</span> ....
+<span class=nv>$?</span> is the most recent foreground <span class=nb>command</span> <span class=nb>exit</span> status
+</code></pre></div> <h3 id=if-elif-and-else-statements>If, Elif and Else Statements<a class=headerlink href=#if-elif-and-else-statements title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Structure</span>
+<span class=k>if</span> <span class=o>[[</span> some_condition_is_true <span class=o>]]</span>
+<span class=k>then</span>
+//execute this code
+<span class=k>elif</span> <span class=o>[[</span> some_other_condition_is_true <span class=o>]]</span>
+<span class=k>then</span>
+//execute_this_code
+<span class=k>else</span>
+//execute_this_code
+ﬁ
+
+<span class=c1>### TESTING CONDITIONS =&gt; man test ###</span>
+ 
+<span class=c1>### For numbers (integers) ###</span>
+<span class=c1># -eq   equal to</span>
+<span class=c1># -ne   not equal to</span>
+<span class=c1># -lt   less than</span>
+<span class=c1># -le   less than or equal to</span>
+<span class=c1># -gt   greater than</span>
+<span class=c1># -ge   greater than or equal to</span>
+ 
+<span class=c1># For files:</span>
+<span class=c1># -s    file exists and is not empty</span>
+<span class=c1># -f    file exists and is not a directory</span>
+<span class=c1># -d    directory exists</span>
+<span class=c1># -x    file is executable by the user</span>
+<span class=c1># -w    file is writable by the user</span>
+<span class=c1># -r    file is readable by the user</span>
+ 
+<span class=c1># For Strings</span>
+<span class=c1># =     the equality operator for strings if using single square brackets [ ]</span>
+<span class=c1># ==    the equality operator for strings if using double square brackets [[ ]]</span>
+<span class=c1># !=    the inequality operator for strings</span>
+<span class=c1># -n $str   str is nonzero length</span>
+<span class=c1># -z $str   str is zero length</span>
+ 
+<span class=c1># &amp;&amp;  =&gt; the logical and operator</span>
+<span class=c1># ||  =&gt; the logical or operator</span>
+</code></pre></div> <h3 id=command-substitution>Command Substitution<a class=headerlink href=#command-substitution title="Permanent link">&para;</a></h3> <ul> <li>Run the shell command and store the output in a variable.</li> <li>2 Ways to perform command substitution</li> <li>Using <code>command</code> within back-ticks.</li> <li>Using $(command) <div class=highlight><pre><span></span><code><span class=nv>now</span><span class=o>=</span><span class=s2>&quot;`date`&quot;</span>          <span class=c1># Output of date command is stored in variable now</span>
+<span class=c1># Note: as output of date is a string, better to enclose the command inside double quotes</span>
+<span class=nb>echo</span> <span class=nv>$now</span>             <span class=c1># Shows the value</span>
+<span class=nv>users</span><span class=o>=</span><span class=s2>&quot;</span><span class=k>$(</span>who<span class=k>)</span><span class=s2>&quot;</span>        <span class=c1># Enclosing who command inside double quotes as its output is string</span>
+<span class=nb>echo</span> <span class=nv>$users</span>
+
+<span class=c1># Piping multiple commands</span>
+<span class=nv>output</span><span class=o>=</span><span class=s2>&quot;</span><span class=k>$(</span>ps -ef <span class=p>|</span> grep bash<span class=k>)</span><span class=s2>&quot;</span>
+<span class=nb>echo</span> <span class=nv>$output</span>
+
+<span class=c1># Getting Current Date and Time</span>
+man date                <span class=c1># Check the current formatting options</span>
+<span class=nv>now</span><span class=o>=</span><span class=k>$(</span>date +%F_%H%M<span class=k>)</span>    <span class=c1># DD/MM/YY_HHMM</span>
+<span class=c1># To use this in a backup scenario</span>
+sudo tar -cvzf etc-<span class=k>$(</span>date +%F_%H%M<span class=k>)</span>.tar.gz /etc/    <span class=c1># Adds current date and time to backup file</span>
+</code></pre></div></li> </ul> <h3 id=short-form-comparison>Short form Comparison<a class=headerlink href=#short-form-comparison title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Check for regular file</span>
+<span class=o>[[</span>  -f <span class=s2>&quot;/tmp/text.txt&quot;</span> <span class=o>]]</span> <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s2>&quot;file found&quot;</span> <span class=o>||</span> <span class=nb>echo</span> <span class=s2>&quot;file not found&quot;</span>
+
+<span class=c1># Check for file exists</span>
+<span class=o>[[</span>  -e <span class=s2>&quot;/tmp/text.txt&quot;</span> <span class=o>]]</span> <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=s2>&quot;file exists&quot;</span> <span class=o>||</span> <span class=nb>echo</span> <span class=s2>&quot;file not found&quot;</span>
+</code></pre></div> <h3 id=string-comparison>String Comparison<a class=headerlink href=#string-comparison title="Permanent link">&para;</a></h3> <ul> <li>Use single <code>=</code> when using <code>[]</code></li> <li>Use double <code>==</code> when using <code>[[]]</code></li> <li>Remember to use <code>""</code> to enclose the variables to avoid String spilts <div class=highlight><pre><span></span><code><span class=c1># Substring comparison</span>
+<span class=nv>str1</span><span class=o>=</span><span class=s2>&quot;Hello, Linux is a wonderful OS&quot;</span>
+<span class=k>if</span> <span class=o>[[</span> <span class=s2>&quot;</span><span class=nv>$str1</span><span class=s2>&quot;</span> <span class=o>==</span> *<span class=s2>&quot;Linux&quot;</span>* <span class=o>]]</span>
+<span class=k>then</span>
+    <span class=nb>echo</span> <span class=s2>&quot;Found&quot;</span>
+<span class=k>fi</span>
+
+<span class=c1># String Length comparison</span>
+<span class=nv>str1</span><span class=o>=</span><span class=s2>&quot;Hello, Linux is a wonderful OS&quot;</span>
+<span class=k>if</span> <span class=o>[[</span> -z <span class=s2>&quot;</span><span class=nv>$str1</span><span class=s2>&quot;</span> <span class=o>]]</span>
+<span class=k>then</span>
+    <span class=nb>echo</span> <span class=s2>&quot;String length is zero&quot;</span>
+<span class=k>fi</span>
+
+<span class=k>if</span> <span class=o>[[</span> -n <span class=s2>&quot;</span><span class=nv>$str1</span><span class=s2>&quot;</span> <span class=o>]]</span>
+<span class=k>then</span>
+    <span class=nb>echo</span> <span class=s2>&quot;String length is non zero&quot;</span>
+<span class=k>fi</span>
+
+<span class=c1># Elseif</span>
+<span class=nv>i</span><span class=o>=</span><span class=m>10</span>
+<span class=k>if</span> <span class=o>[[</span> <span class=nv>$i</span> -lt <span class=m>10</span> <span class=o>]]</span>
+<span class=k>then</span>
+   <span class=nb>echo</span> <span class=s2>&quot;i is less than 10.&quot;</span>
+<span class=k>elif</span> <span class=o>[[</span> <span class=nv>$i</span> -eq <span class=m>10</span> <span class=o>]]</span>
+<span class=k>then</span>
+   <span class=nb>echo</span> <span class=s2>&quot;i is 10&quot;</span>
+<span class=k>else</span>
+   <span class=nb>echo</span> <span class=s2>&quot;i is greater than or equal to 10.&quot;</span>
+<span class=k>fi</span>
+</code></pre></div> ## For Loop</li> <li>The list can be a series of strings separated by spaces, a range of numbers, output of a command, an array, and so on. <div class=highlight><pre><span></span><code><span class=c1># Structure</span>
+<span class=k>for</span> item <span class=k>in</span> LIST
+<span class=k>do</span>
+    COMMANDS
+<span class=k>done</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Example with strings list</span>
+<span class=k>for</span> os <span class=k>in</span> Ubuntu Kali CentOS Slackware <span class=s2>&quot;Mx Linux&quot;</span>
+<span class=k>do</span>
+    <span class=nb>echo</span> <span class=s2>&quot;os is </span><span class=nv>$os</span><span class=s2>&quot;</span>
+<span class=k>done</span>
+
+<span class=c1># Range</span>
+<span class=k>for</span> num <span class=k>in</span> <span class=o>{</span><span class=m>3</span>..7<span class=o>}</span>
+<span class=k>do</span>
+    <span class=nb>echo</span> <span class=s2>&quot;num is </span><span class=nv>$num</span><span class=s2>&quot;</span>
+<span class=k>done</span>
+
+<span class=c1># Using Step increment in range</span>
+<span class=k>for</span> num <span class=k>in</span> <span class=o>{</span><span class=m>10</span>..100..5<span class=o>}</span>             <span class=c1># This will start the seq from 10 and increment counter by 5 till 100</span>
+<span class=k>do</span>
+    <span class=nb>echo</span> <span class=s2>&quot;num is </span><span class=nv>$num</span><span class=s2>&quot;</span>
+<span class=k>done</span>
+
+<span class=c1># Iterating over files in current directory and displaying contents</span>
+<span class=k>for</span> item <span class=k>in</span> ./*         <span class=c1># . is current dir and * is all files</span>
+<span class=k>do</span>
+    <span class=nb>echo</span> <span class=s2>&quot;Displaying contents of </span><span class=nv>$item</span><span class=s2>&quot;</span>
+    sleep <span class=m>1</span>
+    <span class=nb>echo</span> <span class=s2>&quot;cat </span><span class=nv>$item</span><span class=s2>&quot;</span>
+    <span class=nb>echo</span> <span class=s2>&quot;########&quot;</span>
+<span class=k>done</span>
+</code></pre></div></li> </ul> <h3 id=while-loop>While Loop<a class=headerlink href=#while-loop title="Permanent link">&para;</a></h3> <ul> <li>The set of commands are executed as long as the given condition evaluates to true. <div class=highlight><pre><span></span><code><span class=c1># Structure</span>
+<span class=k>while</span> CONDITION
+<span class=k>do</span>
+    COMMANDS
+<span class=k>done</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Increment </span>
+<span class=nv>i</span><span class=o>=</span><span class=m>0</span>
+<span class=k>while</span> <span class=o>[[</span> <span class=nv>$i</span> -lt <span class=m>10</span> <span class=o>]]</span>
+<span class=k>do</span>
+    <span class=nb>echo</span> <span class=s2>&quot;</span><span class=nv>$i</span><span class=s2>&quot;</span>
+    <span class=nb>let</span> <span class=nv>i</span><span class=o>=</span>i+1       <span class=c1># OR this can also be written as ((i++))</span>
+<span class=k>done</span>
+
+<span class=c1># Infinite loop</span>
+<span class=k>while</span> <span class=nb>true</span>
+<span class=k>do</span>
+    <span class=nb>echo</span> <span class=s2>&quot;Hello&quot;</span>
+<span class=k>done</span>
+
+<span class=c1># Process monitoring using Infinite Loop</span>
+<span class=k>while</span> :             <span class=c1># This is another way to represent true</span>
+<span class=k>do</span>
+    <span class=nv>output</span><span class=o>=</span><span class=s2>&quot;</span><span class=k>$(</span>pgrep -l <span class=nv>$1</span><span class=k>)</span><span class=s2>&quot;</span> <span class=c1># If process is not running, output will be 0</span>
+    <span class=k>if</span> <span class=o>[[</span> -n <span class=s2>&quot;</span><span class=nv>$output</span><span class=s2>&quot;</span> <span class=o>]]</span>
+    <span class=k>then</span>
+        <span class=nb>echo</span> <span class=s2>&quot;Process \&quot;</span><span class=nv>$1</span><span class=s2>\&quot; is running&quot;</span>
+    <span class=k>else</span>
+        <span class=nb>echo</span> <span class=s2>&quot;Process \&quot;</span><span class=nv>$1</span><span class=s2>\&quot; is NOT running&quot;</span>
+    <span class=k>fi</span>
+    sleep <span class=m>3</span>
+<span class=k>done</span>
+</code></pre></div></li> </ul> <h3 id=case-statements>Case Statements<a class=headerlink href=#case-statements title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code><span class=c1># Structure</span>
+<span class=k>case</span> EXPRESSION <span class=k>in</span>
+    PATTERN_1<span class=o>)</span>
+        STATEMENTS
+        <span class=p>;;</span>
+    PATTERN_2<span class=o>)</span>
+        STATEMENTS
+        <span class=p>;;</span>
+    PATTERN_N<span class=o>)</span>
+        STATEMENTS
+        <span class=p>;;</span>
+    *<span class=o>)</span>
+        STATEMENTS
+        <span class=p>;;</span>
+<span class=k>esac</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Sample case wih different combinations</span>
+<span class=c1>#!/bin/bash</span>
+<span class=nb>echo</span> -n <span class=s2>&quot;Enter your favorite pet: &quot;</span>
+<span class=nb>read</span> PET
+
+<span class=k>case</span> <span class=nv>$PET</span> <span class=k>in</span>
+    dog<span class=o>)</span>
+        <span class=nb>echo</span> <span class=s2>&quot;Your favorite pet is a dog&quot;</span>
+        <span class=p>;;</span>
+    cat<span class=p>|</span>Cat<span class=o>)</span>
+        <span class=nb>echo</span> <span class=s2>&quot;You like cats&quot;</span>
+        <span class=p>;;</span>
+    fish<span class=p>|</span><span class=s2>&quot;African Turtle&quot;</span><span class=o>)</span>
+        <span class=nb>echo</span> <span class=s2>&quot;Fish or Turtles are great&quot;</span>
+        <span class=p>;;</span>
+    *<span class=o>)</span>
+        <span class=nb>echo</span> <span class=s2>&quot;Your pets are unknown&quot;</span>
+        <span class=p>;;</span>
+<span class=k>esac</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Another example</span>
+<span class=c1>#!/bin/bash</span>
+<span class=k>if</span> <span class=o>[[</span> <span class=nv>$#</span> -ne <span class=m>2</span> <span class=o>]]</span>
+<span class=k>then</span>
+    <span class=nb>echo</span> <span class=s2>&quot;Run the script with 2 args: SIGNAL and PID.&quot;</span>
+    <span class=nb>exit</span>
+<span class=k>fi</span>
+
+<span class=k>case</span> <span class=nv>$1</span> <span class=k>in</span>
+    <span class=m>1</span><span class=o>)</span>
+        <span class=nb>echo</span> <span class=s2>&quot;Sending the SIGHUP signal to </span><span class=nv>$2</span><span class=s2>&quot;</span>
+        <span class=nb>kill</span> -SIGHUP <span class=nv>$2</span>
+        <span class=p>;;</span>
+    <span class=m>2</span><span class=o>)</span>
+        <span class=nb>echo</span> <span class=s2>&quot;Sending the SIGINT signal to </span><span class=nv>$2</span><span class=s2>&quot;</span>
+        <span class=nb>kill</span> -SIGINT <span class=nv>$2</span>
+        <span class=p>;;</span>
+    <span class=m>15</span><span class=o>)</span>
+        <span class=nb>echo</span> <span class=s2>&quot;Sending the SIGTERM signal to </span><span class=nv>$2</span><span class=s2>&quot;</span>
+        <span class=nb>kill</span> -SIGTERM <span class=nv>$2</span>
+        <span class=p>;;</span>
+    *<span class=o>)</span>
+        <span class=nb>echo</span> <span class=s2>&quot;Signal number </span><span class=nv>$1</span><span class=s2> will not be delivered&quot;</span>
+        <span class=p>;;</span>
+<span class=k>esac</span>
+<span class=c1># Now start the sleep process in the background</span>
+sleep <span class=m>1000</span> <span class=p>&amp;</span>
+pgrep sleep     <span class=c1># Check the PID for sleep</span>
+./signal.sh <span class=m>1501</span> <span class=m>1</span>  <span class=c1># Send SIGHUP to sleep process</span>
+</code></pre></div></p> <h3 id=functions>Functions<a class=headerlink href=#functions title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code><span class=k>function</span> print_something <span class=o>()</span> <span class=o>{</span>
+    <span class=nb>echo</span> <span class=s2>&quot;I&#39;m a simple function&quot;</span>
+<span class=o>}</span>
+<span class=c1># 2nd type of declaring function without the keyword</span>
+display_something <span class=o>()</span> <span class=o>{</span>
+    <span class=nb>echo</span> <span class=s2>&quot;Print here!&quot;</span>
+<span class=o>}</span>
+<span class=c1># Calling the functions</span>
+print_something
+display_something
+</code></pre></div> - Processing arguments is done using $1, $2 and so on. Its not done using the paranthesis. - Here $1 is the frst argument of the function and not the script. <div class=highlight><pre><span></span><code><span class=c1># Passing Arguments and processing return code</span>
+create_files <span class=o>()</span> <span class=o>{</span>
+    <span class=nb>echo</span> <span class=s2>&quot;Creating file </span><span class=nv>$1</span><span class=s2>&quot;</span>
+    touch <span class=nv>$1</span>
+    chmod <span class=m>400</span> <span class=nv>$1</span>
+    <span class=nb>echo</span> <span class=s2>&quot;Creating file </span><span class=nv>$2</span><span class=s2>&quot;</span>
+    touch <span class=nv>$2</span>
+    chmod <span class=m>400</span> <span class=nv>$2</span>
+    <span class=k>return</span> <span class=m>10</span>
+<span class=o>}</span>
+create_files aa.txt bb.txt
+<span class=nb>echo</span> <span class=nv>$?</span>     <span class=c1># Prints the return code sent by the function</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Processing return values</span>
+<span class=k>function</span> lines_in_files <span class=o>()</span> <span class=o>{</span>
+    grep -c <span class=s2>&quot;</span><span class=nv>$1</span><span class=s2>&quot;</span> <span class=s2>&quot;</span><span class=nv>$2</span><span class=s2>&quot;</span> 
+<span class=o>}</span>
+<span class=c1># Calling function</span>
+<span class=nv>n</span><span class=o>=</span><span class=k>$(</span>lines_in_files <span class=s2>&quot;usb&quot;</span> <span class=s2>&quot;/var/log/dmesg&quot;</span><span class=k>)</span>
+<span class=nb>echo</span> <span class=nv>$n</span>
+</code></pre></div></p> <h3 id=variable-scopes>Variable scopes<a class=headerlink href=#variable-scopes title="Permanent link">&para;</a></h3> <ul> <li>Variable scope is global and is visible inside the functions</li> <li>Varibales if changed inside the function, change is done globally</li> <li>Use <code>local</code> variables inside function which is only inside function body <div class=highlight><pre><span></span><code><span class=ch>#!/bin/bash</span>
+<span class=nv>var1</span><span class=o>=</span><span class=s2>&quot;AA&quot;</span>
+<span class=nv>var2</span><span class=o>=</span><span class=s2>&quot;BB&quot;</span>
+
+<span class=k>function</span> funct1 <span class=o>()</span> <span class=o>{</span>
+    <span class=nb>echo</span> <span class=s2>&quot;Inside funct1, var1=</span><span class=nv>$var1</span><span class=s2> var2=</span><span class=nv>$var2</span><span class=s2>&quot;</span>
+<span class=o>}</span>
+funct1
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Using Global and Local functions</span>
+<span class=c1>#!/bin/bash</span>
+<span class=nv>var1</span><span class=o>=</span><span class=s2>&quot;AA&quot;</span>
+<span class=nv>var2</span><span class=o>=</span><span class=s2>&quot;BB&quot;</span>
+
+<span class=k>function</span> funct1 <span class=o>()</span> <span class=o>{</span>
+    <span class=nv>var1</span><span class=o>=</span><span class=s2>&quot;XX&quot;</span>
+    <span class=nb>local</span> <span class=nv>var2</span><span class=o>=</span><span class=s2>&quot;YY&quot;</span>
+    <span class=nb>echo</span> <span class=s2>&quot;Inside funct1, var1=</span><span class=nv>$var1</span><span class=s2> var2=</span><span class=nv>$var2</span><span class=s2>&quot;</span>
+<span class=o>}</span>
+funct1
+<span class=nb>echo</span> <span class=s2>&quot;After calling funct1, var1=</span><span class=nv>$var1</span><span class=s2> var2=</span><span class=nv>$var2</span><span class=s2>&quot;</span>
+</code></pre></div></li> </ul> <h3 id=menus-in-bash>Menus in Bash<a class=headerlink href=#menus-in-bash title="Permanent link">&para;</a></h3> <ul> <li><strong>ITEM</strong> is a user deﬁned variable and the <strong>LIST</strong> is a series of strings, numbers or output of commands.</li> <li><strong>REPLY</strong> is the number that is selected by the user.</li> <li>Menus is repeated till break command is executed or <code>Ctrl+C</code> is pressed.</li> <li>Default Prompt is <code>#?</code> and can be changed by overriding <code>PS3</code> prompt variable <div class=highlight><pre><span></span><code><span class=c1># Structure</span>
+<span class=k>select</span> ITEM <span class=k>in</span> LIST
+<span class=k>do</span>
+    COMMANDS
+<span class=k>done</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Override Prompt</span>
+<span class=nv>PS3</span><span class=o>=</span><span class=s2>&quot;Choose your country: &quot;</span>
+<span class=k>select</span> COUNTRY <span class=k>in</span> Germany France USA <span class=s2>&quot;United Kingdom&quot;</span>
+<span class=k>do</span>
+    <span class=nb>echo</span> <span class=s2>&quot;COUNTRY is </span><span class=nv>$COUNTRY</span><span class=s2>&quot;</span>
+    <span class=nb>echo</span> <span class=s2>&quot;REPLY is </span><span class=nv>$REPLY</span><span class=s2>&quot;</span>
+<span class=k>done</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># Adding case to select</span>
+<span class=nv>PS3</span><span class=o>=</span><span class=s2>&quot;Choose your country: &quot;</span>
+<span class=k>select</span> COUNTRY <span class=k>in</span> Germany France USA <span class=s2>&quot;United Kingdom&quot;</span> Quit
+<span class=k>do</span>
+    <span class=k>case</span> <span class=nv>$REPLY</span> <span class=k>in</span> 
+        <span class=m>1</span><span class=o>)</span> 
+            <span class=nb>echo</span> <span class=s2>&quot;You speak French&quot;</span>
+            <span class=p>;;</span>
+        <span class=m>2</span><span class=o>)</span> 
+            <span class=nb>echo</span> <span class=s2>&quot;You speak German&quot;</span>
+            <span class=p>;;</span>
+        <span class=m>3</span><span class=o>)</span> 
+            <span class=nb>echo</span> <span class=s2>&quot;You speak American English&quot;</span>
+            <span class=p>;;</span>
+        <span class=m>4</span><span class=o>)</span> 
+            <span class=nb>echo</span> <span class=s2>&quot;You speak UK English&quot;</span>
+            <span class=p>;;</span>
+        <span class=m>5</span><span class=o>)</span> 
+            <span class=nb>echo</span> <span class=s2>&quot;Quitting!!&quot;</span>
+            <span class=nb>break</span>
+            <span class=p>;;</span>
+        *<span class=o>)</span> 
+            <span class=nb>echo</span> <span class=s2>&quot;Invalid Option </span><span class=nv>$REPLY</span><span class=s2>&quot;</span>
+            <span class=p>;;</span>
+    <span class=k>esac</span>
+
+<span class=k>done</span>
+</code></pre></div></li> </ul> </article> </div> </div> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2022 - Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.fb4a9340.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing"}, "version": null}</script> <script src=../../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>

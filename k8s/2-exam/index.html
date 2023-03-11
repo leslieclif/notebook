@@ -1,4 +1,4 @@
-<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/k8s/2-exam/ rel=canonical><link rel="shortcut icon" href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-7.0.3"><title>CKA exam testing - Leslie's Online Notebook</title><link rel=stylesheet href=../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#cka-exam-testing class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> CKA exam testing </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../devops/ class=md-nav__link> Index </a> </li> <li class=md-nav__item> <a href=../../devops/ci/ class=md-nav__link> CI </a> </li> <li class=md-nav__item> <a href=../../devops/cd/ class=md-nav__link> CD </a> </li> <li class=md-nav__item> <a href=../../devops/iac/ class=md-nav__link> IAC </a> </li> <li class=md-nav__item> <a href=../../devops/gitops/ class=md-nav__link> GitOps </a> </li> <li class=md-nav__item> <a href=../../devops/devops-engineer/ class=md-nav__link> Skills </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Ansible <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ansible data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Ansible </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../learning/ansible/ansible/ class=md-nav__link> Ansible </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../learning/git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../../learning/python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../learning/vagrant/ class=md-nav__link> Vagrant </a> </li> <li class=md-nav__item> <a href=../../learning/terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../../learning/docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../learning/k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../learning/linux/linux/ class=md-nav__link> Linux </a> </li> <li class=md-nav__item> <a href=../../learning/linux/security/ class=md-nav__link> Linux_Security </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#cka-exam-testing class=md-nav__link> CKA exam testing </a> <nav class=md-nav aria-label="CKA exam testing"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#preparation class=md-nav__link> Preparation </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#general-questions class=md-nav__link> General Questions </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>CKA exam testing</h1> <h2 id=cka-exam-testing>CKA exam testing<a class=headerlink href=#cka-exam-testing title="Permanent link">&para;</a></h2> <h3 id=preparation>Preparation<a class=headerlink href=#preparation title="Permanent link">&para;</a></h3> <p>Q: Create a Job that run 60 time with 2 jobs running in parallel <a href=https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ >https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/</a></p> <p>Q: Find which Pod is taking max CPU Use <code>kubectl top</code> to find CPU usage per pod</p> <p>Q: List all PersistentVolumes sorted by their name Use <code>kubectl get pv --sort-by=</code> &lt;- this problem is buggy &amp; also by default kubectl give the output sorted by name.</p> <p>Q: Create a NetworkPolicy to allow connect to port 8080 by busybox pod only <a href=https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ >https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/</a> Make sure to use <code>apiVersion: extensions/v1beta1</code> which works on both 1.6 and 1.7</p> <p>Q: fixing broken nodes, see <a href=https://kubernetes.io/docs/concepts/architecture/nodes/ >https://kubernetes.io/docs/concepts/architecture/nodes/</a></p> <p>Q: etcd backup, see <a href=https://kubernetes.io/docs/getting-started-guides/ubuntu/backups/ >https://kubernetes.io/docs/getting-started-guides/ubuntu/backups/</a> <a href=https://www.mirantis.com/blog/everything-you-ever-wanted-to-know-about-using-etcd-with-kubernetes-v1-6-but-were-afraid-to-ask/ >https://www.mirantis.com/blog/everything-you-ever-wanted-to-know-about-using-etcd-with-kubernetes-v1-6-but-were-afraid-to-ask/</a></p> <p>Q: TLS bootstrapping, see <a href=https://coreos.com/kubernetes/docs/latest/openssl.html>https://coreos.com/kubernetes/docs/latest/openssl.html</a> <a href=https://kubernetes.io/docs/admin/kubelet-tls-bootstrapping/ >https://kubernetes.io/docs/admin/kubelet-tls-bootstrapping/</a> <a class="magiclink magiclink-github magiclink-repository" href=https://github.com/cloudflare/cfssl title="GitHub Repository: cloudflare/cfssl">cloudflare/cfssl</a></p> <p>Q: You have a Container with a volume mount. Add a init container that creates an empty file in the volume. (only trick is to mount the volume to init-container as well)</p> <p><a href=https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ >https://kubernetes.io/docs/concepts/workloads/pods/init-containers/</a> <div class=highlight><pre><span></span><code>apiVersion: v1
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/k8s/2-exam/ rel=canonical><link rel="shortcut icon" href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.4.1, mkdocs-material-7.0.3"><title>CKA exam testing - Leslie's Online Notebook</title><link rel=stylesheet href=../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#cka-exam-testing class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> CKA exam testing </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../devops/ class=md-nav__link> Devops </a> </li> <li class=md-nav__item> <a href=../../devops/ci/ class=md-nav__link> CI </a> </li> <li class=md-nav__item> <a href=../../devops/cd/ class=md-nav__link> CD </a> </li> <li class=md-nav__item> <a href=../../devops/iac/ class=md-nav__link> IAC </a> </li> <li class=md-nav__item> <a href=../../devops/gitops/ class=md-nav__link> GitOps </a> </li> <li class=md-nav__item> <a href=../../devops/devops-engineer/ class=md-nav__link> Skills </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Ansible <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ansible data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Ansible </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../learning/ansible/ansible/ class=md-nav__link> Ansible </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../learning/git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../../learning/python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../learning/vagrant/ class=md-nav__link> Vagrant </a> </li> <li class=md-nav__item> <a href=../../learning/terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../../learning/docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../learning/k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../learning/linux/linux/ class=md-nav__link> Linux </a> </li> <li class=md-nav__item> <a href=../../learning/linux/security/ class=md-nav__link> Linux_Security </a> </li> <li class=md-nav__item> <a href=../../learning/linux/firewall/ class=md-nav__link> Linux_Firewall </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#cka-exam-testing class=md-nav__link> CKA exam testing </a> <nav class=md-nav aria-label="CKA exam testing"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#preparation class=md-nav__link> Preparation </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#general-questions class=md-nav__link> General Questions </a> </li> <li class=md-nav__item> <a href=#topics-to-focus-on class=md-nav__link> Topics to focus on </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>CKA exam testing</h1> <h2 id=cka-exam-testing>CKA exam testing<a class=headerlink href=#cka-exam-testing title="Permanent link">&para;</a></h2> <h3 id=preparation>Preparation<a class=headerlink href=#preparation title="Permanent link">&para;</a></h3> <p>Q: Create a Job that run 60 time with 2 jobs running in parallel <a href=https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ >https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/</a></p> <p>Q: Find which Pod is taking max CPU Use <code>kubectl top</code> to find CPU usage per pod</p> <p>Q: List all PersistentVolumes sorted by their name Use <code>kubectl get pv --sort-by=</code> &lt;- this problem is buggy &amp; also by default kubectl give the output sorted by name.</p> <p>Q: Create a NetworkPolicy to allow connect to port 8080 by busybox pod only <a href=https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ >https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/</a> Make sure to use <code>apiVersion: extensions/v1beta1</code> which works on both 1.6 and 1.7</p> <p>Q: fixing broken nodes, see <a href=https://kubernetes.io/docs/concepts/architecture/nodes/ >https://kubernetes.io/docs/concepts/architecture/nodes/</a></p> <p>Q: etcd backup, see <a href=https://kubernetes.io/docs/getting-started-guides/ubuntu/backups/ >https://kubernetes.io/docs/getting-started-guides/ubuntu/backups/</a> <a href=https://www.mirantis.com/blog/everything-you-ever-wanted-to-know-about-using-etcd-with-kubernetes-v1-6-but-were-afraid-to-ask/ >https://www.mirantis.com/blog/everything-you-ever-wanted-to-know-about-using-etcd-with-kubernetes-v1-6-but-were-afraid-to-ask/</a></p> <p>Q: TLS bootstrapping, see <a href=https://coreos.com/kubernetes/docs/latest/openssl.html>https://coreos.com/kubernetes/docs/latest/openssl.html</a> <a href=https://kubernetes.io/docs/admin/kubelet-tls-bootstrapping/ >https://kubernetes.io/docs/admin/kubelet-tls-bootstrapping/</a> <a class="magiclink magiclink-github magiclink-repository" href=https://github.com/cloudflare/cfssl title="GitHub Repository: cloudflare/cfssl">cloudflare/cfssl</a></p> <p>Q: You have a Container with a volume mount. Add a init container that creates an empty file in the volume. (only trick is to mount the volume to init-container as well)</p> <p><a href=https://kubernetes.io/docs/concepts/workloads/pods/init-containers/ >https://kubernetes.io/docs/concepts/workloads/pods/init-containers/</a> <div class=highlight><pre><span></span><code>apiVersion: v1
 kind: Pod
 metadata:
   name: test-pd
@@ -66,4 +66,1098 @@ spec:
 EOF
 </code></pre></div></p> <p>To test, run a curl pod <div class=highlight><pre><span></span><code>kubectl run -i --tty client --image=tutum/curl
 curl -I -L --resolve cs.rocks.ch:80:10.240.0.5 http://cs.rocks.ch/
-</code></pre></div></p> <p>Q: Run a Jenkins Pod on a specified node only. <a href=https://kubernetes.io/docs/tasks/administer-cluster/static-pod/ >https://kubernetes.io/docs/tasks/administer-cluster/static-pod/</a> Create the Pod manifest at the specified location and then edit the systemd service file for kubelet(/etc/systemd/system/kubelet.service) to include <code>--pod-manifest-path=/specified/path</code>. Once done restart the service.</p> <p>Q: Use the utility nslookup to look up the DNS records of the service and pod. From this guide, <a href=https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/ >https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/</a> Look for “Quick Diagnosis” $ kubectl exec -ti busybox &ndash; nslookup mysvc.myns.svc.cluster.local Naming conventions for services and pods: For a regular service, this resolves to the port number and the CNAME: my-svc.my-namespace.svc.cluster.local. </p> <p>For a headless service, this resolves to multiple answers, one for each pod that is backing the service, and contains the port number and a CNAME of the pod of the form auto-generated-name.my-svc.my-namespace.svc.cluster.local When enabled, pods are assigned a DNS A record in the form of pod-ip-address.my-namespace.pod.cluster.local. For example, a pod with IP 1.2.3.4 in the namespace default with a DNS name of cluster.local would have an entry: 1-2-3-4.default.pod.cluster.local</p> <p>Q: Start a pod automatically by keeping manifest in /etc/kubernetes/manifests Refer to <a href=https://kubernetes.io/docs/tasks/administer-cluster/static-pod/ >https://kubernetes.io/docs/tasks/administer-cluster/static-pod/</a> Edit kubelet.service on any worker node to contain this flag &ndash;pod-manifest-path=/etc/kubernetes/manifests then place the pod manifest at /etc/kubernetes/manifests. Now restart kubelet.</p> <p>Some other Questions:</p> <ol> <li>Main container looks for a file and crashes if it doesnt find the file. Write an init container to create the file and make it available for the main container </li> <li>Install and Configure kubelet on a node to run pod on that node without contacting the api server</li> <li>Take backup of etcd cluster</li> <li>rotate TLS certificates 5.rolebinding 6.Troubleshooting - involved identifying failing nodes, pods , services and identifying cpu utilization of pods.</li> </ol> <h2 id=general-questions>General Questions<a class=headerlink href=#general-questions title="Permanent link">&para;</a></h2> <ol> <li>Backup/restore etcd on specific location using certificates.</li> <li>Fix the broker node. You should check kubelet process. Mostly you have to start and enable for permanent change.</li> <li>Create network policy to allow incoming connection from specific namespace , port combination. They might ask from specific pods.</li> <li>Two questions related to jsonpath , you can output the resource in json format and then find the details.</li> <li>They ask to create ingress . Please note ingress controller was already there.</li> <li>One question related to sidecar container. Trick is you have to mount the volume of on the side container.</li> <li>Question related to which pod consume most cpu. You don’t need to install metrics server.</li> </ol> </article> </div> </div> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2022 - Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script> <script src=../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>
+</code></pre></div></p> <p>Q: Run a Jenkins Pod on a specified node only. <a href=https://kubernetes.io/docs/tasks/administer-cluster/static-pod/ >https://kubernetes.io/docs/tasks/administer-cluster/static-pod/</a> Create the Pod manifest at the specified location and then edit the systemd service file for kubelet(/etc/systemd/system/kubelet.service) to include <code>--pod-manifest-path=/specified/path</code>. Once done restart the service.</p> <p>Q: Use the utility nslookup to look up the DNS records of the service and pod. From this guide, <a href=https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/ >https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/</a> Look for “Quick Diagnosis” $ kubectl exec -ti busybox &ndash; nslookup mysvc.myns.svc.cluster.local Naming conventions for services and pods: For a regular service, this resolves to the port number and the CNAME: my-svc.my-namespace.svc.cluster.local. </p> <p>For a headless service, this resolves to multiple answers, one for each pod that is backing the service, and contains the port number and a CNAME of the pod of the form auto-generated-name.my-svc.my-namespace.svc.cluster.local When enabled, pods are assigned a DNS A record in the form of pod-ip-address.my-namespace.pod.cluster.local. For example, a pod with IP 1.2.3.4 in the namespace default with a DNS name of cluster.local would have an entry: 1-2-3-4.default.pod.cluster.local</p> <p>Q: Start a pod automatically by keeping manifest in /etc/kubernetes/manifests Refer to <a href=https://kubernetes.io/docs/tasks/administer-cluster/static-pod/ >https://kubernetes.io/docs/tasks/administer-cluster/static-pod/</a> Edit kubelet.service on any worker node to contain this flag &ndash;pod-manifest-path=/etc/kubernetes/manifests then place the pod manifest at /etc/kubernetes/manifests. Now restart kubelet.</p> <p>Some other Questions:</p> <ol> <li>Main container looks for a file and crashes if it doesnt find the file. Write an init container to create the file and make it available for the main container </li> <li>Install and Configure kubelet on a node to run pod on that node without contacting the api server</li> <li>Take backup of etcd cluster</li> <li>rotate TLS certificates 5.rolebinding 6.Troubleshooting - involved identifying failing nodes, pods , services and identifying cpu utilization of pods.</li> </ol> <h2 id=general-questions>General Questions<a class=headerlink href=#general-questions title="Permanent link">&para;</a></h2> <ol> <li>Backup/restore etcd on specific location using certificates.</li> <li>Fix the broken node. You should check kubelet process. Mostly you have to start and enable for permanent change.</li> <li>Create network policy to allow incoming connection from specific namespace , port combination. They might ask from specific pods.</li> <li>Two questions related to jsonpath , you can output the resource in json format and then find the details.</li> <li>They ask to create ingress . Please note ingress controller was already there.</li> <li>One question related to sidecar container. Trick is you have to mount the volume of on the side container.</li> <li>Question related to which pod consume most cpu. You don’t need to install metrics server.</li> </ol> <h2 id=topics-to-focus-on>Topics to focus on<a class=headerlink href=#topics-to-focus-on title="Permanent link">&para;</a></h2> <ol> <li>Ingress</li> <li>Role and Role Binding</li> <li>Service Accounts</li> <li>PV and PVC</li> <li>Volumes</li> <li>Network Policy</li> <li>Services</li> <li>Check logs from Pods, Scale Deployment and replica</li> <li>ETCD Backup and restore</li> <li>TLS Bootstraping</li> </ol> <p><div class=highlight><pre><span></span><code>Question <span class=m>1</span> <span class=p>|</span> Contexts
+Task weight: <span class=m>1</span>%
+You have access to multiple clusters from your main terminal through kubectl contexts. Write all those context names into /opt/course/1/contexts.
+
+Next write a <span class=nb>command</span> to display the current context into /opt/course/1/context_default_kubectl.sh, the <span class=nb>command</span> should use kubectl.
+
+Finally write a second <span class=nb>command</span> doing the same thing into /opt/course/1/context_default_no_kubectl.sh, but without the use of kubectl.
+
+Answer:
+k config get-contexts <span class=c1># copy manually</span>
+<span class=c1># OR</span>
+k config get-contexts -o name &gt; /opt/course/1/contexts
+
+<span class=c1># /opt/course/1/context_default_kubectl.sh</span>
+kubectl config current-context
+
+<span class=c1># /opt/course/1/context_default_no_kubectl.sh</span>
+cat ~/.kube/config <span class=p>|</span> grep current
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>2</span> <span class=p>|</span> Schedule Pod on Master Node
+Task weight: <span class=m>3</span>%
+Use context: kubectl config use-context k8s-c1-H
+Create a single Pod of image httpd:2.4.41-alpine <span class=k>in</span> Namespace default. The Pod should be named pod1 and the container should be named pod1-container. This Pod should only be scheduled on a master node, <span class=k>do</span> not add new labels any nodes.
+
+Answer:
+First we find the master node<span class=o>(</span>s<span class=o>)</span> and their taints:
+k get node <span class=c1># find master node</span>
+k describe node cluster1-master1 <span class=p>|</span> grep Taint -A3 <span class=c1># get master node taints</span>
+k get node cluster1-master1 --show-labels <span class=c1># get master node labels</span>
+<span class=c1># NOTE: In K8s 1.24 master/controlplane nodes have two Taints which means we have to add Tolerations for both. This is done during transitioning from the wording &quot;master&quot; to &quot;controlplane&quot;.</span>
+Next we create the Pod template:
+
+<span class=c1># check the export on the very top of this document so we can use $do</span>
+k run pod1 --image<span class=o>=</span>httpd:2.4.41-alpine <span class=nv>$do</span> &gt; <span class=m>2</span>.yaml
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># vim 2.yaml</span><span class=w></span>
+<span class=nt>tolerations</span><span class=p>:</span><span class=w>                                    </span><span class=c1># add</span><span class=w></span>
+<span class=w>  </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>effect</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">NoSchedule</span><span class=w>                          </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">node-role.kubernetes.io/master</span><span class=w>         </span><span class=c1># add</span><span class=w></span>
+<span class=w>  </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>effect</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">NoSchedule</span><span class=w>                          </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">node-role.kubernetes.io/control-plane</span><span class=w>  </span><span class=c1># add</span><span class=w></span>
+<span class=nt>nodeSelector</span><span class=p>:</span><span class=w>                                 </span><span class=c1># add</span><span class=w></span>
+<span class=w>  </span><span class=nt>node-role.kubernetes.io/control-plane</span><span class=p>:</span><span class=w> </span><span class=s>&quot;&quot;</span><span class=w>   </span><span class=c1># add</span><span class=w></span>
+<span class=c1># Important here to add the toleration for running on master nodes, but also the nodeSelector to make sure it only runs on master nodes. If we only specify a toleration the Pod can be scheduled on master or worker nodes.</span><span class=w></span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>3</span> <span class=p>|</span> Scale down StatefulSet
+Task weight: <span class=m>1</span>%
+Use context: kubectl config use-context k8s-c1-H
+There are two Pods named o3db-* <span class=k>in</span> Namespace project-c13. C13 management asked you to scale the Pods down to one replica to save resources.
+
+Answer:
+If we check the Pods we see two replicas:
+k -n project-c13 get pod <span class=p>|</span> grep o3db
+
+<span class=c1># From their name it looks like these are managed by a StatefulSet. But if we&#39;re not sure we could also check for the most common resources which manage Pods:</span>
+
+k -n project-c13 get deploy,ds,sts <span class=p>|</span> grep o3db
+
+<span class=c1>#Confirmed, we have to work with a StatefulSet. To find this out we could also look at the Pod labels:</span>
+k -n project-c13 get pod --show-labels <span class=p>|</span> grep o3db
+
+<span class=c1># To fulfil the task we simply run:</span>
+k -n project-c13 scale sts o3db --replicas <span class=m>1</span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>4</span> <span class=p>|</span> Pod Ready <span class=k>if</span> Service is reachable
+Task weight: <span class=m>4</span>%
+Use context: kubectl config use-context k8s-c1-H
+<span class=c1># Do the following in Namespace default. Create a single Pod named ready-if-service-ready of image nginx:1.16.1-alpine. Configure a LivenessProbe which simply runs true. Also configure a ReadinessProbe which does check if the url http://service-am-i-ready:80 is reachable, you can use wget -T2 -O- http://service-am-i-ready:80 for this. Start the Pod and confirm it isn&#39;t ready because of the ReadinessProbe.</span>
+Create a second Pod named am-i-ready of image nginx:1.16.1-alpine with label id: cross-server-ready. The already existing Service service-am-i-ready should now have that second Pod as endpoint.
+Now the first Pod should be <span class=k>in</span> ready state, confirm that.
+
+Answer:
+<span class=c1># It&#39;s a bit of an anti-pattern for one Pod to check another Pod for being ready using probes, hence the normally available readinessProbe.httpGet doesn&#39;t work for absolute remote urls. Still the workaround requested in this task should show how probes and Pod&lt;-&gt;Service communication works.</span>
+
+First we create the first Pod:
+k run ready-if-service-ready --image<span class=o>=</span>nginx:1.16.1-alpine <span class=nv>$do</span> &gt; 4_pod1.yaml
+
+<span class=c1># And confirm its in a non-ready state:</span>
+k get pod ready-if-service-ready
+<span class=c1># We can also check the reason for this using describe:</span>
+k describe pod ready-if-service-ready
+
+<span class=c1># Now we create the second Pod:</span>
+
+k run am-i-ready --image<span class=o>=</span>nginx:1.16.1-alpine --labels<span class=o>=</span><span class=s2>&quot;id=cross-server-ready&quot;</span>
+
+<span class=c1># The already existing Service service-am-i-ready should now have an Endpoint:</span>
+k describe svc service-am-i-ready
+k get ep <span class=c1># also possible</span>
+
+Which will result <span class=k>in</span> our first Pod being ready, just give it a minute <span class=k>for</span> the Readiness probe to check again:
+k get pod ready-if-service-ready
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># 4_pod1.yaml</span><span class=w></span>
+<span class=nt>livenessProbe</span><span class=p>:</span><span class=w>                               </span><span class=c1># add from here</span><span class=w></span>
+<span class=w>    </span><span class=nt>exec</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=s>&#39;true&#39;</span><span class=w></span>
+<span class=nt>readinessProbe</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class=nt>exec</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">sh</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">-c</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=s>&#39;wget</span><span class=nv> </span><span class=s>-T2</span><span class=nv> </span><span class=s>-O-</span><span class=nv> </span><span class=s>http://service-am-i-ready:80&#39;</span><span class=w>   </span><span class=c1># to here</span><span class=w></span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>5</span> <span class=p>|</span> Kubectl sorting
+Task weight: <span class=m>1</span>%
+Use context: kubectl config use-context k8s-c1-H
+There are various Pods <span class=k>in</span> all namespaces. Write a <span class=nb>command</span> into /opt/course/5/find_pods.sh which lists all Pods sorted by their AGE <span class=o>(</span>metadata.creationTimestamp<span class=o>)</span>.
+Write a second <span class=nb>command</span> into /opt/course/5/find_pods_uid.sh which lists all Pods sorted by field metadata.uid. Use kubectl sorting <span class=k>for</span> both commands.
+
+Answer:
+A good resources here <span class=o>(</span>and <span class=k>for</span> many other things<span class=o>)</span> is the kubectl-cheat-sheet. You can reach it fast when searching <span class=k>for</span> <span class=s2>&quot;cheat sheet&quot;</span> <span class=k>in</span> the Kubernetes docs.
+<span class=c1># /opt/course/5/find_pods.sh</span>
+kubectl get pod -A --sort-by<span class=o>=</span>.metadata.creationTimestamp
+
+For the second command:
+<span class=c1># /opt/course/5/find_pods_uid.sh</span>
+kubectl get pod -A --sort-by<span class=o>=</span>.metadata.uid
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>6</span> <span class=p>|</span> Storage, PV, PVC, Pod volume
+Task weight: <span class=m>8</span>%
+Use context: kubectl config use-context k8s-c1-H
+
+Create a new PersistentVolume named safari-pv. It should have a capacity of 2Gi, accessMode ReadWriteOnce, hostPath /Volumes/Data and no storageClassName defined.
+
+Next create a new PersistentVolumeClaim <span class=k>in</span> Namespace project-tiger named safari-pvc . It should request 2Gi storage, accessMode ReadWriteOnce and should not define a storageClassName. The PVC should bound to the PV correctly.
+
+Finally create a new Deployment safari <span class=k>in</span> Namespace project-tiger which mounts that volume at /tmp/safari-data. The Pods of that Deployment should be of image httpd:2.4.41-alpine.
+
+Answer
+Create PV and PV using k8s docs.
+Next we create a Deployment and mount that volume:
+
+k -n project-tiger create deploy safari <span class=se>\</span>
+  --image<span class=o>=</span>httpd:2.4.41-alpine <span class=nv>$do</span> &gt; 6_dep.yaml
+
+We can confirm its mounting correctly:
+k -n project-tiger describe pod safari-5cbf46d6d-mjhsb  <span class=p>|</span> grep -A2 Mounts: 
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># 6_pv.yaml</span><span class=w></span>
+<span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span><span class=w></span>
+<span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class=w></span>
+<span class=nt>metadata</span><span class=p>:</span><span class=w></span>
+<span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">safari-pv</span><span class=w></span>
+<span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w> </span><span class=nt>capacity</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>storage</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">2Gi</span><span class=w></span>
+<span class=w> </span><span class=nt>accessModes</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class="p p-Indicator">-</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span><span class=w></span>
+<span class=w> </span><span class=nt>hostPath</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>path</span><span class=p>:</span><span class=w> </span><span class=s>&quot;/Volumes/Data&quot;</span><span class=w></span>
+<span class=c1># 6_pvc.yaml</span><span class=w></span>
+<span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span><span class=w></span>
+<span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class=w></span>
+<span class=nt>metadata</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">safari-pvc</span><span class=w></span>
+<span class=w>  </span><span class=nt>namespace</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">project-tiger</span><span class=w></span>
+<span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>accessModes</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span><span class=w></span>
+<span class=w>  </span><span class=nt>resources</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class=nt>requests</span><span class=p>:</span><span class=w></span>
+<span class=w>     </span><span class=nt>storage</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">2Gi</span><span class=w></span>
+<span class=c1># 6_dep.yaml</span><span class=w></span>
+<span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class=nt>volumes</span><span class=p>:</span><span class=w>                                      </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">data</span><span class=w>                                  </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>persistentVolumeClaim</span><span class=p>:</span><span class=w>                      </span><span class=c1># add</span><span class=w></span>
+<span class=w>        </span><span class=nt>claimName</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">safari-pvc</span><span class=w>                     </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>containers</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">httpd:2.4.41-alpine</span><span class=w></span>
+<span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">container</span><span class=w></span>
+<span class=w>    </span><span class=nt>volumeMounts</span><span class=p>:</span><span class=w>                               </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">data</span><span class=w>                                </span><span class=c1># add</span><span class=w></span>
+<span class=w>        </span><span class=nt>mountPath</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/safari-data</span><span class=w>               </span><span class=c1># add</span><span class=w></span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>7</span> <span class=p>|</span> Node and Pod Resource Usage
+Task weight: <span class=m>1</span>%
+Use context: kubectl config use-context k8s-c1-H
+The metrics-server has been installed <span class=k>in</span> the cluster. Your college would like to know the kubectl commands to:
+show Nodes resource usage
+show Pods and their **containers** resource usage
+Please write the commands into /opt/course/7/node.sh and /opt/course/7/pod.sh.
+Answer:
+The <span class=nb>command</span> we need to use here is top:
+k top -h
+We create the first file:
+<span class=c1># /opt/course/7/node.sh</span>
+kubectl top node
+For the second file we might need to check the docs again:
+k top pod -h
+<span class=c1># /opt/course/7/pod.sh</span>
+kubectl top pod --containers<span class=o>=</span><span class=nb>true</span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>8</span> <span class=p>|</span> Get Master Information
+Task weight: <span class=m>2</span>%
+Use context: kubectl config use-context k8s-c1-H
+<span class=c1># Ssh into the master node with ssh cluster1-master1. Check how the master components kubelet, kube-apiserver, kube-scheduler, kube-controller-manager and etcd are started/installed on the master node. Also find out the name of the DNS application and how it&#39;s started/installed on the master node.</span>
+
+Write your findings into file /opt/course/8/master-components.txt. The file should be structured like:
+
+<span class=c1># /opt/course/8/master-components.txt</span>
+kubelet: <span class=o>[</span>TYPE<span class=o>]</span>
+kube-apiserver: <span class=o>[</span>TYPE<span class=o>]</span>
+kube-scheduler: <span class=o>[</span>TYPE<span class=o>]</span>
+kube-controller-manager: <span class=o>[</span>TYPE<span class=o>]</span>
+etcd: <span class=o>[</span>TYPE<span class=o>]</span>
+dns: <span class=o>[</span>TYPE<span class=o>]</span> <span class=o>[</span>NAME<span class=o>]</span>
+Choices of <span class=o>[</span>TYPE<span class=o>]</span> are: not-installed, process, static-pod, pod
+
+Answer:
+We could start by finding processes of the requested components, especially the kubelet at first:
+ssh cluster1-master1
+ps aux <span class=p>|</span> grep kubelet <span class=c1># shows kubelet process</span>
+We can see which components are controlled via systemd looking at /etc/systemd/system directory:
+find /etc/systemd/system/ <span class=p>|</span> grep kube
+find /etc/systemd/system/ <span class=p>|</span> grep etcd
+<span class=c1># This shows kubelet is controlled via systemd, but no other service named kube nor etcd. It seems that this cluster has been setup using kubeadm, so we check in the default manifests directory:</span>
+find /etc/kubernetes/manifests/
+<span class=c1># (The kubelet could also have a different manifests directory specified via parameter --pod-manifest-path in it&#39;s systemd startup config)</span>
+<span class=c1># This means the main 4 master services are setup as static Pods. Actually, let&#39;s check all Pods running on in the kube-system Namespace on the master node:</span>
+kubectl -n kube-system get pod -o wide <span class=p>|</span> grep master1
+<span class=c1># There we see the 5 static pods, with -cluster1-master1 as suffix.</span>
+<span class=c1># We also see that the dns application seems to be coredns, but how is it controlled?</span>
+kubectl -n kube-system get ds
+kubectl -n kube-system get deploy
+Seems like coredns is controlled via a Deployment. We combine our findings <span class=k>in</span> the requested file:
+
+<span class=c1># /opt/course/8/master-components.txt</span>
+kubelet: process
+kube-apiserver: static-pod
+kube-scheduler: static-pod
+kube-controller-manager: static-pod
+etcd: static-pod
+dns: pod coredns
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>9</span> <span class=p>|</span> Kill Scheduler, Manual Scheduling
+Task weight: <span class=m>5</span>%
+Use context: kubectl config use-context k8s-c2-AC
+Ssh into the master node with ssh cluster2-master1. Temporarily stop the kube-scheduler, this means <span class=k>in</span> a way that you can start it again afterwards.
+
+Create a single Pod named manual-schedule of image httpd:2.4-alpine, confirm its created but not scheduled on any node.
+
+<span class=c1># Now you&#39;re the scheduler and have all its power, manually schedule that Pod on node cluster2-master1. Make sure it&#39;s running.</span>
+
+<span class=c1># Start the kube-scheduler again and confirm its running correctly by creating a second Pod named manual-schedule2 of image httpd:2.4-alpine and check if it&#39;s running on cluster2-worker1.</span>
+
+Answer:
+Stop the Scheduler
+First we find the master node:
+k get node
+Then we connect and check <span class=k>if</span> the scheduler is running:
+ssh cluster2-master1
+kubectl -n kube-system get pod <span class=p>|</span> grep schedule
+Kill the Scheduler <span class=o>(</span>temporarily<span class=o>)</span>:
+<span class=nb>cd</span> /etc/kubernetes/manifests/
+mv kube-scheduler.yaml ..
+And it should be stopped:
+kubectl -n kube-system get pod <span class=p>|</span> grep schedule
+Create a Pod
+Now we create the Pod:
+k run manual-schedule --image<span class=o>=</span>httpd:2.4-alpine
+<span class=c1># And confirm it has no node assigned:</span>
+k get pod manual-schedule -o wide
+Manually schedule the Pod
+<span class=c1># Let&#39;s play the scheduler now:</span>
+k get pod manual-schedule -o yaml &gt; <span class=m>9</span>.yaml
+nodeName: cluster2-master1        <span class=c1># add the master node name</span>
+The only thing a scheduler does, is that it sets the nodeName <span class=k>for</span> a Pod declaration. 
+As we cannot kubectl apply or kubectl edit , <span class=k>in</span> this <span class=k>case</span> we need to delete and create or replace:
+k -f <span class=m>9</span>.yaml replace --force
+k get pod manual-schedule -o wide
+<span class=c1># It looks like our Pod is running on the master now as requested, although no tolerations were specified. Only the scheduler takes taints/tolerations/affinity into account when finding the correct node name. That&#39;s why its still possible to assign Pods manually directly to a master node and skip the scheduler.</span>
+Start the scheduler again
+ssh cluster2-master1
+<span class=nb>cd</span> /etc/kubernetes/manifests/
+mv ../kube-scheduler.yaml .
+Schedule a second <span class=nb>test</span> Pod:
+k run manual-schedule2 --image<span class=o>=</span>httpd:2.4-alpine
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>10</span> <span class=p>|</span> RBAC ServiceAccount Role RoleBinding
+Task weight: <span class=m>6</span>%
+Use context: kubectl config use-context k8s-c1-H
+Create a new ServiceAccount processor <span class=k>in</span> Namespace project-hamster. Create a Role and RoleBinding, both named processor as well. These should allow the new SA to only create Secrets and ConfigMaps <span class=k>in</span> that Namespace.
+
+Answer:
+<span class=c1># Let&#39;s talk a little about RBAC resources</span>
+A ClusterRole<span class=p>|</span>Role defines a <span class=nb>set</span> of permissions and where it is available, <span class=k>in</span> the whole cluster or just a single Namespace.
+
+A ClusterRoleBinding<span class=p>|</span>RoleBinding connects a <span class=nb>set</span> of permissions with an account and defines where it is applied, <span class=k>in</span> the whole cluster or just a single Namespace.
+
+Because of this there are <span class=m>4</span> different RBAC combinations and <span class=m>3</span> valid ones:
+
+<span class=m>1</span>. Role + RoleBinding <span class=o>(</span>available <span class=k>in</span> single Namespace, applied <span class=k>in</span> single Namespace<span class=o>)</span>
+<span class=m>2</span>. ClusterRole + ClusterRoleBinding <span class=o>(</span>available cluster-wide, applied cluster-wide<span class=o>)</span>
+<span class=m>3</span>. ClusterRole + RoleBinding <span class=o>(</span>available cluster-wide, applied <span class=k>in</span> single Namespace<span class=o>)</span>
+<span class=m>4</span>. Role + ClusterRoleBinding <span class=o>(</span>NOT POSSIBLE: available <span class=k>in</span> single Namespace, applied cluster-wide<span class=o>)</span>
+
+<span class=c1># To the solution</span>
+We first create the ServiceAccount:
+k -n project-hamster create sa processor
+Then <span class=k>for</span> the Role:
+
+k -n project-hamster create role processor <span class=se>\</span>
+  --verb<span class=o>=</span>create <span class=se>\</span>
+  --resource<span class=o>=</span>secret <span class=se>\</span>
+  --resource<span class=o>=</span>configmap <span class=se>\</span>
+  --namespace<span class=o>=</span>project-hamster
+<span class=c1># Now we bind the Role to the ServiceAccount:</span>
+k -n project-hamster create rolebinding processor <span class=se>\</span>
+  --role processor <span class=se>\</span>
+  --serviceaccount project-hamster:processor <span class=se>\</span>
+  --namespace<span class=o>=</span>project-hamster
+
+To <span class=nb>test</span> our RBAC setup we can use kubectl auth can-i:
+ k -n project-hamster auth can-i create secret <span class=se>\</span>
+  --as system:serviceaccount:project-hamster:processor
+<span class=c1># yes</span>
+k -n project-hamster auth can-i create pod <span class=se>\</span>
+  --as system:serviceaccount:project-hamster:processor
+<span class=c1># no</span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>11</span> <span class=p>|</span> DaemonSet on all Nodes
+Task weight: <span class=m>4</span>%
+Use context: kubectl config use-context k8s-c1-H
+Use Namespace project-tiger <span class=k>for</span> the following. Create a DaemonSet named ds-important with image httpd:2.4-alpine and labels <span class=nv>id</span><span class=o>=</span>ds-important and <span class=nv>uuid</span><span class=o>=</span>18426a0b-5f59-4e10-923f-c0e078e82462. The Pods it creates should request <span class=m>10</span> millicore cpu and <span class=m>10</span> mebibyte memory. The Pods of that DaemonSet should run on all nodes, master and worker.
+
+Answer:
+<span class=c1># As of now we aren&#39;t able to create a DaemonSet directly using kubectl, so we create a Deployment and just change it up:</span>
+k -n project-tiger create deployment --image<span class=o>=</span>httpd:2.4-alpine ds-important --labels<span class=o>=</span><span class=s2>&quot;id=ds-important,uuid=18426a0b-5f59-4e10-923f-c0e078e82462&quot;</span> <span class=nv>$do</span> &gt; <span class=m>11</span>.yaml
+<span class=c1># NOTE: In K8s 1.24 master/controlplane nodes have two Taints which means we have to add Tolerations for both. This is done during transitioning from the wording &quot;master&quot; to &quot;controlplane&quot;.</span>
+It was requested that the DaemonSet runs on all nodes, so we need to specify the toleration <span class=k>for</span> this.
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># 11.yaml</span><span class=w></span>
+<span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span><span class=w></span>
+<span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">DaemonSet</span><span class=w>                                     </span><span class=c1># change from Deployment to Daemonset</span><span class=w></span>
+<span class=nt>metadata</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>namespace</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">project-tiger</span><span class=w>                          </span><span class=c1># important</span><span class=w></span>
+<span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=c1>#replicas: 1                                      # remove</span><span class=w></span>
+<span class=w>  </span><span class=c1>#strategy: {}                                     # remove</span><span class=w></span>
+<span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w>      </span><span class=nt>containers</span><span class=p>:</span><span class=w></span>
+<span class=w>      </span><span class=nt>tolerations</span><span class=p>:</span><span class=w>                                  </span><span class=c1># add</span><span class=w></span>
+<span class=w>      </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>effect</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">NoSchedule</span><span class=w>                          </span><span class=c1># add</span><span class=w></span>
+<span class=w>        </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">node-role.kubernetes.io/master</span><span class=w>         </span><span class=c1># add</span><span class=w></span>
+<span class=w>      </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>effect</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">NoSchedule</span><span class=w>                          </span><span class=c1># add</span><span class=w></span>
+<span class=w>        </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">node-role.kubernetes.io/control-plane</span><span class=w>  </span><span class=c1># add</span><span class=w></span>
+<span class=c1>#status: {}                                         # remove</span><span class=w></span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>12</span> <span class=p>|</span> Deployment on all Nodes
+Task weight: <span class=m>6</span>%
+Use context: kubectl config use-context k8s-c1-H
+
+Use Namespace project-tiger <span class=k>for</span> the following. Create a Deployment named deploy-important with label <span class=nv>id</span><span class=o>=</span>very-important <span class=o>(</span>the Pods should also have this label<span class=o>)</span> and <span class=m>3</span> replicas. It should contain two containers, the first named container1 with image nginx:1.17.6-alpine and the second one named container2 with image kubernetes/pause.
+
+<span class=c1># There should be only ever one Pod of that Deployment running on one worker node. We have two worker nodes: cluster1-worker1 and cluster1-worker2. Because the Deployment has three replicas the result should be that on both nodes one Pod is running. The third Pod won&#39;t be scheduled, unless a new worker node will be added.</span>
+
+<span class=c1># In a way we kind of simulate the behaviour of a DaemonSet here, but using a Deployment and a fixed number of replicas.</span>
+
+Answer:
+There are two possible ways, one using podAntiAffinity and one using topologySpreadConstraint.
+
+PodAntiAffinity
+The idea here is that we create a <span class=s2>&quot;Inter-pod anti-affinity&quot;</span> which allows us to say a Pod should only be scheduled on a node where another Pod of a specific label <span class=o>(</span>here the same label<span class=o>)</span> is not already running.
+
+<span class=c1># Let&#39;s begin by creating the Deployment template:</span>
+k -n project-tiger create deployment <span class=se>\</span>
+  --image<span class=o>=</span>nginx:1.17.6-alpine deploy-important <span class=nv>$do</span> &gt; <span class=m>12</span>.yaml
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># 12.yaml</span><span class=w></span>
+<span class=nt>affinity</span><span class=p>:</span><span class=w>                                             </span><span class=c1># add</span><span class=w></span>
+<span class=w>  </span><span class=nt>podAntiAffinity</span><span class=p>:</span><span class=w>                                    </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>requiredDuringSchedulingIgnoredDuringExecution</span><span class=p>:</span><span class=w>   </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>labelSelector</span><span class=p>:</span><span class=w>                                  </span><span class=c1># add</span><span class=w></span>
+<span class=w>        </span><span class=nt>matchExpressions</span><span class=p>:</span><span class=w>                             </span><span class=c1># add</span><span class=w></span>
+<span class=w>        </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">id</span><span class=w>                                     </span><span class=c1># add</span><span class=w></span>
+<span class=w>          </span><span class=nt>operator</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">In</span><span class=w>                                </span><span class=c1># add</span><span class=w></span>
+<span class=w>          </span><span class=nt>values</span><span class=p>:</span><span class=w>                                     </span><span class=c1># add</span><span class=w></span>
+<span class=w>          </span><span class="p p-Indicator">-</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">very-important</span><span class=w>                            </span><span class=c1># add</span><span class=w></span>
+<span class=w>      </span><span class=nt>topologyKey</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes.io/hostname</span><span class=w>             </span><span class=c1># add</span><span class=w></span>
+<span class=c1># Specify a topologyKey, which is a pre-populated Kubernetes label, you can find this by describing a node.</span><span class=w></span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>13</span> <span class=p>|</span> Multi Containers and Pod shared Volume
+Task weight: <span class=m>4</span>%
+Use context: kubectl config use-context k8s-c1-H
+<span class=c1># Create a Pod named multi-container-playground in Namespace default with three containers, named c1, c2 and c3. There should be a volume attached to that Pod and mounted into every container, but the volume shouldn&#39;t be persisted or shared with other Pods.</span>
+
+Container c1 should be of image nginx:1.17.6-alpine and have the name of the node where its Pod is running available as environment variable MY_NODE_NAME.
+
+Container c2 should be of image busybox:1.31.1 and write the output of the date <span class=nb>command</span> every second <span class=k>in</span> the shared volume into file date.log. You can use <span class=k>while</span> true<span class=p>;</span> <span class=k>do</span> date &gt;&gt; /your/vol/path/date.log<span class=p>;</span> sleep <span class=m>1</span><span class=p>;</span> <span class=k>done</span> <span class=k>for</span> this.
+
+Container c3 should be of image busybox:1.31.1 and constantly send the content of file date.log from the shared volume to stdout. You can use tail -f /your/vol/path/date.log <span class=k>for</span> this.
+
+Check the logs of container c3 to confirm correct setup.
+
+Answer:
+First we create the Pod template:
+k run multi-container-playground --image<span class=o>=</span>nginx:1.17.6-alpine <span class=nv>$do</span> &gt; <span class=m>13</span>.yaml
+And add the other containers and the commands they should execute:
+we check <span class=k>if</span> container c1 has the requested node name as env variable:
+
+k <span class=nb>exec</span> multi-container-playground -c c1 -- env <span class=p>|</span> grep MY
+And finally we check the logging:
+k logs multi-container-playground -c c3
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># 13.yaml</span><span class=w></span>
+<span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class=w></span>
+<span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span><span class=w></span>
+<span class=nt>metadata</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>creationTimestamp</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class=w></span>
+<span class=w>  </span><span class=nt>labels</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">multi-container-playground</span><span class=w></span>
+<span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">multi-container-playground</span><span class=w></span>
+<span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>containers</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">nginx:1.17.6-alpine</span><span class=w></span>
+<span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">c1</span><span class=w>                                                                      </span><span class=c1># change</span><span class=w></span>
+<span class=w>    </span><span class=nt>resources</span><span class=p>:</span><span class=w> </span><span class="p p-Indicator">{}</span><span class=w></span>
+<span class=w>    </span><span class=nt>env</span><span class=p>:</span><span class=w>                                                                          </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">MY_NODE_NAME</span><span class=w>                                                          </span><span class=c1># add</span><span class=w></span>
+<span class=w>      </span><span class=nt>valueFrom</span><span class=p>:</span><span class=w>                                                                  </span><span class=c1># add</span><span class=w></span>
+<span class=w>        </span><span class=nt>fieldRef</span><span class=p>:</span><span class=w>                                                                 </span><span class=c1># add</span><span class=w></span>
+<span class=w>          </span><span class=nt>fieldPath</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">spec.nodeName</span><span class=w>                                                </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>volumeMounts</span><span class=p>:</span><span class=w>                                                                 </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">vol</span><span class=w>                                                                   </span><span class=c1># add</span><span class=w></span>
+<span class=w>      </span><span class=nt>mountPath</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">/vol</span><span class=w>                                                             </span><span class=c1># add</span><span class=w></span>
+<span class=w>  </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox:1.31.1</span><span class=w>                                                         </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">c2</span><span class=w>                                                                      </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class="p p-Indicator">[</span><span class=s>&quot;sh&quot;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&quot;-c&quot;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&quot;while</span><span class=nv> </span><span class=s>true;</span><span class=nv> </span><span class=s>do</span><span class=nv> </span><span class=s>date</span><span class=nv> </span><span class=s>&gt;&gt;</span><span class=nv> </span><span class=s>/vol/date.log;</span><span class=nv> </span><span class=s>sleep</span><span class=nv> </span><span class=s>1;</span><span class=nv> </span><span class=s>done&quot;</span><span class="p p-Indicator">]</span><span class=w>  </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>volumeMounts</span><span class=p>:</span><span class=w>                                                                 </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">vol</span><span class=w>                                                                   </span><span class=c1># add</span><span class=w></span>
+<span class=w>      </span><span class=nt>mountPath</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">/vol</span><span class=w>                                                             </span><span class=c1># add</span><span class=w></span>
+<span class=w>  </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox:1.31.1</span><span class=w>                                                         </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">c3</span><span class=w>                                                                      </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class="p p-Indicator">[</span><span class=s>&quot;sh&quot;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&quot;-c&quot;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&quot;tail</span><span class=nv> </span><span class=s>-f</span><span class=nv> </span><span class=s>/vol/date.log&quot;</span><span class="p p-Indicator">]</span><span class=w>                                </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>volumeMounts</span><span class=p>:</span><span class=w>                                                                 </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">vol</span><span class=w>                                                                   </span><span class=c1># add</span><span class=w></span>
+<span class=w>      </span><span class=nt>mountPath</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">/vol</span><span class=w>                                                             </span><span class=c1># add</span><span class=w></span>
+<span class=w>  </span><span class=nt>dnsPolicy</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">ClusterFirst</span><span class=w></span>
+<span class=w>  </span><span class=nt>restartPolicy</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">Always</span><span class=w></span>
+<span class=w>  </span><span class=nt>volumes</span><span class=p>:</span><span class=w>                                                                        </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">vol</span><span class=w>                                                                   </span><span class=c1># add</span><span class=w></span>
+<span class=w>      </span><span class=nt>emptyDir</span><span class=p>:</span><span class=w> </span><span class="p p-Indicator">{}</span><span class=w>                                                                </span><span class=c1># add</span><span class=w></span>
+<span class=nt>status</span><span class=p>:</span><span class=w> </span><span class="p p-Indicator">{}</span><span class=w></span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>14</span> <span class=p>|</span> Find out Cluster Information
+Task weight: <span class=m>2</span>%
+Use context: kubectl config use-context k8s-c1-H
+<span class=c1># You&#39;re ask to find out following information about the cluster k8s-c1-H:</span>
+
+How many master nodes are available?
+How many worker nodes are available?
+What is the Service CIDR?
+Which Networking <span class=o>(</span>or CNI Plugin<span class=o>)</span> is configured and where is its config file?
+Which suffix will static pods have that run on cluster1-worker1?
+Write your answers into file /opt/course/14/cluster-info, structured like this:
+
+<span class=c1># /opt/course/14/cluster-info</span>
+<span class=m>1</span>: <span class=o>[</span>ANSWER<span class=o>]</span>
+<span class=m>2</span>: <span class=o>[</span>ANSWER<span class=o>]</span>
+<span class=m>3</span>: <span class=o>[</span>ANSWER<span class=o>]</span>
+<span class=m>4</span>: <span class=o>[</span>ANSWER<span class=o>]</span>
+<span class=m>5</span>: <span class=o>[</span>ANSWER<span class=o>]</span>
+
+Answer:
+How many master and worker nodes are available?
+We see one master and two workers.
+What is the Service CIDR?
+ssh cluster1-master1
+cat /etc/kubernetes/manifests/kube-apiserver.yaml <span class=p>|</span> grep range
+Which Networking <span class=o>(</span>or CNI Plugin<span class=o>)</span> is configured and where is its config file?
+find /etc/cni/net.d/
+cat /etc/cni/net.d/10-weave.conflist
+By default the kubelet looks into /etc/cni/net.d to discover the CNI plugins. This will be the same on every master and worker nodes.
+Which suffix will static pods have that run on cluster1-worker1?
+The suffix is the node hostname with a leading hyphen. It used to be -static <span class=k>in</span> earlier Kubernetes versions.
+Result
+The resulting /opt/course/14/cluster-info could look like:
+
+<span class=c1># /opt/course/14/cluster-info</span>
+
+<span class=c1># How many master nodes are available?</span>
+<span class=m>1</span>: <span class=m>1</span>
+
+<span class=c1># How many worker nodes are available?</span>
+<span class=m>2</span>: <span class=m>2</span>
+
+<span class=c1># What is the Service CIDR?</span>
+<span class=m>3</span>: <span class=m>10</span>.96.0.0/12
+
+<span class=c1># Which Networking (or CNI Plugin) is configured and where is its config file?</span>
+<span class=m>4</span>: Weave, /etc/cni/net.d/10-weave.conflist
+
+<span class=c1># Which suffix will static pods have that run on cluster1-worker1?</span>
+<span class=m>5</span>: -cluster1-worker1
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>15</span> <span class=p>|</span> Cluster Event Logging
+Task weight: <span class=m>3</span>%
+Use context: kubectl config use-context k8s-c2-AC
+
+Write a <span class=nb>command</span> into /opt/course/15/cluster_events.sh which shows the latest events <span class=k>in</span> the whole cluster, ordered by time. Use kubectl <span class=k>for</span> it.
+
+Now <span class=nb>kill</span> the kube-proxy Pod running on node cluster2-worker1 and write the events this caused into /opt/course/15/pod_kill.log.
+
+Finally <span class=nb>kill</span> the containerd container of the kube-proxy Pod on node cluster2-worker1 and write the events into /opt/course/15/container_kill.log.
+
+Do you notice differences <span class=k>in</span> the events both actions caused?
+
+Answer:
+<span class=c1># /opt/course/15/cluster_events.sh</span>
+kubectl get events -A --sort-by<span class=o>=</span>.metadata.creationTimestamp
+
+Now we <span class=nb>kill</span> the kube-proxy Pod:
+k -n kube-system get pod -o wide <span class=p>|</span> grep proxy <span class=c1># find pod running on cluster2-worker1</span>
+k -n kube-system delete pod kube-proxy-z64cg
+
+Now check the events:
+sh /opt/course/15/cluster_events.sh
+Write the events the killing caused into /opt/course/15/pod_kill.log
+Finally we will try to provoke events by killing the container belonging to the container of the kube-proxy Pod:
+ssh cluster2-worker1
+crictl ps <span class=p>|</span> grep kube-proxy
+crictl stop 1e020b43c4423
+crictl rm 1e020b43c4423
+crictl ps <span class=p>|</span> grep kube-proxy
+We killed the main container <span class=o>(</span>1e020b43c4423<span class=o>)</span>, but also noticed that a new container <span class=o>(</span>0ae4245707910<span class=o>)</span> was directly created. Thanks Kubernetes!
+Now we see <span class=k>if</span> this caused events again and we write those into the second file:
+sh /opt/course/15/cluster_events.sh
+<span class=c1># Comparing the events we see that when we deleted the whole Pod there were more things to be done, hence more events. For example was the DaemonSet in the game to re-create the missing Pod. Where when we manually killed the main container of the Pod, the Pod would still exist but only its container needed to be re-created, hence less events.</span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>16</span> <span class=p>|</span> Namespaces and Api Resources
+Task weight: <span class=m>2</span>%
+Use context: kubectl config use-context k8s-c1-H
+
+Create a new Namespace called cka-master.
+
+Write the names of all namespaced Kubernetes resources <span class=o>(</span>like Pod, Secret, ConfigMap...<span class=o>)</span> into /opt/course/16/resources.txt.
+
+Find the project-* Namespace with the highest number of Roles defined <span class=k>in</span> it and write its name and amount of Roles into /opt/course/16/crowded-namespace.txt.
+
+Answer:
+Namespace and Namespaces Resources
+We create a new Namespace:
+k create ns cka-master
+Now we can get a list of all resources like:
+k api-resources --namespaced -o name &gt; /opt/course/16/resources.txt
+
+Namespace with most Roles
+k -n project-c13 get role --no-headers <span class=p>|</span> wc -l
+k -n project-c14 get role --no-headers <span class=p>|</span> wc -l
+<span class=c1># 300</span>
+Find all other namespaces
+Finally we write the name and amount into the file:
+
+<span class=c1># /opt/course/16/crowded-namespace.txt</span>
+project-c14 with <span class=m>300</span> resources
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>17</span> <span class=p>|</span> Find Container of Pod and check info
+Task weight: <span class=m>3</span>%
+
+Use context: kubectl config use-context k8s-c1-H
+
+In Namespace project-tiger create a Pod named tigers-reunite of image httpd:2.4.41-alpine with labels <span class=nv>pod</span><span class=o>=</span>container and <span class=nv>container</span><span class=o>=</span>pod. Find out on which node the Pod is scheduled. Ssh into that node and find the containerd container belonging to that Pod.
+
+Using <span class=nb>command</span> crictl:
+
+Write the ID of the container and the info.runtimeType into /opt/course/17/pod-container.txt
+Write the logs of the container into /opt/course/17/pod-container.log
+
+Answer:
+First we create the Pod:
+
+k -n project-tiger run tigers-reunite <span class=se>\</span>
+  --image<span class=o>=</span>httpd:2.4.41-alpine <span class=se>\</span>
+  --labels <span class=s2>&quot;pod=container,container=pod&quot;</span>
+<span class=c1># Next we find out the node it&#39;s scheduled on:</span>
+k -n project-tiger get pod -o wide
+Then we ssh into that node and and check the container info:
+ssh cluster1-worker2
+crictl ps <span class=p>|</span> grep tigers-reunite
+crictl inspect b01edbe6f89ed <span class=p>|</span> grep runtimeType
+Then we fill the requested file <span class=o>(</span>on the main terminal<span class=o>)</span>:
+<span class=c1># /opt/course/17/pod-container.txt</span>
+b01edbe6f89ed io.containerd.runc.v2
+Finally we write the container logs <span class=k>in</span> the second file:
+ssh cluster1-worker2 <span class=s1>&#39;crictl logs b01edbe6f89ed&#39;</span> <span class=p>&amp;</span>&gt; /opt/course/17/pod-container.log
+<span class=c1># The &amp;&gt; in above&#39;s command redirects both the standard output and standard error.</span>
+You could also simply run crictl logs on the node and copy the content manually, <span class=k>if</span> its not a lot. The file should look like:
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>18</span> <span class=p>|</span> Fix Kubelet
+Task weight: <span class=m>8</span>%
+Use context: kubectl config use-context k8s-c3-CCC
+
+There seems to be an issue with the kubelet not running on cluster3-worker1. Fix it and confirm that cluster has node cluster3-worker1 available <span class=k>in</span> Ready state afterwards. You should be able to schedule a Pod on cluster3-worker1 afterwards.
+
+Write the reason of the issue into /opt/course/18/reason.txt.
+
+Answer:
+The procedure on tasks like these should be to check <span class=k>if</span> the kubelet is running, <span class=k>if</span> not start it, <span class=k>then</span> check its logs and correct errors <span class=k>if</span> there are some.
+
+Always helpful to check <span class=k>if</span> other clusters already have some of the components defined and running, so you can copy and use existing config files. Though <span class=k>in</span> this <span class=k>case</span> it might not need to be necessary.
+
+Check node status:
+k get node
+First we check <span class=k>if</span> the kubelet is running:
+ssh cluster3-worker1
+ps aux <span class=p>|</span> grep kubelet
+Nope, so we check <span class=k>if</span> its configured using systemd as service:
+service kubelet status
+<span class=c1># Yes, its configured as a service with config at /etc/systemd/system/kubelet.service.d/10-kubeadm.conf, but we see its inactive. Let&#39;s try to start it:</span>
+service kubelet start
+We see its trying to execute /usr/local/bin/kubelet with some parameters defined <span class=k>in</span> its service config file. A good way to find errors and get more logs is to run the <span class=nb>command</span> manually <span class=o>(</span>usually also with its parameters<span class=o>)</span>.
+/usr/local/bin/kubelet
+<span class=c1># -bash: /usr/local/bin/kubelet: No such file or directory</span>
+whereis kubelet
+<span class=c1># kubelet: /usr/bin/kubelet</span>
+Another way would be to see the extended logging of a service like using journalctl -u kubelet.
+Well, there we have it, wrong path specified. Correct the path <span class=k>in</span> file /etc/systemd/system/kubelet.service.d/10-kubeadm.conf and run:
+systemctl daemon-reload <span class=o>&amp;&amp;</span> systemctl restart kubelet
+Finally we write the reason into the file:
+<span class=c1># /opt/course/18/reason.txt</span>
+wrong path to kubelet binary specified <span class=k>in</span> service config
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>19</span> <span class=p>|</span> Create Secret and mount into Pod
+Task weight: <span class=m>3</span>%
+NOTE: This task can only be solved <span class=k>if</span> questions <span class=m>18</span> or <span class=m>20</span> have been successfully implemented and the k8s-c3-CCC cluster has a functioning worker node
+Use context: kubectl config use-context k8s-c3-CCC
+Do the following <span class=k>in</span> a new Namespace secret. Create a Pod named secret-pod of image busybox:1.31.1 which should keep running <span class=k>for</span> some time.
+
+There is an existing Secret located at /opt/course/19/secret1.yaml, create it <span class=k>in</span> the Namespace secret and mount it <span class=nb>readonly</span> into the Pod at /tmp/secret1.
+
+<span class=c1># Create a new Secret in Namespace secret called secret2 which should contain user=user1 and pass=1234. These entries should be available inside the Pod&#39;s container as environment variables APP_USER and APP_PASS.</span>
+Confirm everything is working.
+
+Answer
+First we create the Namespace and the requested Secrets <span class=k>in</span> it:
+k create ns secret
+cp /opt/course/19/secret1.yaml 19_secret1.yaml
+
+k -f 19_secret1.yaml create
+Next we create the second Secret:
+
+k -n secret create secret generic secret2 --from-literal<span class=o>=</span><span class=nv>user</span><span class=o>=</span>user1 --from-literal<span class=o>=</span><span class=nv>pass</span><span class=o>=</span><span class=m>1234</span>
+Now we create the Pod template:
+
+k -n secret run secret-pod --image<span class=o>=</span>busybox:1.31.1 <span class=nv>$do</span> -- sh -c <span class=s2>&quot;sleep 5d&quot;</span> &gt; <span class=m>19</span>.yaml
+<span class=c1># It might not be necessary in current K8s versions to specify the readOnly: true because it&#39;s the default setting anyways.</span>
+Finally we check <span class=k>if</span> all is correct:
+k -n secret <span class=nb>exec</span> secret-pod -- env <span class=p>|</span> grep APP
+k -n secret <span class=nb>exec</span> secret-pod -- find /tmp/secret1
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=w>  </span><span class=nt>env</span><span class=p>:</span><span class=w>                                  </span><span class=c1># add</span><span class=w></span>
+<span class=w>  </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">APP_USER</span><span class=w>                      </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>valueFrom</span><span class=p>:</span><span class=w>                          </span><span class=c1># add</span><span class=w></span>
+<span class=w>      </span><span class=nt>secretKeyRef</span><span class=p>:</span><span class=w>                     </span><span class=c1># add</span><span class=w></span>
+<span class=w>        </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">secret2</span><span class=w>                   </span><span class=c1># add</span><span class=w></span>
+<span class=w>        </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">user</span><span class=w>                       </span><span class=c1># add</span><span class=w></span>
+<span class=w>  </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">APP_PASS</span><span class=w>                      </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>valueFrom</span><span class=p>:</span><span class=w>                          </span><span class=c1># add</span><span class=w></span>
+<span class=w>      </span><span class=nt>secretKeyRef</span><span class=p>:</span><span class=w>                     </span><span class=c1># add</span><span class=w></span>
+<span class=w>        </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">secret2</span><span class=w>                   </span><span class=c1># add</span><span class=w></span>
+<span class=w>        </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">pass</span><span class=w>                       </span><span class=c1># add</span><span class=w></span>
+<span class=w>  </span><span class=nt>volumeMounts</span><span class=p>:</span><span class=w>                         </span><span class=c1># add</span><span class=w></span>
+<span class=w>  </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">secret1</span><span class=w>                       </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>mountPath</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/secret1</span><span class=w>             </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>readOnly</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class=w>                      </span><span class=c1># add</span><span class=w></span>
+<span class=nt>volumes</span><span class=p>:</span><span class=w>                                </span><span class=c1># add</span><span class=w></span>
+<span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">secret1</span><span class=w>                         </span><span class=c1># add</span><span class=w></span>
+<span class=w>  </span><span class=nt>secret</span><span class=p>:</span><span class=w>                               </span><span class=c1># add</span><span class=w></span>
+<span class=w>    </span><span class=nt>secretName</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">secret1</span><span class=w>                 </span><span class=c1># add</span><span class=w></span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>20</span> <span class=p>|</span> Update Kubernetes Version and join cluster
+Task weight: <span class=m>10</span>%
+Use context: kubectl config use-context k8s-c3-CCC
+
+<span class=c1># Your coworker said node cluster3-worker2 is running an older Kubernetes version and is not even part of the cluster. Update Kubernetes on that node to the exact version that&#39;s running on cluster3-master1. Then add this node to the cluster. Use kubeadm for this.</span>
+
+Answer:
+Master node seems to be running Kubernetes <span class=m>1</span>.24.1 and cluster3-worker2 is not yet part of the cluster.
+ssh cluster3-worker2
+kubeadm version <span class=c1># kubeadm version matches</span>
+kubectl version <span class=c1># kubectl version is old</span>
+kubelet --version <span class=c1># kubelet version is old</span>
+
+kubeadm upgrade node
+This is usually the proper <span class=nb>command</span> to upgrade a node. But this error means that this node was never even initialised, so nothing to update here. This will be <span class=k>done</span> later using kubeadm join. For now we can <span class=k>continue</span> with kubelet and kubectl:
+apt update
+apt show kubectl -a <span class=p>|</span> grep <span class=m>1</span>.24
+apt install <span class=nv>kubectl</span><span class=o>=</span><span class=m>1</span>.24.1-00 <span class=nv>kubelet</span><span class=o>=</span><span class=m>1</span>.24.1-00
+<span class=c1># Now we&#39;re up to date with kubeadm, kubectl and kubelet. Restart the kubelet:</span>
+systemctl restart kubelet
+We can ignore the errors and move into next step to generate the join command.
+<span class=c1># Add cluster3-worker2 to cluster</span>
+First we log into the master1 and generate a new TLS bootstrap token, also printing out the join command:
+ssh cluster3-master1
+kubeadm token create --print-join-command
+kubeadm token list
+Next we connect again to cluster3-worker2 and simply execute the join command:
+ssh cluster3-worker2
+kubeadm join <span class=m>192</span>.168.100.31:6443 --token &lt;token&gt;
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>21</span> <span class=p>|</span> Create a Static Pod and Service
+Task weight: <span class=m>2</span>%
+Use context: kubectl config use-context k8s-c3-CCC
+
+Create a Static Pod named my-static-pod <span class=k>in</span> Namespace default on cluster3-master1. It should be of image nginx:1.16-alpine and have resource requests <span class=k>for</span> 10m CPU and 20Mi memory.
+
+Then create a NodePort Service named static-pod-service which exposes that static Pod on port <span class=m>80</span> and check <span class=k>if</span> it has Endpoints and <span class=k>if</span> its reachable through the cluster3-master1 internal IP address. You can connect to the internal node IPs from your main terminal.
+
+Answer:
+ssh cluster3-master1
+<span class=nb>cd</span> /etc/kubernetes/manifests/
+kubectl run my-static-pod <span class=se>\</span>
+    --image<span class=o>=</span>nginx:1.16-alpine <span class=se>\</span>
+    -o yaml --dry-run<span class=o>=</span>client &gt; my-static-pod.yaml
+And make sure its running:
+k get pod -A <span class=p>|</span> grep my-static
+Now we expose that static Pod:
+k expose pod my-static-pod-cluster3-master1 <span class=se>\</span>
+  --name static-pod-service <span class=se>\</span>
+  --type<span class=o>=</span>NodePort <span class=se>\</span>
+  --port <span class=m>80</span>
+Then run and test:
+k get svc,ep -l <span class=nv>run</span><span class=o>=</span>my-static-pod
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># /etc/kubernetes/manifests/my-static-pod.yaml</span><span class=w></span>
+<span class=nt>resources</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>requests</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class=nt>cpu</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">10m</span><span class=w></span>
+<span class=w>    </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">20Mi</span><span class=w></span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>22</span> <span class=p>|</span> Check how long certificates are valid
+Task weight: <span class=m>2</span>%
+
+Use context: kubectl config use-context k8s-c2-AC
+
+Check how long the kube-apiserver server certificate is valid on cluster2-master1. Do this with openssl or cfssl. Write the exipiration date into /opt/course/22/expiration.
+
+Also run the correct kubeadm <span class=nb>command</span> to list the expiration dates and confirm both methods show the same date.
+
+Write the correct kubeadm <span class=nb>command</span> that would renew the apiserver server certificate into /opt/course/22/kubeadm-renew-certs.sh.
+Answer:
+<span class=c1># First let&#39;s find that certificate:</span>
+ssh cluster2-master1
+find /etc/kubernetes/pki <span class=p>|</span> grep apiserver
+Next we use openssl to find out the expiration date:
+openssl x509  -noout -text -in /etc/kubernetes/pki/apiserver.crt <span class=p>|</span> grep Validity -A2
+There we have it, so we write it <span class=k>in</span> the required location on our main terminal:
+
+<span class=c1># /opt/course/22/expiration</span>
+Jan <span class=m>14</span> <span class=m>18</span>:49:40 <span class=m>2022</span> GMT
+And we use the feature from kubeadm to get the expiration too:
+kubeadm certs check-expiration <span class=p>|</span> grep apiserver
+
+Looking good. And finally we write the <span class=nb>command</span> that would renew all certificates into the requested location:
+
+<span class=c1># /opt/course/22/kubeadm-renew-certs.sh</span>
+kubeadm certs renew apiserver
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>23</span> <span class=p>|</span> Kubelet client/server cert info
+Task weight: <span class=m>2</span>%
+Use context: kubectl config use-context k8s-c2-AC
+
+Node cluster2-worker1 has been added to the cluster using kubeadm and TLS bootstrapping.
+
+Find the <span class=s2>&quot;Issuer&quot;</span> and <span class=s2>&quot;Extended Key Usage&quot;</span> values of the cluster2-worker1:
+
+kubelet client certificate, the one used <span class=k>for</span> outgoing connections to the kube-apiserver.
+kubelet server certificate, the one used <span class=k>for</span> incoming connections from the kube-apiserver.
+Write the information into file /opt/course/23/certificate-info.txt.
+
+Compare the <span class=s2>&quot;Issuer&quot;</span> and <span class=s2>&quot;Extended Key Usage&quot;</span> fields of both certificates and make sense of these.
+
+Answer:
+To find the correct kubelet certificate directory, we can look <span class=k>for</span> the default value of the --cert-dir parameter <span class=k>for</span> the kubelet. For this search <span class=k>for</span> <span class=s2>&quot;kubelet&quot;</span> <span class=k>in</span> the Kubernetes docs which will lead to: https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet. We can check <span class=k>if</span> another certificate directory has been configured using ps aux or <span class=k>in</span> /etc/systemd/system/kubelet.service.d/10-kubeadm.conf.
+
+First we check the kubelet client certificate:
+
+ssh cluster2-worker1
+openssl x509  -noout -text -in /var/lib/kubelet/pki/kubelet-client-current.pem <span class=p>|</span> grep Issuer
+openssl x509  -noout -text -in /var/lib/kubelet/pki/kubelet-client-current.pem <span class=p>|</span> grep <span class=s2>&quot;Extended Key Usage&quot;</span> -A1
+Next we check the kubelet server certificate:
+openssl x509  -noout -text -in /var/lib/kubelet/pki/kubelet.crt <span class=p>|</span> grep Issuer
+openssl x509  -noout -text -in /var/lib/kubelet/pki/kubelet.crt <span class=p>|</span> grep <span class=s2>&quot;Extended Key Usage&quot;</span> -A1
+We see that the server certificate was generated on the worker node itself and the client certificate was issued by the Kubernetes api. The <span class=s2>&quot;Extended Key Usage&quot;</span> also shows <span class=k>if</span> its <span class=k>for</span> client or server authentication.
+
+More about this: https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet-tls-bootstrapping
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>24</span> <span class=p>|</span> NetworkPolicy
+Task weight: <span class=m>9</span>%
+Use context: kubectl config use-context k8s-c1-H
+There was a security incident where an intruder was able to access the whole cluster from a single hacked backend Pod.
+
+To prevent this create a NetworkPolicy called np-backend <span class=k>in</span> Namespace project-snake. It should allow the backend-* Pods only to:
+
+connect to db1-* Pods on port <span class=m>1111</span>
+connect to db2-* Pods on port <span class=m>2222</span>
+Use the app label of Pods <span class=k>in</span> your policy.
+
+After implementation, connections from backend-* Pods to vault-* Pods on port <span class=m>3333</span> should <span class=k>for</span> example no longer work.
+
+Answer:
+First we look at the existing Pods and their labels:
+k -n project-snake get pod
+k -n project-snake get pod -L app
+We <span class=nb>test</span> the current connection situation and see nothing is restricted:
+k -n project-snake get pod -o wide
+k -n project-snake <span class=nb>exec</span> backend-0 -- curl -s <span class=m>10</span>.44.0.25:1111
+k -n project-snake <span class=nb>exec</span> backend-0 -- curl -s <span class=m>10</span>.44.0.23:2222
+k -n project-snake <span class=nb>exec</span> backend-0 -- curl -s <span class=m>10</span>.44.0.22:3333
+Now we create the NP by copying and chaning an example from the k8s docs:
+
+The NP below has two rules with two conditions each, it can be <span class=nb>read</span> as:
+
+allow outgoing traffic <span class=k>if</span>:
+  <span class=o>(</span>destination pod has label <span class=nv>app</span><span class=o>=</span>db1 AND port is <span class=m>1111</span><span class=o>)</span>
+  OR
+  <span class=o>(</span>destination pod has label <span class=nv>app</span><span class=o>=</span>db2 AND port is <span class=m>2222</span><span class=o>)</span>
+
+We create the correct NP:
+
+k -f 24_np.yaml create
+And <span class=nb>test</span> again:
+
+k -n project-snake <span class=nb>exec</span> backend-0 -- curl -s <span class=m>10</span>.44.0.25:1111
+k -n project-snake <span class=nb>exec</span> backend-0 -- curl -s <span class=m>10</span>.44.0.23:2222
+k -n project-snake <span class=nb>exec</span> backend-0 -- curl -s <span class=m>10</span>.44.0.22:3333
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># 24_np.yaml</span><span class=w></span>
+<span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1</span><span class=w></span>
+<span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">NetworkPolicy</span><span class=w></span>
+<span class=nt>metadata</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">np-backend</span><span class=w></span>
+<span class=w>  </span><span class=nt>namespace</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">project-snake</span><span class=w></span>
+<span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>podSelector</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class=nt>matchLabels</span><span class=p>:</span><span class=w></span>
+<span class=w>      </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">backend</span><span class=w></span>
+<span class=w>  </span><span class=nt>policyTypes</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">Egress</span><span class=w>                    </span><span class=c1># policy is only about Egress</span><span class=w></span>
+<span class=w>  </span><span class=nt>egress</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w>                           </span><span class=c1># first rule</span><span class=w></span>
+<span class=w>      </span><span class=nt>to</span><span class=p>:</span><span class=w>                           </span><span class=c1># first condition &quot;to&quot;</span><span class=w></span>
+<span class=w>      </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>podSelector</span><span class=p>:</span><span class=w></span>
+<span class=w>          </span><span class=nt>matchLabels</span><span class=p>:</span><span class=w></span>
+<span class=w>            </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">db1</span><span class=w></span>
+<span class=w>      </span><span class=nt>ports</span><span class=p>:</span><span class=w>                        </span><span class=c1># second condition &quot;port&quot;</span><span class=w></span>
+<span class=w>      </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>protocol</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span><span class=w></span>
+<span class=w>        </span><span class=nt>port</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">1111</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w>                           </span><span class=c1># second rule</span><span class=w></span>
+<span class=w>      </span><span class=nt>to</span><span class=p>:</span><span class=w>                           </span><span class=c1># first condition &quot;to&quot;</span><span class=w></span>
+<span class=w>      </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>podSelector</span><span class=p>:</span><span class=w></span>
+<span class=w>          </span><span class=nt>matchLabels</span><span class=p>:</span><span class=w></span>
+<span class=w>            </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">db2</span><span class=w></span>
+<span class=w>      </span><span class=nt>ports</span><span class=p>:</span><span class=w>                        </span><span class=c1># second condition &quot;port&quot;</span><span class=w></span>
+<span class=w>      </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>protocol</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span><span class=w></span>
+<span class=w>        </span><span class=nt>port</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">2222</span><span class=w></span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Question <span class=m>25</span> <span class=p>|</span> Etcd Snapshot Save and Restore
+Task weight: <span class=m>8</span>%
+Use context: kubectl config use-context k8s-c3-CCC
+
+Make a backup of etcd running on cluster3-master1 and save it on the master node at /tmp/etcd-backup.db.
+
+Then create a Pod of your kind <span class=k>in</span> the cluster.
+
+Finally restore the backup, confirm the cluster is still working and that the created Pod is no longer with us.
+
+Etcd Backup
+First we log into the master and try to create a snapshop of etcd:
+
+ssh cluster3-master1
+<span class=nv>ETCDCTL_API</span><span class=o>=</span><span class=m>3</span> etcdctl snapshot save /tmp/etcd-backup.db
+But it fails because we need to authenticate ourselves. For the necessary information we can check the etc manifest:
+vim /etc/kubernetes/manifests/etcd.yaml
+<span class=c1># OR</span>
+But we also know that the api-server is connecting to etcd, so we can check how its manifest is configured:
+cat /etc/kubernetes/manifests/kube-apiserver.yaml <span class=p>|</span> grep etcd
+We use the authentication information and pass it to etcdctl:
+<span class=nv>ETCDCTL_API</span><span class=o>=</span><span class=m>3</span> etcdctl snapshot save /tmp/etcd-backup.db <span class=se>\</span>
+--cacert /etc/kubernetes/pki/etcd/ca.crt <span class=se>\</span>
+--cert /etc/kubernetes/pki/etcd/server.crt <span class=se>\</span>
+--key /etc/kubernetes/pki/etcd/server.key
+<span class=c1># NOTE: Dont use snapshot status because it can alter the snapshot file and render it invalid</span>
+Etcd restore
+Now create a Pod <span class=k>in</span> the cluster and <span class=nb>wait</span> <span class=k>for</span> it to be running:
+kubectl run <span class=nb>test</span> --image<span class=o>=</span>nginx
+<span class=c1># NOTE: If you didn&#39;t solve questions 18 or 20 and cluster3 doesn&#39;t have a ready worker node then the created pod might stay in a Pending state. This is still ok for this task.</span>
+
+Next we stop all controlplane components:
+<span class=nb>cd</span> /etc/kubernetes/manifests/
+mv * ..
+watch crictl ps
+Now we restore the snapshot into a specific directory:
+
+<span class=nv>ETCDCTL_API</span><span class=o>=</span><span class=m>3</span> etcdctl snapshot restore /tmp/etcd-backup.db <span class=se>\</span>
+--data-dir /var/lib/etcd-backup <span class=se>\</span>
+--cacert /etc/kubernetes/pki/etcd/ca.crt <span class=se>\</span>
+--cert /etc/kubernetes/pki/etcd/server.crt <span class=se>\</span>
+--key /etc/kubernetes/pki/etcd/server.key
+We could specify another host to make the backup from by using etcdctl --endpoints http://IP, but here we just use the default value which is: http://127.0.0.1:2379,http://127.0.0.1:4001.
+
+The restored files are located at the new folder /var/lib/etcd-backup, now we have to tell etcd to use that directory:
+
+vim /etc/kubernetes/etcd.yaml
+- hostPath:
+    path: /var/lib/etcd-backup                <span class=c1># change</span>
+
+Now we move all controlplane yaml again into the manifest directory. Give it some <span class=nb>time</span> <span class=o>(</span>up to several minutes<span class=o>)</span> <span class=k>for</span> etcd to restart and <span class=k>for</span> the api-server to be reachable again:
+mv ../*.yaml .
+watch crictl ps
+Then we check again <span class=k>for</span> the Pod:
+kubectl get pod -l <span class=nv>run</span><span class=o>=</span><span class=nb>test</span>
+Awesome, backup and restore worked as our pod is gone.
+</code></pre></div> <div class=highlight><pre><span></span><code>Extra Question <span class=m>1</span> <span class=p>|</span> Find Pods first to be terminated
+Use context: kubectl config use-context k8s-c1-H
+Check all available Pods <span class=k>in</span> the Namespace project-c13 and find the names of those that would probably be terminated first <span class=k>if</span> the nodes run out of resources <span class=o>(</span>cpu or memory<span class=o>)</span> to schedule all Pods. Write the Pod names into /opt/course/e1/pods-not-stable.txt.
+
+Answer:
+When available cpu or memory resources on the nodes reach their limit, Kubernetes will look <span class=k>for</span> Pods that are using more resources than they requested. These will be the first candidates <span class=k>for</span> termination. If some Pods containers have no resource requests/limits set, <span class=k>then</span> by default those are considered to use more than requested.
+
+Kubernetes assigns Quality of Service classes to Pods based on the defined resources and limits, <span class=nb>read</span> more here: https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod
+
+Hence we should look <span class=k>for</span> Pods without resource requests defined, we can <span class=k>do</span> this with a manual approach:
+k -n project-c13 describe pod <span class=p>|</span> less -p Requests <span class=c1># describe all pods and highlight Requests</span>
+k -n project-c13 describe pod <span class=p>|</span> egrep <span class=s2>&quot;^(Name:|    Requests:)&quot;</span> -A1
+<span class=c1># We see that the Pods of Deployment c13-3cc-runner-heavy don&#39;t have any resources requests specified. Hence our answer would be:</span>
+
+Hence our answer would be:
+
+<span class=c1># /opt/course/e1/pods-not-stable.txt</span>
+c13-3cc-runner-heavy-65588d7d6-djtv9map
+c13-3cc-runner-heavy-65588d7d6-v8kf5map
+c13-3cc-runner-heavy-65588d7d6-wwpb4map
+o3db-0
+o3db-1 <span class=c1># maybe not existing if already removed via previous scenario </span>
+
+To automate this process you could use jsonpath like this:
+k -n project-c13 get pod <span class=se>\</span>
+  -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s2>&quot;{range .items[*]} {.metadata.name}{.spec.containers[*].resources}{&#39;\n&#39;}&quot;</span>
+
+Or we look <span class=k>for</span> the Quality of Service classes:
+k get pods -n project-c13 <span class=se>\</span>
+  -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s2>&quot;{range .items[*]}{.metadata.name} {.status.qosClass}{&#39;\n&#39;}&quot;</span>
+<span class=c1># Here we see three with BestEffort, which Pods get that don&#39;t have any memory or cpu limits or requests defined.</span>
+<span class=c1># A good practice is to always set resource requests and limits. If you don&#39;t know the values your containers should have you can find this out using metric tools like Prometheus. You can also use kubectl top pod or even kubectl exec into the container and use top and similar tools.</span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Extra Question <span class=m>2</span> <span class=p>|</span> Curl Manually Contact API
+Use context: kubectl config use-context k8s-c1-H
+There is an existing ServiceAccount secret-reader <span class=k>in</span> Namespace project-hamster. Create a Pod of image curlimages/curl:7.65.3 named tmp-api-contact which uses this ServiceAccount. Make sure the container keeps running.
+
+Exec into the Pod and use curl to access the Kubernetes Api of that cluster manually, listing all available secrets. You can ignore insecure https connection. Write the command<span class=o>(</span>s<span class=o>)</span> <span class=k>for</span> this into file /opt/course/e4/list-secrets.sh.
+
+Answer:
+https://kubernetes.io/docs/tasks/run-application/access-api-from-pod
+
+<span class=c1># It&#39;s important to understand how the Kubernetes API works. For this it helps connecting to the api manually, for example using curl. You can find information fast by search in the Kubernetes docs for &quot;curl api&quot; for example.</span>
+
+First we create our Pod:  
+k run tmp-api-contact <span class=se>\</span>
+  --image<span class=o>=</span>curlimages/curl:7.65.3 <span class=nv>$do</span> <span class=se>\</span>
+  --command &gt; e2.yaml -- sh -c <span class=s1>&#39;sleep 1d&#39;</span>
+Add the service account name and Namespace:
+
+Then run and <span class=nb>exec</span> into:
+
+k -f e2.yaml create
+
+k -n project-hamster <span class=nb>exec</span> tmp-api-contact -it -- sh
+
+Once on the container we can try to connect to the api using curl, the api is usually available via the Service named kubernetes <span class=k>in</span> Namespace default <span class=o>(</span>You should know how dns resolution works across Namespaces.<span class=o>)</span>. Else we can find the endpoint IP via environment variables running env.
+So now we can <span class=k>do</span>:
+
+curl https://kubernetes.default
+curl -k https://kubernetes.default <span class=c1># ignore insecure as allowed in ticket description</span>
+curl -k https://kubernetes.default/api/v1/secrets <span class=c1># should show Forbidden 403</span>
+
+The last <span class=nb>command</span> shows <span class=m>403</span> forbidden, this is because we are not passing any authorisation information with us. The Kubernetes Api Server thinks we are connecting as system:anonymous. We want to change this and connect using the Pods ServiceAccount named secret-reader.
+We find the the token <span class=k>in</span> the mounted folder at /var/run/secrets/kubernetes.io/serviceaccount, so we <span class=k>do</span>:
+<span class=nv>TOKEN</span><span class=o>=</span><span class=k>$(</span>cat /var/run/secrets/kubernetes.io/serviceaccount/token<span class=k>)</span>
+curl -k https://kubernetes.default/api/v1/secrets -H <span class=s2>&quot;Authorization: Bearer </span><span class=si>${</span><span class=nv>TOKEN</span><span class=si>}</span><span class=s2>&quot;</span>
+
+<span class=c1># Now we&#39;re able to list all Secrets, registering as the ServiceAccount secret-reader under which our Pod is running.</span>
+
+To use encrypted https connection we can run:
+<span class=nv>CACERT</span><span class=o>=</span>/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+curl --cacert <span class=si>${</span><span class=nv>CACERT</span><span class=si>}</span> https://kubernetes.default/api/v1/secrets -H <span class=s2>&quot;Authorization: Bearer </span><span class=si>${</span><span class=nv>TOKEN</span><span class=si>}</span><span class=s2>&quot;</span>
+For troubleshooting we could also check <span class=k>if</span> the ServiceAccount is actually able to list Secrets using:
+k auth can-i get secret --as system:serviceaccount:project-hamster:secret-reader
+<span class=c1># yes</span>
+Finally write the commands into the requested location:
+<span class=c1># /opt/course/e4/list-secrets.sh</span>
+<span class=nv>TOKEN</span><span class=o>=</span><span class=k>$(</span>cat /var/run/secrets/kubernetes.io/serviceaccount/token<span class=k>)</span>
+curl -k https://kubernetes.default/api/v1/secrets -H <span class=s2>&quot;Authorization: Bearer </span><span class=si>${</span><span class=nv>TOKEN</span><span class=si>}</span><span class=s2>&quot;</span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Preview Question <span class=m>1</span>
+Use context: kubectl config use-context k8s-c2-AC
+
+The cluster admin asked you to find out the following information about etcd running on cluster2-master1:
+
+Server private key location
+Server certificate expiration date
+Is client certificate authentication enabled
+Write these information into /opt/course/p1/etcd-info.txt
+
+<span class=c1># Finally you&#39;re asked to save an etcd snapshot at /etc/etcd-snapshot.db on cluster2-master1 and display its status.</span>
+Answer:
+Find out etcd information
+<span class=c1># Let&#39;s check the nodes:</span>
+k get node
+ssh cluster2-master1
+First we check how etcd is setup <span class=k>in</span> this cluster:
+kubectl -n kube-system get pod
+We see its running as a Pod, more specific a static Pod. So we check <span class=k>for</span> the default kubelet directory <span class=k>for</span> static manifests:
+find /etc/kubernetes/manifests/
+vim /etc/kubernetes/manifests/etcd.yaml
+- command:
+    - etcd
+    - --advertise-client-urls<span class=o>=</span>https://192.168.102.11:2379
+    - --cert-file<span class=o>=</span>/etc/kubernetes/pki/etcd/server.crt              <span class=c1># server certificate</span>
+    - --client-cert-auth<span class=o>=</span><span class=nb>true</span>                                      <span class=c1># enabled</span>
+    - --key-file<span class=o>=</span>/etc/kubernetes/pki/etcd/server.key               <span class=c1># server private key</span>
+
+<span class=c1># We see that client authentication is enabled and also the requested path to the server private key, now let&#39;s find out the expiration of the server certificate:</span>
+openssl x509  -noout -text -in /etc/kubernetes/pki/etcd/server.crt <span class=p>|</span> grep Validity -A2
+<span class=c1># There we have it. Let&#39;s write the information into the requested file:</span>
+
+<span class=c1># /opt/course/p1/etcd-info.txt</span>
+Server private key location: /etc/kubernetes/pki/etcd/server.key
+Server certificate expiration date: Sep <span class=m>13</span> <span class=m>13</span>:01:31 <span class=m>2022</span> GMT
+Is client certificate authentication enabled: yes
+Create etcd snapshot
+<span class=nv>ETCDCTL_API</span><span class=o>=</span><span class=m>3</span> etcdctl snapshot save /etc/etcd-snapshot.db <span class=se>\</span>
+--cacert /etc/kubernetes/pki/etcd/ca.crt <span class=se>\</span>
+--cert /etc/kubernetes/pki/etcd/server.crt <span class=se>\</span>
+--key /etc/kubernetes/pki/etcd/server.key
+
+This worked. Now we can output the status of the backup file:
+<span class=nv>ETCDCTL_API</span><span class=o>=</span><span class=m>3</span> etcdctl snapshot status /etc/etcd-snapshot.db
+</code></pre></div> <div class=highlight><pre><span></span><code>Preview Question <span class=m>2</span>
+Use context: kubectl config use-context k8s-c1-H
+<span class=c1># You&#39;re asked to confirm that kube-proxy is running correctly on all nodes. For this perform the following in Namespace project-hamster:</span>
+
+Create a new Pod named p2-pod with two containers, one of image nginx:1.21.3-alpine and one of image busybox:1.31. Make sure the busybox container keeps running <span class=k>for</span> some time.
+
+Create a new Service named p2-service which exposes that Pod internally <span class=k>in</span> the cluster on port <span class=m>3000</span>-&gt;80.
+
+<span class=c1># Find the kube-proxy container on all nodes cluster1-master1, cluster1-worker1 and cluster1-worker2 and make sure that it&#39;s using iptables. Use command crictl for this.</span>
+
+Write the iptables rules of all nodes belonging the created Service p2-service into file /opt/course/p2/iptables.txt.
+
+Finally delete the Service and confirm that the iptables rules are gone from all nodes.
+
+Answer:
+Create the Pod
+First we create the Pod:
+k run p2-pod --image<span class=o>=</span>nginx:1.21.3-alpine <span class=nv>$do</span> &gt; p2.yaml
+<span class=c1># p2.yaml</span>
+- image: busybox:1.31                  <span class=c1># add</span>
+  name: c2                             <span class=c1># add</span>
+  command: <span class=o>[</span><span class=s2>&quot;sh&quot;</span>, <span class=s2>&quot;-c&quot;</span>, <span class=s2>&quot;sleep 1d&quot;</span><span class=o>]</span>    <span class=c1># add</span>
+Create the Service
+Next we create the Service:
+k -n project-hamster expose pod p2-pod --name p2-service --port <span class=m>3000</span> --target-port <span class=m>80</span>
+We should confirm Pods and Services are connected, hence the Service should have Endpoints.
+
+k -n project-hamster get pod,svc,ep
+
+Confirm kube-proxy is running and is using iptables
+First we get nodes <span class=k>in</span> the cluster:
+k get node
+The idea here is to log into every node, find the kube-proxy container and check its logs:
+ssh cluster1-master1
+crictl ps <span class=p>|</span> grep kube-proxy
+crictl logs 27b6a18c0f89c
+This should be repeated on every node and result <span class=k>in</span> the same output Using iptables Proxier.
+Check kube-proxy is creating iptables rules
+Now we check the iptables rules on every node first manually:
+ssh cluster1-master1 iptables-save <span class=p>|</span> grep p2-service
+<span class=c1># Great. Now let&#39;s write these logs into the requested file:</span>
+ssh cluster1-master1 iptables-save <span class=p>|</span> grep p2-service &gt;&gt; /opt/course/p2/iptables.txt
+ssh cluster1-worker1 iptables-save <span class=p>|</span> grep p2-service &gt;&gt; /opt/course/p2/iptables.txt
+ssh cluster1-worker2 iptables-save <span class=p>|</span> grep p2-service &gt;&gt; /opt/course/p2/iptables.txt
+Delete the Service and confirm iptables rules are gone
+Delete the Service:
+k -n project-hamster delete svc p2-service
+And confirm the iptables rules are gone:
+ssh cluster1-master1 iptables-save <span class=p>|</span> grep p2-service
+<span class=c1># Kubernetes Services are implemented using iptables rules (with default config) on all nodes. Every time a Service has been altered, created, deleted or Endpoints of a Service have changed, the kube-apiserver contacts every node&#39;s kube-proxy to update the iptables rules according to the current state.</span>
+</code></pre></div> <div class=highlight><pre><span></span><code>Preview Question <span class=m>3</span>
+Use context: kubectl config use-context k8s-c2-AC
+
+Create a Pod named check-ip <span class=k>in</span> Namespace default using image httpd:2.4.41-alpine. Expose it on port <span class=m>80</span> as a ClusterIP Service named check-ip-service. Remember/output the IP of that Service.
+
+Change the Service CIDR to <span class=m>11</span>.96.0.0/12 <span class=k>for</span> the cluster.
+
+Then create a second Service named check-ip-service2 pointing to the same Pod to check <span class=k>if</span> your settings did take effect. Finally check <span class=k>if</span> the IP of the first Service has changed.
+
+Answer:
+<span class=c1># Let&#39;s create the Pod and expose it:</span>
+k run check-ip --image<span class=o>=</span>httpd:2.4.41-alpine
+k expose pod check-ip --name check-ip-service --port <span class=m>80</span>
+And check the Pod and Service ips:
+k get svc,ep -l <span class=nv>run</span><span class=o>=</span>check-ip
+Now we change the Service CIDR on the kube-apiserver:
+ssh cluster2-master1
+vim /etc/kubernetes/manifests/kube-apiserver.yaml
+- --service-cluster-ip-range<span class=o>=</span><span class=m>11</span>.96.0.0/12             <span class=c1># change</span>
+Give it a bit of <span class=nb>time</span> <span class=k>for</span> the kube-apiserver and controller-manager to restart
+Wait <span class=k>for</span> the api to be up again:
+kubectl -n kube-system get pod <span class=p>|</span> grep api
+Now we <span class=k>do</span> the same <span class=k>for</span> the controller manager:
+vim /etc/kubernetes/manifests/kube-controller-manager.yaml
+- --service-cluster-ip-range<span class=o>=</span><span class=m>11</span>.96.0.0/12         <span class=c1># change</span>
+Give it a bit <span class=k>for</span> the controller-manager to restart.
+
+We can check <span class=k>if</span> it was restarted using crictl:
+crictl ps <span class=p>|</span> grep scheduler
+Checking our existing Pod and Service again:
+k get pod,svc -l <span class=nv>run</span><span class=o>=</span>check-ip
+Nothing changed so far. Now we create another Service like before:
+
+k expose pod check-ip --name check-ip-service2 --port <span class=m>80</span>
+And check again:
+k get svc,ep -l <span class=nv>run</span><span class=o>=</span>check-ip
+There we go, the new Service got an ip of the new specified range assigned. We also see that both Services have our Pod as endpoint.
+</code></pre></div></p> </article> </div> </div> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2022 - Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing"}, "version": null}</script> <script src=../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>

@@ -1,0 +1,21 @@
+# Application servers
+#[app]
+#127.0.0.1
+#192.168.99.100
+#192.168.60.5
+
+# Database server
+#[db]
+#192.168.60.6
+
+# Group 'multi' with all servers
+#[multi:children]
+#app
+#db
+
+# Variables that will be applied to all servers
+#[multi:vars]
+node1 ansible_host=192.168.99.100 ansible_user=vagrant ansible_ssh_private_key_file=~/.ssh/insecure_private_key
+node2 ansible_host=192.168.99.101 ansible_user=vagrant ansible_ssh_private_key_file=~/.ssh/insecure_private_key
+#ansible_ssh_pass=vagrant
+#ansible_ssh_common_args='-o StrictHostKeyChecking=no'

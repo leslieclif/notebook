@@ -1,0 +1,544 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/learning/linux/router/ rel=canonical><link rel="shortcut icon" href=../../../assets/images/favicon.png><meta name=generator content="mkdocs-1.4.1, mkdocs-material-7.0.3"><title>Requirement - The Core Router—First Line of Defense - Leslie's Online Notebook</title><link rel=stylesheet href=../../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#requirement---the-core-routerfirst-line-of-defense class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Requirement - The Core Router—First Line of Defense </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../devops/ class=md-nav__link> Devops </a> </li> <li class=md-nav__item> <a href=../../../devops/ci/ class=md-nav__link> CI </a> </li> <li class=md-nav__item> <a href=../../../devops/cd/ class=md-nav__link> CD </a> </li> <li class=md-nav__item> <a href=../../../devops/iac/ class=md-nav__link> IAC </a> </li> <li class=md-nav__item> <a href=../../../devops/gitops/ class=md-nav__link> GitOps </a> </li> <li class=md-nav__item> <a href=../../../devops/devops-engineer/ class=md-nav__link> Skills </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Ansible <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ansible data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Ansible </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ansible/ansible/ class=md-nav__link> Ansible </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../k8s/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../../k8s/install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../../python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../vagrant/ class=md-nav__link> Vagrant </a> </li> <li class=md-nav__item> <a href=../../terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../../docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../linux/ class=md-nav__link> Linux </a> </li> <li class=md-nav__item> <a href=../security/ class=md-nav__link> Linux_Security </a> </li> <li class=md-nav__item> <a href=../firewall/ class=md-nav__link> Linux_Firewall </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#requirement---the-core-routerfirst-line-of-defense class=md-nav__link> Requirement - The Core Router—First Line of Defense </a> </li> <li class=md-nav__item> <a href=#defining-the-security-policy class=md-nav__link> Defining the Security Policy </a> <nav class=md-nav aria-label="Defining the Security Policy"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#firewall-script-for-home-server class=md-nav__link> Firewall Script for Home Server </a> </li> <li class=md-nav__item> <a href=#adding-and-removing-enemies-from-the-firewall class=md-nav__link> Adding and removing enemies from the firewall </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#install-dd-wrt class=md-nav__link> Install DD-WRT </a> </li> <li class=md-nav__item> <a href=#network-configuration class=md-nav__link> Network Configuration </a> </li> <li class=md-nav__item> <a href=#install-dd-wrt-in-virtualbox class=md-nav__link> Install DD-WRT in Virtualbox </a> </li> <li class=md-nav__item> <a href=#setup-virtual-network-lab class=md-nav__link> Setup Virtual Network Lab </a> </li> <li class=md-nav__item> <a href=#install-open-wrt-in-virtualbox class=md-nav__link> Install Open-WRT in Virtualbox </a> </li> <li class=md-nav__item> <a href=#setup-the-servers class=md-nav__link> Setup the Servers </a> </li> <li class=md-nav__item> <a href=#testing class=md-nav__link> Testing </a> </li> <li class=md-nav__item> <a href=#firewall class=md-nav__link> Firewall </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>Requirement - The Core Router—First Line of Defense</h1> <h2 id=requirement---the-core-routerfirst-line-of-defense>Requirement - The Core Router—First Line of Defense<a class=headerlink href=#requirement---the-core-routerfirst-line-of-defense title="Permanent link">&para;</a></h2> <ul> <li>Linux as SOHO Router. SOHO stands for Small Offices and Home Offices, and usually refers to situations where there exists just one computer at home to a few computers in a small office.</li> <li>If you have an old computer that you are about to throw away, you can easily install Linux on it and make it your own SOHO router having the advantage of higher flexibility at zero cost.</li> <li>A SOHO router has a WAN port that is an Ethernet port where the provider connection must be plugged in. The Provider's CPE (Customer Premises Equipment) can be of any type (xDSL modem, wireless bridge, cable modem, fiber optic media converter) that can provide an Ethernet connection. </li> <li>SOHO routers usually have four to eight Ethernet ports for the LAN. This is basically a small four-to-eight-port switch that's built in the SOHO router. Some SOHO routers also have a wireless access point chipset that is bridged to the built-in switch.</li> <li>Our computer that will run Linux and act as SOHO router must have two Ethernet cards, one for the WAN function of a SOHO router into which the provider's CPE is plugged, and one for the LAN. </li> <li>If you want the LAN to be wired and wireless, the Ethernet interface for the local network will be plugged into an access point with a built-in switch. However it is, everything is basically a LAN (wired, wireless, bridged, or switched); so, from the firewall point of view, it doesn't really matter what we use at the first and second layers of the OSI model (access points, hubs, switches).</li> <li> <p>The provider usually assigns us a public IP address that can be either statically assigned or dynamically assigned using DHCP or PPPoE. </p> </li> <li> <p>From a security point of view, the core router is the first line of defense. The first line of defense should stop all attacks coming from outside. However, if the firewall at the core router fails, then the firewall on each server is responsible for the security of that server.</p> </li> <li>If a user gains unauthorized access due to a bug in one of the services running on one server, the core router firewall or the firewall on that server are useless. In this case, the attacker has access to a server directly connected to the other servers in the server farm, and so the first line of defense has failed.</li> <li>The <strong>INPUT</strong> chain for the core router is the simplest of all the firewalls so far. We need to set the policy to DROP, allow SSH, ICMP, and DNS, and disallow SYN packets—that's all!</li> <li>In the <strong>FORWARD</strong> chain, we will do most of the operations we already did on the servers.</li> </ul> <h2 id=defining-the-security-policy>Defining the Security Policy<a class=headerlink href=#defining-the-security-policy title="Permanent link">&para;</a></h2> <ul> <li> <p>Before building up any firewalls, we have to decide what the firewall must do by creating a security policy that can be from a document (recommended) to a piece of paper, or some thoughts in our heads.</p> </li> <li> <p>The desktop can access anything. Also, we want to be able to log in on the desktop computer from outside using VNC (Virtual Network Computing).</p> </li> <li>The Linux router must run SSH so that we can log in to it from the internal network and from the office.</li> <li>One file server for Storage requirement.</li> <li>One DNS server and a Transparent proxy server. </li> <li>One Secrets server for secret management and encryption as a service.</li> <li> <p>Application servers to host applications.</p> </li> <li> <p>We need to be able to access both Linux servers in the network using SSH from the desktop computer as well as from some public IP addresses we have at home.</p> </li> <li>All servers must be accessed only from computers from home.</li> <li>Deny access from people outside the home network to see their file shares.</li> <li>Use a transparent proxy for them to deny access to .pif and .scr files. </li> <li>Browse the Web, but not to download .pif, .scr, .exe, .zip, and .rar files.</li> <li>Access HTTPS port 443 TCP.</li> <li>We will need access to SSH on both Linux servers we have from a list of allowed hosts from our network and from outside (e.g. network administrators' home IP addresses). First, we decide on a port (22 is default for SSH), let's say 61146 TCP for running SSH on both our hosts. Next, we need to build the list of IP addresses that are authorized to access the SSH ports. Let's say those are 1.1.2.0/26, 1.1.3.192, 1.1.9.21, 1.1.19.61. The simplest way to build the rules for SSH is to create a chain called MANAGEMENT. On our Linux router, we need to apply the rules in the MANAGEMENT chain for incoming packets with the destination port 61146 TCP.</li> <li>There's one thing that we did here that might compromise security (although it's very unlikely)—a little hole in the firewall. I'm talking about <code>-p udp --sport 53 -j ACCEPT</code>. Starting at one point, an unpatched service on UDP might give an attacker the possibility to pass our firewalls by using port 53 as source port. <div class=highlight><pre><span></span><code><span class=ch>#!/bin/bash</span>
+<span class=c1>#define the prefix for the network (where we are)</span>
+<span class=c1># Every time we add a site we modify the prefix with the network that we use at that location.</span>
+<span class=nv>PREFIX</span><span class=o>=</span><span class=m>192</span>.168.3
+<span class=nv>IPT</span><span class=o>=</span><span class=s2>&quot;/sbin/iptables&quot;</span>
+<span class=c1>############# Begin the NAT table opperations ######</span>
+<span class=c1>#Flush all the rules in the nat table</span>
+<span class=nv>$IPT</span> -t nat -F
+<span class=c1>#load some modules for NAT to work better</span>
+/sbin/modprobe ip_nat_ftp
+/sbin/modprobe ip_nat_irc
+<span class=c1>#SNAT sales and accounting to port 53 UDP (DNS)</span>
+<span class=nv>$IPT</span> -t nat -A POSTROUTING -o eth0 -s <span class=m>192</span>.168.1.0/24 -p udp --dport <span class=m>53</span> -j SNAT --to <span class=m>1</span>.1.2.96-1.1.2.254
+<span class=c1>#Transparent Proxy for sales and accounting</span>
+<span class=nv>$IPT</span> -t nat -A PREROUTING -s <span class=m>192</span>.168.1.0/24 -p tcp --dport <span class=m>80</span> -j REDIRECT --to-port <span class=m>3128</span>
+<span class=c1>#SNAT Sales and accounting for HTTPS</span>
+<span class=nv>$IPT</span> -t nat -A POSTROUTING -o eth0 -s <span class=m>192</span>.168.1.0/24 -p tcp --dport <span class=m>443</span> -j SNAT --to <span class=m>1</span>.1.2.96-1.1.2.254
+<span class=c1>#Drop everything else from sales and accouting to the internet</span>
+<span class=nv>$IPT</span> -t nat -A POSTROUTING -o eth0 -s <span class=m>192</span>.168.1.0/24 -j DROP
+<span class=c1>#Transparent Proxy for management</span>
+<span class=nv>$IPT</span> -t nat -A PREROUTING -s <span class=m>1</span>.1.2.64/27 -p tcp --dport <span class=m>80</span> -j REDIRECT --to-port <span class=m>3128</span>
+<span class=c1>#MASQ internal departments</span>
+<span class=nv>$IPT</span> -t nat -A POSTROUTING -s <span class=m>192</span>.168.1.0/24 -o eth0 -j MASQUERADE
+<span class=c1>############# End the NAT table operations ######</span>
+<span class=c1>########## INPUT Chain begin ########</span>
+<span class=c1>#Flush netfilter table</span>
+<span class=nv>$IPT</span> -F
+<span class=c1>#policy Drop</span>
+<span class=nv>$IPT</span> -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT  DROP
+
+<span class=c1># Dont accept IPv6 traffic</span>
+ip6tables -P INPUT   DROP
+ip6tables -P FORWARD DROP
+ip6tables -P OUTPUT  DROP
+<span class=c1>#Accept all on the loopback interface</span>
+<span class=nv>$IPT</span> -A INPUT -i lo -j ACCEPT
+<span class=c1>#Accept icmp</span>
+<span class=nv>$IPT</span> -A INPUT -p icmp -j ACCEPT
+<span class=c1>#Allow admins SSH access</span>
+<span class=nv>$IPT</span> -A INPUT -s <span class=m>1</span>.2.3.16/28 -p tcp --dport <span class=m>22</span> -j ACCEPT
+<span class=c1>#Allow the core router to receive DNS packets</span>
+<span class=nv>$IPT</span> -A INPUT -p udp --sport <span class=m>53</span> -j ACCEPT
+<span class=c1>#Allow non syn packets (connections initiated by this machine)</span>
+<span class=nv>$IPT</span> -A INPUT -p tcp ! --syn -j ACCEPT
+<span class=c1>########## INPUT Chain end ########</span>
+<span class=c1>########## FORWARD Chain begin ########</span>
+<span class=c1>########## policy ACCEPT - default</span>
+<span class=c1>#Deny Access to switches and wireless equipment</span>
+<span class=nv>$IPT</span> -A FORWARD -s ! <span class=m>1</span>.2.3.16/28 -d <span class=m>192</span>.168.100.0/24 -j DROP
+<span class=c1>#Allow SSH access to everything from admins</span>
+<span class=nv>$IPT</span> -A FORWARD -s ! <span class=m>1</span>.2.3.16/28 -p tcp --dport <span class=m>22</span> -j ACCEPT
+<span class=c1>#Allow established tcp packets out eth1 and eth2</span>
+<span class=nv>$IPT</span> -A FORWARD -o eth1 -p tcp ! --syn -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -o eth2 -p tcp ! --syn -j ACCEPT
+<span class=c1>#Create a chain for the intranet server</span>
+<span class=c1>#Intranet server</span>
+<span class=nv>$IPT</span> -N INTRANET
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.10 -j INTRANET
+<span class=c1>###### INTRANET Chain</span>
+<span class=c1>#DROP web packets for the intranet application</span>
+<span class=nv>$IPT</span> -A INTRANET -p tcp --dport <span class=m>80</span> -j DROP
+<span class=c1>#DROP SSH (Packets from ADMINS don&#39;t pass through here)</span>
+<span class=nv>$IPT</span> -A INTRANET -p tcp --dport <span class=m>22</span> -j DROP
+<span class=c1>#Drop Samba and ms-ds for packets on eth2</span>
+<span class=nv>$IPT</span> -A FORWARD -o eth2 -p tcp --dport <span class=m>137</span>:139 -j DROP
+<span class=nv>$IPT</span> -A FORWARD -o eth2 -p udp --dport <span class=m>137</span>:139 -j DROP
+<span class=nv>$IPT</span> -A FORWARD -o eth2 -p tcp --dport <span class=m>445</span> -j DROP
+<span class=c1>#wireless server - simple, we don&#39;t need a chain</span>
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.130 -p udp --sport <span class=m>53</span> -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.130 -p ICMP -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.130 -j DROP
+<span class=c1>#AAA server</span>
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.1 -s ! <span class=m>1</span>.2.3.131 -p udp --dport <span class=m>1812</span>:1814 -j DROP
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.1 -p tcp --dport <span class=m>23</span> -j DROP
+<span class=c1>#SQL server</span>
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.2 -s ! <span class=m>1</span>.2.3.10 -p tcp --dport <span class=m>5432</span> -j DROP
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.2 -p ICMP -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.2 -j DROP
+<span class=c1>#MAIL server</span>
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.3 -p tcp --dport <span class=m>25</span> -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.3 -p tcp --dport <span class=m>110</span> -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.3 -p udp --sport <span class=m>53</span> -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.3 -p ICMP -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.3 -j DROP
+<span class=c1>#WEB server</span>
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.4 -p tcp --dport <span class=m>50000</span>:52000 -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.4 -p tcp --dport <span class=m>80</span> -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.4 -p tcp --dport <span class=m>21</span> -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.4 -p ICMP -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.4 -j DROP
+<span class=c1>#Access Server</span>
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.131 -s <span class=m>1</span>.2.3.1 -p udp --sport <span class=m>1812</span>:1814 -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.131 -s <span class=m>1</span>.2.3.1 -p udp --sport <span class=m>53</span> -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.131 -s <span class=m>1</span>.2.3.16/28 -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.131 -p ICMP -j ACCEPT
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.2.3.131 -j DROP
+<span class=c1>#delete MANAGEMENT chain if exists</span>
+<span class=nv>$IPT</span> -X MANAGEMENT
+<span class=c1>#create MANAGEMENT chain</span>
+<span class=nv>$IPT</span> -N MANAGEMENT
+<span class=c1>#add authorized IPs to the MANAGEMENT chain, drop all the others</span>
+<span class=nv>$IPT</span> -A MANAGEMENT -s <span class=m>1</span>.1.2.0/26 -j ACCEPT
+<span class=nv>$IPT</span> -A MANAGEMENT -s <span class=m>1</span>.1.3.192 -j ACCEPT
+<span class=nv>$IPT</span> -A MANAGEMENT -s <span class=m>1</span>.1.9.21 -j ACCEPT
+<span class=nv>$IPT</span> -A MANAGEMENT -s <span class=m>1</span>.1.19.61 -j ACCEPT
+<span class=nv>$IPT</span> -A MANAGEMENT -s <span class=m>0</span>/0 -j DROP
+<span class=c1>#Jump incoming packets for port 61146 TCP to the MANAGEMENT chain</span>
+<span class=nv>$IPT</span> -A INPUT -p tcp --dport <span class=m>61146</span> -j MANAGEMENT
+<span class=c1>#Jump packets destined to 1.1.2.2 port 61146 TCP to the MANAGEMENT #chain</span>
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.1.2.2 -p tcp --dport <span class=m>61146</span> -j MANAGEMENT
+<span class=c1>#Allow users to connect to openvpn</span>
+<span class=nv>$IPT</span> -A INPUT -p tcp --dport <span class=m>6669</span> -j ACCEPT
+<span class=c1>#Allow internal departments SAMBA connections</span>
+<span class=nv>$IPT</span> -A INPUT -s <span class=m>192</span>.168.1.0/24 -p tcp --dport <span class=m>137</span>:139 -j ACCEPT
+<span class=c1>#Allow admins SAMBA connections</span>
+<span class=nv>$IPT</span> -A INPUT -s <span class=m>1</span>.2.3.16/28 -p tcp --dport <span class=m>137</span>:139 -j ACCEPT
+<span class=c1>#deny access to the intranet web server</span>
+<span class=nv>$IPT</span> -A INPUT -i eth0 -p tcp --dport <span class=m>80</span> -j DROP
+<span class=c1>#filter the PostgreSQL port</span>
+<span class=nv>$IPT</span> -A INPUT -p tcp --dport <span class=m>5432</span> -j DROP
+<span class=c1>#drop incoming TCP SYN packets</span>
+<span class=nv>$IPT</span> -A INPUT -i eth0 -p tcp --syn -j DROP
+<span class=c1>#allow http, pop3, smtp for the web and mail server</span>
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.1.2.2 -p tcp -m multiport --dport <span class=m>80</span>,25,110 -j ACCEPT
+<span class=c1>#drop all other tcp traffic for the web and mail server</span>
+<span class=nv>$IPT</span> -A FORWARD -d <span class=m>1</span>.1.2.2 -p tcp --syn -j DROP
+
+<span class=c1>#deny SSH access except admins</span>
+<span class=nv>$IPT</span> -A INPUT -p tcp --dport <span class=m>22</span> -s ! <span class=m>192</span>.168.1.0/29 -j DROP
+<span class=c1>#NAT all to the internet. Don&#39;t nat to network at HQ</span>
+<span class=nv>$IPT</span> -t nat -A POSTROUTING -s <span class=nv>$PREFIX</span>.0/24 -d ! <span class=m>192</span>.168.1.0/24 -j MASQUERADE
+</code></pre></div></li> <li>It is very important for us to secure the database server, and this is not even very difficult. </li> <li><code>$IPT -A FORWARD -d 1.2.3.2 -s ! 1.2.3.10 -p tcp --dport 5432 -j DROP</code></li> <li>This will drop packets from other sources than 1.2.3.10 (the intranet server) to the database server on port 5432/TCP. However, on the database server we have a chain named SQL in which we allow connections from 1.2.3.10 and 1.2.3.1 (the AAA server). The reason why we didn't add a rule in the core router for packets with the source 1.2.3.1 to pass to 1.2.3.2 is that those servers are in the same subnet (directly connected) and packets from one to another don't pass through the core router.</li> <li>Firewall script for the database server</li> </ul> <p><div class=highlight><pre><span></span><code><span class=ch>#!/bin/bash</span>
+<span class=nv>IPT</span><span class=o>=</span><span class=s2>&quot;/sbin/iptables&quot;</span>
+<span class=c1>#flush rules</span>
+<span class=nv>$IPT</span> -F
+<span class=c1>#INPUT chain policy DROP</span>
+<span class=nv>$IPT</span> -P INPUT DROP
+<span class=c1>#Accept packets on loopback</span>
+<span class=nv>$IPT</span> -A INPUT -i lo -j ACCEPT
+<span class=c1>#Accept SSH from Admins</span>
+<span class=nv>$IPT</span> -A INPUT -s <span class=m>1</span>.2.3.16/28 -p tcp --dport <span class=m>22</span> -j ACCEPT
+<span class=c1>#Create SQL chain and jump packets for 5432/tcp to it</span>
+<span class=nv>$IPT</span> -N SQL
+<span class=nv>$IPT</span> -A INPUT -p udp --dport <span class=m>5432</span> -j SQL
+<span class=c1>#Allow SQL connections from AAA and intranet servers</span>
+<span class=nv>$IPT</span> -A SQL -s <span class=m>1</span>.2.3.1 -j ACCEPT
+<span class=nv>$IPT</span> -A SQL -s <span class=m>1</span>.2.3.10 -j ACCEPT
+<span class=nv>$IPT</span> -A SQL -j DROP
+<span class=c1>#Allow outgoing TCP connections</span>
+<span class=nv>$IPT</span> -A INPUT -s <span class=m>1</span>.2.3.1 -p udp --sport <span class=m>53</span> -j ACCEPT
+<span class=nv>$IPT</span> -A INPUT -p tcp ! --syn -j ACCEPT
+</code></pre></div> - Firewall script for the Web server <div class=highlight><pre><span></span><code><span class=ch>#!/bin/bash</span>
+<span class=nv>IPT</span><span class=o>=</span><span class=s2>&quot;/sbin/iptables&quot;</span>
+<span class=c1>#flush rules</span>
+<span class=nv>$IPT</span> -F
+<span class=c1>#INPUT chain policy DROP</span>
+<span class=nv>$IPT</span> -P INPUT DROP
+<span class=c1>#Accept packets on loopback</span>
+<span class=nv>$IPT</span> -A INPUT -i lo -j ACCEPT
+<span class=c1>#Accept SSH from Admins</span>
+<span class=nv>$IPT</span> -A INPUT -s <span class=m>1</span>.2.3.16/28 -p tcp --dport <span class=m>22</span> -j ACCEPT
+<span class=c1>#Accept FTP connections</span>
+<span class=nv>$IPT</span> -A INPUT -p tcp --dport <span class=m>21</span> -j ACCEPT
+<span class=c1>#Active connections initiate the requests</span>
+<span class=c1>#So we only have to accept passive connections</span>
+<span class=nv>$IPT</span> -A INPUT -p tcp --dport <span class=m>50000</span>:52000 -j ACCEPT
+<span class=c1>#Accept web connections</span>
+<span class=nv>$IPT</span> -A INPUT -p tcp --dport <span class=m>80</span> -j ACCEPT
+<span class=c1>#Allow outgoing TCP connections</span>
+<span class=nv>$IPT</span> -A INPUT -s <span class=m>1</span>.2.3.1 -p udp --sport <span class=m>53</span> -j ACCEPT
+<span class=nv>$IPT</span> -A INPUT -p tcp ! --syn -j ACCEPT
+</code></pre></div> <a href="https://mile-lile.blogspot.com/2016/08/enhance-your-dd-wrt-security-with.html?m=1">Hardening DWRT</a> <a href="https://forum.dd-wrt.com/phpBB2/viewtopic.php?t=313315&sid=4480a444d85224d3dcab43252da34dcc">Rules</a> <div class=highlight><pre><span></span><code><span class=c1># click on security tab and click all boxes that say limit....+ARP spoofing</span>
+<span class=c1># turn on SPI firewall</span>
+<span class=c1># on services disable telnet and ssh if you don&#39;t use them</span>
+<span class=c1># disable traffic daemon</span>
+<span class=c1># add those lines to commands and save in firewall</span>
+
+<span class=c1># To block some of most TCP-based DDoS attcks. </span>
+<span class=c1># This rule blocks all packets that are not a SYN packet and don&#39;t belong to an established TCP connection.</span>
+iptables -t mangle -I PREROUTING -m conntrack --ctstate INVALID -j DROP
+<span class=c1># This blocks all packets that aren&#39;t new (don&#39;t belong to an established connection) and don&#39;t use SYN flag. This rule is similar to the above rule but I found that it catches some packets that other ones doesn&#39;t.</span>
+iptables -t mangle -I PREROUTING -p tcp ! --syn -m conntrack --ctstate NEW -j DROP
+<span class=c1># The next rule blocks new packets (only SYN packets can be new packets) that use a TCP MSS value that is not common.</span>
+iptables -t mangle -I PREROUTING -p tcp -m conntrack --ctstate NEW -m tcpmss ! --mss <span class=m>536</span>:65535 -j DROP
+
+<span class=c1># The below ruleset blocks packets that use bogus TCP flags, ie. TCP flags that legitimate packets wouldn’t use.</span>
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags FIN,SYN FIN,SYN -j DROP
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags SYN,RST SYN,RST -j DROP
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags FIN,RST FIN,RST -j DROP
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags FIN,ACK FIN -j DROP
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags ACK,URG URG -j DROP
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags ACK,PSH PSH -j DROP
+iptables -t mangle -A PREROUTING -p tcp --tcp-flags ALL NONE -j DROP
+
+<span class=c1># These rules block spoofed packets originating from private (local) subnets. On your public network interface you usually don’t want to receive packets from private source IPs.</span>
+iptables -t mangle -A PREROUTING -s <span class=m>224</span>.0.0.0/3 -j DROP 
+iptables -t mangle -A PREROUTING -s <span class=m>169</span>.254.0.0/16 -j DROP 
+iptables -t mangle -A PREROUTING -s <span class=m>172</span>.16.0.0/12 -j DROP 
+iptables -t mangle -A PREROUTING -s <span class=m>192</span>.0.2.0/24 -j DROP 
+iptables -t mangle -A PREROUTING -s <span class=m>192</span>.168.0.0/16 -j DROP 
+iptables -t mangle -A PREROUTING -s <span class=m>10</span>.0.0.0/8 -j DROP 
+iptables -t mangle -A PREROUTING -s <span class=m>0</span>.0.0.0/8 -j DROP 
+iptables -t mangle -A PREROUTING -s <span class=m>240</span>.0.0.0/5 -j DROP 
+iptables -t mangle -A PREROUTING -s <span class=m>127</span>.0.0.0/8 ! -i lo -j DROP
+
+<span class=c1># This drops all ICMP packets. ICMP is only used to ping a host to find out if it’s still alive. Because it’s usually not needed and only represents another vulnerability that attackers can exploit, we block all ICMP packets to mitigate Ping of Death (ping flood), ICMP flood and ICMP fragmentation flood.</span>
+iptables -t mangle -A PREROUTING -p icmp -j DROP
+
+<span class=c1># This rule blocks fragmented packets. Normally you don’t need those and blocking fragments will mitigate UDP fragmentation flood. But most of the time UDP fragmentation floods use a high amount of bandwidth that is likely to exhaust the capacity of your network card, which makes this rule optional and probably not the most useful one.</span>
+iptables -t mangle -A PREROUTING -f -j DROP
+
+iptables -I INPUT -f -j DROP
+iptables -I INPUT -p tcp --tcp-flags ALL ALL -j DROP
+iptables -I INPUT -p tcp --tcp-flags ALL NONE -j DROP
+<span class=c1># This iptables rule helps against connection attacks. It rejects connections from hosts that have more than 80 established connections. If you face any issues you should raise the limit as this could cause troubles with legitimate clients that establish a large number of TCP connections.</span>
+iptables -A INPUT -p tcp -m connlimit --connlimit-above <span class=m>80</span> -j REJECT --reject-with tcp-reset
+
+<span class=c1># Limits the new TCP connections that a client can establish per second. This can be useful against connection attacks, but not so much against SYN floods because the usually use an endless amount of different spoofed source IPs.</span>
+iptables -A INPUT -p tcp -m conntrack --ctstate NEW -m limit --limit <span class=m>60</span>/s --limit-burst <span class=m>20</span> -j ACCEPT 
+iptables -A INPUT -p tcp -m conntrack --ctstate NEW -j DROP
+
+<span class=c1>### SSH brute-force protection ### </span>
+/sbin/iptables -A INPUT -p tcp --dport ssh -m conntrack --ctstate NEW -m recent --set 
+/sbin/iptables -A INPUT -p tcp --dport ssh -m conntrack --ctstate NEW -m recent --update --seconds <span class=m>60</span> --hitcount <span class=m>10</span> -j DROP  
+
+<span class=c1>### Protection against port scanning ### </span>
+/sbin/iptables -N port-scanning 
+/sbin/iptables -A port-scanning -p tcp --tcp-flags SYN,ACK,FIN,RST RST -m limit --limit <span class=m>1</span>/s --limit-burst <span class=m>2</span> -j RETURN 
+/sbin/iptables -A port-scanning -j DROP
+
+iptables -I INPUT -s <span class=sb>`</span>nvram get lan_ipaddr<span class=sb>`</span>/<span class=sb>`</span>nvram get lan_netmask<span class=sb>`</span> -d <span class=sb>`</span>nvram get wan_ipaddr<span class=sb>`</span> -j DROP
+iptables -I FORWARD -f -j DROP
+iptables -I FORWARD -p tcp --dport <span class=m>25</span> -j DROP
+iptables -I FORWARD -p udp --dport <span class=m>25</span> -j DROP
+iptables -I FORWARD -p tcp -o <span class=sb>`</span>get_wanface<span class=sb>`</span> --dport <span class=m>25</span> -j REJECT
+iptables -I FORWARD -p tcp --dport <span class=m>137</span> -j DROP
+iptables -I FORWARD -p udp --dport <span class=m>137</span> -j DROP
+iptables -I FORWARD -p udp --dport <span class=m>138</span> -j DROP
+iptables -I FORWARD -p tcp --dport <span class=m>139</span> -j DROP
+iptables -I FORWARD -p udp --dport <span class=m>139</span> -j DROP
+iptables -I FORWARD -p tcp --dport <span class=m>445</span> -j DROP
+iptables -I FORWARD -p udp --dport <span class=m>445</span> -j DROP
+iptables -I FORWARD -p tcp --dport <span class=m>31337</span> -j DROP
+iptables -I FORWARD -p udp --dport <span class=m>31337</span> -j DROP
+iptables -I FORWARD -p tcp --tcp-flags ALL ALL -j DROP
+iptables -I FORWARD -p tcp --tcp-flags ALL NONE -j DROP
+iptables -A FORWARD -m recent --name portscan --rcheck --seconds <span class=m>8640</span> -j DROP
+</code></pre></div> <a href=https://wiki.dd-wrt.com/wiki/index.php/Telnet/SSH_and_the_Command_Line>SSH</a> <a href=https://danielmiessler.com/study/tcpdump/ >Testing Firewall</a></p> <h3 id=firewall-script-for-home-server>Firewall Script for Home Server<a class=headerlink href=#firewall-script-for-home-server title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code><span class=c1>#</span>
+<span class=c1># Example fast and scalable firewall configuration with iptables</span>
+<span class=c1># Please only implement if you fully understand the functionality</span>
+<span class=c1># because is very easy to lockout yourself from your computer if</span>
+<span class=c1># the script isn&#39;t adapted to your specific situation.</span>
+<span class=c1>#</span>
+
+*filter
+:INPUT ACCEPT <span class=o>[</span><span class=m>0</span>:0<span class=o>]</span>
+:FORWARD ACCEPT <span class=o>[</span><span class=m>0</span>:0<span class=o>]</span>
+:OUTPUT ACCEPT <span class=o>[</span><span class=m>0</span>:0<span class=o>]</span>
+:Always - <span class=o>[</span><span class=m>0</span>:0<span class=o>]</span>
+:Allow - <span class=o>[</span><span class=m>0</span>:0<span class=o>]</span>
+:Bogus - <span class=o>[</span><span class=m>0</span>:0<span class=o>]</span>
+:Enemies - <span class=o>[</span><span class=m>0</span>:0<span class=o>]</span>
+:Friends - <span class=o>[</span><span class=m>0</span>:0<span class=o>]</span>
+
+-A INPUT -j Bogus
+-A INPUT -j Always
+-A INPUT -j Enemies
+-A INPUT -j Allow
+
+-A FORWARD -j Bogus
+-A FORWARD -j Always
+-A FORWARD -j Enemies
+-A FORWARD -j Allow
+
+-A Bogus -p tcp -m tcp --tcp-flags SYN,FIN SYN,FIN -j DROP
+-A Bogus -p tcp -m tcp --tcp-flags SYN,RST SYN,RST -j DROP
+-A Bogus -s <span class=m>169</span>.254.0.0/16 -j DROP
+-A Bogus -s <span class=m>172</span>.16.0.0/12 -j DROP
+-A Bogus -s <span class=m>192</span>.0.2.0/24 -j DROP
+-A Bogus -s <span class=m>192</span>.168.0.0/16 -j DROP
+-A Bogus -s <span class=m>10</span>.0.0.0/8 -j DROP
+-A Bogus -s <span class=m>127</span>.0.0.0/8 -i ! lo -j DROP
+
+-A Always -p udp --dport <span class=m>123</span> -j ACCEPT
+-A Always -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A Always -i lo -j ACCEPT
+
+-A Enemies  -m recent --name psc --update --seconds <span class=m>60</span> -j DROP
+-A Enemies -i ! lo -m tcp -p tcp --dport <span class=m>1433</span>  -m recent --name psc --set -j DROP
+-A Enemies -i ! lo -m tcp -p tcp --dport <span class=m>3306</span>  -m recent --name psc --set -j DROP
+-A Enemies -i ! lo -m tcp -p tcp --dport <span class=m>8086</span>  -m recent --name psc --set -j DROP
+-A Enemies -i ! lo -m tcp -p tcp --dport <span class=m>10000</span> -m recent --name psc --set -j DROP
+-A Enemies -s <span class=m>99</span>.99.99.99 -j DROP
+
+-A Friends -s <span class=m>123</span>.123.123.123 -j ACCEPT
+-A Friends -s <span class=m>111</span>.111.111.0/24 -j ACCEPT
+-A Friends -j DROP
+
+-A Allow -p icmp --icmp-type echo-request -j Friends
+-A Allow -p icmp --icmp-type any -m limit --limit <span class=m>1</span>/second -j ACCEPT
+-A Allow -p icmp --icmp-type any -j DROP
+-A Allow -p tcp -m state --state NEW -m tcp --dport <span class=m>22</span> -j Friends
+-A Allow -p tcp -m state --state NEW -m tcp --dport <span class=m>25</span> -j ACCEPT
+-A Allow -p tcp -m state --state NEW -m tcp --dport <span class=m>80</span> -j ACCEPT
+-A Allow -p tcp -m state --state NEW -m tcp --dport <span class=m>443</span> -j ACCEPT
+-A Allow -j DROP
+
+COMMIT
+</code></pre></div> - The first block gives us the names of the chains that we will use, and the initial values of the packet and bytes counters. With these settings we reset the counters each time the firewall configuration is loaded. The default action for the three internal chains INPUT, FORWARD and OUTPUT is set to ACCEPT. This means that the packet is accepted by each of these chains, except when a rule in the chain decides otherwise. The five user defined chains do not have a default action. The firewall logic will therefore continue processing other rules when the rules inside those chains don’t give a definite answer what to do with a packet. - The next two blocks add four filter rules to the INPUT and FORWARD chain. Each rule causes an unconditional jump to a user defined chain. The sequence in which these commands are listed in the iptables file is important, because this will also be the sequence in which the rules will be processed in the kernel. - The <strong>Bogus</strong> group contains a handful of rules which define invalid packets. This includes packets with both the <strong>SYN</strong> and <strong>FIN</strong> flags or the <strong>SYN</strong> and <strong>RST</strong> flags, packets from specific ranges of invalid IP addresses and packets with IP addresses which belong to the virtual loop-back adapter <strong>(127.x.x.x)</strong>, but which are not from a local source. These are all packets crafted by hackers or attackers to confuse or intrude your system. - The second group Always contains high-priority packets which should always be accepted without much delay. These packets might originate from an attacker, and even be part of a DDOS attack, but we accept that situation. The processing of NTP packets has such a low overhead that even when packets are coming in at a very high speed, it won’t take too much CPU resources. There are also no states preserved as with the TCP protocol which could cause buffer overflows. The only thing which might happen is saturation of the network, but that would happen with a DDOS attack independent of us accepting or dropping the incoming packets. - The next rule is equally important. It tells us to accept all packets of a connection which has previously been accepted as OK. Many firewall rule sets miss this particular rule, but from a performance point of view it is a very important one. Most TCP/IP protocols exchange a lot of packets over one single connection. If we effectively only test the first packet of that stream and then mark the stream as either accepted or dropped, there is just little overhead involved when processing accepted network connections. - The third rule accepts all traffic to the loop-back adapter. What many firewall rule sets seem to forget is that also traffic to and from the loop-back adapter is screened by the firewall. This can cause severe performance problems if the loop-back adapter is for example used for connections between an Apache web server and an SQL database. - In the next block we define our friends. As you probably have seen, the Friends chain is not called directly from the INPUT or OUTPUT chain. It is called by other rules which we will define later to accept access to specific ports from some IP addresses but not from others. The Friends rule set is called to check the source IP address against a number of possible matches. The first rule checks if the IP address equals 123.123.123.123. If this is the case, the packet is accepted without further processing of firewall rules. It then checks against a block of IP addresses ranging from 111.111.111.0 to 111.111.111.255. If the IP address are in this range, the packet is accepted. The third rule drops all packets which do not match any of the previous IP address matches. It is obvious that the IP addresses mentioned here are just examples. You should replace them by addresses where friendly traffic to your server is normally coming from, for example the IP address of your home ADSL connection or IP addresses from other servers in your network. You are allowed to add extra rules before the -A Friends -j DROP line. - Enemies can be identified in two ways. Either by their source IP address, or by their behavior. Unfortunately the firewall in the kernel operates at a low level in the networking hierarchy and many behavioral actions are only visible at the application level, for example password dictionary attacks on SSH servers or spam mails. But some behavior can be detected at the lowest networking level and one of this is port scanning. Port scanning is trying to connect to a number of TCP/IP ports of the attacked computer to search for open connections with SQL servers, control panels or other network aware applications. My experience has shown that many port scanners are looking for unprotected connections to MySQL and MSSQL servers. Because my servers only accept SQL requests from local applications, every request from the outside world is by definition an enemy. In the IP firewall I have setup rules which are triggered if requests are coming in from the network for port 1433, port 3306 and some other well known ports. Every IP address from which such a request originates is put in quarantine for a period of 60 seconds. This is done by the –name psc –set and checking with every subsequent packet of the last set action for that IP address was less than 60 seconds ago. The Linux kernel will maintain a list of port-scan IPs which can be accessed at the location /proc/net/ipt_recent/psc. I have used a 60 seconds grace time because in some occasions I might be testing something and accidentally look like a port scanner according to the firewall. In that case I will only lockout myself for a period of one minute. But it is also possible to increase this value to for example 15 minutes or one hour. Other enemies are enemies which are known by IP address or IP address range. I have added the address 99.99.99.99 as an example, but this could also be ranges like 111.111.111.0/24.</p> <h3 id=adding-and-removing-enemies-from-the-firewall>Adding and removing enemies from the firewall<a class=headerlink href=#adding-and-removing-enemies-from-the-firewall title="Permanent link">&para;</a></h3> <ul> <li><strong>Friends come and go, but enemies accumulate</strong>.</li> <li>Many enemies are temporary by nature. These are computers infected by malware, or servers with configuration flaws like open mail or web proxies. Once these problems are fixed, an enemy can turn in a friend again.</li> </ul> <p><div class=highlight><pre><span></span><code><span class=ch>#!/bin/sh</span>
+
+iptables -L -n -v <span class=p>|</span> grep -q <span class=nv>$1</span>
+<span class=nv>RETVAL</span><span class=o>=</span><span class=nv>$?</span>
+
+<span class=k>if</span> <span class=o>[</span> <span class=nv>$RETVAL</span> -eq <span class=m>0</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+
+        <span class=nb>echo</span> <span class=s2>&quot;IP address already in blocklist: </span><span class=nv>$1</span><span class=s2>&quot;</span>
+        <span class=nb>exit</span> <span class=m>0</span>
+
+<span class=k>fi</span>
+<span class=nb>echo</span> <span class=s2>&quot;Adding enemy </span><span class=nv>$1</span><span class=s2>&quot;</span>
+iptables -A Enemies -s <span class=nv>$1</span> -j DROP
+</code></pre></div> - This scripts first makes a dump of the current firewall rules and checks if the IP address or IP range matches an existing rule. If this is the case a warning is shown and the script does nothing. If no matching rule has been found, the IP address or IP range is added to the list of enemies. By checking the whole rules list against the new IP address, we have some basic protection against adding one of our own IPs to the firewall because this script will also fail if it finds the IP address or range in the Friends table. But there is no check of individual IPs against IP ranges so you still have to be careful about what you do. <div class=highlight><pre><span></span><code><span class=ch>#!/bin/sh</span>
+
+<span class=nb>echo</span> <span class=s2>&quot;Deleting enemy </span><span class=nv>$1</span><span class=s2>&quot;</span>
+iptables -D Enemies -s <span class=nv>$1</span> -j DROP
+</code></pre></div> - This scripts deletes a rule from the Enemies table which matches the IP address or IP range.</p> <h2 id=install-dd-wrt>Install DD-WRT<a class=headerlink href=#install-dd-wrt title="Permanent link">&para;</a></h2> <ul> <li>First method: Copy the factory-to-ddwrt file in the firware upgrade section of <a href=http://192.168.1.1/ >http://192.168.1.1/</a> router IP.</li> <li>Connect the Laptop to LAN Port 1 of the router.</li> <li>Wait for the proces to complete.</li> <li>Second method: In case the process is interrupted or to flash back to TP-LINK firware back.</li> <li>Override custom TP-LINK software from your router, use <a href=/service>TFTP</a> service on a Network LAN server.</li> <li>You need to set up a TFTP Server on your computer with IP <strong>192.168.0.66</strong>.</li> <li>You can do this by linking the MAC address of the computer with the 192.168.0.66 IP and restart the WI-FI connection.</li> <li>Verify if the computer has the correct IP.</li> <li>Once verified, copy the DD-WRT software to <code>/tftpboot</code> directory on the computer.</li> <li>Rename the file from <code>tl-wr841nd-webflash.bin</code> to <code>wr841nv10_tp_recovery.bin</code>.</li> <li>Start checking the tftp server logs <code>tail -f /var/log/syslog</code> to check the request</li> <li>Shutdown the router and connect the WAN port to main router.</li> <li>Hold down the Reset button on the back of the router and switch it on again, release the reset button when there pop-up a flashing window.</li> <li>Wait for the router to connect to the TFTP service and download the recovery.bin file.</li> <li>This will kickstart the router installation process. Wait for 10 mins for the process to complete.</li> <li>Now using the LAN port, connect the router to the computer and access the IP assigned by the main router to start DD-WRT configuration.</li> </ul> <h2 id=network-configuration>Network Configuration<a class=headerlink href=#network-configuration title="Permanent link">&para;</a></h2> <ul> <li> <p>One of your routers will be connected to your ISP. This router needs to be assigned the internal LAN IP 192.168.0.1, and hand out DHCP addresses on something like 192.168.0.100 through 192.168.0.200. Call this router Router A.</p> </li> <li> <p>Connect a cable from one of the LAN ports on router A to the WAN port on router B. Set Router B's WAN IP address to 192.168.0.201, and its internal LAN IP to 192.168.1.1. Tell it to hand out DHCP addresses on something like 192.168.1.100 through 192.168.1.200. Set the DNS settings on this router's DHCP to what you want for your kids.</p> </li> <li> <p>Use Static WAN IP on Router B to set the IP 192.168.0.201.</p> </li> <li> <p>Router A should work normally. If you have things you need accessible via the Internet, make sure it's connected to Router A and setup your port forwarding on Router A like you would on any normal router.</p> </li> <li> <p>Router B will "get internet" through Router A.</p> </li> <li> <p>Router B will be double NATed. This means it's very difficult for machines from the Internet to connect to anything behind router B.</p> </li> <li> <p>To get Internet passed through to Router B servers in the second network, Static Route on Router A. <div class=highlight><pre><span></span><code><span class=c1># Network Destination: 192.168.1.0</span>
+<span class=c1># Subnet Mask: 255.255.255.0</span>
+<span class=c1># Default Gateway: 192.168.0.201</span>
+<span class=c1># Interface: LAN/WLAN</span>
+<span class=c1># Description: Internal Network</span>
+</code></pre></div></p> </li> <li><a href=https://wiki.dd-wrt.com/wiki/index.php/Telnet/SSH_and_the_Command_Line>Setup Router B configuration</a>.</li> <li>Backup Initial settings, incase we mess up the configurations later on. [Downloads/tp-wr841n/dd-wrt /DD-WRT_TP-Link_TL-WR841ND_v10-Config-Backup.bin] <div class=highlight><pre><span></span><code>ssh root@192.168.1.1 -i ~/.ssh/ansible-user
+</code></pre></div> <a href=https://wiki.dd-wrt.com/wiki/index.php/Separate_LAN_and_WLAN>https://wiki.dd-wrt.com/wiki/index.php/Separate_LAN_and_WLAN</a> <a href=https://wiki.dd-wrt.com/wiki/index.php/WLAN_separate_from_LAN%2C_with_independent_dhcp%2C_etc>WLAN Separate From LAN, With Independent Dhcp, Etc</a> <a href=https://wiki.dd-wrt.com/wiki/index.php/Linking_Subnets_with_Static_Routes>https://wiki.dd-wrt.com/wiki/index.php/Linking_Subnets_with_Static_Routes</a></li> </ul> <h2 id=install-dd-wrt-in-virtualbox>Install DD-WRT in Virtualbox<a class=headerlink href=#install-dd-wrt-in-virtualbox title="Permanent link">&para;</a></h2> <ul> <li>Get the public <a href=https://mirror.math.princeton.edu/pub/ddwrt/betas/2022/10-19-2022-r50551/x86/ >DD-WRT image</a></li> <li>Convert DD-WRT x86 Image to VDI <div class=highlight><pre><span></span><code><span class=nb>cd</span> /home/leslie/Downloads/tp-wr841n
+vboxmanage convertdd dd-wrt_public_vga.image dd-wrt.vdi
+<span class=c1># resize the vdi to 256MB</span>
+vboxmanage modifyhd --resize <span class=m>256</span> dd-wrt.vdi
+</code></pre></div></li> <li>Launch Virtualbox and Create a New VM by selecting Machine &gt; New <div class=highlight><pre><span></span><code><span class=c1># Name: dd-wrt</span>
+<span class=c1># Machine Folder: /home/leslie/machines</span>
+<span class=c1># Type: Linux</span>
+<span class=c1># Version: Other Linux (32-bit)</span>
+<span class=c1># Memory Size: 256 MB</span>
+<span class=c1># Hard disk: Do not add a virtual hard disk</span>
+<span class=c1># Click Create</span>
+
+<span class=c1># Copy the dd-wrt.vdi file from downloads into /home/leslie/machines/dd-wrt</span>
+<span class=c1># Select the VM and Click Settings</span>
+<span class=c1># Select Storage</span>
+<span class=c1># Click Add Storage Attachment &gt; Add Hard Disk &gt; Choose existing disk</span>
+<span class=c1># Click Add and browse to /home/leslie/machines/dd-wrt/dd-wrt.vdi</span>
+<span class=c1># Click OK</span>
+<span class=c1># Select Network</span>
+<span class=c1># Set Attached to: Bridge Adapter  (Keeping it NAT for testing)</span>
+<span class=c1># Make sure the DD-WRT VM is selected and click Start &gt; Normal</span>
+<span class=c1># Wait for the text to stop scrolling and press Enter</span>
+<span class=c1># Login with root/admin</span>
+<span class=c1># Set the IP address to something in your current subnet so you can reach it</span>
+<span class=c1># ifconfig br0 192.168.56.1 (Not required)</span>
+</code></pre></div></li> <li>Launch your web browser of choice and access the DD-WRT web UI with the IP address in the previous step</li> </ul> <h2 id=setup-virtual-network-lab>Setup Virtual Network Lab<a class=headerlink href=#setup-virtual-network-lab title="Permanent link">&para;</a></h2> <ul> <li>Configure Virtual Box <div class=highlight><pre><span></span><code><span class=c1># Open Virtual Box and select Tool --&gt; Menu --&gt; Network --&gt; Properties</span>
+<span class=c1># Create new Network vboxnet1</span>
+<span class=c1># Change the Default Address from 192.168.56.1 to 192.168.57.2</span>
+<span class=c1># x.x.x.2 is so that we can have an Edge Router which will have DHCP enabled and will give out IP.</span>
+<span class=c1># So if the VMs have 99.x number range, we know the Virtual Edge router has given the address and not Virtual Box DHCP.</span>
+
+<span class=c1># Disable DHCP in the next tab for the above reason.</span>
+<span class=c1># Save the interface twice, so the changes are stored and not re-enabled.</span>
+</code></pre></div></li> </ul> <h2 id=install-open-wrt-in-virtualbox>Install Open-WRT in Virtualbox<a class=headerlink href=#install-open-wrt-in-virtualbox title="Permanent link">&para;</a></h2> <p><a href="https://www.youtube.com/watch?v=JwPD1GWw5go">Setup Router in Virtualbox</a> <div class=highlight><pre><span></span><code><span class=c1># Download the Stable x86 - 64 bit - combined ext4 (as that has the fewest limitations)</span>
+https://downloads.openwrt.org/releases/22.03.2/targets/x86/64/
+<span class=c1># Extract the file in a directory openwrt</span>
+<span class=c1># Execute the below command</span>
+VBoxManage convertfromraw --format VDI openwrt-22.03.2-x86-64-generic-ext4-combined.img openwrt.vdi
+<span class=c1># resize the vdi to 512MB</span>
+VBoxManage modifymedium openwrt.vdi --resize <span class=m>512</span>
+<span class=c1># Copy the directory to /home/leslie/machines</span>
+</code></pre></div> - Launch Virtualbox and Create a New VM by selecting Machine &gt; New <div class=highlight><pre><span></span><code><span class=c1># Name: OpenWRT Edge Router</span>
+<span class=c1># Machine Folder: /home/leslie/machines  -&gt; Default</span>
+<span class=c1># Type: Linux</span>
+<span class=c1># Version: Linux 2.6/3.x/4.x (64 Bit)   --&gt; The latest Linux 64bit</span>
+<span class=c1># Memory Size: 512 MB</span>
+<span class=c1># Hard disk: Do not add a virtual hard disk</span>
+<span class=c1># Click Create</span>
+
+<span class=c1># Copy the openwrt.vdi file from downloads into /home/leslie/machines/openwrt</span>
+<span class=c1># Add the HDD to the VirtualBox Media --&gt; Tools -- Hard Disks --&gt; Add -- Browse to /home/leslie/machines/openwrt and select openwrt.vdi </span>
+<span class=c1># Select the VM and Click Settings</span>
+<span class=c1># Select Storage</span>
+<span class=c1># Click Add Storage Attachment &gt; Add Hard Disk &gt; Choose existing disk</span>
+<span class=c1># Note: Add this under Controller: SATA</span>
+<span class=c1># Click Add openwrt.vdi</span>
+<span class=c1># Click OK</span>
+</code></pre></div> - Configure Edge Router <div class=highlight><pre><span></span><code><span class=c1># On the VirtualBox interface, open Settings --&gt; Network</span>
+<span class=c1># Adapter1 --&gt; Host-Only Adapter and vboxnet1</span>
+<span class=c1># This will allow it to act as LAN and allow access to the internal network.</span>
+<span class=c1># So my Laptop IP will be assigned on this interface, allowing access to my original WAN</span>
+<span class=c1># Adapter2 --&gt; Bridge Adapter and select the Wireless Network &#39;wslp01&#39;.</span>
+<span class=c1># This will connect to the Internet. </span>
+</code></pre></div> - Start the Openwrt VM. - Adjust the window size &rarr; View &rarr; Adjust Window Size - Configure Openwrt IP <div class=highlight><pre><span></span><code>uci show network        <span class=c1># This will show lan.ipaddr=192.168.1.1</span>
+<span class=c1># Change the Network LAN IP Address to match vboxnet1, but to 57.1 so it can act as Edge Router</span>
+uci <span class=nb>set</span> network.lan.ipaddr<span class=o>=</span><span class=m>192</span>.168.57.2
+uci show network        <span class=c1># Confirm the change</span>
+uci commit              <span class=c1># Commit the change</span>
+reboot                  <span class=c1># Reboot</span>
+</code></pre></div> - Testing the network connectivity <div class=highlight><pre><span></span><code>ping <span class=m>192</span>.168.57.2       <span class=c1># Ping a IP of the Host</span>
+ping www.google.com     <span class=c1># Ping a internet address</span>
+
+<span class=c1># If both works, we should be able to open the Router&#39;s page on the browser and access luci (Router web UI)</span>
+<span class=c1># Open http://192.168.57.1</span>
+<span class=c1># Login and verify the Network --&gt; Interfaces. WAN is the Main Address and LAN is x.x.57.1 and both are up.</span>
+<span class=c1># Stop the openwrt server</span>
+halt
+</code></pre></div> - Shutdown the machine and take a snaphot. - OpenWRT &rarr; Machine &rarr; Tools &rarr; Snapshots &rarr; Take - <code>LAN and WAN working after Initial Setup</code> </p> <ul> <li>Configure Internal Router <div class=highlight><pre><span></span><code><span class=c1># Click Machine and Clone the Edge Router and Rename to OpenWRT Internal Router</span>
+<span class=c1># Path: /home/leslie/machines/openwrt</span>
+<span class=c1># MAC Address Policy: Generate new MAC Address for all Network Adapters</span>
+<span class=c1># Clone Type: Full clone</span>
+<span class=c1># Snapshots: Everything</span>
+<span class=c1># Click Clone</span>
+
+<span class=c1># Remove the WAN Adpater as its not required to access Internet</span>
+<span class=c1># Settings --&gt; Network --&gt; Disable Adpater 2 </span>
+<span class=c1># Start the machine </span>
+
+<span class=c1># Configure server to move from Fixed IP to DHCP (which it will get from Edge Router)</span>
+uci <span class=nb>set</span> network.lan.proto<span class=o>=</span>dhcp
+uci show network        <span class=c1># Confirm the change</span>
+uci commit              <span class=c1># Commit the change</span>
+reboot                  <span class=c1># Reboot</span>
+</code></pre></div></li> <li>Start the Edge Router to confirm if Internal Router gets the IP address correctly</li> <li>In the Browser status page, we can see internal router has an address assigned.</li> <li>Rename the Openwrt server to give a definte name </li> <li>Settings - Change the Hostname - Openwrt-Edge</li> <li>Similarly of the Internal router - Openwrt-Internal</li> <li> <p>Reboot both machines to confirm the hostname changes.</p> </li> <li> <p>Take a snapshot of the Internal Router and delete the orignal Snapshot 1 as its not required any more.</p> </li> <li> <p>Adding more machines to the LAN, ensure only Adapter1 is added as HostOnly. </p> </li> <li>This would mean, servers are on the LAN and go through the Internal router and then through the Edge router to access the Internet.</li> </ul> <h2 id=setup-the-servers>Setup the Servers<a class=headerlink href=#setup-the-servers title="Permanent link">&para;</a></h2> <ul> <li>Add the route to reach the Gateway for the <code>Ethernet</code> interface <div class=highlight><pre><span></span><code>ifconfig                <span class=c1># Identify the Ethernet interface</span>
+route -n                <span class=c1># Check the default route, n shows the IP address resolution</span>
+traceroute google.com
+<span class=c1># Add the route for the eth0 interface</span>
+netstat -r
+</code></pre></div></li> </ul> <h2 id=testing>Testing<a class=headerlink href=#testing title="Permanent link">&para;</a></h2> <ul> <li>Combining tcpdump with Wireshark is a powerful combination, particularly when you wish to dig into full application layer sessions as the decoders can assemble the full stream. <div class=highlight><pre><span></span><code><span class=c1># On Server 1 - Setup netcat listner (which acts as Server)</span>
+nc -nlvp <span class=m>22</span>
+<span class=c1># On Server 2 - Which needs to be tested (which acts as Client)</span>
+nc <span class=m>192</span>.168.57.11 <span class=m>22</span>     <span class=c1># This will initiate a TCP connection and start a chat session</span>
+<span class=c1># To kill the netcat session - Ctrl + d</span>
+
+<span class=c1># OR</span>
+<span class=c1># Server 1</span>
+sudo tcpdump -i enp0s8      <span class=c1># All traffic can be seen</span>
+sudo tcpdump -i enp0s8 -v port <span class=m>22</span>   <span class=c1># Filter only SSH traffic</span>
+<span class=c1># Server 2</span>
+sudo nmap -p <span class=m>22</span> <span class=m>192</span>.168.57.11
+<span class=c1># OR Check all ports</span>
+sudo nmap -v -Pn <span class=m>192</span>.168.57.11
+
+<span class=c1># Check which service has opened which ports</span>
+netstat -anp
+
+<span class=c1># Do a network scan to see if any other machine can be accessed</span>
+sudo nmap -Pn -sV <span class=m>192</span>.168.0.0/16
+<span class=c1># When such a scan is run, no alert or monitoring is generated logging the time of this activity</span>
+
+<span class=c1># Capture UDP traffic</span>
+sudo tcpdump -i eth0 udp
+
+<span class=c1># DHCP Example</span>
+<span class=c1># Monitoring DHCP request and reply. DHCP requests are seen on port 67 and the reply is on 68. Using the verbose parameter -v we get to see the protocol options and other details.</span>
+sudo tcpdump -v -n port <span class=m>67</span> or <span class=m>68</span>
+
+<span class=c1># host filter will capture traffic going to (destination) and from (source) the IP address.</span>
+<span class=c1># In this example, an network traffic from 10.10.1.1 can be captured on the localhost.</span>
+<span class=c1># Run the below command in terminal 1. Start a new terminal and ping 10.10.1.1, you will see the output in terminal 1.</span>
+sudo tcpdump -i eth0 host <span class=m>10</span>.10.1.1
+
+<span class=c1># capture only packets going one way using src or dst.</span>
+<span class=c1># This will capture traffic only in one direction</span>
+sudo tcpdump -i eth0 dst <span class=m>10</span>.10.1.20
+<span class=c1># Another example is to use domain name</span>
+sudo tcpdump -i eth0 dst medium.com -n      <span class=c1># -n will not convert the IP address to domain name</span>
+<span class=c1># In another terminal curl medium.com or open a brower and type medium.com to test traffic</span>
+
+<span class=c1># To capture all network traffic in the subnet use net option</span>
+sudo tcpdump -i eth0 net <span class=m>192</span>.168.0.0/24
+
+<span class=c1># Capture HTTPS traffic using port option</span>
+sudo tcpdump -i eth0 port <span class=m>443</span> -vv -n
+<span class=c1># using the `or` operator</span>
+sudo tcpdump -i eth0 port <span class=m>80</span> or port <span class=m>443</span> -vv -n
+<span class=c1># Capture all ICMP packets</span>
+sudo tcpdump -n icmp
+<span class=c1># Capture ICP traffic to and from the DNS</span>
+<span class=c1># To test this, in another terminal, ping 8.8.8.8 which is ICMP traffic</span>
+sudo tcpdump -i eth0 -n icmp and host <span class=m>8</span>.8.8.8
+<span class=c1># Filter on the icmp type to select on icmp packets that are not standard ping packets.</span>
+sudo tcpdump <span class=s1>&#39;icmp[icmptype] != icmp-echo and icmp[icmptype] != icmp-echoreply&#39;</span>
+
+<span class=c1># See the NTP query and response.</span>
+sudo tcpdump dst port <span class=m>123</span>
+<span class=c1># Detect Port Scan in Network Traffic</span>
+tcpdump -nn
+
+<span class=c1># Capture DNS Request and Response</span>
+<span class=c1># Outbound DNS request to Google public DNS and the A record (ip address) response can be seen in this capture.</span>
+sudo tcpdump -i wlp58s0 -s0 port <span class=m>53</span> -vv -n
+<span class=c1># Capture DNS request going through port 53</span>
+sudo tcpdump -i eth0 dst port <span class=m>53</span> -vv -n
+
+<span class=c1># Capture with tcpdump and view in Wireshark</span>
+<span class=c1># This tip is a favorite, pipe the raw tcpdump output right into wireshark on your local machine. Don&#39;t forget the not port 22 so you are not capturing your SSH traffic.</span>
+ssh root@remotesystem <span class=s1>&#39;tcpdump -s0 -c 1000 -nn -w - not port 22&#39;</span> <span class=p>|</span> wireshark -k -i -
+<span class=c1># Another tip is to use count -c on the remote tcpdump to allow the capture to finish otherwise hitting ctrl-c will not only kill tcpdump but also Wireshark and your capture.</span>
+
+<span class=c1># Top Hosts by Packets</span>
+sudo tcpdump -nnn -t -c <span class=m>200</span> <span class=p>|</span> cut -f <span class=m>1</span>,2,3,4 -d <span class=s1>&#39;.&#39;</span> <span class=p>|</span> sort <span class=p>|</span> uniq -c <span class=p>|</span> sort -nr <span class=p>|</span> head -n <span class=m>20</span>
+</code></pre></div></li> </ul> <h2 id=firewall>Firewall<a class=headerlink href=#firewall title="Permanent link">&para;</a></h2> <div class=highlight><pre><span></span><code><span class=c1># My goal was to migrate my existing linux box with an ethernet interface and a wifi card which was acting as a crude AP, but keep the same functionality: firewalling, separate subnets for wired and wireless, separate dhcp, etc.</span>
+<span class=c1># I wanted my wifi on a separate subnet from my LAN, with its own DHCP scope. In these examples, lan is 192.168.7.0/24, and wifi is 192.168.8.0/24</span>
+<span class=c1>## wan:  vlan1</span>
+<span class=c1>## lan:  br0 - 192.168.7.1</span>
+<span class=c1>## wifi: eth1 - 192.168.8.1</span>
+<span class=c1>## permit incoming connections from WLAN</span>
+iptables -I INPUT <span class=m>2</span> -i eth1 -m state --state NEW -j logaccept
+<span class=c1>## fixup forwarding table</span>
+<span class=c1>## the lan2wan target didn&#39;t work for me, replace it with straight accept</span>
+iptables -R FORWARD <span class=m>5</span> -i br0  -o vlan1 -j ACCEPT
+<span class=c1>## permit WLAN -&gt; WAN</span>
+iptables -I FORWARD <span class=m>7</span> -i eth1 -o vlan1 -j ACCEPT
+<span class=c1>## disallow WLAN -&gt; LAN</span>
+iptables -I FORWARD <span class=m>7</span> -i eth1 -o br0  -m state --state NEW -j DROP
+<span class=c1>## disallow LAN -&gt; WLAN</span>
+iptables -I FORWARD -i br0 -o eth1 -m state --state NEW -j DROP
+<span class=c1>## disallow WLAN -&gt; WAN subnet</span>
+iptables -I FORWARD -i eth1 -d <span class=sb>`</span>nvram get wan_ipaddr<span class=sb>`</span>/<span class=sb>`</span>nvram get wan_netmask<span class=sb>`</span> -m state --state NEW -j DROP
+<span class=c1>## disallow WLAN -&gt; direct router access</span>
+iptables -I INPUT -i eth1 -m state --state NEW -j DROP
+<span class=c1>## Allow WLAN -&gt; DHCP on the router</span>
+iptables -I INPUT -i eth1 -p udp --dport <span class=m>67</span> -j ACCEPT
+<span class=c1>## Allow WLAN -&gt; DNS on the router</span>
+iptables -I INPUT -i eth1 -p udp --dport <span class=m>53</span> -j ACCEPT
+iptables -I INPUT -i eth1 -p tcp --dport <span class=m>53</span> -j ACCEPT
+
+
+<span class=c1># This is for allowing netwrok access between 2 networks</span>
+<span class=c1># Allow the entire 192.168.0.0/16 block to be forwarded through the router</span>
+iptables -I FORWARD -s <span class=m>192</span>.168.0.0/16 -j ACCEPT
+
+<span class=c1># OR</span>
+<span class=c1># Allow Router2 to forward traffic from Router1 and Router3&#39;s subnets</span>
+iptables -I FORWARD -s <span class=m>192</span>.168.1.0/24 -j ACCEPT
+iptables -I FORWARD -s <span class=m>192</span>.168.3.0/24 -j ACCEPT
+<span class=c1># Allow Router3 to forward traffic from Router1 and Router2&#39;s subnets</span>
+iptables -I FORWARD -s <span class=m>192</span>.168.1.0/24 -j ACCEPT
+iptables -I FORWARD -s <span class=m>192</span>.168.2.0/24 -j ACCEPT
+</code></pre></div> </article> </div> </div> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2022 - Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.fb4a9340.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing"}, "version": null}</script> <script src=../../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>

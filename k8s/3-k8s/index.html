@@ -1,0 +1,766 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/k8s/3-k8s/ rel=canonical><link rel="shortcut icon" href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.4.1, mkdocs-material-7.0.3"><title>3 k8s - Leslie's Online Notebook</title><link rel=stylesheet href=../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#etcd class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> 3 k8s </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../devops/ class=md-nav__link> Devops </a> </li> <li class=md-nav__item> <a href=../../devops/ci/ class=md-nav__link> CI </a> </li> <li class=md-nav__item> <a href=../../devops/cd/ class=md-nav__link> CD </a> </li> <li class=md-nav__item> <a href=../../devops/iac/ class=md-nav__link> IAC </a> </li> <li class=md-nav__item> <a href=../../devops/gitops/ class=md-nav__link> GitOps </a> </li> <li class=md-nav__item> <a href=../../devops/devops-engineer/ class=md-nav__link> Skills </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Ansible <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ansible data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Ansible </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../learning/ansible/ansible/ class=md-nav__link> Ansible </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../learning/git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../../learning/python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../learning/vagrant/ class=md-nav__link> Vagrant </a> </li> <li class=md-nav__item> <a href=../../learning/terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../../learning/docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../learning/k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../learning/linux/linux/ class=md-nav__link> Linux </a> </li> <li class=md-nav__item> <a href=../../learning/linux/security/ class=md-nav__link> Linux_Security </a> </li> <li class=md-nav__item> <a href=../../learning/linux/firewall/ class=md-nav__link> Linux_Firewall </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#etcd class=md-nav__link> ETCD </a> </li> <li class=md-nav__item> <a href=#api-server class=md-nav__link> API Server </a> </li> <li class=md-nav__item> <a href=#kube-controller-manager class=md-nav__link> Kube Controller Manager </a> </li> <li class=md-nav__item> <a href=#kube-scheduler class=md-nav__link> Kube Scheduler </a> </li> <li class=md-nav__item> <a href=#kubelet class=md-nav__link> Kubelet </a> </li> <li class=md-nav__item> <a href=#kube-proxy class=md-nav__link> Kube Proxy </a> </li> <li class=md-nav__item> <a href=#manual-scheduling class=md-nav__link> Manual Scheduling </a> </li> <li class=md-nav__item> <a href=#explain-commands class=md-nav__link> Explain Commands </a> </li> <li class=md-nav__item> <a href=#pods class=md-nav__link> Pods </a> </li> <li class=md-nav__item> <a href=#replicasets class=md-nav__link> Replicasets </a> </li> <li class=md-nav__item> <a href=#deployments class=md-nav__link> Deployments </a> </li> <li class=md-nav__item> <a href=#formatting-kubectl-output class=md-nav__link> Formatting kubectl Output </a> </li> <li class=md-nav__item> <a href=#namespaces class=md-nav__link> Namespaces </a> </li> <li class=md-nav__item> <a href=#imperative-commands class=md-nav__link> Imperative Commands </a> </li> <li class=md-nav__item> <a href=#docker-commands class=md-nav__link> Docker Commands </a> </li> <li class=md-nav__item> <a href=#k8s-commands-and-arguments class=md-nav__link> K8s Commands and Arguments </a> </li> <li class=md-nav__item> <a href=#environment-variables class=md-nav__link> Environment Variables </a> </li> <li class=md-nav__item> <a href=#configmap class=md-nav__link> ConfigMap </a> </li> <li class=md-nav__item> <a href=#secrets class=md-nav__link> Secrets </a> </li> <li class=md-nav__item> <a href=#security-context class=md-nav__link> Security Context </a> </li> <li class=md-nav__item> <a href=#service-accounts class=md-nav__link> Service Accounts </a> </li> <li class=md-nav__item> <a href=#resource-requirments class=md-nav__link> Resource Requirments </a> </li> <li class=md-nav__item> <a href=#taints-and-tolerations class=md-nav__link> Taints and Tolerations </a> </li> <li class=md-nav__item> <a href=#node-selectors class=md-nav__link> Node Selectors </a> </li> <li class=md-nav__item> <a href=#node-affinity class=md-nav__link> Node Affinity </a> </li> <li class=md-nav__item> <a href=#multi-container-pods class=md-nav__link> Multi-Container Pods </a> </li> <li class=md-nav__item> <a href=#init-pods class=md-nav__link> Init Pods </a> </li> <li class=md-nav__item> <a href=#readiness-and-liveness-probes class=md-nav__link> Readiness and Liveness Probes </a> </li> <li class=md-nav__item> <a href=#container-logging class=md-nav__link> Container Logging </a> </li> <li class=md-nav__item> <a href=#monitor-and-debug-aplications class=md-nav__link> Monitor and Debug Aplications </a> </li> <li class=md-nav__item> <a href=#labels-selectors-and-annotations class=md-nav__link> Labels, Selectors and Annotations </a> </li> <li class=md-nav__item> <a href=#update-and-rollback-deployments class=md-nav__link> Update and Rollback Deployments </a> </li> <li class=md-nav__item> <a href=#daemonsets class=md-nav__link> DaemonSets </a> </li> <li class=md-nav__item> <a href=#static-pods class=md-nav__link> Static Pods </a> </li> <li class=md-nav__item> <a href=#jobs class=md-nav__link> Jobs </a> </li> <li class=md-nav__item> <a href=#cronjobs class=md-nav__link> Cronjobs </a> </li> <li class=md-nav__item> <a href=#services class=md-nav__link> Services </a> </li> <li class=md-nav__item> <a href=#multiple-kube-schedulers class=md-nav__link> Multiple Kube Schedulers </a> </li> <li class=md-nav__item> <a href=#os-upgrades class=md-nav__link> OS Upgrades </a> </li> <li class=md-nav__item> <a href=#k8s-release-strategy class=md-nav__link> K8s Release Strategy </a> </li> <li class=md-nav__item> <a href=#cluster-upgrade class=md-nav__link> Cluster Upgrade </a> </li> <li class=md-nav__item> <a href=#backup-and-restore class=md-nav__link> Backup and Restore </a> <nav class=md-nav aria-label="Backup and Restore"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#security class=md-nav__link> Security </a> <nav class=md-nav aria-label=Security> <ul class=md-nav__list> <li class=md-nav__item> <a href=#tls class=md-nav__link> TLS </a> </li> <li class=md-nav__item> <a href=#tls-in-kubernetes class=md-nav__link> TLS in Kubernetes </a> </li> <li class=md-nav__item> <a href=#certificate-creation class=md-nav__link> Certificate Creation </a> </li> <li class=md-nav__item> <a href=#debugging-certificates class=md-nav__link> Debugging Certificates </a> </li> <li class=md-nav__item> <a href=#certificates-api class=md-nav__link> Certificates API </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#image-security class=md-nav__link> Image Security </a> </li> <li class=md-nav__item> <a href=#deployment-strategies class=md-nav__link> Deployment Strategies </a> </li> <li class=md-nav__item> <a href=#docker-volume class=md-nav__link> Docker Volume </a> </li> <li class=md-nav__item> <a href=#container-storage-interface class=md-nav__link> Container Storage Interface </a> </li> <li class=md-nav__item> <a href=#volumes class=md-nav__link> Volumes </a> </li> <li class=md-nav__item> <a href=#persistent-volumes-and-claims class=md-nav__link> Persistent Volumes and Claims </a> </li> <li class=md-nav__item> <a href=#storage-class class=md-nav__link> Storage Class </a> </li> <li class=md-nav__item> <a href=#networking-basics class=md-nav__link> Networking Basics </a> </li> <li class=md-nav__item> <a href=#networking-native-commands class=md-nav__link> Networking Native Commands </a> </li> <li class=md-nav__item> <a href=#cni class=md-nav__link> CNI </a> </li> <li class=md-nav__item> <a href=#deploy-weave-for-pod-networking class=md-nav__link> Deploy Weave for Pod Networking </a> </li> <li class=md-nav__item> <a href=#service-networking class=md-nav__link> Service Networking </a> </li> <li class=md-nav__item> <a href=#dns class=md-nav__link> DNS </a> </li> <li class=md-nav__item> <a href=#cluster-dns class=md-nav__link> Cluster DNS </a> </li> <li class=md-nav__item> <a href=#coredns class=md-nav__link> CoreDNS </a> </li> <li class=md-nav__item> <a href=#ingress-networking class=md-nav__link> Ingress Networking </a> <nav class=md-nav aria-label="Ingress Networking"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#rewrite-target-option class=md-nav__link> Rewrite Target Option </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#network-policies class=md-nav__link> Network Policies </a> </li> <li class=md-nav__item> <a href=#kubeconfig class=md-nav__link> Kubeconfig </a> </li> <li class=md-nav__item> <a href=#api-versions class=md-nav__link> API Versions </a> </li> <li class=md-nav__item> <a href=#deprecated-ap-versions class=md-nav__link> Deprecated AP Versions </a> </li> <li class=md-nav__item> <a href=#authentication-and-authorization class=md-nav__link> Authentication and Authorization </a> </li> <li class=md-nav__item> <a href=#roles-and-rolebindings class=md-nav__link> Roles and Rolebindings </a> </li> <li class=md-nav__item> <a href=#cluster-roles-and-cluster-rolebindings class=md-nav__link> Cluster Roles and Cluster RoleBindings </a> </li> <li class=md-nav__item> <a href=#admission-controllers class=md-nav__link> Admission Controllers </a> <nav class=md-nav aria-label="Admission Controllers"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#validating-and-mutating-addmission-controllers class=md-nav__link> Validating and Mutating Addmission Controllers </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#helm class=md-nav__link> Helm </a> </li> <li class=md-nav__item> <a href=#troubleshooting class=md-nav__link> Troubleshooting </a> <nav class=md-nav aria-label=Troubleshooting> <ul class=md-nav__list> <li class=md-nav__item> <a href=#application-troubleshooting class=md-nav__link> Application Troubleshooting </a> </li> <li class=md-nav__item> <a href=#cluster-troubleshooting class=md-nav__link> Cluster Troubleshooting </a> </li> <li class=md-nav__item> <a href=#worker-troubleshooting class=md-nav__link> Worker Troubleshooting </a> </li> <li class=md-nav__item> <a href=#network-troubleshooting class=md-nav__link> Network Troubleshooting </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#jsonpath class=md-nav__link> JSONPath </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>3 k8s</h1> <ul> <li>To get the version of K8s , run <code>kubectl get nodes</code></li> <li><code>cat /etc/*release*</code> - Shows the OS version</li> <li>Hit Ctrl + D to exit out of SSH session when moving to Nodes and coming back or type <code>exit</code></li> <li><code>journalctl -u etcd.service -l</code> - List the service logs</li> </ul> <h3 id=etcd>ETCD<a class=headerlink href=#etcd title="Permanent link">&para;</a></h3> <ul> <li>ETCDCTL can interact with ETCD Server using 2 API versions - Version 2 and Version 3. </li> <li>By default its set to use Version 2. Each version has different sets of commands.</li> <li>To set the right version of API set the environment variable <code>ETCDCTL_API</code> command <code>export ETCDCTL_API=3</code></li> <li>When API version is not set, it is assumed to be set to version 2. And version 3 commands listed below don't work. When API version is set to version 3, version 2 commands listed below don't work. <div class=highlight><pre><span></span><code><span class=c1># ETCDCTL version 2</span>
+etcdctl backup
+etcdctl cluster-health
+etcdctl mk
+etcdctl mkdir
+etcdctl <span class=nb>set</span>
+
+<span class=c1># ETCDCTL version 3</span>
+etcdctl snapshot save 
+etcdctl endpoint health
+etcdctl get
+etcdctl put
+
+<span class=c1># This command sets the ETCD version to 3 and then shows all the keys in ETCD database and also sets the certificates</span>
+kubectl <span class=nb>exec</span> etcd-master -n kube-system -- sh -c <span class=s2>&quot;ETCDCTL_API=3 etcdctl get / --prefix --keys-only --limit=10 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt  --key /etc/kubernetes/pki/etcd/server.key&quot;</span> 
+</code></pre></div></li> </ul> <h3 id=api-server>API Server<a class=headerlink href=#api-server title="Permanent link">&para;</a></h3> <ul> <li>Api Server Configuration is stored</li> <li>Using Kubeadm - Inside API Server Pod - <code>/etc/kubernetes/manifests/kube-apiserver.yaml</code></li> <li>As a Service - Inside the Master Node - <code>/etc/systemd/system/kube-apiserver.service</code> <div class=highlight><pre><span></span><code>ps -ef <span class=p>|</span> grep kube-apiserver        <span class=c1># To see all kube apiserver configuration</span>
+</code></pre></div></li> </ul> <h3 id=kube-controller-manager>Kube Controller Manager<a class=headerlink href=#kube-controller-manager title="Permanent link">&para;</a></h3> <ul> <li>Watch Status</li> <li>Remediate Situation</li> <li>Node Controller</li> <li>Replicaton Controller</li> <li>Api Server Configuration is stored</li> <li>Using Kubeadm - Inside API Server Pod - <code>/etc/kubernetes/manifests/kube-controller-manager.yaml</code></li> <li>As a Service - Inside the Master Node - <code>/etc/systemd/system/kube-controller-manager.service</code> <div class=highlight><pre><span></span><code>ps -ef <span class=p>|</span> grep kube-controller-manager        <span class=c1># To see all kube controller-manager configuration</span>
+</code></pre></div></li> </ul> <h3 id=kube-scheduler>Kube Scheduler<a class=headerlink href=#kube-scheduler title="Permanent link">&para;</a></h3> <ul> <li>Assigning a Pod to a Node:</li> <li>Filter Nodes</li> <li>Rank Nodes</li> <li>Using Kubeadm - Inside API Server Pod - <code>/etc/kubernetes/manifests/kube-scheduler.yaml</code></li> <li>As a Service - Inside the Master Node - <code>/etc/systemd/system/kube-scheduler.service</code> <div class=highlight><pre><span></span><code>ps -ef <span class=p>|</span> grep kube-scheduler       <span class=c1># To see all kube scheduler configuration</span>
+</code></pre></div></li> </ul> <h3 id=kubelet>Kubelet<a class=headerlink href=#kubelet title="Permanent link">&para;</a></h3> <ul> <li><strong>NOTE</strong>: Kubeadm does not install kubelet. Always install kubelet manually on the worker nodes.</li> <li>Always runs as a service on the worker nodes. <div class=highlight><pre><span></span><code>ps -ef <span class=p>|</span> grep kubelet       <span class=c1># To see all kubelet configuration</span>
+</code></pre></div></li> </ul> <h3 id=kube-proxy>Kube Proxy<a class=headerlink href=#kube-proxy title="Permanent link">&para;</a></h3> <ul> <li>Process running on the worker node as a service.</li> </ul> <h3 id=manual-scheduling>Manual Scheduling<a class=headerlink href=#manual-scheduling title="Permanent link">&para;</a></h3> <ul> <li>Add <code>nodeName</code> property in the pod definition to schedule a pod at creation time if there is no scheduler.</li> </ul> <h3 id=explain-commands>Explain Commands<a class=headerlink href=#explain-commands title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># When is it useful: sometimes when editing/creating yaml files, it is not clear where exactly rsource should be placed (indented) in the file. Using this command gives a quick overview of resources structure as well as helpful explaination. Sometimes this is faster then looking up in k8s docs.</span>
+kubectl explian pods --recursive <span class=p>|</span> grep envFrom -A3   <span class=c1># Prints lines after a match is found</span>
+<span class=c1># Output would be </span>
+envFrom        &lt;<span class=o>[]</span>Object&gt;         <span class=c1># This is an array of Objects, so the next line will be start with -</span>
+  configMapRef        &lt;Object&gt;    <span class=c1># This is an Object</span>
+    name     &lt;string&gt;             <span class=c1># This is a dictionary</span>
+    optional &lt;boolean&gt;
+<span class=c1># </span>
+kubectl explain cronjob.spec.jobTemplate --recursive <span class=p>|</span> less
+kubectl explain pods.spec.containers --recursive <span class=p>|</span> less
+</code></pre></div> <h3 id=pods>Pods<a class=headerlink href=#pods title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code>kubetcl get pods -o wide        <span class=c1># Get the Node on which pod is running</span>
+</code></pre></div> - <strong>Remember</strong>: You <strong>CANNOT</strong> edit specifications of an existing POD other than the below. 1. spec.containers[<em>].image 1. spec.initContainers[</em>].image 1. spec.activeDeadlineSeconds 1. spec.tolerations - For example: when you edit a pod in vi editor for environment variables, service accounts, resource limits. When you try to save it, you will be denied. This is because you are attempting to edit a field on the pod that is not editable. 1. A copy of the file with your changes is saved in a temporary location when it fails. You can then delete the existing pod. Then create a new pod with your changes using the temporary file which was saved earlier in <code>/tmp</code>. 2. The second option is to extract the pod definition in YAML format to a file. Then make the changes to the exported file using an editor and save the file. Then delete the existing pod. Then create a new pod with the edited file. 3. Force replace the pod using <code>kubectl replace -f &lt;filename&gt; --force</code></p> <h3 id=replicasets>Replicasets<a class=headerlink href=#replicasets title="Permanent link">&para;</a></h3> <ul> <li><code>selector</code> is the difference between ReplicaSet and ReplicationController apart from apiVersion. <div class=highlight><pre><span></span><code><span class=c1># Scaling RS</span>
+kubectl replace -f rs.yaml
+kubectl scale --replicas<span class=o>=</span><span class=m>6</span> rs myapp-rs      <span class=c1># &lt;Type&gt; &lt;Name of RS&gt; format </span>
+kubectl delete rs myapp-rs                  <span class=c1># Also deletes the underlying pods</span>
+<span class=c1>### IMPORTANT</span>
+<span class=c1># Either delete and recreate the ReplicaSet or Update the existing ReplicaSet and then delete all PODs, so new ones with the correct image will be created.</span>
+</code></pre></div></li> </ul> <h3 id=deployments>Deployments<a class=headerlink href=#deployments title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code>kubectl create deployment mydeploy --image<span class=o>=</span>nginx --replicas<span class=o>=</span><span class=m>3</span>
+kubectl scale deployment mydeploy --replicas<span class=o>=</span><span class=m>6</span>
+</code></pre></div> - Edit Deployments - With Deployments you can easily edit any field/property of the POD template. Since the pod template is a child of the deployment specification, with every change the deployment will automatically delete and create a new pod with the new changes. So if you are asked to edit a property of a POD part of a deployment.</p> <h3 id=formatting-kubectl-output>Formatting kubectl Output<a class=headerlink href=#formatting-kubectl-output title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>-o json         <span class=c1># Output a JSON formatted API object.</span>
+-o name         <span class=c1># Print only the resource name and nothing else.</span>
+-o wide         <span class=c1># Output in the plain-text format with any additional information.</span>
+-o yaml         <span class=c1># Output a YAML formatted API object.</span>
+</code></pre></div> <h3 id=namespaces>Namespaces<a class=headerlink href=#namespaces title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>kubectl config set-context <span class=k>$(</span>kubectl config current-context<span class=k>)</span> --namespace<span class=o>=</span><span class=nb>test</span>
+<span class=c1># OR</span>
+<span class=nb>alias</span> <span class=nv>kns</span><span class=o>=</span>kubectl config set-context --current --namespace
+kns <span class=nb>test</span>
+<span class=c1># Testing services</span>
+<span class=c1># DNS resolution</span>
+&lt;svc name&gt;.&lt;namespace&gt;.svc.cluster.local:&lt;svc port&gt;  <span class=c1># cluster.local - Domain name, svc - subdomain name</span>
+</code></pre></div> <h3 id=imperative-commands>Imperative Commands<a class=headerlink href=#imperative-commands title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=sb>`</span>--dry-run<span class=sb>`</span>: <span class=c1># By default as soon as the command is run, the resource will be created. </span>
+<span class=sb>`</span>-dry-run<span class=o>=</span>client<span class=sb>`</span>: <span class=c1># This will not create the resource, instead, tell you whether the resource can be created and if your command is right.</span>
+<span class=c1># Generate POD Manifest </span>
+kubectl run nginx --image<span class=o>=</span>nginx --dry-run<span class=o>=</span>client -o yaml &gt; pod.yaml
+<span class=c1># Generate Deployment with 4 Replicas</span>
+kubectl create deployment --image<span class=o>=</span>nginx nginx --replicas<span class=o>=</span><span class=m>4</span> --dry-run<span class=o>=</span>client -o yaml &gt; deploy.yaml
+<span class=c1># Create a Service named redis-service of type ClusterIP to expose pod redis on port 6379</span>
+<span class=c1># This will automatically use the pod&#39;s labels as selectors</span>
+kubectl expose pod redis --port<span class=o>=</span><span class=m>6379</span> --name redis-service --dry-run<span class=o>=</span>client -o yaml &gt; svc.yaml
+<span class=c1># OR</span>
+<span class=c1># This will not use the pods labels as selectors, instead it will assume selectors as app=redis.</span>
+kubectl create service clusterip redis --tcp<span class=o>=</span><span class=m>6379</span>:6379 --dry-run<span class=o>=</span>client -o yaml 
+<span class=c1># So it does not work very well if your pod has a different label set. So generate the file and modify the selectors before creating the service</span>
+
+<span class=c1># Create a Service named nginx of type NodePort to expose pod nginx&#39;s port 80 on port 30080 on the nodes</span>
+<span class=c1># This will automatically use the pod&#39;s labels as selectors, but you cannot specify the node port. </span>
+kubectl expose pod nginx --port<span class=o>=</span><span class=m>80</span> --name nginx-service --type<span class=o>=</span>NodePort --dry-run<span class=o>=</span>client -o yaml
+<span class=c1># OR</span>
+<span class=c1># This will not use the labels as selectors</span>
+kubectl create service nodeport nginx --tcp<span class=o>=</span><span class=m>80</span>:80 --node-port<span class=o>=</span><span class=m>30080</span> --dry-run<span class=o>=</span>client -o yaml
+<span class=c1># I would recommend going with the `kubectl expose` command. If you need to specify a node port, generate a definition file using the same command and manually input the nodeport before creating the service.</span>
+
+<span class=c1># Create Pod and Svc in one command</span>
+kubetcl run nginx --image<span class=o>=</span>nginx --port<span class=o>=</span><span class=m>8080</span> --expose
+</code></pre></div> <h3 id=docker-commands>Docker Commands<a class=headerlink href=#docker-commands title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>CMD <span class=o>[</span><span class=s2>&quot;command&quot;</span>,<span class=s2>&quot;parameters&quot;</span><span class=o>]</span>            <span class=c1># Process which is executed in Docker container continuously</span>
+<span class=c1># example</span>
+CMD <span class=o>[</span><span class=s2>&quot;sleep&quot;</span>, <span class=s2>&quot;5&quot;</span><span class=o>]</span>                      <span class=c1># Sleep is executed every 5 secs</span>
+<span class=c1># What is you want to pass parameters to Docker during execution, Use ENTRYPOINT</span>
+ENTRYPOINT <span class=o>[</span><span class=s2>&quot;sleep&quot;</span><span class=o>]</span>                    <span class=c1># Process invoked at startup</span>
+<span class=c1># To execute</span>
+docker run sleeper-image <span class=m>10</span>             <span class=c1># This will pass 10 to the Sleep process</span>
+<span class=c1># If no parameter is passed to Docker command, it will fail.</span>
+<span class=c1># Passing default parameter when no parameter is passed, Use ENTRYPOINT and CMD both in Dockerfile</span>
+ENTRYPOINT <span class=o>[</span><span class=s2>&quot;sleep&quot;</span><span class=o>]</span>                    <span class=c1># Process invoked at startup</span>
+CMD <span class=o>[</span><span class=s2>&quot;5&quot;</span><span class=o>]</span>                      <span class=c1># Default parameter passed to sleep, if not given during docker execution</span>
+<span class=c1># Suppose you want to override the default sleep process during execution</span>
+docker run --entrypoint ping sleeper-image <span class=m>8</span>.8.8.8  <span class=c1># Override sleep with ping process</span>
+</code></pre></div> <h3 id=k8s-commands-and-arguments>K8s Commands and Arguments<a class=headerlink href=#k8s-commands-and-arguments title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Docker           # K8s</span>
+<span class=c1>#---------------------------#</span>
+<span class=c1># ENTRYPOINT  --&gt;  command</span>
+<span class=c1># CMD         --&gt;  args</span>
+
+<span class=c1># Example</span>
+<span class=c1># In Dockerfile</span>
+ENTRYPOINT <span class=o>[</span><span class=s2>&quot;python&quot;</span>, <span class=s2>&quot;app.py&quot;</span><span class=o>]</span>
+CMD <span class=o>[</span><span class=s2>&quot;--color&quot;</span>, <span class=s2>&quot;red&quot;</span><span class=o>]</span>
+<span class=c1># In K8s, args is overriding the input</span>
+command: <span class=o>[</span><span class=s2>&quot;python&quot;</span>, <span class=s2>&quot;app.py&quot;</span><span class=o>]</span>
+args: <span class=o>[</span><span class=s2>&quot;--color&quot;</span>, <span class=s2>&quot;pink&quot;</span><span class=o>]</span>
+</code></pre></div> <h3 id=environment-variables>Environment Variables<a class=headerlink href=#environment-variables title="Permanent link">&para;</a></h3> <ul> <li>Passed as an array in key value format</li> <li>3 Types of setting Env variables</li> <li>Direct</li> <li>Config Map</li> <li>Secrets <div class=highlight><pre><span></span><code><span class=c1># Direct</span>
+env:
+  - name: APP_COLOR
+    value: pink
+<span class=c1># ConfigMap</span>
+env:
+  - name: APP_COLOR
+    valueFrom: 
+        configMapKeyRef:
+<span class=c1># Secret</span>
+env:
+  - name: APP_COLOR
+    valueFrom:
+        secretKeyRef:
+</code></pre></div></li> </ul> <h3 id=configmap>ConfigMap<a class=headerlink href=#configmap title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># From Literal</span>
+kubectl create configmap &lt;config-map name&gt; --from-literal<span class=o>=</span>&lt;key&gt;-&lt;value&gt;
+<span class=c1># From File</span>
+kubectl create configmap &lt;config-map name&gt; --from-file<span class=o>=</span>&lt;path-to-file&gt;
+<span class=c1># To reference a configMap file in pod definition</span>
+<span class=c1># ConfigMap with apiVersion etc defined</span>
+envFrom:
+  - configMapRef:
+      name: &lt;configMap Name <span class=k>in</span> Metadata&gt;
+<span class=c1># To reference a configMap volume in pod definition</span>
+volumes:
+    - name: app-config-volume
+      configMap:
+        name:  &lt;configMap Name <span class=k>in</span> Metadata&gt;
+</code></pre></div> <h3 id=secrets>Secrets<a class=headerlink href=#secrets title="Permanent link">&para;</a></h3> <ul> <li>The way kubernetes handles secrets. Such as:</li> <li>A secret is only sent to a node if a pod on that node requires it.</li> <li>Kubelet stores the secret into a <code>tmpfs</code> so that the secret is not written to disk storage.</li> <li>Once the Pod that depends on the secret is deleted, kubelet will delete its local copy of the secret data as well.</li> <li>Having said that, there are other better ways of handling sensitive data like passwords in Kubernetes, such as using tools like Helm Secrets, HashiCorp Vault. <div class=highlight><pre><span></span><code><span class=c1># From Literal</span>
+kubectl create secret generic &lt;secret name&gt; --from-literal<span class=o>=</span>&lt;key&gt;-&lt;value&gt; <span class=c1># Note: generic is added</span>
+<span class=c1># From File</span>
+kubectl create secret generic &lt;secret name&gt; --from-file<span class=o>=</span>&lt;path-to-file&gt;
+<span class=c1># To encode text to base64</span>
+<span class=nb>echo</span> -n <span class=s2>&quot;Hello&quot;</span> <span class=p>|</span> base64
+<span class=c1># To view the secret information </span>
+kubectl get secret app-secret -o yaml     <span class=c1># Output in yaml, then decode using base64</span>
+<span class=nb>echo</span> -n <span class=s2>&quot;aTsfgs*#&quot;</span> <span class=p>|</span> base64 -d
+<span class=c1># To reference a secret in pod definition</span>
+envFrom:
+  - secretRef:
+      name: &lt;secret Name <span class=k>in</span> Metadata&gt;
+<span class=c1># To reference a secret in volume definition</span>
+volumes:
+    - name: app-secret-volume
+      secret:
+        secretName:  &lt;secret Name <span class=k>in</span> Metadata&gt;    <span class=c1># Note the change of Key</span>
+</code></pre></div></li> </ul> <h3 id=security-context>Security Context<a class=headerlink href=#security-context title="Permanent link">&para;</a></h3> <ul> <li>Security Context can be added at Pod and Container level.</li> <li>If defined at both levels, container configuration overrides the security context defined at pod level.</li> <li><strong>Note</strong>: Capabilities are only supported at container level and NOT at Pod level. <div class=highlight><pre><span></span><code><span class=c1># Adding additional Linux capability during container execution in Docker</span>
+docker run --cap-add MAC_ADMIN ubuntu       <span class=c1># Adds additional capability to the container apart from defaults</span>
+<span class=c1># Adding security context to Pod in container section</span>
+securityContext:
+  runAsUser: <span class=m>1000</span>
+  capabilities:
+    add: <span class=o>[</span><span class=s2>&quot;MAC_ADMIN&quot;</span><span class=o>]</span>
+</code></pre></div></li> </ul> <h3 id=service-accounts>Service Accounts<a class=headerlink href=#service-accounts title="Permanent link">&para;</a></h3> <ul> <li>Service Accounts are used by applications or services and not by humans.</li> <li><strong>Note:</strong> SA cannot be added to existing Pod. Always Delete and add SA to Pod definition to recreate.</li> <li>K8s automatically mounts the <code>default</code> namespace SA. To override this behavior, set <code>automountServiceAccountToken: false</code> in the Pod definition. <div class=highlight><pre><span></span><code>kubectl create sa dashboard-sa            <span class=c1># Create a SA</span>
+kubectl get secret dashboard-sa-token-kdbm  <span class=c1># K8s creates a secret to store the token to auth the service</span>
+<span class=c1># You can use the token to run K8s API calls</span>
+curl https://192.168.0.10:6443/api -insecure --header <span class=s2>&quot;Authorization: Bearer &lt;sa token&gt;&quot;</span>
+</code></pre></div></li> </ul> <h3 id=resource-requirments>Resource Requirments<a class=headerlink href=#resource-requirments title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code><span class=m>1</span> Gi   - Gibibyte
+<span class=m>1</span> Mi   - Mebibyte
+<span class=m>1</span> Ki   - Kibibyte
+
+<span class=m>1</span> <span class=nv>CPU</span>  <span class=o>=</span> <span class=m>1</span> vCPU or <span class=m>1</span> Hyperthread
+
+<span class=c1># If a Pod uses more CPU than its limit, it will be throttled.</span>
+<span class=c1># If a Pod used more Mem than its limit, it will be terminated.</span>
+</code></pre></div> - When a pod is created the containers are assigned a default CPU request of .5 and memory of 256Mi". For the POD to pick up those defaults you must have first set those as default values for request and limit by creating a <code>LimitRange</code> in that namespace. <div class=highlight><pre><span></span><code><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class=w></span>
+<span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">LimitRange</span><span class=w></span>
+<span class=nt>metadata</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">mem-limit-range</span><span class=w></span>
+<span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>limits</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>default</span><span class=p>:</span><span class=w></span>
+<span class=w>      </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">512Mi</span><span class=w></span>
+<span class=w>    </span><span class=nt>defaultRequest</span><span class=p>:</span><span class=w></span>
+<span class=w>      </span><span class=nt>memory</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">256Mi</span><span class=w></span>
+<span class=w>    </span><span class=nt>type</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">Container</span><span class=w></span>
+<span class=nn>---</span><span class=w></span>
+<span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class=w></span>
+<span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">LimitRange</span><span class=w></span>
+<span class=nt>metadata</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">cpu-limit-range</span><span class=w></span>
+<span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>limits</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>default</span><span class=p>:</span><span class=w></span>
+<span class=w>      </span><span class=nt>cpu</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class=w></span>
+<span class=w>    </span><span class=nt>defaultRequest</span><span class=p>:</span><span class=w></span>
+<span class=w>      </span><span class=nt>cpu</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span><span class=w></span>
+<span class=w>    </span><span class=nt>type</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">Container</span><span class=w></span>
+</code></pre></div></p> <h3 id=taints-and-tolerations>Taints and Tolerations<a class=headerlink href=#taints-and-tolerations title="Permanent link">&para;</a></h3> <ul> <li>If a taint is placed, by default no pods will be scheduled on the Node.</li> <li>Only when a Pod has tolerations matching the taint, will the K8s scheduler place the pod on the tainted node.</li> <li>3 taint-effects:</li> <li>NoSchedule</li> <li>PreferNoSchedule</li> <li>NoExecute</li> <li><strong>Important</strong>: Taints does not neccessarily mean that Pods matching the tolerations will be placed always on that tainted node. It can be placed on another Node which is not tainted. Taints and Tolerations is used only for restricting certain pods from being placed in it. To always place a pod on a tainted node, use <code>Node Affinity</code>. <div class=highlight><pre><span></span><code><span class=c1># Node Taint</span>
+kubectl taint nodes &lt;node name&gt; <span class=nv>key</span><span class=o>=</span>value:taint-effect
+<span class=c1># Example</span>
+kubectl taint nodes node1 <span class=nv>app</span><span class=o>=</span>blue:NoSchedule
+<span class=c1># Tolerations added to Pod definition</span>
+tolerations:
+- key: <span class=s2>&quot;app&quot;</span>            <span class=c1># Note: This is placed under Pod not containers section</span>
+  operator: <span class=s2>&quot;Equal&quot;</span>     <span class=c1># Note: All values should be doube quoted</span>
+  value: <span class=s2>&quot;blue&quot;</span>
+  effect: <span class=s2>&quot;NoSchedule&quot;</span>
+<span class=c1># By default, master Node is always tainted. To see the taint</span>
+kubectl describe node kubemaster <span class=p>|</span> grep Taint
+<span class=c1># To remove the taint from a node, add a minus (-) symbol at the end of the taint with NO spaces in between</span>
+kubectl taint nodes node1 <span class=nv>app</span><span class=o>=</span>blue:NoSchedule-    <span class=c1># Note the - with no spaces</span>
+</code></pre></div></li> </ul> <h3 id=node-selectors>Node Selectors<a class=headerlink href=#node-selectors title="Permanent link">&para;</a></h3> <ul> <li>Labels placed on the Nodes which help scheduler place the pods matching the labels <div class=highlight><pre><span></span><code><span class=c1># Adding the lable to the node</span>
+kubectl label node &lt;node name&gt; <span class=nv>key</span><span class=o>=</span>value
+<span class=c1># Example</span>
+kubectl label node node1 <span class=nv>size</span><span class=o>=</span>Large
+<span class=c1># NodeSelectors added to Pod definition</span>
+nodeSelector:
+  size: Large
+<span class=c1># Important: Labels are simple and can&#39;t be used for complex selection using OR or NOT operators.</span>
+<span class=c1># For example: Place Pods in Large or Medium Nodes. OR Place Pods in Nodes which are not Small.</span>
+<span class=c1># OR</span>
+<span class=c1># Example</span>
+kubectl label node node1 <span class=nv>size</span><span class=o>=</span>
+<span class=c1># NodeSelectors added to Pod definition</span>
+nodeSelector:
+  size: <span class=s2>&quot;&quot;</span>
+</code></pre></div></li> </ul> <h3 id=node-affinity>Node Affinity<a class=headerlink href=#node-affinity title="Permanent link">&para;</a></h3> <ul> <li>To overcome NodeSelector limitations, Affinity and Anti-Affinity is used.</li> <li>Node Affinity Types:</li> <li><code>requiredDuringSchedulingIgnoredDuringExecution</code>: The scheduler can't schedule the Pod unless the rule is met. This functions like nodeSelector, but with a more expressive syntax.</li> <li><code>preferredDuringSchedulingIgnoredDuringExecution</code>: The scheduler tries to find a node that meets the rule. If a matching node is not available, the scheduler still schedules the Pod.</li> <li>2 Types of Operators - <code>In</code> and <code>Exists</code></li> <li><strong>Important</strong>: Use a combination of taints and tolerations to Deny Pods from being placed on to it. Then Add labels to the Nodes. After that add NodeAffinity to ensure the matching Pod goes to the correct Node. <div class=highlight><pre><span></span><code><span class=nt>affinity</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>nodeAffinity</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class=nt>requiredDuringSchedulingIgnoredDuringExecution</span><span class=p>:</span><span class=w></span>
+<span class=w>      </span><span class=nt>nodeSelectorTerms</span><span class=p>:</span><span class=w></span>
+<span class=w>      </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>matchExpressions</span><span class=p>:</span><span class=w></span>
+<span class=w>        </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes.io/os</span><span class=w></span>
+<span class=w>          </span><span class=nt>operator</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">In</span><span class=w></span>
+<span class=w>          </span><span class=nt>values</span><span class=p>:</span><span class=w></span>
+<span class=w>          </span><span class="p p-Indicator">-</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">linux</span><span class=w></span>
+</code></pre></div></li> </ul> <h3 id=multi-container-pods>Multi-Container Pods<a class=headerlink href=#multi-container-pods title="Permanent link">&para;</a></h3> <ul> <li>Design Patterns </li> <li>Side car - Example is a logging container which ships the logs to a central logging service</li> <li>Adapter - Example is a logging container which converts the logs to a standard format before shipping</li> <li>Ambassador - Outsourcing the database connection to a separate container based on environments which acts as a proxy to the database service. The application always refers to the database using a standard dns name. </li> </ul> <h3 id=init-pods>Init Pods<a class=headerlink href=#init-pods title="Permanent link">&para;</a></h3> <ul> <li>In a multi-container pod, each container is expected to run a process that stays alive as long as the POD's lifecycle. For example in the multi-container pod that we talked about earlier that has a web application and logging agent, both the containers are expected to stay alive at all times. The process running in the log agent container is expected to stay alive as long as the web application is running. If any of them fails, the POD restarts.</li> <li>But at times you may want to run a process that runs to completion in a container. For example a process that pulls a code or binary from a repository that will be used by the main web application. That is a task that will be run only one time when the pod is first created. Or a process that waits for an external service or database to be up before the actual application starts. That's where initContainers comes in.</li> <li>When a POD is first created the initContainer is run, and the process in the initContainer must run to a completion before the real container hosting the application starts.</li> <li>You can configure multiple such initContainers as well, like how we did for multi-pod containers. In that case each init container is <strong>run one at a time in sequential order</strong>.</li> <li>If any of the initContainers fail to complete, Kubernetes restarts the Pod repeatedly until the Init Container succeeds. <div class=highlight><pre><span></span><code><span class=nt>containers</span><span class=p>:</span><span class=w></span>
+<span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">myapp-container</span><span class=w></span>
+<span class=w>  </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox:1.28</span><span class=w></span>
+<span class=w>  </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class="p p-Indicator">[</span><span class=s>&#39;sh&#39;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&#39;-c&#39;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&#39;echo</span><span class=nv> </span><span class=s>The</span><span class=nv> </span><span class=s>app</span><span class=nv> </span><span class=s>is</span><span class=nv> </span><span class=s>running!</span><span class=nv> </span><span class=s>&amp;&amp;</span><span class=nv> </span><span class=s>sleep</span><span class=nv> </span><span class=s>3600&#39;</span><span class="p p-Indicator">]</span><span class=w></span>
+<span class=nt>initContainers</span><span class=p>:</span><span class=w></span>
+<span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">init-myservice</span><span class=w></span>
+<span class=w>  </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox</span><span class=w></span>
+<span class=w>  </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class="p p-Indicator">[</span><span class=s>&#39;sh&#39;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&#39;-c&#39;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&#39;git</span><span class=nv> </span><span class=s>clone</span><span class=nv> </span><span class=s>&lt;some-repository-that-will-be-used-by-application&gt;</span><span class=nv> </span><span class=s>;&#39;</span><span class="p p-Indicator">]</span><span class=w></span>
+<span class=c1># Another Example of Sequential execution of Init Containers</span><span class=w></span>
+<span class=nt>containers</span><span class=p>:</span><span class=w></span>
+<span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">myapp-container</span><span class=w></span>
+<span class=w>  </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox:1.28</span><span class=w></span>
+<span class=w>  </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class="p p-Indicator">[</span><span class=s>&#39;sh&#39;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&#39;-c&#39;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&#39;echo</span><span class=nv> </span><span class=s>The</span><span class=nv> </span><span class=s>app</span><span class=nv> </span><span class=s>is</span><span class=nv> </span><span class=s>running!</span><span class=nv> </span><span class=s>&amp;&amp;</span><span class=nv> </span><span class=s>sleep</span><span class=nv> </span><span class=s>3600&#39;</span><span class="p p-Indicator">]</span><span class=w></span>
+<span class=nt>initContainers</span><span class=p>:</span><span class=w></span>
+<span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">init-myservice</span><span class=w></span>
+<span class=w>  </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox:1.28</span><span class=w></span>
+<span class=w>  </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class="p p-Indicator">[</span><span class=s>&#39;sh&#39;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&#39;-c&#39;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&#39;until</span><span class=nv> </span><span class=s>nslookup</span><span class=nv> </span><span class=s>myservice;</span><span class=nv> </span><span class=s>do</span><span class=nv> </span><span class=s>echo</span><span class=nv> </span><span class=s>waiting</span><span class=nv> </span><span class=s>for</span><span class=nv> </span><span class=s>myservice;</span><span class=nv> </span><span class=s>sleep</span><span class=nv> </span><span class=s>2;</span><span class=nv> </span><span class=s>done;&#39;</span><span class="p p-Indicator">]</span><span class=w></span>
+<span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">init-mydb</span><span class=w></span>
+<span class=w>  </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox:1.28</span><span class=w></span>
+<span class=w>  </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class="p p-Indicator">[</span><span class=s>&#39;sh&#39;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&#39;-c&#39;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&#39;until</span><span class=nv> </span><span class=s>nslookup</span><span class=nv> </span><span class=s>mydb;</span><span class=nv> </span><span class=s>do</span><span class=nv> </span><span class=s>echo</span><span class=nv> </span><span class=s>waiting</span><span class=nv> </span><span class=s>for</span><span class=nv> </span><span class=s>mydb;</span><span class=nv> </span><span class=s>sleep</span><span class=nv> </span><span class=s>2;</span><span class=nv> </span><span class=s>done;&#39;</span><span class="p p-Indicator">]</span><span class=w></span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=c1># To debug the Init container logs</span>
+kubectl logs -c &lt;Init container name&gt;     <span class=c1># Shows the exact error</span>
+</code></pre></div></li> </ul> <h3 id=readiness-and-liveness-probes>Readiness and Liveness Probes<a class=headerlink href=#readiness-and-liveness-probes title="Permanent link">&para;</a></h3> <ul> <li>Status of a Pod Lifecycle: <code>PodScheduled --&gt; Initialized --&gt; ConatinersReady --&gt; Ready</code> </li> <li>Liveness - Test for checking if your application is working</li> <li>Liveness and Readiness Probes have the same configuration. <div class=highlight><pre><span></span><code><span class=c1># Readiness probes based on the protocol</span>
+<span class=c1># Http</span>
+readinessProbe:
+  httpGet:
+    path: /api/ready
+    port: <span class=m>8080</span>
+  initialDelaySeconds: <span class=m>10</span>     <span class=c1># Tells to wait before checking</span>
+  periodSeconds: <span class=m>5</span>            <span class=c1># Interval between each attempt</span>
+  failureThreshold: <span class=m>8</span>         <span class=c1># How many attempts</span>
+<span class=c1># TCP</span>
+readinessProbe:
+  tcpSocket:
+    port: <span class=m>3306</span>
+<span class=c1># Exec</span>
+readinesProbe:
+  exec:
+    command:
+      - cat
+      - /app/is_ready
+</code></pre></div></li> </ul> <h3 id=container-logging>Container Logging<a class=headerlink href=#container-logging title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Docker Logs</span>
+docker run -d kodekloud /event-simulator      <span class=c1># Logs are not streamed as its running in detached mode</span>
+docker logs -f &lt;container id&gt;                 <span class=c1># Shows the container logs</span>
+<span class=c1># K8s logs</span>
+kubectl logs -f event-simulator-pod           <span class=c1># -f = Live streaming of logs</span>
+<span class=c1># Multiple containers in pod</span>
+<span class=c1># Get pods and see if there are more than 1 containers and then after -c do a tab to see the container names</span>
+kubectl logs -f event-simulator-pod -c event-simulator  <span class=c1># You can skip -c and directy mention container name</span>
+</code></pre></div> <h3 id=monitor-and-debug-aplications>Monitor and Debug Aplications<a class=headerlink href=#monitor-and-debug-aplications title="Permanent link">&para;</a></h3> <ul> <li>Open sources projects to monitor clusters, Metrics server, Prometheus</li> <li>You can have <strong>1 Metrics server per cluster</strong>. It is a In-memory solution and does not store data in disk.</li> <li>Kubelet agent has cAdvisor (container Advisor) component which extracts performance metrics.</li> <li>cAdvisor then makes this data available via the K8s API to the Metrics server. <div class=highlight><pre><span></span><code><span class=c1># Download the Metrics server from Github</span>
+git clone https://github.com/kodekloudhub/kubernetes-metrics-server.git
+<span class=c1># Apply the metric server components</span>
+kubectl apply -f .
+<span class=c1># OR</span>
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+<span class=c1># After metrics is collected after some time lag, run the commands</span>
+<span class=c1># To wait for the output to come</span>
+watch <span class=s2>&quot;kubectl top node&quot;</span> <span class=c1># Note: the command in double quote. Ctrl + c to exit      </span>
+kubectl top node         <span class=c1># Get the CPU and memory consumption of each node</span>
+kubectl top pod          <span class=c1># Pod performance       </span>
+</code></pre></div></li> </ul> <h3 id=labels-selectors-and-annotations>Labels, Selectors and Annotations<a class=headerlink href=#labels-selectors-and-annotations title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>kubectl get pods --show-labels        <span class=c1># List labels</span>
+kubectl get pods -l <span class=nv>env</span><span class=o>=</span>dev           <span class=c1># Filter Labels using short form</span>
+kubectl get all --selector<span class=o>=</span><span class=nv>env</span><span class=o>=</span>prod --no-headers <span class=p>|</span> wc -l   <span class=c1># Filter all objects and remove headers </span>
+kubectl get pods --selector<span class=o>=</span><span class=nv>env</span><span class=o>=</span>prod,bu<span class=o>=</span>finance,tier<span class=o>=</span>frontend <span class=c1># Logical AND</span>
+<span class=c1># Tip</span>
+<span class=c1># In ReplicaSet or Service, the matchLabels in the spec.selector section should always match the pod labels in the spec.template.metadata.labels.</span>
+<span class=c1># Error: &quot;selector&quot; does not match template &#39;labels&#39;</span>
+</code></pre></div> <h3 id=update-and-rollback-deployments>Update and Rollback Deployments<a class=headerlink href=#update-and-rollback-deployments title="Permanent link">&para;</a></h3> <ul> <li>2 Deployment strategy - RollingUpdate (default) and Recreate <div class=highlight><pre><span></span><code><span class=c1># Create Deployments</span>
+kubectl create -f deployments-definition.yml          <span class=c1># Using yaml format</span>
+<span class=c1># OR</span>
+kubectl create deployment my-app-deployment --image<span class=o>=</span>nginx
+kubectl apply -f deployments-definition.yml           <span class=c1># To update a deployment</span>
+<span class=c1># OR Without changing definition file, updating parameters, </span>
+<span class=c1># NOTE nginx is the container name in existing pod/deployment</span>
+kubectl <span class=nb>set</span> image deployment/my-app-deployment <span class=nv>nginx</span><span class=o>=</span>nginx:1.9  <span class=c1># Image is upgraded</span>
+<span class=c1># Roll-out strategy</span>
+kubectl rollout status deployment/my-app-deployment   <span class=c1># Shows rollout status</span>
+kubectl rollout <span class=nb>history</span> deployment/my-app-deployment  <span class=c1># Shows rollout history and revisions</span>
+<span class=c1># You can check the status of each revision individually by using the --revision flag:</span>
+kubectl rollout <span class=nb>history</span> deployment/my-app-deployment --revision<span class=o>=</span><span class=m>1</span> <span class=c1># Shows detailed history</span>
+<span class=c1># We can use the --record flag to save the command used to create/update a deployment against the revision number. Change is recorded as annotation in the deployment as &quot;change-cause&quot;.</span>
+kubectl <span class=nb>set</span> image deployment/my-app-deployment <span class=nv>nginx</span><span class=o>=</span>nginx:1.7 --record
+<span class=c1># OR</span>
+kubectl edit deployments my-app-deployment --record
+kubectl rollout undo deployment/my-app-deployment     <span class=c1># Rolls back to previous version</span>
+</code></pre></div></li> </ul> <h3 id=daemonsets>DaemonSets<a class=headerlink href=#daemonsets title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>kubectl get daemonsets
+<span class=c1># TIP: There is no kubectl create daemonset, so do a create deployment, get this into a yaml.</span>
+<span class=c1># Format the yaml for Kind, Remove replicas, strategy and save the file.</span>
+</code></pre></div> <h3 id=static-pods>Static Pods<a class=headerlink href=#static-pods title="Permanent link">&para;</a></h3> <ul> <li>When there is no Master Node and its components, you can create Pods on standalone Worker Node.</li> <li>Such a pod is called <code>Static Pod</code></li> <li>To inspect the path where the definition is defined, look at the kubelet.service. It could be in 2 places:</li> <li>&ndash;config=<file name> - kubeadm installation</li> <li>&ndash;pod-manifest-path=<file path> - manual installation </li> <li>The pod definitions have to be placed for example in <code>/etc/kubernetes/manifests</code> in a yaml file.</li> <li>Deleting the yaml file, removes the pod from the node.</li> <li>To identify static pods, <code>pod name</code> will have the <code>node name</code> appended at the end.</li> <li>kubeadm deploys the cluster components as static pods, which have <code>controlplane</code> appended in the pod name.</li> <li>Another way to identify static pod is to get the yaml of the pod and then searching for <code>ownerReferences</code>. In that if <code>kind: Node</code> then its a static pod. <div class=highlight><pre><span></span><code><span class=c1># To view the pods after creation, as kubectl will not work</span>
+docker ps
+<span class=c1># To kill the pod</span>
+docker container rm &lt;id&gt;
+<span class=c1># Kubelet config</span>
+/var/lib/kubelet/config.yaml
+</code></pre></div></li> </ul> <h3 id=jobs>Jobs<a class=headerlink href=#jobs title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Docker execution of mathematical problem</span>
+docker run ubuntu expr <span class=m>3</span> + <span class=m>2</span>          <span class=c1># Task is completed and container exits</span>
+docker ps -a                          <span class=c1># Shows the exit status of the container</span>
+<span class=c1># For batch processing Jobs are used in K8s</span>
+kubectl create job throw-dice --image<span class=o>=</span>kodekloud/throw-dice --dry-run<span class=o>=</span>client -o yaml &gt; job.yml
+<span class=c1># NOTE: Add backofflimit parameter if its not in the generated template to avoid job from quiting before it succeeds</span>
+kubectl get <span class=nb>jobs</span>          <span class=c1># list the jobs</span>
+kubectl get pods          <span class=c1># lists the pods created by the job</span>
+kubectl logs &lt;pod-name&gt;   <span class=c1># shows the pod output</span>
+<span class=c1># Running multiple pods in sequence, add completions parameter to the Job spec. </span>
+<span class=c1># NOTE: This is the successful pod completion count, it will keep on recreating pods till this number matches.</span>
+<span class=c1># Running multiple pods in parallel, add parallelism parameter to the Job spec along with completion. </span>
+</code></pre></div> <h3 id=cronjobs>Cronjobs<a class=headerlink href=#cronjobs title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Min-Hour-DOM-Month-Day of Week (0-6)    # Sun - 0 &amp; 7 both, Sat -6</span>
+<span class=c1># spec.schedule is the additional parameter added.</span>
+<span class=c1># NOTE: schedule is at the first spec</span>
+kubectl create job throw-dice --image<span class=o>=</span>kodekloud/throw-dice --schedule<span class=o>=</span><span class=s2>&quot;30 21 * * *&quot;</span>--dry-run<span class=o>=</span>client -o yaml &gt; cronjob.yml
+kubectl get cronjob       <span class=c1># list the cronjob</span>
+</code></pre></div> <h3 id=services>Services<a class=headerlink href=#services title="Permanent link">&para;</a></h3> <ul> <li>3 Types to access a service</li> <li>NodePort: Mapping a port on the Node to a port on the pod</li> <li>ClusterIP: Internal Virtual IP not exposed out of the Node</li> <li>LoadBalancer: External IP which load balances multiple ports on the Node</li> <li>NodePort: K8s takes care of deploying the service across all nodes, even though the pod is not on those nodes. This helps in getting the same Nodeport exposed on all the Nodes. When a http call hits a nodeport on a node, K8s will route traffic internally to the Pod on the correct Node. <div class=highlight><pre><span></span><code><span class=c1># NodePort (Node) --&gt; Port (Svc) --&gt; TargetPort (Pod)</span>
+<span class=c1># Target Port is the Pod port where the service forwards requests to</span>
+<span class=c1># Port is on the Service</span>
+kubectl create deployment frontend --replicas<span class=o>=</span><span class=m>2</span> <span class=se>\</span>
+    --labels<span class=o>=</span><span class=nv>run</span><span class=o>=</span>load-balancer-example --image<span class=o>=</span>busybox  --port<span class=o>=</span><span class=m>8080</span>
+kubectl expose deployment frontend --type<span class=o>=</span>NodePort --name<span class=o>=</span>frontend-service --port<span class=o>=</span><span class=m>6262</span> --target-port<span class=o>=</span><span class=m>8080</span> --dry-run<span class=o>=</span>client -o yaml &gt; svc.yml
+<span class=c1># This is because we cant control the value of NodePort in imperative command. Edit the yaml file and add the nodePort parameter under spec.ports.port.nodePort </span>
+kubectl get services      <span class=c1># List services</span>
+<span class=c1># Take the NodePort and use the Node IP to hit the service from outside the machine </span>
+</code></pre></div></li> </ul> <h3 id=multiple-kube-schedulers>Multiple Kube Schedulers<a class=headerlink href=#multiple-kube-schedulers title="Permanent link">&para;</a></h3> <p><img alt="K8s Multiple Scheduler Config" src=../../assets/images/k8s-multiple-scheduler-config.png> <img alt="K8s Multiple Scheduler Pod Config" src=../../assets/images/k8s-multiple-scheduler-pod-config.png> <img alt="K8s Multiple Scheduler Events" src=../../assets/images/k8s-multiple-scheduler-events.png> <img alt="K8s Multiple Scheduler Logs" src=../../assets/images/k8s-multiple-scheduler-logs.png></p> <ul> <li>Advanced Scheduling <a href=https://github.com/kubernetes/community/blob/master/contributors/devel/sig-scheduling/scheduling_code_hierarchy_overview.md>https://github.com/kubernetes/community/blob/master/contributors/devel/sig-scheduling/scheduling_code_hierarchy_overview.md</a></li> </ul> <p><a href=https://kubernetes.io/blog/2017/03/advanced-scheduling-in-kubernetes/ >https://kubernetes.io/blog/2017/03/advanced-scheduling-in-kubernetes/</a></p> <p><a href=https://jvns.ca/blog/2017/07/27/how-does-the-kubernetes-scheduler-work/ >https://jvns.ca/blog/2017/07/27/how-does-the-kubernetes-scheduler-work/</a></p> <p><a href=https://stackoverflow.com/questions/28857993/how-does-kubernetes-scheduler-work>https://stackoverflow.com/questions/28857993/how-does-kubernetes-scheduler-work</a></p> <h3 id=os-upgrades>OS Upgrades<a class=headerlink href=#os-upgrades title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>kubectl drain node1         <span class=c1># Gracefully evict the pods</span>
+kubectl cordon node1        <span class=c1># Makes the node unschedulable</span>
+kubectl uncordon node1      <span class=c1># Makes its schedulable after maintenance</span>
+kubectl drain node01 --ignore-daemonsets        <span class=c1># Incase you get the ds exist error</span>
+<span class=c1># Even with ignore ds options, you can get error when there are pods which are not managed by a replicaSet</span>
+<span class=c1># error: unable to drain node &quot;node01&quot; due to error:cannot delete Pods not managed by ReplicationController, ReplicaSet, Job, DaemonSet or StatefulSet (use --force to override)</span>
+<span class=c1># In this case, copy the pod data into yaml and apply it again after draining the nodes using --force</span>
+</code></pre></div> <h3 id=k8s-release-strategy>K8s Release Strategy<a class=headerlink href=#k8s-release-strategy title="Permanent link">&para;</a></h3> <p><a href=https://kubernetes.io/docs/concepts/overview/kubernetes-api/ >https://kubernetes.io/docs/concepts/overview/kubernetes-api/</a> <a href=https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md>https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api-conventions.md</a> <a href=https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api_changes.md>https://github.com/kubernetes/community/blob/master/contributors/devel/sig-architecture/api_changes.md</a></p> <h3 id=cluster-upgrade>Cluster Upgrade<a class=headerlink href=#cluster-upgrade title="Permanent link">&para;</a></h3> <ul> <li>First upgrade master, then the nodes</li> <li>Kubeadm does not update the kubelet, so it needs to be updated manually <div class=highlight><pre><span></span><code>cat /etc/*release*          <span class=c1># Shows the OS version</span>
+<span class=c1># When you do apt-cache update, it will show which kubeadm minor version is present</span>
+<span class=c1># TIP: Copy the upgrade commands to notepad, before updating versions and pasting</span>
+kubeadm upgrade plan        <span class=c1># Shows the upgrade plan</span>
+apt-get upgrade -y <span class=nv>kubeadm</span><span class=o>=</span><span class=m>1</span>.12.0-00        <span class=c1># 1st Update kubeadm as per plan</span>
+kubeadm upgrade apply v1.12.0   <span class=c1># Upgrade the cluster controlplane </span>
+<span class=c1># NOTE: Master will show version of kubelet, which has not been updated yet.</span>
+kubectl get nodes           <span class=c1># Master is still shown with V1.11 version</span>
+<span class=c1># Drain the master and then perform kubelet upgrade</span>
+apt-get upgrade -y <span class=nv>kubelet</span><span class=o>=</span><span class=m>1</span>.12.0-00  <span class=c1># Upgrade the kubelet</span>
+systemctl restart kubelet      <span class=c1># Make the change permanent</span>
+kubectl get nodes           <span class=c1># Master is now shown with V1.12 version</span>
+<span class=c1># Now follow the process of upgrading Nodes using drain and cordon</span>
+<span class=c1># IMPORTANT: the Node Drain command needs to be run on the master and not Node01. .e. all kubelet commands like drain and uncordon needs to be run on master</span>
+<span class=c1># Follow the upgrade process, upgrade kubeadm, upgrade kubelet , upgrade node and then restart kubelet</span>
+<span class=c1># Uncordon the Node</span>
+<span class=c1># NOTE: the Node upgrade command</span>
+kubeadm upgrade node config --kubelet-version v1.12.0   <span class=c1># Upgrade the node</span>
+</code></pre></div></li> </ul> <h2 id=backup-and-restore>Backup and Restore<a class=headerlink href=#backup-and-restore title="Permanent link">&para;</a></h2> <ul> <li>To make use of etcdctl for tasks such as back up and restore, make sure that you set the ETCDCTL_API to 3. <code>export ETCDCTL_API=3</code></li> <li>For example, if you want to take a snapshot of etcd, use: <code>etcdctl snapshot save -h</code> and keep a note of the mandatory global options.</li> <li>Since our ETCD database is TLS-Enabled, the following options are mandatory:</li> <li><code>--cacert</code> - verify certificates of TLS-enabled secure servers using this CA bundle</li> <li><code>--cert</code> - identify secure client using this TLS certificate file</li> <li><code>--endpoints=https://127.0.0.1:2379</code> - This is the default as ETCD is running on master node and exposed on localhost 2379.</li> <li><code>--key</code> - identify secure client using this TLS key file</li> <li>Similarly use the help option for snapshot restore to see all available options for restoring the backup. <code>etcdctl snapshot restore -h</code> <div class=highlight><pre><span></span><code><span class=c1># Manual Backup of applications</span>
+kubectl get all --all-namespaces -o yaml &gt; all-deployed-services.yaml
+<span class=c1># Backup ETCD</span>
+<span class=nv>ETCDCTL_API</span><span class=o>=</span><span class=m>3</span> etcdctl snapshot save snapshot.db
+<span class=nv>ETCDCTL_API</span><span class=o>=</span><span class=m>3</span> etcdctl snapshot status snapshot.db       <span class=c1># View backup status</span>
+<span class=c1># To restore ETCD</span>
+<span class=c1># First stop the kube-apiserver </span>
+service kube-apiserver stop
+<span class=c1># Execute restore from the saved state</span>
+<span class=nv>ETCDCTL_API</span><span class=o>=</span><span class=m>3</span> etcdctl snapshot restore snapshot.db --data-dir /var/lib/etcd-from-backup
+<span class=c1># Here the data-dir is a new dir where the ETCD will start storing the data.</span>
+<span class=c1># This is done so that the existing data is not overwritten, in case of any issues during restore</span>
+<span class=c1># Reload the service daemon and restart etcd service</span>
+systemctl daemon-reload
+service etcd restart
+<span class=c1># Finally start the kube-apiserver </span>
+service kube-apiserver start
+
+<span class=c1># Tips: To check the version of etcd, check the etcd pod logs or the image version in the etcd pod</span>
+kubectl describe pod etcd-controlplane -n kube-system
+<span class=c1># Get the below 4 parameters after describe etcd pod</span>
+<span class=nv>ETCDCTL_API</span><span class=o>=</span><span class=m>3</span> etcdctl snapshot save /opt/snapshot-pre-boot.db <span class=se>\</span>
+	 --cacert<span class=o>=</span><span class=s2>&quot;/etc/kubernetes/pki/etcd/ca.crt&quot;</span> <span class=se>\</span>
+	  --cert<span class=o>=</span><span class=s2>&quot;/etc/kubernetes/pki/etcd/server.crt&quot;</span> <span class=se>\</span>
+	  --endpoints<span class=o>=</span>https://127.0.0.1:2379  <span class=se>\</span>
+	  --key<span class=o>=</span><span class=s2>&quot;/etc/kubernetes/pki/etcd/server.key&quot;</span> 
+<span class=c1># Restore the etcd to a new directory from the snapshot </span>
+<span class=c1># So move the backed up data to a new dir</span>
+<span class=nv>ETCDCTL_API</span><span class=o>=</span><span class=m>3</span> etcdctl snapshot restore /opt/snapshot-pre-boot.db <span class=se>\</span>
+	 --data-dir<span class=o>=</span><span class=s2>&quot;/var/lib/backup-from-etcd&quot;</span> 
+<span class=c1># Certificate details are not required in restore as the file in in local directory.</span>
+<span class=c1># Next, update the /etc/kubernetes/manifests/etcd.yaml:</span>
+<span class=c1># We have now restored the etcd snapshot to a new path on the controlplane - /var/lib/etcd-from-backup, so, the only change to be made in the YAML file, is to change the hostPath for the volume called etcd-data from old directory (/var/lib/etcd) to the new directory (/var/lib/etcd-from-backup).</span>
+volumes:
+  - hostPath:
+      path: /var/lib/etcd-from-backup
+      type: DirectoryOrCreate
+    name: etcd-data
+</code></pre></div> <a href=https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster>https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster</a> <a href=https://github.com/etcd-io/website/blob/main/content/en/docs/v3.5/op-guide/recovery.md>https://github.com/etcd-io/website/blob/main/content/en/docs/v3.5/op-guide/recovery.md</a> <a href="https://www.youtube.com/watch?v=qRPNuT080Hk">https://www.youtube.com/watch?v=qRPNuT080Hk</a></li> </ul> <h3 id=security>Security<a class=headerlink href=#security title="Permanent link">&para;</a></h3> <p><img alt="K8s Security Across Components" src=../../assets/images/k8s-security-across-components.png> <img alt="K8s Security Actors" src=../../assets/images/k8s-security-actors.png> <img alt="K8s Security basics" src=../../assets/images/k8s-security-basics.png></p> <h4 id=tls>TLS<a class=headerlink href=#tls title="Permanent link">&para;</a></h4> <ul> <li>There are 2 types of Encryption mechanisms: <code>Symmetric and Asymmetric</code></li> <li>For TLS both the mechanims are used:</li> <li>Symmetric - To encrypt the client data</li> <li>Asymmetric - To encrypt the symmetric key after server auth</li> <li>In symmetric, one key is used to encrypt and decrypt the data, while in asymmetic 2 keys are used. <img alt="TLS Key Types" src=../../assets/images/tls-key-types.png></li> <li>Public Key (will be refered as Lock). You can encrypt data with either private or public key.</li> <li><strong>NOTE</strong>: Decryption is only done using the opposite key. For example, if you encrypt the data with public key, you cannot decrypt it using public key, you <strong>MUST</strong> using the private key. <img alt="TLS Key Naming Convention" src=../../assets/images/tls-key-naming.png></li> <li>Keys have naming convention, private key will always have <code>key</code> in the name to identify it as private key.</li> <li>There are 3 usecases of using Asymmetric Encyption in the TLS process</li> <li>Using SSH to login to any server. In this case, user private key is used to unlock the server access having the user's public key stored on the server. <img alt="Server Auth using TLS" src=../../assets/images/tls-auth-for-servers.png></li> <li>Using asymmetric keys to transfer client's symetric key over the Internet. These are called <strong>Server Certificates</strong>. This should ensure no hacker is allowed to decrypt the data in transit. <img alt="Websites Auth using TLS" src=../../assets/images/tls-auth-for-websites.png> <img alt="Websites Auth Usecase using TLS" src=../../assets/images/tls-website-auth-usecase.png></li> <li>Using asymmetric keys to authenticate the website. These are called <strong>Root Certificates</strong>. In this case, the website presents a CA certificate which is having the CA pulic key embedded. The client presents this via the browser which has CA's public keys installed, which decrypts the certificate using the public key to authenticate the website. <img alt="CA Auth Usecase using TLS" src=../../assets/images/tls-ca-auth-usecase.png> <img alt="CA Functions using TLS" src=../../assets/images/tls-ca-functions.png></li> <li><strong>TLS Overview</strong> <img alt="TLS Process Overview" src=../../assets/images/tls-process-overview.png></li> <li>A system admin generates private and public key to enforce SSH authenication. The public key is stored in the server.</li> <li>Web Server generates private and public key to encrypt HTTPS trafic. For this, the web server generates a certificate signing request using its public key. This CSR (which has the public key of the server) is sent to the CA for signing the certificate.</li> <li>The CA signs the certificate using its private key and sends it back to the server after completing its validation process.</li> <li>When a client request comes, the web server sends its certificate having its encrypted public key back.</li> <li>The client presents the certificate to the browser. The browser using the CA public key, decrypts the certificate, thus authenticating the web server and thus the website.</li> <li>The decrypted certificate has the server's public key. The client generates its <code>symmetric key</code> and then encrypts this using the web server's public key and sends the request back to the web server.</li> <li>The web server decrypts the request using its private key and gets access to the client's symmetric key.</li> <li>Now the communication between the client and web server will continue happening using this symmetric key.</li> </ul> <h4 id=tls-in-kubernetes>TLS in Kubernetes<a class=headerlink href=#tls-in-kubernetes title="Permanent link">&para;</a></h4> <ul> <li>There are 2 types of certificates used in Kubernetes components</li> <li>Server Certificates - Used by the server components</li> <li>Client Certificates - These are certificates used by Users or process to authenticate themselves. <img alt="K8s TLS Certificate Types" src=../../assets/images/ks8-tls-cert-types.png> <img alt="K8s TLS Server Certificate" src=../../assets/images/k8s-tls-server-certs.png></li> <li>Types of Clients for the API server:</li> <li>Admin Users</li> <li>Kube Scheduler</li> <li>Kube Controller Manager</li> <li>Kube Proxy</li> <li>There is only one client for the ETCD server: API Server</li> <li>There is also one client for the Kubelet server: API Server <img alt="K8s TLS Client Certificate" src=../../assets/images/k8s-tls-client-certs.png></li> <li>All the certificates (Server and Client) need to be signed by a Root certificate that is issued by a CA. <img alt="K8s TLS CA Certificate" src=../../assets/images/k8s-tls-ca-certs.png></li> </ul> <h4 id=certificate-creation>Certificate Creation<a class=headerlink href=#certificate-creation title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># We require only Private Keys and Certificates</span>
+<span class=c1># Generate CA certificates</span>
+openssl genrsa -out ca.key <span class=m>2048</span>
+openssl req -new -key ca.key -subj <span class=s2>&quot;/CN=KUBERNETES-CA&quot;</span> -out ca.csr
+<span class=c1># Sign the CSR to generate the Root Cert</span>
+openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
+
+<span class=c1># Generating Client Key and Certificates</span>
+openssl genrsa -out admin.key <span class=m>2048</span>
+openssl req -new -key admin.key -subj <span class=s2>&quot;/CN=kube-admin/O=system:masters&quot;</span> -out admin.csr
+<span class=c1># Remember CN will the user name that is used to login to API server</span>
+<span class=c1># O parameter should link to the user account, in this case its the admin group</span>
+openssl x509 -req -in admin.csr -CA ca.crt -CAkey ca.key -out admin.crt
+<span class=c1># Here the CA crt and CA key is used to sign the user csr</span>
+
+<span class=c1># Once the cluster is configured, you an use the certificates in Rest API calls</span>
+curl https://kube-apiserver:6443/api/v1/pods <span class=se>\</span>
+--key admin.key --cert admin.crt
+--cacert ca.crt
+
+<span class=c1># Generating Server Key and Certificates</span>
+openssl genrsa -out apiserver.key <span class=m>2048</span>
+openssl req -new -key apiserver.key -subj <span class=s2>&quot;/CN=kube-apiserver&quot;</span> -out apiserver.csr -config openssl.cnf
+<span class=c1># Additional openssl.cnf contains DNS Alias or IP address which refers back to the api-server</span>
+openssl x509 -req -in apiserver.csr -CA ca.crt -CAkey ca.key -out apiserver.crt
+</code></pre></div> <h4 id=debugging-certificates>Debugging Certificates<a class=headerlink href=#debugging-certificates title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># View existing certificates</span>
+openssl x509 -req -in /etc/kubernetes/pki/apiserver.crt -text -noout
+<span class=c1># Verify the Subject, Subject Alternative Names (Alias), Not After (to check validity), Issuer (CA)</span>
+
+<span class=c1># Debugging Certificate Issues</span>
+<span class=c1># When installed as service</span>
+journalctl -u etcd.service -l 		<span class=c1># List the service logs</span>
+<span class=c1># When installed using kubeadm</span>
+kubectl logs etcd-master
+<span class=c1>## Failure logs - Failed to dial 127.0.0.1:2379: connection error</span>
+
+<span class=c1># If ETCD or Apiserver is down, use docker</span>
+docker ps -a		<span class=c1># To view the containers</span>
+docker logs &lt;container id&gt;		<span class=c1># To view the logs</span>
+</code></pre></div> <h4 id=certificates-api>Certificates API<a class=headerlink href=#certificates-api title="Permanent link">&para;</a></h4> <p><img alt="K8s Certificate Functions" src=../../assets/images/k8s-certificate-functions.png> <img alt="K8s Certificate Object" src=../../assets/images/k8s-certificate-object.png> - <strong>NOTE</strong>: To view the CA certificates, as its stored on the master look at the Controller Manager configuration and check the path mentioned under <code>--cluster-signing-cert-file</code> and <code>--cluster-signing-key-file</code> <div class=highlight><pre><span></span><code>kubectl get csr				<span class=c1># Get pending CSR </span>
+kubectl certificate approve jane <span class=c1># Approve CSR</span>
+kubectl get csr jane -o yaml	<span class=c1># View the CSR</span>
+<span class=nb>echo</span> <span class=s2>&quot;data&quot;</span> <span class=p>|</span> base64 --decode	<span class=c1># Extract the Certificate from CSR after it is approved and send to user jane</span>
+<span class=c1># Now she will be able to login to the cluster</span>
+</code></pre></div></p> <h3 id=image-security>Image Security<a class=headerlink href=#image-security title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Create a Docker Registry secret in the cluster for Kubelet to pass this to the Docker Runtime on the worker nodes</span>
+kubectl create secret docker-registry regcred <span class=se>\</span>
+--docker-server<span class=o>=</span>&lt;URL&gt; <span class=se>\</span>
+--docker-username<span class=o>=</span>&lt;&gt; <span class=se>\</span>
+--docker-password<span class=o>=</span>&lt;&gt; <span class=se>\</span>
+--docker-email<span class=o>=</span>&lt;email&gt;
+<span class=c1># Once the secret is created, use this in the Pod definition</span>
+imagePullSecrets:
+- name: regcred
+</code></pre></div> <h3 id=deployment-strategies>Deployment Strategies<a class=headerlink href=#deployment-strategies title="Permanent link">&para;</a></h3> <ol> <li>Recreate</li> <li>RollingUpdate</li> <li>The above 2 deployments are native to K8s. While the below 2 needs several steps to complete.</li> <li>Blue Green Deployment <img alt="Blue Deployment" src=../../assets/images/k8s-blue-deploy.png> <img alt="Green Deployment" src=../../assets/images/k8s-green-deploy.png> <img alt="Blue Green Deployment" src=../../assets/images/k8s-blue-green-deploy.png></li> <li>Switch is done in the service object before the blue deployment is killed completely.</li> <li>Canary Deployments</li> <li>Reduce the number of replicas in the canary deployment initially, then scale up after testing <img alt="Canary Deployment" src=../../assets/images/k8s-canary-deploy.png> <img alt="Canary Deployment Manifest" src=../../assets/images/k8s-canary-manifest.png></li> </ol> <h3 id=docker-volume>Docker Volume<a class=headerlink href=#docker-volume title="Permanent link">&para;</a></h3> <ul> <li>Docker creates <code>Read Only</code> layers for the image <img alt="Docker Image Layer" src=../../assets/images/docker-image-layer.png></li> <li>For the container a transient <code>Read-Write</code> layer is created. <img alt="Docker Container Layer" src=../../assets/images/docker-container-layer.png></li> <li>When a volume is created and then it is mounted using the <code>-v</code> option, its is called <code>Volume Mount</code>.</li> <li>If a volume is not present, but a volume is mounted, Docker will create the volume at run time. <img alt="Docker Volume Mount" src=../../assets/images/docker-volume-mount.png></li> <li>When a host directory is mounted, it is called <code>Bind Mount</code></li> <li>Use the new convention <code>--mount</code> instead of <code>-v</code> in the new version of Docker. <img alt="Docker Bind Mount" src=../../assets/images/docker-bind-mount.png></li> </ul> <h3 id=container-storage-interface>Container Storage Interface<a class=headerlink href=#container-storage-interface title="Permanent link">&para;</a></h3> <p><img alt="K8s Interfaces" src=../../assets/images/k8s-interfaces.png> <img alt="K8s Storage Interface" src=../../assets/images/k8s-storage-interface.png></p> <h3 id=volumes>Volumes<a class=headerlink href=#volumes title="Permanent link">&para;</a></h3> <p><img alt="Volumes and Host Path" src=../../assets/images/volumes-hostpath.png></p> <h3 id=persistent-volumes-and-claims>Persistent Volumes and Claims<a class=headerlink href=#persistent-volumes-and-claims title="Permanent link">&para;</a></h3> <p><img alt="PV and PVC" src=../../assets/images/pv-pvc.png> - Once you create a PVC use it in a POD definition file by specifying the PVC Claim name under persistentVolumeClaim section in the volumes section like this: <div class=highlight><pre><span></span><code><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class=w></span>
+<span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span><span class=w></span>
+<span class=nt>metadata</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">mypod</span><span class=w></span>
+<span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>containers</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">myfrontend</span><span class=w></span>
+<span class=w>      </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span><span class=w></span>
+<span class=w>      </span><span class=nt>volumeMounts</span><span class=p>:</span><span class=w></span>
+<span class=w>      </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>mountPath</span><span class=p>:</span><span class=w> </span><span class=s>&quot;/var/www/html&quot;</span><span class=w></span>
+<span class=w>        </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">mypd</span><span class=w></span>
+<span class=w>  </span><span class=nt>volumes</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">mypd</span><span class=w></span>
+<span class=w>      </span><span class=nt>persistentVolumeClaim</span><span class=p>:</span><span class=w></span>
+<span class=w>        </span><span class=nt>claimName</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">myclaim</span><span class=w></span>
+</code></pre></div> <div class=highlight><pre><span></span><code>kubectl get persistentvolume
+kubectl get persistentvolumeclaim
+</code></pre></div></p> <h3 id=storage-class>Storage Class<a class=headerlink href=#storage-class title="Permanent link">&para;</a></h3> <ul> <li>When we create PV, then it is called <code>Static Provisioning</code> of Storage.</li> <li>In cloud, there is need to create storage dynamically when PVC is used. </li> <li>In this case, only Storage Class Objects are created. When a claim is made wihich references the Storage class, a PV is <strong>dynamically</strong> created. This is <code>Dynamic Provisioning</code> of Storage. <img alt="K8s Storage Class" src=../../assets/images/k8s-storage-class.png></li> <li>The Storage Class makes use of <code>VolumeBindingMode</code> set to <code>WaitForFirstConsumer</code>. This will delay the binding and provisioning of a PersistentVolume until a Pod using the PersistentVolumeClaim is created. Till then the PVC will be in <code>Pending State</code>. <div class=highlight><pre><span></span><code>kubectl get storageclass
+</code></pre></div></li> </ul> <h3 id=networking-basics>Networking Basics<a class=headerlink href=#networking-basics title="Permanent link">&para;</a></h3> <ul> <li>Switching allows to configure machines to talk to each other in the same network <img alt=Switching src=../../assets/images/switching.png></li> <li>Routing allows machines to talk across 2 or more networks <img alt=Routing src=../../assets/images/routing.png></li> <li>Gateway allows machines to reach other network using a single entry point made in the routing table of each machine <img alt=Gateway src=../../assets/images/gateway.png></li> <li>When a machine wants to reach to the internet, manual routes can be made to reach the destination on each machine <img alt="Manual Routing" src=../../assets/images/manual-routing.png></li> <li>To avoid the hassle of making entry for each IP address available on the Internet on each machine, a default route entry is made. When a route does not match, it goes through the default route.</li> <li>To separate Internal and External routing, you can make separate entries in the routing table of the machine. <img alt="Default Gateway" src=../../assets/images/default-gateway.png></li> </ul> <h3 id=networking-native-commands>Networking Native Commands<a class=headerlink href=#networking-native-commands title="Permanent link">&para;</a></h3> <p><img alt="K8s CNI Functions" src=../../assets/images/k8s-cni-functions.png> <img alt="K8s Create Container Network" src=../../assets/images/k8s-create-container-network.png> <img alt="K8s Virtual Bridge Network Connection" src=../../assets/images/k8s-virtual-network-connection.png> <img alt="K8s Port" src=../../assets/images/k8s-ports.png> <img alt="K8s Native Network Commands" src=../../assets/images/k8s-native-network-commands.png></p> <ul> <li>What is the network interface configured for cluster connectivity on the controlplane node? Run the <code>ip a / ip link</code>command and identify the interface.</li> <li>What is the MAC address of the interface on the controlplane node? Run the command: <code>ip link show eth0</code></li> <li>What is the MAC address assigned to node01? Run the command: <code>arp node01</code> on the controlplane node.</li> <li>What is the state of the interface docker0? Run the command: <code>ip link show docker0</code> and look for the state.</li> <li>If you were to ping google from the controlplane node, which route does it take? What is the IP address of the Default Gateway? Run the command: <code>ip route show default</code> and look at for default gateway.</li> <li>What is the port the <code>kube-scheduler</code> is listening on in the <code>controlplane node</code>? Use the command: <code>netstat -tunlp</code></li> <li>Notice that ETCD is listening on two ports. Which of these have more client connections established? Run the command: <code>netstat -anp | grep etcd</code>. That's because 2379 is the port of ETCD to which all control plane components connect to. 2380 is only for etcd peer-to-peer connectivity. When you have multiple controlplane nodes.</li> </ul> <h3 id=cni>CNI<a class=headerlink href=#cni title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code>ps aux <span class=p>|</span> grep kubelet			<span class=c1># Show kubelet configuration for CNI</span>
+ls /opt/cni/bin					<span class=c1># Shows all CNI executables</span>
+ls /etc/cni/net.d				<span class=c1># Shows the configuration files</span>
+
+kubectl <span class=nb>exec</span> busybox -- ip route	<span class=c1># To show the routes a pod can take. Deploy a busybox pod first</span>
+</code></pre></div> - What binary executable file will be run by kubelet after a container and its associated namespace are created. Look at the type field in file /<code>etc/cni/net.d/10-flannel.conflist</code>.</p> <h3 id=deploy-weave-for-pod-networking>Deploy Weave for Pod Networking<a class=headerlink href=#deploy-weave-for-pod-networking title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Deploy Weave CNI, use the bookmark to find the command</span>
+kubectl apply -f <span class=s2>&quot;https://cloud.weave.works/k8s/net?k8s-version=</span><span class=k>$(</span>kubectl version <span class=p>|</span> base64 <span class=p>|</span> tr -d <span class=s1>&#39;\n&#39;</span><span class=k>)</span><span class=s2>&quot;</span>
+<span class=c1># To Trouble shoot the deployment</span>
+kubectl logs -n kube-system &lt;weave pod name&gt; -c weave 
+
+<span class=c1># If CNI is not deployed you get the following error in App Pod</span>
+<span class=c1># failed to set up sandbox container network for pod &quot;app&quot;: networkPlugin cni failed to set up pod &quot;app_default&quot; network: unable to allocate IP address</span>
+ip a <span class=p>|</span> grep eth0			<span class=c1># Identify the Host Network</span>
+kubectl logs -n kube-system weave-net 	<span class=c1># Show the current failure logs</span>
+<span class=c1># If error says &quot;Network 10.232.0.0/12 overlaps with the existing route&quot; of the host network, you need to allocate Weave Network to a differentIP range.</span>
+<span class=c1># In this case, add &amp;env.IPALLOC_RANGE=10.50.0.0/16 in the kubectl apply command. #NOTE: this env should be inside the quotes.</span>
+
+<span class=c1># Once deployed, you can view the interface that weave creates, by</span>
+ip link show weave
+<span class=c1># The network is configured with weave. Check the weave pods logs using command kubectl logs &lt;weave-pod-name&gt; weave -n kube-system and look for ipalloc-range</span>
+<span class=c1># The above command will show POD IP address range configured by weave</span>
+
+<span class=c1># What is the default gateway configured on the PODs scheduled on node01 by weave?</span>
+kubectl run busybox --image<span class=o>=</span>busybox --restart<span class=o>=</span>Never --dry-run<span class=o>=</span>client -o yaml -- sleep <span class=m>1000</span> &gt; po.yaml
+<span class=c1># Add nodeName: node01 to install the pod in Node01 and then exec to find the default gateway used by the Pod</span>
+kubectl <span class=nb>exec</span> busybox -- route
+<span class=c1># OR</span>
+kubectl <span class=nb>exec</span> busybox -- ip route
+</code></pre></div> <h3 id=service-networking>Service Networking<a class=headerlink href=#service-networking title="Permanent link">&para;</a></h3> <ul> <li>Kube-Proxy assigns service ip and port combination to the iptables to enable networking. <div class=highlight><pre><span></span><code>ps aux <span class=p>|</span> grep kube-api-server 		<span class=c1># API server has the service ip range configured</span>
+<span class=c1># search for --service-cluster-ip-range value to get the service ip range. Pod ip will come from the CNI plugin</span>
+<span class=c1># OR</span>
+cat /etc/kubernetes/manifests/kube-apiserver.yaml <span class=p>|</span> grep cluster-ip-range
+kubectl get service			<span class=c1># Shows the service ip</span>
+iptables -L -t nat <span class=p>|</span> grep &lt;service-name&gt;		<span class=c1># Shows the IP table rules for the service</span>
+<span class=c1># Check the kube-proxy logs on the node</span>
+cat /var/log/kube-proxy.log			<span class=c1># Shows the logs of what iptable proxy it uses and also when a service entry is made to iptables</span>
+</code></pre></div></li> </ul> <h3 id=dns>DNS<a class=headerlink href=#dns title="Permanent link">&para;</a></h3> <ul> <li>You need a DNS server and it can help manage name resolution in large environments with many hostnames and Ips and then configure your hosts to point to a DNS server. Domain names and the IP address of all the host in the network are added to the <code>/etc/hosts</code> file of the DNS server. <img alt="DNS Basics" src=../../assets/images/dns-basics.png></li> <li>host file of the individual server is made to point to the DNS server for getting server names resolved to IP addresses. <img alt="DNS Basics 1" src=../../assets/images/dns-basics-1.png></li> <li>When the servers need to resolve a name which is not part of the internal network, the internal DNS server can point to an <code>external</code> DNS server to handle the name resolution. In this case, ping to facebook.com will get correctly resolved using Google DNS. <img alt="DNS Basics 2" src=../../assets/images/dns-basics-2.png></li> <li>High level domain names are categorized based on their functions <img alt="DNS Domains" src=../../assets/images/dns-domains.png></li> <li>Domains are further sub-divided into sub domains. Root (.) being the top most level. <img alt="DNS Domain Structure" src=../../assets/images/dns-domain-structure.png></li> <li>DNS resolution request originating from an internal company DNS traverses through the Root domain servers till it gets a match and then the IP address is sent back to the calling DNS, where the response is cached based on Time To Live parameter. <img alt="DNS Domain Name Resolution" src=../../assets/images/dns-domain-name-resolution.png></li> <li><code>A</code> records are stored which maps the DNS to the IP address. When you want yone DNS to map to multiple alias, you use the <code>CNAME</code> record.</li> <li>Using <code>search</code> inside an organization you can alias your domains. In this way, you can address your servers with only the sub-domain. search will append the domain name and then resolve the IP address <img alt="DNS Search" src=../../assets/images/dns-search.png></li> </ul> <h3 id=cluster-dns>Cluster DNS<a class=headerlink href=#cluster-dns title="Permanent link">&para;</a></h3> <p><img alt="K8s DNS Resolution" src=../../assets/images/k8s-dns-resolution.png> - Pod IP is replaced by <code>-</code> to derive its POD name in the DNS</p> <h3 id=coredns>CoreDNS<a class=headerlink href=#coredns title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Where is the configuration file located for configuring the CoreDNS service? Inspect the Args field of the coredns deployment and check the file used.</span>
+cat /etc/coredns/Corefile		<span class=c1># Shows the plugins configured and the error handling</span>
+kubectl get svc -n kube-system	<span class=c1># Shows the core dns service which is made available to all the pods</span>
+<span class=c1># The IP address shown as the Cluster-IP of this service is the Nameservice that is configured inside all the pods `/etc/resolv.conf` file which then knows which DNS they need to point to.</span>
+<span class=c1># Kubelet makes sure this entry is made inside all pods.</span>
+<span class=c1># View the kubelet service config yaml to see the DNS config</span>
+cat /var/lib/kubelet/config.yaml		<span class=c1># clusterDNS section points to the coreDNS service cluster IP</span>
+
+<span class=c1># How is the Corefile passed in to the CoreDNS POD? Use the kubectl get configmap command for kube-system namespace and inspect the correct ConfigMap. It will be passed as a Config Volume</span>
+<span class=c1># What is the root domain/zone configured for this kubernetes cluster? Run the command: kubectl describe configmap coredns -n kube-system and look for the entry after kubernetes. This is where cluster.local as root domain is configured</span>
+<span class=c1># Check the FQDN of any service</span>
+host web-service		<span class=c1># DNS will return the FQDN</span>
+<span class=c1># Checking the FQDN of pod is not possible, you need to specify the FQDN</span>
+host <span class=m>10</span>-244-4-5.default.pod.cluster.local
+
+<span class=c1># hr app POD is hr namespace and mysql Service is in payroll namespace. From the hr pod nslookup the mysql service and redirect the output to a file /root/CKA/nslookup.out</span>
+kubectl <span class=nb>exec</span> -it hr -- nslookup mysql.payroll &gt; /root/CKA/nslookup.out
+<span class=c1># NOTE: the DNS name of the service is used along with namespace</span>
+</code></pre></div> <h3 id=ingress-networking>Ingress Networking<a class=headerlink href=#ingress-networking title="Permanent link">&para;</a></h3> <p><img alt="Ingress Rules" src=../../assets/images/ingress-rules.png> - Create a <code>default-backend</code> deployment to handle routes that are not managed. <img alt="Ingress Default Backend" src=../../assets/images/ingress-default-backend.png> - Create a service <code>default-backend-service</code> to manage 404 error handling and link to the ingress resource. <img alt="Ingress 404 Error" src=../../assets/images/ingress-default-404.png> <img alt="Ingress Host Based" src=../../assets/images/ingress-host-based.png> <img alt="Ingress Definition" src=../../assets/images/ingress-definition.png> - <strong>NOTE</strong>: Ingress needs to be deployed in the same namespace as the deployment &amp; service object. <div class=highlight><pre><span></span><code><span class=c1># Imperative command from K8s 1.20</span>
+kubectl create ingress &lt;ingress-name&gt; --rule<span class=o>=</span><span class=s2>&quot;host/path=service:port&quot;</span>
+<span class=c1># Example of Imperative</span>
+kubectl create ingress ingress-test --rule<span class=o>=</span><span class=s2>&quot;wear.my-online-store.com/wear*=wear-service:80&quot;</span>
+kubectl get ingress         <span class=c1># list the ingress</span>
+</code></pre></div></p> <h4 id=rewrite-target-option>Rewrite Target Option<a class=headerlink href=#rewrite-target-option title="Permanent link">&para;</a></h4> <ul> <li>Our <code>watch</code> app displays the video streaming webpage at <code>http://&lt;watch-service&gt;:&lt;port&gt;/</code></li> <li>Our <code>wear</code> app displays the apparel webpage at <code>http://&lt;wear-service&gt;:&lt;port&gt;/</code></li> <li>We must configure Ingress to achieve the below. When user visits the URL on the left, his request should be forwarded internally to the URL on the right. Note that the /watch and /wear URL path are what we configure on the ingress controller so we can forwarded users to the appropriate application in the backend. <div class=highlight><pre><span></span><code>http://<span class=p>&lt;</span><span class=nt>ingress-service</span><span class=p>&gt;</span>:<span class=p>&lt;</span><span class=nt>ingress-port</span><span class=p>&gt;</span>/watch` --&gt; http://<span class=p>&lt;</span><span class=nt>watch-service</span><span class=p>&gt;</span>:<span class=p>&lt;</span><span class=nt>port</span><span class=p>&gt;</span>/
+http://<span class=p>&lt;</span><span class=nt>ingress-service</span><span class=p>&gt;</span>:<span class=p>&lt;</span><span class=nt>ingress-port</span><span class=p>&gt;</span>/wear --&gt; http://<span class=p>&lt;</span><span class=nt>wear-service</span><span class=p>&gt;</span>:<span class=p>&lt;</span><span class=nt>port</span><span class=p>&gt;</span>/
+</code></pre></div></li> <li>Without the rewrite-target option, this is what would happen: <div class=highlight><pre><span></span><code>http://<span class=p>&lt;</span><span class=nt>ingress-service</span><span class=p>&gt;</span>:<span class=p>&lt;</span><span class=nt>ingress-port</span><span class=p>&gt;</span>/watch --&gt; http://<span class=p>&lt;</span><span class=nt>watch-service</span><span class=p>&gt;</span>:<span class=p>&lt;</span><span class=nt>port</span><span class=p>&gt;</span>/watch
+http://<span class=p>&lt;</span><span class=nt>ingress-service</span><span class=p>&gt;</span>:<span class=p>&lt;</span><span class=nt>ingress-port</span><span class=p>&gt;</span>/wear --&gt; http://<span class=p>&lt;</span><span class=nt>wear-service</span><span class=p>&gt;</span>:<span class=p>&lt;</span><span class=nt>port</span><span class=p>&gt;</span>/wear
+</code></pre></div></li> <li><strong>Notice</strong> <code>watch</code> and <code>wear</code> at the end of the target URLs. The target applications are not configured with <code>/watch</code> or <code>/wear</code> paths. They are different applications built specifically for their purpose, so they don't expect <code>/watch</code> or <code>/wear</code> in the URLs. And as such the requests would fail and throw a 404 not found error.</li> <li>To fix that we want to <strong>"ReWrite"</strong> the URL when the request is passed on to the <code>watch</code> or <code>wear</code> applications. We don't want to pass in the same path that user typed in. So we specify the <code>rewrite-target</code> option. This rewrites the URL by replacing whatever is under <code>rules-&gt;http-&gt;paths-&gt;path</code> which happens to be <code>/pay</code> in this case with the value in rewrite-target. This works just like a <strong>search and replace function</strong>. <div class=highlight><pre><span></span><code>For example: replace<span class=o>(</span>path, rewrite-target<span class=o>)</span>
+In our <span class=k>case</span>: replace<span class=o>(</span><span class=s2>&quot;/path&quot;</span>,<span class=s2>&quot;/&quot;</span><span class=o>)</span>
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">extensions/v1beta1</span><span class=w></span>
+<span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">Ingress</span><span class=w></span>
+<span class=nt>metadata</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">test-ingress</span><span class=w></span>
+<span class=w>  </span><span class=nt>namespace</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">critical-space</span><span class=w></span>
+<span class=w>  </span><span class=nt>annotations</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class=nt>nginx.ingress.kubernetes.io/rewrite-target</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">/</span><span class=w></span>
+<span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>rules</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>http</span><span class=p>:</span><span class=w></span>
+<span class=w>      </span><span class=nt>paths</span><span class=p>:</span><span class=w></span>
+<span class=w>      </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>path</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">/pay</span><span class=w></span>
+<span class=w>        </span><span class=nt>backend</span><span class=p>:</span><span class=w></span>
+<span class=w>          </span><span class=nt>serviceName</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">pay-service</span><span class=w></span>
+<span class=w>          </span><span class=nt>servicePort</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">8282</span><span class=w></span>
+</code></pre></div> <div class=highlight><pre><span></span><code>replace<span class=o>(</span><span class=s2>&quot;/something(/|</span>$<span class=s2>)(.*)&quot;</span>, <span class=s2>&quot;/</span><span class=nv>$2</span><span class=s2>&quot;</span><span class=o>)</span>
+</code></pre></div></li> <li>In this ingress definition, any characters captured by (.*) will be assigned to the placeholder $2, which is then used as a parameter in the rewrite-target annotation. <div class=highlight><pre><span></span><code>rewrite.bar.com/something rewrites to rewrite.bar.com/
+rewrite.bar.com/something/new rewrites to rewrite.bar.com/new
+</code></pre></div> <div class=highlight><pre><span></span><code><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">extensions/v1beta1</span><span class=w></span>
+<span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">Ingress</span><span class=w></span>
+<span class=nt>metadata</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>annotations</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class=nt>nginx.ingress.kubernetes.io/rewrite-target</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">/$2</span><span class=w></span>
+<span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">rewrite</span><span class=w></span>
+<span class=w>  </span><span class=nt>namespace</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class=w></span>
+<span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>rules</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>host</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">rewrite.bar.com</span><span class=w></span>
+<span class=w>    </span><span class=nt>http</span><span class=p>:</span><span class=w></span>
+<span class=w>      </span><span class=nt>paths</span><span class=p>:</span><span class=w></span>
+<span class=w>      </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>backend</span><span class=p>:</span><span class=w></span>
+<span class=w>          </span><span class=nt>serviceName</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">http-svc</span><span class=w></span>
+<span class=w>          </span><span class=nt>servicePort</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">80</span><span class=w></span>
+<span class=w>        </span><span class=nt>path</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">/something(/|$)(.*)</span><span class=w></span>
+</code></pre></div></li> </ul> <h3 id=network-policies>Network Policies<a class=headerlink href=#network-policies title="Permanent link">&para;</a></h3> <p><img alt="Network Traffic" src=../../assets/images/network-traffic.png> <img alt="Network Traffic Details" src=../../assets/images/network-traffic-details.png> <img alt="Network Pod Traffic" src=../../assets/images/network-pod-traffic.png> - <strong>Important</strong>: Always look at Network policy from the perspective of the Pod. For Rules - Always pay attention to the <strong>Request</strong> (Ingress) and not the Response (Egress) as that may be already blocked due to cluster wide network policy. - Example: If DB pod needs to be accessed by API pod, then in DB pod the traffic is Ingress. - Flannel does not support Network Policy. If Network policy is still applied to this network, it will not have any effect. - Usecase 1: Rule - Apply Ingress policy using Pod Labels <img alt="Network Policy With Pod Selector" src=../../assets/images/network-policy-1.png> - Usecase 2: Rule - Apply Ingress policy using Pod Labels and Namespaces - This is a Logical AND operation where pods have same labels in other namespaces are ignored. <img alt="Network Policy With Pod And Namespace" src=../../assets/images/network-policy-2.png> - Usecase 3: Rule - Apply Ingress policy using Namespace only <img alt="Network Policy With Namespace" src=../../assets/images/network-policy-3.png> - Usecase 4: Rule - Apply Ingress policy using External IP - This is required, where the service resides outside the cluster and the service needs to connect to it. - Along with the Pod label AND Namesace, External service is an OR. So the Pod should have the correct label AND in the namespace OR extrenal service should have the IP. Either of these 2 rule matches traffic will be allowed. <img alt="Network Policy With External Service" src=../../assets/images/network-policy-4.png> - Usecase 5: Rule - Apply Ingress policy using 3 Rules and OR operation - <strong>NOTE</strong>: There is a hypen to `namespaceSelector. This makes it as a separate rule. <img alt="Network Policy with Logical OR" src=../../assets/images/network-policy-5.png> - Usecase 6: Rule - Apply Egress policy using External Service - The traffic is allowed from pod to the external service <img alt="Network Polciy for Egress" src=../../assets/images/network-policy-6.png> <div class=highlight><pre><span></span><code>kubectl get networkpolicy
+</code></pre></div></p> <h3 id=kubeconfig>Kubeconfig<a class=headerlink href=#kubeconfig title="Permanent link">&para;</a></h3> <p><img alt="Api Server Curl Call" src=../../assets/images/k8s-api-server-curl.png> <img alt="Kubeconfig Default data" src=../../assets/images/kubeconfig-default-data.png> <img alt="Kubeconfig Data Mapping" src=../../assets/images/kubeconfig-mapping.png> <img alt="Kubeconfig Data Mapping with Namespaces" src=../../assets/images/kubeconfig-mapping-namespace.png> <div class=highlight><pre><span></span><code>kubectl view config     <span class=c1># $HOME/.kube/config file which is default is read</span>
+kubectl view config --kubeconfig<span class=o>=</span>my-custom-config   <span class=c1># Pass a config file not in .kube dir</span>
+kubectl config use-context prod-user@production   <span class=c1># Sets the current context</span>
+</code></pre></div></p> <h3 id=api-versions>API Versions<a class=headerlink href=#api-versions title="Permanent link">&para;</a></h3> <p><img alt="K8s API Groups" src=../../assets/images/k8s-apis.png> <img alt="K8s Core API Group" src=../../assets/images/k8s-core-api-group-resources.png> <img alt="K8s Named API Group" src=../../assets/images/k8s-named-api-group-resources.png> - <strong>Important</strong>: kube proxy != kubectl proxy. <div class=highlight><pre><span></span><code><span class=c1># To access the K8s API from a local server, start the kubectl proxy.</span>
+<span class=c1># This proxy will use the kubeconfig data in the default kubeconfig</span>
+kubectl proxy           <span class=c1># start the proxy service on port 8001. Use 8001 instead of 6443</span>
+kubectl http://localhost:8001 -k    <span class=c1># Shows all the API groups</span>
+kubectl http://localhost:8001 -k <span class=p>|</span> grep <span class=s2>&quot;name&quot;</span>    <span class=c1># Shows the named API groups</span>
+</code></pre></div></p> <h3 id=deprecated-ap-versions>Deprecated AP Versions<a class=headerlink href=#deprecated-ap-versions title="Permanent link">&para;</a></h3> <p><img alt="K8s API Versions" src=../../assets/images/k8s-api-versions.png> <img alt="K8s API Versions Identification" src=../../assets/images/k8s-api-version-explain.png> <div class=highlight><pre><span></span><code><span class=c1># Convert an old API formatted file to a new stable version</span>
+kubectl convert -f &lt;old-file&gt; --output-version &lt;new api version&gt;    
+kubectl convert -f nginx.yaml --output-version apps/v1
+</code></pre></div></p> <h3 id=authentication-and-authorization>Authentication and Authorization<a class=headerlink href=#authentication-and-authorization title="Permanent link">&para;</a></h3> <ul> <li>Authentication <img alt="K8s User Account" src=../../assets/images/k8s-user-interaction.png> <img alt="K8s Auth Mechanisms" src=../../assets/images/k8s-auth-mechanisms.png> <img alt="K8s Basic Auth Setup" src=../../assets/images/k8s-basic-auth.png> <img alt="K8s Basic Auth Rest Call" src=../../assets/images/k8s-basic-auth-curl.png> <img alt="K8s Basic Auth Token Rest Call" src=../../assets/images/k8s-basic-auth-token.png></li> <li>Authorization <img alt="K8s Authorization Overview" src=../../assets/images/k8s-author-overview.png> <img alt="K8s Authorization Types" src=../../assets/images/k8s-author-mechanisms.png> <img alt="K8s Node Authorizer" src=../../assets/images/k8s-node-authorizer.png> <img alt="K8s ABAC" src=../../assets/images/k8s-abac.png> <img alt="K8s RBAC" src=../../assets/images/k8s-rbac.png> <img alt="K8s Webhook" src=../../assets/images/k8s-webhook.png> <img alt="K8s Authorization Chaining" src=../../assets/images/k8s-author-chaining.png></li> </ul> <h3 id=roles-and-rolebindings>Roles and Rolebindings<a class=headerlink href=#roles-and-rolebindings title="Permanent link">&para;</a></h3> <p><img alt="K8s Roles and Rolebindings" src=../../assets/images/k8s-roles.png> - <strong>IMPORTANT</strong>: Roles and RoleBindings are namespaced <div class=highlight><pre><span></span><code>kubectl get roles
+kubectl get rolebindngs
+<span class=c1># Check access</span>
+kubect auth can-i create deployments        <span class=c1># As current user</span>
+kubectl auth can-i delete nodes --as dev-user <span class=c1># As an Admin user, you can impersonate and test for another user</span>
+kubectl auth can-i delete pods --as system:serviceaccount:&lt;namespace&gt;:&lt;sa name&gt;&gt; <span class=c1># As an service account in a namespace</span>
+</code></pre></div></p> <h3 id=cluster-roles-and-cluster-rolebindings>Cluster Roles and Cluster RoleBindings<a class=headerlink href=#cluster-roles-and-cluster-rolebindings title="Permanent link">&para;</a></h3> <p><img alt="K8s Roles and ClusterRole Scope" src=../../assets/images/k8s-role-scope.png> <img alt="K8s ClusterRoles and ClusterRolebindings" src=../../assets/images/k8s-clusterrole.png> <div class=highlight><pre><span></span><code>kubectl api-resources --namespaced<span class=o>=</span><span class=nb>true</span>     <span class=c1># Get resources which can be added to roles</span>
+kubectl api-resources --namespaced<span class=o>=</span><span class=nb>false</span>    <span class=c1># Get resources which can be added to clusterroles</span>
+kubectl get clusterroles
+kubectl get clusterrolebindngs
+</code></pre></div></p> <h3 id=admission-controllers>Admission Controllers<a class=headerlink href=#admission-controllers title="Permanent link">&para;</a></h3> <p><img alt="K8s Authorization Drawbacks" src=../../assets/images/k8s-author-drawbacks.png> - Helps implement better security measures. - Validates configuration. - Performs additional operations before a pod is created. <img alt="K8s Admission Controllers" src=../../assets/images/k8s-admission-controllers.png> - <strong>Note</strong>: The <code>NamespaceExists</code> and <code>NamespaceAutoProvision</code> admission controllers are deprecated and now replaced by <code>NamespaceLifecycle</code> admission controller. - The <code>NamespaceLifecycle</code> admission controller will make sure that requests to a non-existent namespace is rejected and that the default namespaces such as <code>default</code>, <code>kube-system</code> and <code>kube-public</code> cannot be deleted. <div class=highlight><pre><span></span><code><span class=c1>##NOTE:</span>
+<span class=c1># Since the kube-apiserver is running as pod you can check the process to see enabled and disabled plugins.</span>
+ps -ef <span class=p>|</span> grep kube-apiserver <span class=p>|</span> grep admission-plugins
+
+<span class=c1># To check all the values that are valid for kube-apiserver</span>
+kube-apiserver -h <span class=p>|</span> grep enable-admission-plugins   <span class=c1># Shows enabled admin controllers</span>
+<span class=c1># Incase kube-apiserver is running as a pod managed by kubeadm</span>
+kubectl <span class=nb>exec</span> kube-apiserver-controlplane -n kube-system <span class=se>\ </span>  <span class=c1># Exec into pod</span>
+  -- kube-apiserver -h <span class=p>|</span> grep enable-admission-plugins      <span class=c1># NOTE: -- for command execution</span>
+</code></pre></div></p> <h4 id=validating-and-mutating-addmission-controllers>Validating and Mutating Addmission Controllers<a class=headerlink href=#validating-and-mutating-addmission-controllers title="Permanent link">&para;</a></h4> <ul> <li><strong>Validating AC</strong>: Are the controllers which validate the request that is submitted to the API server</li> <li><strong>Mutating AC</strong>: Are the controllers which change or mutate the request that is submitted to the API server if it does not meet the standards defined.</li> <li>Mutating AC are always invoked before Validating AC otherwise some requests may be rejected otherwise. <img alt="K8s Webhook Admission Controller" src=../../assets/images/k8s-webhook-admission-controller.png> <img alt="K8s Webhook Admission Controller Configuration" src=../../assets/images/k8s-webhook-admission-controller-config.png> <div class=highlight><pre><span></span><code><span class=c1># A pod with a conflicting securityContext setting: it has to run as a non-root</span><span class=w></span>
+<span class=c1># user, but we explicitly request a user id of 0 (root).</span><span class=w></span>
+<span class=c1># Without the webhook, the pod could be created, but would be unable to launch</span><span class=w></span>
+<span class=c1># due to an unenforceable security context leading to it being stuck in a</span><span class=w></span>
+<span class=c1># &#39;CreateContainerConfigError&#39; status. With the webhook, the creation of</span><span class=w></span>
+<span class=c1># the pod is outright rejected.</span><span class=w></span>
+<span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class=w></span>
+<span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span><span class=w></span>
+<span class=nt>metadata</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">pod-with-conflict</span><span class=w></span>
+<span class=w>  </span><span class=nt>labels</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">pod-with-conflict</span><span class=w></span>
+<span class=nt>spec</span><span class=p>:</span><span class=w></span>
+<span class=w>  </span><span class=nt>restartPolicy</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">OnFailure</span><span class=w></span>
+<span class=w>  </span><span class=nt>securityContext</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class=nt>runAsNonRoot</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class=w></span>
+<span class=w>    </span><span class=nt>runAsUser</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class=w></span>
+<span class=w>  </span><span class=nt>containers</span><span class=p>:</span><span class=w></span>
+<span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox</span><span class=w></span>
+<span class=w>      </span><span class=nt>image</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">busybox</span><span class=w></span>
+<span class=w>      </span><span class=nt>command</span><span class=p>:</span><span class=w> </span><span class="p p-Indicator">[</span><span class=s>&quot;sh&quot;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&quot;-c&quot;</span><span class="p p-Indicator">,</span><span class=w> </span><span class=s>&quot;echo</span><span class=nv> </span><span class=s>I</span><span class=nv> </span><span class=s>am</span><span class=nv> </span><span class=s>running</span><span class=nv> </span><span class=s>as</span><span class=nv> </span><span class=s>user</span><span class=nv> </span><span class=s>$(id</span><span class=nv> </span><span class=s>-u)&quot;</span><span class="p p-Indicator">]</span><span class=w></span>
+</code></pre></div></li> </ul> <h3 id=helm>Helm<a class=headerlink href=#helm title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Install helm</span>
+sudo snap install helm
+<span class=c1># OR</span>
+sudo snap install helm --classic
+
+<span class=c1># This is the default helm repo</span>
+helm install wordpress
+helm upgrade wordpress
+helm rollback wordpress
+helm uninstall wordpress
+
+<span class=c1># To work with a custom helm repo</span>
+helm repo add bitnami https://charts.bitnami.com/bitnami  <span class=c1># Add a custom helm repository</span>
+helm search repo wordpress     <span class=c1># Search for a chart in a named repository</span>
+helm install release-1 bitnami/wordpress
+helm list
+helm uninstall release-1
+helm pull --untar bitnami/wordpress   <span class=c1># Just downloads the chart, does not install it</span>
+ls wordpress      <span class=c1># to check the chart contents</span>
+helm install release-2 ./wordpress
+</code></pre></div> <h3 id=troubleshooting>Troubleshooting<a class=headerlink href=#troubleshooting title="Permanent link">&para;</a></h3> <h4 id=application-troubleshooting>Application Troubleshooting<a class=headerlink href=#application-troubleshooting title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># Check the Front End app service if that is reachable</span>
+kubectl describe web-service 		<span class=c1># Get the Endpoint and Nodeport</span>
+curl http://web-service:30080		
+<span class=c1># OR If you are in the same machine</span>
+curl https://localhost:30080
+<span class=c1># NOTE: When you describe the service, there should be an ENDPOINTS which is detected. If its None, then selector is not correct</span>
+<span class=c1># If there is no response, check the labels on the service and the pod that is its serving traffic to</span>
+<span class=c1># Check the Pod restarts and why it is failing</span>
+kubectl logs web -f					<span class=c1># -f to tail the live logs and wait for it to fail</span>
+<span class=c1># OR</span>
+kubectl logs web -f --previous		<span class=c1># --previous to get the last pod&#39;s logss</span>
+</code></pre></div> <h4 id=cluster-troubleshooting>Cluster Troubleshooting<a class=headerlink href=#cluster-troubleshooting title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># Check Node Status</span>
+kubectl get nodes
+<span class=c1># Check Control plane pods</span>
+kubectl get pods -n kube-system
+<span class=c1># Check Service Health of Control plane </span>
+service kube-apiserver status
+service kube-controller-manager status
+service kube-scheduler status
+<span class=c1># Check Service Health of Workers</span>
+service kubelet status
+service kube-proxy status
+<span class=c1># Check the logs</span>
+kubectl logs -n kube-system kube-apiserver-master
+<span class=c1># Check the service logs</span>
+sudo journalctl -u kube-apiserver	-l	<span class=c1># Remember this as its native </span>
+<span class=c1># NOTE: The certificates inside the cluster components are mapped as Volumes from the host. The path needs to be correct</span>
+</code></pre></div> <h4 id=worker-troubleshooting>Worker Troubleshooting<a class=headerlink href=#worker-troubleshooting title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># Check Node Status</span>
+kubectl get nodes
+<span class=c1># If the Nodes are not Ready, describe the node to get the error reason</span>
+kubectl describe nodes node01
+<span class=c1># Check for memory and disk space on the node</span>
+top
+df -h
+<span class=c1># Check the service logs for kubelet</span>
+sudo journalctl -u kubelet -f			<span class=c1># -f to follow live logs</span>
+<span class=c1># Start the service without change node</span>
+ssh node01 <span class=s2>&quot;service kubelet start&quot;</span>
+<span class=c1># OR SSH to node01 and then run</span>
+systemctl start kubelet
+<span class=c1># Check the kubelet certificates, make sure they are not expired and are of the right group and issued by the right CA</span>
+openssl x509 -text -in /var/lib/kubelet/worker-1.crt 
+<span class=c1># Kubelet Configuration Mismatch</span>
+<span class=c1># Another issue from the worker node, watch the logs for kubelet</span>
+<span class=c1># Check the kubelet.conf file at /etc/kubernetes/kubelet.conf on the worker node.</span>
+<span class=c1># kubelet is trying to connect to the API server on the controlplane node on port 6553. This is incorrect.</span>
+<span class=c1># Update the conf to port 6443. Restart kubelet</span>
+
+<span class=c1># Kubelet Service Configuration mismatch</span>
+<span class=c1># There appears to be a mistake path used for the CA certificate in the kubelet configuration. This can be corrected by updating the file /var/lib/kubelet/config.yaml.</span>
+<span class=c1># Once this is fixed, restart the kubelet service.</span>
+</code></pre></div> <h4 id=network-troubleshooting>Network Troubleshooting<a class=headerlink href=#network-troubleshooting title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code>Kubernetes uses CNI plugins to setup network. The kubelet is responsible <span class=k>for</span> executing plugins as we mention the following parameters <span class=k>in</span> kubelet configuration.
+- cni-bin-dir:   Kubelet probes this directory <span class=k>for</span> plugins on startup
+- network-plugin: The network plugin to use from cni-bin-dir. It must match the name reported by a plugin probed from the plugin directory.
+Note: If there are multiple CNI configuration files <span class=k>in</span> the directory, the kubelet uses the configuration file that comes first by name <span class=k>in</span> lexicographic order.
+
+<span class=c1># DNS in Kubernetes</span>
+<span class=c1># Kubernetes uses CoreDNS. CoreDNS is a flexible, extensible DNS server that can serve as the Kubernetes cluster DNS.</span>
+<span class=c1># In large scale Kubernetes clusters, CoreDNS&#39;s memory usage is predominantly affected by the number of Pods and Services in the cluster. Other factors include the size of the filled DNS answer cache, and the rate of queries received (QPS) per CoreDNS instance.</span>
+
+Kubernetes resources <span class=k>for</span> coreDNS are:   
+<span class=m>1</span>. a service account named coredns,
+<span class=m>2</span>. cluster-roles named coredns and kube-dns
+<span class=m>3</span>. clusterrolebindings named coredns and kube-dns, 
+<span class=m>4</span>. a deployment named coredns,
+<span class=m>5</span>. a configmap named coredns and a
+<span class=m>6</span>. service named kube-dns.
+While analyzing the coreDNS deployment you can see that the the Corefile plugin consists of important configuration which is defined as a configmap.
+
+This is the backend to k8s <span class=k>for</span> cluster.local and reverse domains.
+proxy . /etc/resolv.conf
+Forward out of cluster domains directly to right authoritative DNS server.
+
+<span class=m>1</span>. If you find CoreDNS pods <span class=k>in</span> pending state first check network plugin is installed.
+<span class=m>2</span>. coredns pods have CrashLoopBackOff or Error state
+If you have nodes that are running SELinux with an older version of Docker you might experience a scenario where the coredns pods are not starting. To solve that you can try one of the following options:
+a<span class=o>)</span>Upgrade to a newer version of Docker.
+b<span class=o>)</span>Disable SELinux.
+c<span class=o>)</span>Modify the coredns deployment to <span class=nb>set</span> allowPrivilegeEscalation to true:
+kubectl -n kube-system get deployment coredns -o yaml <span class=p>|</span> <span class=se>\</span>
+  sed <span class=s1>&#39;s/allowPrivilegeEscalation: false/allowPrivilegeEscalation: true/g&#39;</span> <span class=p>|</span> <span class=se>\</span>
+  kubectl apply -f -
+d<span class=o>)</span>Another cause <span class=k>for</span> CoreDNS to have CrashLoopBackOff is when a CoreDNS Pod deployed <span class=k>in</span> Kubernetes detects a loop.
+There are many ways to work around this issue, some are listed here:
+- Add the following to your kubelet config yaml: resolvConf: &lt;path-to-your-real-resolv-conf-file&gt; This flag tells kubelet to pass an alternate resolv.conf to Pods. For systems using systemd-resolved, /run/systemd/resolve/resolv.conf is typically the location of the <span class=s2>&quot;real&quot;</span> resolv.conf, although this can be different depending on your distribution.
+- Disable the <span class=nb>local</span> DNS cache on host nodes, and restore /etc/resolv.conf to the original.
+<span class=m>3</span>. If CoreDNS pods and the kube-dns service is working fine, check the kube-dns service has valid endpoints.
+kubectl -n kube-system get ep kube-dns
+If there are no endpoints <span class=k>for</span> the service, inspect the service and make sure it uses the correct selectors and ports.
+
+kube-proxy is a network proxy that runs on each node <span class=k>in</span> the cluster. kube-proxy maintains network rules on nodes. These network rules allow network communication to the Pods from network sessions inside or outside of the cluster.
+In a cluster configured with kubeadm, you can find kube-proxy as a daemonset.
+
+kubeproxy is responsible <span class=k>for</span> watching services and endpoint associated with each service. When the client is going to connect to the service using the virtual IP the kubeproxy is responsible <span class=k>for</span> sending traffic to actual pods.
+If you run a kubectl describe ds kube-proxy -n kube-system you can see that the kube-proxy binary runs with following <span class=nb>command</span> inside the kube-proxy container.
+
+    Command:
+      /usr/local/bin/kube-proxy
+      --config<span class=o>=</span>/var/lib/kube-proxy/config.conf
+      --hostname-override<span class=o>=</span><span class=k>$(</span>NODE_NAME<span class=k>)</span>
+
+So it fetches the configuration from a configuration file ie, /var/lib/kube-proxy/config.conf and we can override the hostname with the node name of at which the pod is running.
+
+<span class=m>1</span>. Check kube-proxy pod <span class=k>in</span> the kube-system namespace is running.
+<span class=m>2</span>. Check kube-proxy logs.
+<span class=m>3</span>. Check configmap is correctly defined and the config file <span class=k>for</span> running kube-proxy binary is correct.
+<span class=m>4</span>. kube-config is defined <span class=k>in</span> the config map.
+<span class=m>5</span>. check kube-proxy is running inside the container
+netstat -plan <span class=p>|</span> grep kube-proxy
+</code></pre></div> <h3 id=jsonpath>JSONPath<a class=headerlink href=#jsonpath title="Permanent link">&para;</a></h3> <ul> <li>NOTE: use <code>jq</code> to see the data in proper format</li> <li>kubectl get nodes -o json | jq -c 'paths' | grep <search parameter></li> <li>Output of this can be used in jsonpath search query</li> <li>jsonpath data can be filtered using jq <div class=highlight><pre><span></span><code><span class=c1># Get the list of nodes in JSON format and store it in a file at /opt/outputs/nodes.json.</span>
+<span class=c1># Retrieve just the first 2 columns of pv output and store it in /opt/outputs/pv-and-capacity-sorted.txt.</span>
+<span class=c1># The columns should be named NAME and CAPACITY. Use the custom-columns option and remember, it should still be sorted based on storage capacity.</span>
+<span class=c1># Use the command </span>
+kubectl get pv --sort-by<span class=o>=</span>.spec.capacity.storage -o<span class=o>=</span>custom-columns<span class=o>=</span>NAME:.metadata.name,CAPACITY:.spec.capacity.storage &gt; /opt/outputs/pv-and-capacity-sorted.txt
+<span class=c1># Use a JSON PATH query to identify the context configured for the aws-user in the my-kube-config context file and store the result in /opt/outputs/aws-context-name.</span>
+kubectl config view --kubeconfig<span class=o>=</span>my-kube-config -o <span class=nv>jsonpath</span><span class=o>=</span><span class=s2>&quot;{.contexts[?(@.context.user==&#39;aws-user&#39;)].name}&quot;</span> &gt; /opt/outputs/aws-context-name
+</code></pre></div></li> </ul> </article> </div> </div> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2022 - Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.fb4a9340.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing"}, "version": null}</script> <script src=../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>

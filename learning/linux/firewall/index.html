@@ -1,0 +1,577 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content=Leslie><link href=https://leslieclif.github.io/notebook/learning/linux/firewall/ rel=canonical><link rel="shortcut icon" href=../../../assets/images/favicon.png><meta name=generator content="mkdocs-1.4.1, mkdocs-material-7.0.3"><title>Linux_Firewall - Leslie's Online Notebook</title><link rel=stylesheet href=../../../assets/stylesheets/main.1655a90d.min.css><link rel=stylesheet href=../../../assets/stylesheets/palette.7fa14f5b.min.css><script src=../../../assets/extra.js type=text/javascript></script><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback"><style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style><link rel=stylesheet href=../../../assets/extra.css></head> <body dir=ltr data-md-color-scheme=slate data-md-color-primary=deep-blue data-md-color-accent=yellow> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#linux-firewall-fundamentals class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-header__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Leslie's Online Notebook </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Linux_Firewall </span> </div> </div> </div> <div class=md-header__options> <div class="md-header-nav__scheme md-header-nav__button md-source__icon md-icon"> <a href=javascript:toggleScheme(); title="Dark mode" class=dark-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1z"/></svg> </a> <a href=javascript:toggleScheme(); title="Light mode" class=light-mode> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5z"/></svg> </a> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=https://leslieclif.github.io/notebook/ title="Leslie's Online Notebook" class="md-nav__button md-logo" aria-label="Leslie's Online Notebook"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 2l-5 4.5v11l5-4.5V2M6.5 5C4.55 5 2.45 5.4 1 6.5v14.66c0 .25.25.5.5.5.1 0 .15-.07.25-.07 1.35-.65 3.3-1.09 4.75-1.09 1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.31 4.75 1.06.1.05.15.03.25.03.25 0 .5-.25.5-.5V6.5c-.6-.45-1.25-.75-2-1V19c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V6.5C10.55 5.4 8.45 5 6.5 5z"/></svg> </a> Leslie's Online Notebook </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Home <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Home data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Home </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../.. class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../developer/ class=md-nav__link> Developer Setup </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> Devops <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Devops data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Devops </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../devops/ class=md-nav__link> Devops </a> </li> <li class=md-nav__item> <a href=../../../devops/ci/ class=md-nav__link> CI </a> </li> <li class=md-nav__item> <a href=../../../devops/cd/ class=md-nav__link> CD </a> </li> <li class=md-nav__item> <a href=../../../devops/iac/ class=md-nav__link> IAC </a> </li> <li class=md-nav__item> <a href=../../../devops/gitops/ class=md-nav__link> GitOps </a> </li> <li class=md-nav__item> <a href=../../../devops/devops-engineer/ class=md-nav__link> Skills </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> IDE <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDE data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> IDE </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../ide/ class=md-nav__link> IDE Tips and Tricks </a> </li> <li class=md-nav__item> <a href=../../../ide/markdown/ class=md-nav__link> Markdown </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Server <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Server data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Server </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../server/ class=md-nav__link> Server Details </a> </li> <li class=md-nav__item> <a href=../../../server/install/ class=md-nav__link> Installation </a> </li> <li class=md-nav__item> <a href=../../../server/mobile/ class=md-nav__link> Mobile </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Ansible <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ansible data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Ansible </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ansible/ansible/ class=md-nav__link> Ansible </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6> <label class=md-nav__link for=__nav_6> Kubernetes <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Kubernetes data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Kubernetes </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../k8s/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../../../k8s/install/ class=md-nav__link> Installation </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7 checked> <label class=md-nav__link for=__nav_7> Learning <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Learning data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> Learning </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../git/ class=md-nav__link> Git </a> </li> <li class=md-nav__item> <a href=../../python/ class=md-nav__link> Python </a> </li> <li class=md-nav__item> <a href=../../vagrant/ class=md-nav__link> Vagrant </a> </li> <li class=md-nav__item> <a href=../../terraform/ class=md-nav__link> Terraform </a> </li> <li class=md-nav__item> <a href=../../docker/docker-notes/ class=md-nav__link> Docker </a> </li> <li class=md-nav__item> <a href=../../k8s/k8s-notes/ class=md-nav__link> Kubernetes </a> </li> <li class=md-nav__item> <a href=../linux/ class=md-nav__link> Linux </a> </li> <li class=md-nav__item> <a href=../security/ class=md-nav__link> Linux_Security </a> </li> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> Linux_Firewall <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> Linux_Firewall </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#linux-firewall-fundamentals class=md-nav__link> Linux Firewall Fundamentals </a> <nav class=md-nav aria-label="Linux Firewall Fundamentals"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#default-tables class=md-nav__link> Default Tables </a> </li> <li class=md-nav__item> <a href=#default-chains class=md-nav__link> Default Chains </a> </li> <li class=md-nav__item> <a href=#rules class=md-nav__link> Rules </a> </li> <li class=md-nav__item> <a href=#targets class=md-nav__link> Targets </a> </li> <li class=md-nav__item> <a href=#iptables--ip6tables class=md-nav__link> iptables / ip6tables </a> </li> <li class=md-nav__item> <a href=#list--view-iptables class=md-nav__link> List / View iptables </a> </li> <li class=md-nav__item> <a href=#chain-policy--default-target class=md-nav__link> Chain Policy / Default Target </a> </li> <li class=md-nav__item> <a href=#rule-specification-options class=md-nav__link> Rule Specification Options </a> </li> <li class=md-nav__item> <a href=#target--jump class=md-nav__link> Target / Jump </a> </li> <li class=md-nav__item> <a href=#creating-and-deleting-a-chain class=md-nav__link> Creating and Deleting a Chain </a> </li> <li class=md-nav__item> <a href=#saving-rules class=md-nav__link> Saving Rules </a> </li> <li class=md-nav__item> <a href=#netfilteriptable-front-ends class=md-nav__link> Netfilter/iptable Front-Ends </a> </li> <li class=md-nav__item> <a href=#tcpdump-for-testing-firewall class=md-nav__link> tcpdump for Testing Firewall </a> </li> <li class=md-nav__item> <a href=#ip-tables-examples class=md-nav__link> IP Tables Examples </a> </li> <li class=md-nav__item> <a href=#rule-specification-example class=md-nav__link> Rule Specification Example </a> </li> <li class=md-nav__item> <a href=#target-example class=md-nav__link> Target Example </a> </li> <li class=md-nav__item> <a href=#nat-and-port-forwarding-examples class=md-nav__link> NAT and Port Forwarding Examples </a> </li> <li class=md-nav__item> <a href=#custom-defined-chain-examples class=md-nav__link> Custom Defined Chain Examples </a> </li> <li class=md-nav__item> <a href=#chain-traversal-order class=md-nav__link> Chain Traversal Order </a> </li> <li class=md-nav__item> <a href=#tcp-wrappers class=md-nav__link> TCP Wrappers </a> <nav class=md-nav aria-label="TCP Wrappers"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#configuring-tcp-wrappers class=md-nav__link> Configuring TCP Wrappers </a> </li> <li class=md-nav__item> <a href=#access-rules class=md-nav__link> Access Rules </a> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#linux-firewall-fundamentals class=md-nav__link> Linux Firewall Fundamentals </a> <nav class=md-nav aria-label="Linux Firewall Fundamentals"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#default-tables class=md-nav__link> Default Tables </a> </li> <li class=md-nav__item> <a href=#default-chains class=md-nav__link> Default Chains </a> </li> <li class=md-nav__item> <a href=#rules class=md-nav__link> Rules </a> </li> <li class=md-nav__item> <a href=#targets class=md-nav__link> Targets </a> </li> <li class=md-nav__item> <a href=#iptables--ip6tables class=md-nav__link> iptables / ip6tables </a> </li> <li class=md-nav__item> <a href=#list--view-iptables class=md-nav__link> List / View iptables </a> </li> <li class=md-nav__item> <a href=#chain-policy--default-target class=md-nav__link> Chain Policy / Default Target </a> </li> <li class=md-nav__item> <a href=#rule-specification-options class=md-nav__link> Rule Specification Options </a> </li> <li class=md-nav__item> <a href=#target--jump class=md-nav__link> Target / Jump </a> </li> <li class=md-nav__item> <a href=#creating-and-deleting-a-chain class=md-nav__link> Creating and Deleting a Chain </a> </li> <li class=md-nav__item> <a href=#saving-rules class=md-nav__link> Saving Rules </a> </li> <li class=md-nav__item> <a href=#netfilteriptable-front-ends class=md-nav__link> Netfilter/iptable Front-Ends </a> </li> <li class=md-nav__item> <a href=#tcpdump-for-testing-firewall class=md-nav__link> tcpdump for Testing Firewall </a> </li> <li class=md-nav__item> <a href=#ip-tables-examples class=md-nav__link> IP Tables Examples </a> </li> <li class=md-nav__item> <a href=#rule-specification-example class=md-nav__link> Rule Specification Example </a> </li> <li class=md-nav__item> <a href=#target-example class=md-nav__link> Target Example </a> </li> <li class=md-nav__item> <a href=#nat-and-port-forwarding-examples class=md-nav__link> NAT and Port Forwarding Examples </a> </li> <li class=md-nav__item> <a href=#custom-defined-chain-examples class=md-nav__link> Custom Defined Chain Examples </a> </li> <li class=md-nav__item> <a href=#chain-traversal-order class=md-nav__link> Chain Traversal Order </a> </li> <li class=md-nav__item> <a href=#tcp-wrappers class=md-nav__link> TCP Wrappers </a> <nav class=md-nav aria-label="TCP Wrappers"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#configuring-tcp-wrappers class=md-nav__link> Configuring TCP Wrappers </a> </li> <li class=md-nav__item> <a href=#access-rules class=md-nav__link> Access Rules </a> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <h1>Linux_Firewall</h1> <p><a href=https://www.binarytides.com/linux-netstat-command-examples/ >netstat</a> <a href=https://www.cyberciti.biz/security/nmap-command-examples-tutorials/ >nmap</a> <a href=https://danielmiessler.com/study/tcpdump/ >Testing Firewall using tcpdump</a> <a href=https://blog.cloudflare.com/conntrack-tales-one-thousand-and-one-flows/ >conntrack - Cnnection Tracking basics</a></p> <h2 id=linux-firewall-fundamentals>Linux Firewall Fundamentals<a class=headerlink href=#linux-firewall-fundamentals title="Permanent link">&para;</a></h2> <ul> <li>Firewalls control network access.</li> <li>Linux firewall = Netfilter + IPTables</li> <li>Netfilter is a kernel framework.</li> <li>IPTables is a packet selection system.</li> <li>Use the <code>iptables</code> command to control the firewall.</li> </ul> <h3 id=default-tables>Default Tables<a class=headerlink href=#default-tables title="Permanent link">&para;</a></h3> <ul> <li>Filter - Most commonly used table.</li> <li>NAT - Network Address Translation.</li> <li>Mangle - Alter packets.</li> <li>Raw - Used to disable connection tracking.</li> <li>Security - Used by SELinux. <img alt=Netfilter src=../../../assets/images/netfilter.png></li> </ul> <h3 id=default-chains>Default Chains<a class=headerlink href=#default-chains title="Permanent link">&para;</a></h3> <ul> <li>INPUT</li> <li>OUTPUT</li> <li>FORWARD</li> <li>PREROUTING</li> <li>POSTROUTING <img alt="Routing Decision" src=../../../assets/images/iptables_routing_descision.png></li> </ul> <h3 id=rules>Rules<a class=headerlink href=#rules title="Permanent link">&para;</a></h3> <ul> <li>Rules = Match + Target</li> <li>Match on: Protocol, Source/Dest IP or network, Source/Dest Port, Network Interface</li> <li>Example: <code>protocol: TCP, source IP: 1.2.3.4, dest port: 80</code></li> </ul> <h3 id=targets>Targets<a class=headerlink href=#targets title="Permanent link">&para;</a></h3> <ul> <li>Built-in targets:</li> <li>ACCEPT</li> <li>DROP</li> <li>REJECT</li> <li>LOG</li> <li>RETURN</li> </ul> <h3 id=iptables--ip6tables>iptables / ip6tables<a class=headerlink href=#iptables--ip6tables title="Permanent link">&para;</a></h3> <ul> <li>Command line interface to IPTables/netfilter.</li> </ul> <h3 id=list--view-iptables>List / View iptables<a class=headerlink href=#list--view-iptables title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>iptables -L                     <span class=c1># Display the filter table.</span>
+iptables -t nat -L              <span class=c1># Display the nat table.</span>
+iptables -nL                    <span class=c1># Display using numeric output.</span>
+iptables -vL                    <span class=c1># Display using verbose output.</span>
+iptables --line-numbers -L      <span class=c1># Use line nums.</span>
+iptables -vnL					<span class=c1># Common combination</span>
+</code></pre></div> <h3 id=chain-policy--default-target>Chain Policy / Default Target<a class=headerlink href=#chain-policy--default-target title="Permanent link">&para;</a></h3> <ul> <li>Set the default TARGET for CHAIN: <code>iptables -P CHAIN TARGET</code></li> <li>Example: <code>iptables -P INPUT DROP</code> <div class=highlight><pre><span></span><code><span class=c1># Appending Rules</span>
+iptables -A CHAIN RULE-SPECIFICATION
+iptables <span class=o>[</span>-t TABLE<span class=o>]</span> -A CHAIN RULE-SPECIFICATION
+<span class=c1># Inserting Rules</span>
+iptables -I CHAIN <span class=o>[</span>RULENUM<span class=o>]</span> RULE-SPECIFICATION
+<span class=c1># Deleting Rules</span>
+iptables -D CHAIN RULE-SPECIFICATION
+iptables -D CHAIN RULENUM
+<span class=c1># Flushing rules or deleting tables</span>
+iptables <span class=o>[</span>-t table<span class=o>]</span> -F <span class=o>[</span>chain<span class=o>]</span>
+</code></pre></div></li> </ul> <h3 id=rule-specification-options>Rule Specification Options<a class=headerlink href=#rule-specification-options title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>-s <span class=m>10</span>.11.12.13                          <span class=c1># Source IP, network, or name</span>
+-d <span class=m>216</span>.58.192.0/19                      <span class=c1># Destination IP, network, or name</span>
+-p tcp / udp / icmp                     <span class=c1># Protocol</span>
+-p tcp --dport <span class=m>80</span>                       <span class=c1># Destination Port</span>
+-p tcp --sport <span class=m>8080</span>                     <span class=c1># Source Port</span>
+-p icmp --icmp-type echo-reply          <span class=c1># ICMP packet type, gives pong response</span>
+-p icmp --icmp-type echo-request        <span class=c1># Gives ping response</span>
+<span class=c1># Rating limiting</span>
+-m limit --limit rate<span class=o>[</span>/second/minute/hour/day<span class=o>]</span> <span class=c1># Match until a limit is reached.</span>
+-m limit --limit-burst                  <span class=c1># --limit default is 3/hour and --limit-burst default is 5</span>
+-m limit --limit <span class=m>5</span>/m --limit-burst <span class=m>10</span>   <span class=c1># /s = second, /m = minutes</span>
+-m limit ! --limit <span class=m>5</span>/s                  <span class=c1># ! = invert the match</span>
+</code></pre></div> <h3 id=target--jump>Target / Jump<a class=headerlink href=#target--jump title="Permanent link">&para;</a></h3> <ul> <li>To specify a jump point or target: <code>-j TARGET_OR_CHAIN</code> <div class=highlight><pre><span></span><code>-j ACCEPT               <span class=c1># Built-in target.</span>
+-j DROP                 <span class=c1># Built-in target.</span>
+-j LOGNDROP             <span class=c1># Custom chain.</span>
+</code></pre></div></li> </ul> <h3 id=creating-and-deleting-a-chain>Creating and Deleting a Chain<a class=headerlink href=#creating-and-deleting-a-chain title="Permanent link">&para;</a></h3> <ul> <li>Create CHAIN: iptables [-t table] -N CHAIN</li> <li>Delete CHAIN: iptables [-t table] -X CHAIN</li> </ul> <h3 id=saving-rules>Saving Rules<a class=headerlink href=#saving-rules title="Permanent link">&para;</a></h3> <p><div class=highlight><pre><span></span><code><span class=c1># Debian / Ubuntu:</span>
+apt-get install iptables-persistent
+netfilter-persistent save
+</code></pre></div> - <a href=https://stuffphilwrites.com/2014/09/iptables-processing-flowchart/ >Chain Traversal Flowchart</a></p> <h3 id=netfilteriptable-front-ends>Netfilter/iptable Front-Ends<a class=headerlink href=#netfilteriptable-front-ends title="Permanent link">&para;</a></h3> <ul> <li>Uses iptables command on the back-end</li> <li>Firewalld - CentOS/RHEL</li> <li>UFW - Uncomplicated FireWall (Ubuntu)</li> <li>GUFW - Graphical interface to UFW</li> <li>system-configure-firewall - CentOS/RHEL</li> </ul> <h3 id=tcpdump-for-testing-firewall>tcpdump for Testing Firewall<a class=headerlink href=#tcpdump-for-testing-firewall title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1>##########################</span>
+<span class=c1>## Sniffing traffic using tcpdump</span>
+<span class=c1>##########################</span>
+ 
+<span class=c1># listing all interfaces</span>
+ifconfig -a
+ 
+<span class=c1># start sniffing on an interface</span>
+tcpdump -i eth0
+ 
+<span class=c1># sniffing only packets to or form an ip address, domain (dns lookup) or network</span>
+tcpdump -i eth0 host <span class=m>8</span>.8.8.8 
+tcpdump -i eth0 dst medium.com -n <span class=c1># -n -&gt; do not convert addresses to names</span>
+tcpdump -i eth0 net <span class=m>192</span>.168.0.0/24
+ 
+<span class=c1># sniffing only packets to or from a specific port</span>
+tcpdump -i eth0 port <span class=m>443</span> -vv -n    <span class=c1># -vv -&gt; verbose</span>
+<span class=c1># using the `or` operator</span>
+tcpdump -i eth0 port <span class=m>80</span> or port <span class=m>443</span>
+ 
+<span class=c1># sniffing only packets to a specific port</span>
+tcpdump -i eth0 dst port <span class=m>53</span> -vv -n
+ 
+<span class=c1># sniffing only packets from a specific port</span>
+tcpdump -i eth0 dst port <span class=m>22</span> -vv -n
+ 
+<span class=c1># -A outputs ascii strings and -X outputs both in ascii and hexadecimal </span>
+tcpdump -i eth0 port <span class=m>80</span> -A -n
+tcpdump -i eth0 port <span class=m>80</span> -X -n
+ 
+<span class=c1># writing captured packets to file</span>
+tcpdump port <span class=m>80</span> -w web.pcap
+ 
+<span class=c1># reading from a file</span>
+tcpdump -r web.pcap
+</code></pre></div> <h3 id=ip-tables-examples>IP Tables Examples<a class=headerlink href=#ip-tables-examples title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Allow anyone to connect to webserver, but only internal ips to connect via SSH</span>
+<span class=c1># Block all other traffic</span>
+iptables -L                             <span class=c1># List the existing rules, no rules</span>
+<span class=c1># Accept all incoming TCP traffic on port 80</span>
+iptables -A INPUT -p tcp --dport <span class=m>80</span> -j ACCEPT
+<span class=c1># OR</span>
+iptables -A INPUT -s <span class=m>0</span>/0 -p tcp --dport <span class=m>80</span> -j ACCEPT
+iptables -nL                            <span class=c1># List the current new rule</span>
+<span class=c1># Accept all incoming SSH traffic on port 22 originating from the internal network</span>
+iptables -A INPUT -p tcp --dport <span class=m>22</span> -s <span class=m>10</span>.0.0.0/24 -j ACCEPT
+<span class=c1># Drop all packets which dont match above 2 rules</span>
+iptables -A INPUT  -j DROP
+
+<span class=c1># Testing the filters</span>
+nc -v <span class=m>10</span>.0.0.8 <span class=m>80</span>                       <span class=c1># Net cat using an internal IP on port 80</span>
+nc -v <span class=m>10</span>.0.0.8 <span class=m>22</span>                       <span class=c1># Test the SSH connection</span>
+
+<span class=c1># Deleting existing rule</span>
+iptables -D INPUT <span class=m>1</span>                     <span class=c1># Deletes the Web server traffic on port 80</span>
+
+nc -w <span class=m>2</span> -v <span class=m>10</span>.0.0.8 <span class=m>80</span>                  <span class=c1># -w specifies timeout of 2 seconds</span>
+
+<span class=c1># Reject the packets instead of dropping them</span>
+iptables -D INPUT <span class=m>2</span>                     <span class=c1># Deletes the drop rule</span>
+iptables -A INPUT -J REJECT             <span class=c1># Now rejects the packets</span>
+nc -w <span class=m>2</span> -v <span class=m>10</span>.0.0.8 <span class=m>80</span>                  <span class=c1># Connection refused</span>
+
+<span class=c1># Flush all existing rules</span>
+iptables -F
+
+iptables -A INPUT -p tcp --dport <span class=m>22</span> -s <span class=m>10</span>.0.0.0/24 -j ACCEPT
+<span class=c1># Create a new custom table</span>
+iptables -N LOGNDROP
+<span class=c1># Create a rule to log all incoming traffic other than internal network SSH connection </span>
+iptables -A LOGNDROP -p tcp -m limit --limit <span class=m>5</span>/min -j LOG --log-prefix <span class=s2>&quot;iptables BLOCK &quot;</span>
+iptables -A INPUT -j LOGNDROP           <span class=c1># Accept and log before dropping the connection other than internal network</span>
+
+<span class=c1># In another terminal, tail the syslog file</span>
+tail -f /var/log/syslog
+
+<span class=c1># Other terminal</span>
+nc -w <span class=m>2</span> -v <span class=m>10</span>.0.0.8 <span class=m>80</span>                  <span class=c1># This will log and drop the connection</span>
+
+<span class=c1># Persist the iptables changes after reboot</span>
+netfilter- persistent save
+</code></pre></div> <h3 id=rule-specification-example>Rule Specification Example<a class=headerlink href=#rule-specification-example title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># To drop all traffic from given source ip</span>
+iptables -A INPUT -s <span class=m>216</span>.58.219.174 -j DROP
+<span class=c1># List the filter table, as the above rule didnt specify table name</span>
+iptables -nL
+<span class=c1># Chain INPUT (policy ACCEPT)</span>
+<span class=c1># target prot opt source         destination</span>
+<span class=c1># DROP   all  --  216.58.219.174 0.0.0.0/0</span>
+
+<span class=c1># Accept SSH connection from only one network, drop all other SSH connections</span>
+iptables -A INPUT -s <span class=m>10</span>.0.0.0/24 -p tcp --dport <span class=m>22</span> -j ACCEPT
+iptables -A INPUT -p tcp --dport <span class=m>22</span> -j DROP
+
+<span class=c1># Accept incoming HTTPS traffic from source or any destination</span>
+iptables -A INPUT -s <span class=m>8</span>.8.8.8 -p tcp --dport <span class=m>443</span> -j ACCEPT  <span class=c1># Accept incoming traffic from google</span>
+iptables -A INPUT -s <span class=m>0</span>/0 -p tcp --dport <span class=m>443</span> -j ACCEPT <span class=c1># Incoming traffic from anywhere</span>
+
+<span class=c1># Drop outgoing traffic to ubuntu.com</span>
+iptables -A OUTPUT -d www.ubuntu.com -j DROP
+iptables -vnL           <span class=c1># List shows ubuntu domain name has been resolved to IP address for ubuntu</span>
+iptables -A OUTPUT -p tcp --dport <span class=m>443</span> -d www.ubuntu.com -j DROP <span class=c1># Drop only HTTPS traffic</span>
+<span class=c1># Use an application Firewall like SQUID to block big websites like google.com or facebook.com </span>
+<span class=c1># instead of using IPTables</span>
+
+<span class=c1># Using IP Ranges to filter traffic</span>
+<span class=c1># This range filter helps to keep the IPTables managable and readable</span>
+iptables -A INPUT -p tcp --dport <span class=m>25</span> -m iprange --src-range <span class=m>10</span>.0.0.10-10.0.0.19 -j DROP
+<span class=c1># This drops SMTP tcp traffic coming from the 10 ip addresses on port 25</span>
+<span class=c1># Dropping outgoing traffic destined for type MULTICAST to avoid joining the server to any group</span>
+iptables -A OUTPUT -m addrtype --dst-type MULTICAST -j DROP
+<span class=c1># Using multiple ports for filter</span>
+iptables -A OUTPUT -p tcp -m multiport --dports <span class=m>80</span>,443 -j ACCEPT     <span class=c1># Allows HTTP and HTTPS outgoing traffic</span>
+<span class=c1># Notice `dports` is plural</span>
+
+<span class=c1># Filter traffic for protocols that dont use ports like ICMP</span>
+cat /etc/protocols          <span class=c1># List the protocols and ports</span>
+<span class=c1># Dropping all traffic except TCP and UDP</span>
+iptables -P INPUT -j DROP       <span class=c1># Policy to drop all traffic by default if no match found</span>
+iptables -P OUTPUT -j DROP
+iptables -A INPUT -i lo -j ACCEPT       <span class=c1># Allow loopback interface traffic</span>
+iptables -A OUTPUT -i lo -j ACCEPT      
+iptables -A INPUT -p tcp -j ACCEPT      <span class=c1># Allow tcp traffic</span>
+iptables -A OUTPUT -p tcp -j ACCEPT
+iptables -A INPUT -p udp -j ACCEPT      <span class=c1># Allow udp traffic</span>
+iptables -A OUTPUT -p udp -j ACCEPT
+
+ping <span class=m>8</span>.8.8.8                <span class=c1># This will be blocked as its ICMP </span>
+dig www.google.com          <span class=c1># This will work as DNS is UDP traffic</span>
+
+<span class=c1># dropping incoming GRE traffic</span>
+iptables -A INPUT -p gre -j DROP
+<span class=c1># allowing outgoing ICMP traffic</span>
+iptables -A OUTPUT -p icmp -j DROP
+
+<span class=c1># Filter traffic based on interface (LAN, WLAN)</span>
+<span class=c1># dropping ssh traffic that&#39;s coming on eth0 interface (suppose it&#39;s external)</span>
+iptables -A INPUT -p tcp --dport <span class=m>22</span> -i eth0 -j DROP
+<span class=c1># allowing ssh traffic that&#39;s coming on eth1 interface (suppose it&#39;s internal)</span>
+iptables -A INPUT -p tcp --dport <span class=m>22</span> -i eth1 -j ACCEPT
+<span class=c1># allowing outgoing https traffic via eth1</span>
+iptables -A OUTPUT -p tcp --dport <span class=m>443</span> -o eth1 -j ACCEPT
+
+<span class=c1># Filter traffic based out of Negation</span>
+<span class=c1># This is easy to whitelist one IP</span>
+<span class=c1># This will drop all HTTPS traffic except that coming from 0.3 IP address</span>
+iptables -A INPUT ! -s <span class=m>192</span>.168.0.3 -p tcp --dport <span class=m>443</span> -j DROP
+<span class=c1># dropping all incoming ssh traffic accepting packets from 100.0.0.1 (management station)</span>
+iptables -A INPUT -p tcp --dport <span class=m>22</span> ! -s <span class=m>100</span>.0.0.1 -j DROP
+<span class=c1># dropping all outgoing https traffic excepting to www.linux.com</span>
+iptables -A OUTPUT -p tcp --dport <span class=m>443</span> ! -d www.linux.com -j DROP
+<span class=c1># dropping all communication excepting that with the default gateway (mac is b4:6d:83:77:85:f4)</span>
+iptables -A INPUT -m mac ! --mac-source b4:6d:83:77:85:f4 -j DROP
+<span class=c1># The DNS Server of your LAN is set to 8.8.8.8. You don&#39;t want to allow the users of the LAN to change the DNS server.</span>
+iptables -A FORWARD -p udp --dport <span class=m>53</span> ! -d <span class=m>8</span>.8.8.8 -j DROP
+
+<span class=c1># Filter traffic based on tcp flags</span>
+<span class=c1># dropping all incoming tcp packets that have syn set</span>
+iptables -A INPUT -p tcp --syn -j DROP
+<span class=c1># logging outgoing traffic that has syn and ack set</span>
+iptables -A OUTPUT -p tcp --tcp-flags syn,ack,rst,fin syn,ack -j LOG
+<span class=c1># Allow establishing incoming ssh (tcp/22) connections only from the LAN. </span>
+<span class=c1># The internal interface is called eth0 and the external interface is called eth1.</span>
+iptables -A FORWARD -p tcp --dport <span class=m>22</span> --syn -i eth0 -j ACCEPT
+iptables -A FORWARD -p tcp --dport <span class=m>22</span> --syn -i eth1 -j DROP
+<span class=c1># Drop all linux router outgoing packets of type tcp (port 80 and 443) to www.linuxquestions.org</span>
+iptables -A FORWARD -p tcp --dport <span class=m>80</span> -d www.linuxquestions.org -j DROP
+iptables -A FORWARD -p tcp --dport <span class=m>443</span> -d www.linuxquestions.org -j DROP
+
+<span class=c1># Connection Tracking</span>
+<span class=c1># connection tracking = Stateful firewall = better than stateless and is secure</span>
+<span class=c1># connection tracking can be used even if the protocol is itself stateless (ex: ICMP, UDP)</span>
+<span class=c1># Netfilter is a Stateful firewall</span>
+<span class=c1>##################</span>
+<span class=c1># Example of a Stateful Firewall for a Desktop</span>
+<span class=c1>##################</span>
+<span class=c1>#!/bin/bash</span>
+iptables -f
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A OUTPUT i lo -j ACCEPT
+
+iptables -A INPUT -m state --state INVALID -j DROP      <span class=c1># All invalid state connections are blocked</span>
+iptables -A OUTPUT -m state --state INVALID -j DROP
+
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT  <span class=c1># All valid state connections are allowed</span>
+iptables -A OUTPUT -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT <span class=c1># Allow new connections</span>
+
+iptables -P INPUT -j DROP       <span class=c1># Drop any other connections to desktop</span>
+iptables -P OUTPUT -j DROP
+<span class=c1>##################</span>
+
+<span class=c1># Test the Stateful firewall</span>
+<span class=c1># Open Browser and test a https website</span>
+<span class=c1># SSH connection to and from the Desktop</span>
+<span class=c1># Ping and SSH from another machine to Desktop --&gt; This will be dropped as NEW connection is dropped in INPUT</span>
+<span class=c1># Selectively allow SSH action from the network, add it before INVALID</span>
+iptables -A INPUT -p tcp --dport <span class=m>22</span> -m state --state NEW -s <span class=m>192</span>.168.0.20 -j ACCEPT
+<span class=c1># OR</span>
+iptables -A INPUT -p tcp --dport <span class=m>22</span> --syn -s <span class=m>192</span>.168.0.20 -j ACCEPT
+<span class=c1>##################</span>
+
+<span class=c1># Filter using Date and Time</span>
+date            <span class=c1># Check the current date and timezone of the server</span>
+<span class=c1># Permit SSH From Mon to Fri between 10 AM to 4 PM</span>
+iptables -A INPUT -p tcp --dport <span class=m>22</span> -m <span class=nb>time</span> --timestart <span class=m>10</span>:00 --timestop <span class=m>16</span>:00 -j ACCEPT
+iptables -A INPUT -p tcp --dport <span class=m>22</span> -j DROP
+<span class=c1># Permit access to website after working hours </span>
+iptables -A INPUT -p tcp --dport <span class=m>443</span> -d www.ubuntu.com -m <span class=nb>time</span> --timestart <span class=m>18</span>:00 --timestop <span class=m>8</span>:00 -j ACCEPT
+iptables -A INPUT -p tcp --dport <span class=m>443</span> -d www.ubuntu.com -j DROP
+
+<span class=c1># DoS protection by Connlimit module</span>
+iptables -A INPUT -p tcp --dport <span class=m>25</span> --syn -m connlimit --connlimit-above <span class=m>5</span> -j REJECT --reject-with tcp-rst
+<span class=c1># This rejects and drops conections coming the same IP after 5 TCP connections and resets the connections.</span>
+
+<span class=c1># DoS protection by implementing Rate limiting</span>
+<span class=c1># default limit-burst is 5 and is the allowed packets to be matched from same IP in a single burst,</span>
+<span class=c1># after this the &quot;limit&quot; value is the next allowed value once burst is exhausted</span>
+<span class=c1># Limit ICMP packets from one IP, max 7 packets per sec and then apply rate limit of 1 per sec</span>
+iptables -A INPUT -p icmp --icmp-type echo-request -m limit <span class=m>1</span>/sec --limit-burst <span class=m>7</span> -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+
+<span class=c1># Testing the icmp rule</span>
+<span class=c1># Run tcdump on the server terminal</span>
+tcpdump icmp -n  <span class=c1># This shows only icmp traffic and IP addresses</span>
+<span class=c1># In the second server, ping the icmp server with 10 request per sec</span>
+ping -i <span class=m>0</span>.1 <span class=m>192</span>.168.0.10        <span class=c1># Interval</span>
+<span class=c1># Output on ping server, after 7 packets, rate drops to 1 packet per sec</span>
+
+<span class=c1># Allow only 5 new incoming connections per second to port 443 (https) </span>
+iptables -A INPUT -p tcp --dport <span class=m>443</span> --syn -m limit --limit <span class=m>5</span>/sec -j ACCEPT
+iptables -A INPUT -p tcp --dport <span class=m>443</span> --syn -j DROP
+
+<span class=c1># Dynamic Blacklist Database Creation - Using recent match</span>
+<span class=c1># Recent match options:</span>
+<span class=c1># --name: creates a list in which the source IP address will be added and checked.</span>
+<span class=c1># --set: adds the source IP address to the list.</span>
+<span class=c1># The list with blacklisted IP addresses is found in: /proc/net/xt_recent/LIST_NAME</span>
+
+<span class=c1># Example to blacklist IP for 60 sec, when port 25 is accessed between 8AM to 10 PM</span>
+iptables -A INPUT -m recent  --name hackers --update --seconds <span class=m>60</span> -j DROP
+<span class=c1># Above rule will update the hackers list with recent timestamp when a new request comes from same IP</span>
+<span class=c1># when a packet is coming, it will be checked against this rule and</span>
+<span class=c1># if its source ip belongs to the hacker list, the packet will be dropped</span>
+<span class=c1># last seen time is updated with another 60 seconds (the source ip address stays in the list for another 60 seconds)</span>
+iptables -A INPUT -p tcp --dport <span class=m>25</span> -m <span class=nb>time</span> --timestart <span class=m>8</span>:00 --timestop <span class=m>22</span>:00 <span class=se>\</span>
+-m recent -name hackers --set -j DROP
+<span class=c1># when the 1st matched packet arrives (tcp/25 between 8:00-10:00 UTC), a list named hacker is created,</span>
+<span class=c1># the source ip address of the packet is added to that list and the packet is dropped</span>
+
+<span class=c1>#Testing Backlist process</span>
+<span class=c1># Second server, open 2 terminals</span>
+<span class=c1># Terminal 1, run ping, Terminal 2 start NMAP to scan port 25. </span>
+<span class=c1># As soon as NMAP is run, ping output is stopped as server 2 is added to blacklist</span>
+nmap -p <span class=m>25</span> <span class=m>192</span>.168.0.10
+<span class=c1># Display the blacklist on server 1</span>
+cat /proc/net/xt_recent/hackers
+<span class=c1># After 60 secs after ping output is stopped, running ping again starts working, till nmap is not run again</span>
+
+<span class=c1># Filter Output using Quotas</span>
+<span class=c1># --quota - Data in bytes</span>
+<span class=c1># Allow one server to download 1GB from website</span>
+iptables -A OUTPUT -d <span class=m>80</span>.0.0.1 -p tcp --sport <span class=m>80</span> -m quota --quota <span class=m>1000000000</span> -j ACCEPT
+iptables -A OUTPUT -d <span class=m>80</span>.0.0.1 -p tcp --sport <span class=m>80</span> -j DROP
+<span class=c1># Allow serverto accept only 10Mb from another server</span>
+iptables -A INPUT -s <span class=m>192</span>.168.0.20 -p tcp --dport <span class=m>80</span> -m quota --quota <span class=m>10000000</span> -j ACCEPT
+iptables -A INPUT -s <span class=m>192</span>.168.0.20 -p tcp --dport <span class=m>80</span> -j DROP
+
+<span class=c1># Testing the quota rule</span>
+<span class=c1># in Server 2, check for a file with size more than 20Mb</span>
+ls -lSh file.tar                 <span class=c1># Gives the size of the file</span>
+scp file.tar root@192.168.0.10:~ <span class=c1># Copy the file to server 1 home directory</span>
+<span class=c1># On server1, the transfer stops after 10Mb</span>
+iptables -vnL                    <span class=c1># Shows only 10Mb is copied</span>
+ls ~                             <span class=c1># Shows partial file</span>
+
+<span class=c1># ipset</span>
+<span class=c1># &quot;ipset&quot; is an extension to iptables that allows us to create a firewall that match entire &quot;sets&quot;</span>
+<span class=c1># of addresses at once.</span>
+<span class=c1># IP sets are stored in indexed data structures instead of chains which are stored &amp; traversed linearly.</span>
+sudo apt install ipset              <span class=c1># Install ipset</span>
+ipset -N myset hash:ip              <span class=c1># Creates a new set containing IP data</span>
+ipset -A myset <span class=m>1</span>.1.1.1              <span class=c1># Adding data to the set</span>
+ipset -A myset <span class=m>2</span>.2.2.2
+ipset -A myset <span class=m>8</span>.8.8.8
+
+<span class=c1># Add a rule to drop packets from myset in iptables</span>
+iptables -A INPUT -m <span class=nb>set</span> --match-set myset src -j DROP
+<span class=c1># Test the rule</span>
+ping <span class=m>8</span>.8.8.8                        <span class=c1># Will fail</span>
+
+<span class=c1># Adding a network to ipset</span>
+ipset -N china hast:net -exist      <span class=c1># Creates a new set or ignores if it already exist</span>
+ipset -A china <span class=m>1</span>.0.0.0/8 -exist     <span class=c1># Adds entry to set or ignores if alreadt exist</span>
+ipset -L                            <span class=c1># List the sets</span>
+ipset -L china                      <span class=c1># Displays china set</span>
+ipset -D china <span class=m>1</span>.0.0.0/8            <span class=c1># Deletes the entry from china set</span>
+ipset -F china                      <span class=c1># Deletes all entries from china set</span>
+ipset -F                            <span class=c1># Flushes all entries from all sets</span>
+ipset -X china                      <span class=c1># Deletes the set china</span>
+<span class=c1># Delete will not work, if the set is referenced in an iptable. Delete the reference, then delete the set.</span>
+
+<span class=c1># Dynamic Blacklist Database Creation - Using ipset</span>
+ipset -N auto_blocked hast:ip -exist 
+iptables -I INPUT -p tcp --dport <span class=m>80</span> -j SET --add-set auto_blocked src <span class=c1># Adding IP to blocked set</span>
+iptables -I INPUT -m <span class=nb>set</span> --match-set auto_blocked src -j DROP <span class=c1># Adding rule to block the IP set</span>
+<span class=c1>#Testing Backlist process</span>
+<span class=c1># Second server, open 2 terminals</span>
+<span class=c1># Terminal 1, run ping, Terminal 2 start tenet to send request to port 80. </span>
+<span class=c1># As soon as telnet is run, ping output is stopped as server 2 is added to blacklist</span>
+telnet <span class=m>192</span>.168.0.20 <span class=m>80</span>
+
+<span class=c1># Block all IPs and Networks From File</span>
+<span class=c1># a file called bad_hosts.txt exists in the same directory with the script and </span>
+<span class=c1># contains IPs and Networks, one per line like:</span>
+<span class=c1># 11.0.0.16</span>
+<span class=c1># 8.8.8.8</span>
+<span class=c1># 1.2.3.4</span>
+<span class=c1># 192.0.0.0/16</span>
+
+<span class=c1>#!/bin/bash</span>
+<span class=c1># File that contains the IPs and Nets to block</span>
+<span class=nv>FILE</span><span class=o>=</span><span class=s2>&quot;bad_hosts.txt&quot;</span>
+ <span class=c1># Creating a new set</span>
+ipset -N bad_hosts iphash -exist
+ <span class=c1># Flushing the set if it exists</span>
+ipset -F bad_hosts
+<span class=nb>echo</span> <span class=s2>&quot;Adding IPs from </span><span class=nv>$FILE</span><span class=s2> to bad_hosts set:&quot;</span>
+<span class=k>for</span> ip <span class=k>in</span> <span class=sb>`</span>cat <span class=nv>$FILE</span><span class=sb>`</span>
+<span class=k>do</span>
+	ipset -A bad_hosts <span class=nv>$ip</span>
+	<span class=nb>echo</span> -n <span class=s2>&quot;</span><span class=nv>$ip</span><span class=s2> &quot;</span>
+<span class=k>done</span> 
+<span class=c1># Adding the iptables rule that references the set and drops all ips and nets</span>
+<span class=nb>echo</span> -e -n <span class=s2>&quot;\nDropping with iptables... &quot;</span>
+iptables -I INPUT -m <span class=nb>set</span> --match-set bad_hosts src -j DROP
+<span class=nb>echo</span> <span class=s2>&quot;Done&quot;</span>
+
+<span class=c1># Blocking Countries</span>
+<span class=c1>#!/bin/bash</span>
+<span class=c1># Check if the file exists (in the current directory) and if yes, remove it</span>
+<span class=k>if</span> <span class=o>[</span> -f <span class=s2>&quot;cn-aggregated.zone&quot;</span> <span class=o>]</span>
+<span class=k>then</span>
+	rm cn-aggregated.zone
+<span class=k>fi</span>
+<span class=c1># Download the aggregate zone file for China</span>
+wget http://www.ipdeny.com/ipblocks/data/aggregated/cn-aggregated.zone
+<span class=c1># Check if there was an error</span>
+<span class=k>if</span> <span class=o>[</span> <span class=nv>$?</span> -eq <span class=m>0</span> <span class=o>]</span>
+<span class=k>then</span>
+	<span class=nb>echo</span> <span class=s2>&quot;Download Finished!&quot;</span>
+<span class=k>else</span>
+    <span class=nb>echo</span> <span class=s2>&quot;Download Failed! Exiting ...&quot;</span>
+    <span class=nb>exit</span> <span class=m>1</span> 
+<span class=k>fi</span>
+<span class=c1># Creating a new set called china of type hash:net (nethash)</span>
+ipset -N china hash:net -exist
+<span class=c1># Flushing the set</span>
+ipset -F china
+<span class=c1># Iterate over the Networks from the file and add them to the set</span>
+<span class=nb>echo</span> <span class=s2>&quot;Adding Networks to set...&quot;</span>
+<span class=k>for</span> i <span class=k>in</span> <span class=sb>`</span>cat cn-aggregated.zone<span class=sb>`</span>
+<span class=k>do</span>
+	ipset -A china <span class=nv>$i</span>
+<span class=k>done</span>
+<span class=c1># Adding a rule that references the set and drops based on source IP address</span>
+<span class=nb>echo</span> -n <span class=s2>&quot;Blocking CN with iptables ... &quot;</span>
+iptables -I INPUT -m <span class=nb>set</span> --match-set china src -j DROP
+<span class=nb>echo</span> <span class=s2>&quot;Done&quot;</span>
+</code></pre></div> <h3 id=target-example>Target Example<a class=headerlink href=#target-example title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># netstat</span>
+apt install net-tools       <span class=c1># Installs netstat</span>
+netstat -tupan              <span class=c1># Shows &#39;t&#39;cp, &#39;u&#39;dp &#39;p&#39;rotocols and &#39;a&#39;ll the services that are using the ports</span>
+<span class=c1># nmap</span>
+apt install nmap            <span class=c1># Installs nmap</span>
+nmap -sS <span class=m>192</span>.168.0.20       <span class=c1># Performs tcp sync scan. Scans only 1000 ports</span>
+nmap -p- <span class=m>192</span>.168.0.20       <span class=c1># Performs all ports scan (0-65535)</span>
+nmap -p <span class=m>80</span>,50005 -sV <span class=m>192</span>.168.0.20   <span class=c1># Specify ports to scan and display the service that is running</span>
+nmap -sP <span class=m>192</span>.168.0.0/24     <span class=c1># Ping scanning (entire Network)</span>
+nmap -sS <span class=m>192</span>.168.0.0/24 --exclude <span class=m>192</span>.168.0.10 <span class=c1># Excluding an IP</span>
+<span class=c1># PRO-TIP: Always output the data into a file</span>
+nmap -oN output.txt <span class=m>192</span>.168.0.1 <span class=c1># Saving the scanning report to a file</span>
+nmap -A -T aggressive cloudflare.com <span class=c1># -A OS and service detection with faster execution</span>
+nmap <span class=m>10</span>.211.55.6 -O                         <span class=c1># Server&#39;s operating system</span>
+nmap <span class=m>10</span>.211.55.6 -sC -o /tmp/output.txt     <span class=c1># Runs a set list of default scripts against your target.</span>
+nmap <span class=m>10</span>.211.55.6 -sU –top-ports <span class=m>250</span>         <span class=c1># scan the 250 most common UDP ports</span>
+
+<span class=c1># Reject</span>
+<span class=c1># PRO-TIP: It is efficient to REJECT than DROP targets.</span>
+iptables -j REJECT --help       <span class=c1># Shows reject-with types</span>
+
+<span class=c1># Reject SSH traffic and test it</span>
+iptables -A INPUT -p tcp --dport <span class=m>22</span> -s <span class=m>192</span>.168.0.10 -j REJECT --reject-with tcp-reset
+<span class=c1># start tcpdump to trace the output on server 1</span>
+tcpdump host <span class=m>192</span>.168.0.10 -n    <span class=c1># Shows incoming traffic from ssh client</span>
+<span class=c1># In client server, run nmap to scan port 22</span>
+nmap -p <span class=m>22</span> <span class=m>192</span>.168.0.20 
+
+<span class=c1># reject all incoming ICMP ping packets that are not coming from 10.0.0.1 (management station)</span>
+iptables -A INPUT ! -s <span class=m>10</span>.0.0.1 -p icmp --icmp-type echo-request -j REJECT --reject-with admin-prohib
+
+<span class=c1># Log</span>
+<span class=c1># Logging detailed info about the packet contents.</span>
+<span class=c1># Will be shown in dmesg command to show the kernel logs that are in memory. Will be lost at server restart.</span>
+tail -f /var/log/kern.log       <span class=c1># Shows the kernel logs that are persisted even after restart.</span>
+
+<span class=c1># logging the first packet (tcp syn set) of any incoming ssh connection</span>
+<span class=c1># use the prefix: ###ssh:</span>
+iptables -A INPUT -p tcp --syn --dport <span class=m>22</span> -j LOG --log-prefix<span class=o>=</span><span class=s2>&quot;##ssh:&quot;</span> --log-level info
+<span class=c1># filtering logs by prefix</span>
+dmesg <span class=p>|</span> grep <span class=s2>&quot;##ssh:&quot;</span> 
+<span class=c1># logging only 10 incoming ICMP ping packets per minute</span>
+iptables -A INPUT -p icmp --icmp-type echo-request -m limit --limit <span class=m>10</span>/minute -j LOG --log-prefix<span class=o>=</span><span class=s2>&quot;ping probe:&quot;</span>
+
+<span class=c1># Tee</span>
+<span class=c1># Allows you to mirror incoming traffic on one server to another server</span>
+<span class=c1># mirror all TCP traffic that arrives at 10.0.0.10 to 10.0.0.1.</span>
+iptables -A INPUT -p tcp -j TEE --gateway <span class=m>10</span>.0.0.1
+<span class=c1># Testing</span>
+<span class=c1># Open tcpdump on server 1, From third server ping server 2. tcpdump will show packets coming on server 2</span>
+
+<span class=c1># Redirect</span>
+<span class=c1># Allows you to transparently proxy a service on a server</span>
+<span class=c1># Redirect incoming TCP traffic to port 80 to port 8080 on the same host where a Proxy is running.</span>
+iptables -t nat -A PREROUTING -p tcp --dport <span class=m>80</span> -j REDIRECT --to-ports <span class=m>8080</span>
+</code></pre></div> <h3 id=nat-and-port-forwarding-examples>NAT and Port Forwarding Examples<a class=headerlink href=#nat-and-port-forwarding-examples title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># SNAT replaces the private IP address from the packet with the public IP address</span>
+<span class=c1># of the router external interface.</span>
+<span class=c1># SNAT helps private servers to access the internet via a router IP.</span>
+<span class=c1># Example to make the linux server as a Router</span>
+<span class=c1>#!/bin/bash</span>
+ <span class=c1># flush the nat table of all chains</span>
+iptables -t nat -F
+<span class=c1># enable routing process</span>
+<span class=nb>echo</span> <span class=s2>&quot;1&quot;</span> &gt; /proc/sys/net/ipv4/ip_forward
+ <span class=c1># define rules that match traffic that should be NATed</span>
+<span class=c1># we perform NAT for the entire subnetwork</span>
+<span class=c1># enp0s3 is the external interface</span>
+<span class=c1># 80.0.0.1 is the public &amp; static ip address</span>
+iptables -t nat -A POSTROUTING -s <span class=m>10</span>.0.0.0/24 -o enp0s3 -j SNAT --to-source <span class=m>80</span>.0.0.1
+<span class=c1># OR</span>
+<span class=c1># if the public IP address is dynamic we use MASQUERADE instead of SNAT</span>
+iptables -t nat -A POSTROUTING -s <span class=m>10</span>.0.0.0/24 -o enp0s3 -j MASQUERADE
+<span class=c1># it&#39;s not mandatory to perform NAT for entire subnet. We could perform NAT only for some protocols</span>
+<span class=c1># Example: we perform NAT only for TCP</span>
+iptables -t nat -A POSTROUTING -s <span class=m>10</span>.0.0.0/24 -p tcp -o enp0s3 -j SNAT --to-source <span class=m>80</span>.0.0.1
+<span class=c1># filtering is done on FORWARD CHAIN</span>
+
+<span class=c1># Port Forwarding</span>
+<span class=c1># DNAT permits connections from the Internet to servers with private IP addresses inside LAN.</span>
+<span class=c1># The client connects to the public IP address of the DNAT Router which in turn</span>
+<span class=c1># redirects traﬃc to the private server.</span>
+<span class=c1># The server with the private IP address stays invisible.</span>
+<span class=c1>### PORT FORWARDING (DNAT) ###</span>
+<span class=c1>#!/bin/bash</span>
+<span class=c1># flushing nat filter of PREROUTING chain</span>
+iptables -t nat -F  PREROUTING
+<span class=c1># all the packets coming to the public IP address of the router and port 80 </span>
+<span class=c1># will be port forwarded to 192.168.0.20 and port 80</span>
+iptables -t nat -A PREROUTING -p tcp --dport <span class=m>80</span> -j DNAT --to-destination <span class=m>192</span>.168.0.20
+<span class=c1>## VARIANTS</span>
+<span class=c1># 1.redirect port 8080 on router to port 80 on the private web-server </span>
+<span class=c1># Internet clients connect to the public IP address of the router and port 8080 and the packets are </span>
+<span class=c1># redirected to the private server with 192.168.0.20 and port 80</span>
+iptables -t nat -A PREROUTING -p tcp --dport <span class=m>8080</span> -j DNAT --to-destination <span class=m>192</span>.168.0.20:80
+<span class=c1>#2. Load-Balancing</span>
+<span class=c1># On all 5 private servers (192.168.0.20-192.168.0.24)run the same service (e.g. HTTPS)</span>
+<span class=c1># The router will pick-up a random private IP from the range and then translate and send (port-forward) the packet to that IP</span>
+iptables -t nat -A PREROUTING -p tcp --dport <span class=m>8080</span> -j DNAT --to-destination <span class=m>192</span>.168.0.20-192.168.0.24
+
+<span class=c1>##** LOAD BALANCE NAT TRAFFIC OVER 2 INTERNET CONNECTIONS WITH DYNAMIC IP ADDRESSES **##</span>
+<span class=c1>#!/bin/bash</span>
+<span class=c1># Traffic that goes over the first ISP connection</span>
+<span class=c1># web: 80 443</span>
+<span class=c1># email: 25 465 143 993 110 995</span>
+<span class=c1># ssh: 22</span>
+<span class=nv>ISP1</span><span class=o>=</span><span class=s2>&quot;22 25 80 110 143 443 465 993 995&quot;</span>
+<span class=c1># flushing nat table and POSTROUTING chain</span>
+iptables -t nat -F POSTROUTING
+<span class=c1># enable routing</span>
+<span class=nb>echo</span> <span class=s2>&quot;1&quot;</span> &gt; /proc/sys/net/ipv4/ip_forward 
+<span class=k>for</span> port <span class=k>in</span> <span class=nv>$ISP1</span>
+<span class=k>do</span>
+    iptables -t nat -A POSTROUTING -p tcp --dport <span class=nv>$port</span> -o eth1 -j MASQUERADE
+<span class=k>done</span>
+<span class=c1># Traffic not NATed goes over the 2nd ISP connection</span>
+iptables -t nat -A POSTROUTING -o eth2 -j MASQUERADE
+</code></pre></div> <h3 id=custom-defined-chain-examples>Custom Defined Chain Examples<a class=headerlink href=#custom-defined-chain-examples title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># creating a user-defined chain</span>
+iptables -N TCP_TRAFFIC 
+<span class=c1># add rules to the chain</span>
+iptables -A TCP_TRAFFIC -p tcp -j ACCEPT
+<span class=c1># jump to the chain from the input chain</span>
+iptables -A INPUT -p tcp -j TCP_TRAFFIC
+<span class=c1># flush all rules in the chain</span>
+iptables -F TCP_TRAFFIC
+<span class=c1># flush all rules otherwise custom chain can&#39;t be deleted</span>
+iptables -F 
+<span class=c1># delete the chain</span>
+iptables -X TCP_TRAFFIC
+</code></pre></div> <h3 id=chain-traversal-order>Chain Traversal Order<a class=headerlink href=#chain-traversal-order title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Incoming Packet Traversal</span>
+<span class=c1># Packet comes from the Network and is destined for our host, which is the final destination</span>
+PREROUTING --&gt; INPUT
+<span class=c1># Packet comes from the Network and must be routed by the Linux machine</span>
+PREROUTING --&gt; FORWARD --&gt; POSTROUTING
+<span class=c1># Outgoing Packet Traversal</span>
+<span class=c1># Packet is generated by an Application on the host</span>
+LOCAL APPLICATION --&gt; OUTPUT --&gt; POSTROUTING
+</code></pre></div> <h3 id=tcp-wrappers>TCP Wrappers<a class=headerlink href=#tcp-wrappers title="Permanent link">&para;</a></h3> <ul> <li>Host-based networking ACL system.</li> <li>Controls access to “wrapped” services.</li> <li>A wrapped service is compiled with <code>libwrap</code> support.</li> <li>Check if a service supports wrappers use <code>ldd</code>. <div class=highlight><pre><span></span><code>ldd /usr/sbin/sshd <span class=p>|</span> grep libwrap           <span class=c1># Prints required shared libraries.</span>
+</code></pre></div></li> <li>Can control access by IP address / networks.</li> <li>Can control access by hostname.</li> <li>Transparent to the client and service.</li> <li>Used with xinetd which is a super daemon as it can manage a lot of smaller services, secures access to your server.</li> <li>Centralized management for multiple network services.</li> <li>Runtime configuration</li> </ul> <h4 id=configuring-tcp-wrappers>Configuring TCP Wrappers<a class=headerlink href=#configuring-tcp-wrappers title="Permanent link">&para;</a></h4> <ul> <li><code>/etc/hosts.allow</code> is checked first. If a match is found, <strong>access is granted</strong>.</li> <li><code>/etc/hosts.deny</code> is checked next. If a match is found, <strong>access is denied</strong>.</li> </ul> <h4 id=access-rules>Access Rules<a class=headerlink href=#access-rules title="Permanent link">&para;</a></h4> <ul> <li>The rule format for <code>hosts.allow</code> and <code>hosts.deny</code> are the same.</li> <li>One rule per line</li> <li>Format: <code>SERVICE(S) : CLIENT(S) [: ACTION(S) ]</code> <div class=highlight><pre><span></span><code><span class=c1># Deny All configuration</span>
+<span class=c1># /etc/hosts.deny:</span>
+ALL : ALL                                       <span class=c1># Deny all connections</span>
+<span class=c1># /etc/hosts.allow:</span>
+<span class=c1># Explicitly list allowed connections here.</span>
+sshd : <span class=m>10</span>.11.12.13                              <span class=c1># Allow only ssh connection from this ip</span>
+
+<span class=c1># Additional configuration possibilities</span>
+sshd, imapd : <span class=m>10</span>.11.12.13                       <span class=c1># Multiple services allowed</span>
+ALL : <span class=m>10</span>.11.12.13                               <span class=c1># Wild Card configuration</span>
+sshd : <span class=m>10</span>.11.12.13, <span class=m>10</span>.5.6.7                    <span class=c1># Multiple IPs</span>
+sshd : jumpbox.example.com                      <span class=c1># Domain name</span>
+sshd : .admin.example.com                       <span class=c1># Subdomain - server2.admin.example.com or webdev.admin.example.com</span>
+sshd : jumpbox*.example.com                     <span class=c1># jumpbox4admins.example.com</span>
+sshd : jumpbox0?.example.com                    <span class=c1># jumpbox03.example.com</span>
+sshd : <span class=m>10</span>.11.12.                                <span class=c1># Subnet range</span>
+sshd : <span class=m>10</span>.                                      
+sshd : <span class=m>10</span>.11.0.0/255.255.0.0
+sshd : /etc/hosts.sshd                          <span class=c1># Allow all hosts in this file</span>
+imapd : ALL                                     <span class=c1># Wildcard in clients</span>
+sshd : ALL EXCEPT .hackers.net                  <span class=c1># Conditions, except IP in hacker.net domains</span>
+sshd : <span class=m>10</span>.11.12.13 : severity emerg             <span class=c1># Actions - Log emergency messages for that ssh connection coming from IP</span>
+sshd : <span class=m>10</span>.11.12.13 : severity local0.alert      <span class=c1># Raise local alert</span>
+<span class=c1># Raise custom message</span>
+<span class=c1># /etc/hosts.deny:</span>
+sshd : .hackers.net : spawn /usr/bin/wall “Attack <span class=k>in</span> progress.”
+<span class=c1># Use expressions in message, %a logs client ip</span>
+sshd : .hackers.net : spawn /usr/bin/wall “Attack from %a.”
+
+<span class=c1>## Possible expression expansions</span>
+<span class=c1># %a (%A) The client (server) host address.</span>
+<span class=c1># %c      Client information.</span>
+<span class=c1># %d      The daemon process name.</span>
+<span class=c1># %h (%H) The client (server) host name or address.</span>
+<span class=c1># %n (%N) The client (server) host name.</span>
+<span class=c1># %p      The daemon process id.</span>
+<span class=c1># %s      Server information.</span>
+<span class=c1># %u      The client user name (or &quot;unknown&quot;).</span>
+<span class=c1># %%      Expands to a single `% ́ character.</span>
+</code></pre></div></li> </ul> </article> </div> </div> </main> <footer class=md-footer> <nav class="md-footer__inner md-grid" aria-label=Footer> <a href=../security/ class="md-footer__link md-footer__link--prev" rel=prev> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </div> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> Previous </span> Linux_Security </div> </div> </a> </nav> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2022 - Leslie </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> with emoji by <a href=https://github.com/twitter/twemoji target=_blank rel=noopener> Twemoji </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.fb4a9340.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing"}, "version": null}</script> <script src=../../../assets/javascripts/bundle.ca5457b8.min.js></script> </body> </html>
