@@ -47,7 +47,7 @@ Ansible uses SSH protocol, which is by default secured with encrypted transmissi
 ```
 - We can also set up services like fail2ban for protecting against basic attacks.
 - Also, we can enable MFA, if required to log in. [Digitial Ocean](https://www.digitalocean.com/community/tutorials/how-to-set-up-multi-factor-authentication-for-ssh-on-ubuntu-16-04)
-- The following playbook will provide more advanced features for SSH hardening by [dev-sec team](https://github.com/dev-sec/ansible-ssh-hardening)
+- The following playbook will provide more advanced features for SSH hardening by [dev-sec team](https://github.com/dev-sec/ansible-collection-hardening)
 ## Hardening nginx 
 - We can start looking at things like disabling server tokens to not display version information, adding headers like X-XSS-Protection, and many other configuration tweaks. 
 - Most of these changes are done via configuration changes, and Ansible allows us to version and control and automate these changes based on user requirements.

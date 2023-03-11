@@ -1,3 +1,6 @@
+[Config Setup](https://thevaluable.dev/tmux-config-mouseless/#:~:text=With%20tmux%2C%20you%20can%20create,powerful%2C%20and%20easier%20to%20config.)
+[Tmux Config Doc](https://caleb89taylor.medium.com/coding-like-a-hacker-in-the-terminal-79e22954968e)
+[Example Tmux and Neovim](https://github.com/ctaylo21/jarvis)
 ```BASH
 tmux ls                             # List all sessions
 tmux attach -t 0                    # -t #n indicates the session number from ls output
@@ -8,6 +11,36 @@ tmux switch -t session_name         # Switches to an existing session named sess
 tmux list-sessions                  # Lists existing tmux sessions 
 tmux detach                         # (prefix + d) detach the currently attached session
 ```
+```BASH
+# PREFIX CTRL + SPACE
+
+# reload ~/.tmux.conf using PREFIX r
+
+# New Window => PREFIX w
+
+# Rename Window  => PREFIX n
+
+# Split window vertically => PREFIX | 
+
+# Split window horizontally => PREFIX -
+
+# Toggle Window ALT j (previous), ALT k (next)
+
+# Toggle Panes => PREFIX h(Left),j(Down),k(Up),l(Right)
+
+# Synchronize-panes => PREFIX CTRL+y
+
+# Kill Pane => PREFIX x
+
+# Kill Window => PREFIX X
+```
+
+# Benefit
+1. Connect to your remote server via SSH.
+1. Launch tmux on the remote server.
+1. Run a script which takes hours.
+1. Close the SSH connection. The script will still run on the remote server, thanks to tmux!
+1. Switch off your computer and go home.
 
 # Workflow Recommendations
 

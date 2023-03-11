@@ -1,0 +1,86 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+# Shell script to format and mount data disk
+$dataDisk1 = <<-SCRIPT
+parted /dev/sdb mklabel msdos
+parted /dev/sdb mkpart primary 0% 100%
+mkfs.ext4 /dev/sdb1
+mkdir /mnt/data
+if grep -Fxq "sdb1" /etc/fstab
+then
+  echo 'sdb1 exist in fstab'
+else
+  echo `blkid /dev/sdb1 | awk '{print$2}' | sed -e 's/"//g'` /mnt/data   ext4   noatime,nobarrier   0   0 >> /etc/fstab
+fi
+if mount | grep /mnt/data > /dev/null; then
+  echo "/dev/sdb1 mounted /mnt/data"
+  umount /mnt/data
+  mount /mnt/data
+else
+  mount /mnt/data
+  chown -R vagrant:vagrant /mnt/data
+fi
+SCRIPT
+
+Vagrant.configure("2") do |config|
+
+  serverCount = 2
+  machineAdditionalDisk = 1
+  node1disk1 = "./share.vdi"
+  (1..serverCount).each do |machine_id|
+    config.vm.define "machine#{machine_id}" do |machine|
+      machine.vm.hostname = "node#{machine_id}"
+      # Add machine name which matches the hostname in inventory file 
+      #machine.vm.hostname = "ws01.fale.io"
+      machine.vm.network "private_network", ip: "192.168.56.#{99+machine_id}"
+      #machine.vm.box = "ubuntu/trusty64"
+      machine.vm.box = "geerlingguy/ubuntu2004"
+      # Below 2 statements are complementary. To update guest additions enable first statement
+      #machine.vbguest.installer_options = { allow_kernel_upgrade: true }
+      machine.vm.box_check_update = true
+      # Custom SSH authentication
+      machine.ssh.insert_key = false
+      machine.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key', '~/.ssh/ansible-user']
+      machine.vm.provision "file", source: "~/.ssh/ansible-user.pub", destination: "~/.ssh/authorized_keys"
+      # machine.vm.network "forwarded_port", guest: 80, host: 8080
+      # machine.vm.synced_folder ".", "/vagrant"
+      # machine.vm.provision "file", source: "./copiedfile.txt", destination: "/home/vagrant/copiedfile.txt"
+
+      machine.vm.provider :virtualbox do |vb|
+        vb.gui = false
+        vb.memory = "512"
+        vb.cpus = 1
+        vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
+        # Attach disk only to node 1
+        #if machine_id == machineAdditionalDisk
+        # To prevent deleting storage on vagrant halt / up commands
+        #  if not File.exists?("./disk#{machine_id}.vdi")
+        #    vb.customize ['createhd', '--filename', "./disk#{machine_id}.vdi", '--variant', 'Fixed', '--size', 1 * 1024]
+        #    vb.customize ['storageattach', :id,  '--storagectl', 'IDE', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', "./disk#{machine_id}.vdi"]
+        #  end
+        #end
+      end
+      # Restart SSH service
+      machine.vm.provision "shell", inline: <<-EOC
+        sudo sed -i -e "\\#PasswordAuthentication yes# s#PasswordAuthentication yes#PasswordAuthentication no#g" /etc/ssh/sshd_config
+        sudo systemctl restart sshd.service
+        echo "✔ [SSH] restart done"
+      EOC
+      #if machine_id == machineAdditionalDisk
+      #  machine.vm.provision "shell", inline: $dataDisk1
+      #end
+      # Only execute once the Ansible provisioner,
+      # when all the machines are up and ready.
+      #if machine_id == serverCount
+      #  machine.vm.provision :ansible do |ansible|
+      #    # Disable default limit to connect to all the machines
+      #    ansible.limit = "all"
+      #    ansible.playbook = "provision/site.yml"
+      #    ansible.inventory_path = "inventory"
+      #    ansible.verbose        = true
+          #ansible.install        = true
+      #  end
+      #end
+    end
+  end
+end

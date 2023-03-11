@@ -33,6 +33,12 @@
         netstat -rnv                # Shows Gateway address  
         # Netstat also shows the routing to the outside world.
         # This should show the destination 0.0.0.0 route to outside world
+        route -n                    # Shows the path taken by the server to reach destination
+        # Trace the route taken by the server, this needs additional traceroute package
+        traceroute google.com       # Shows the network path taken to reach the server
+        # The router should have IPV4 routing enabled to forward packets to the next destination
+        cat /etc/sysctl.conf | grep -i ipv4   # ipv4.forward should be 1 and not 0 on the router
+        echo 1 > /proc/sys/net/ipv4/ip_forward # Enable routing
         ```
     ??? summary "Application / Webserver Not reachable"
         ```BASH
@@ -52,6 +58,8 @@
         more /var/log/secure        # Check the error messages
         # Check if User does not exist or has nologin shell
         id bob                      # Shows user exists
+        # Check sudo permissions
+        sudo -l
         vi /etc/passwd              # Shows nologin is set or not `/sbin/nologin`
         # Check if user acoount is disabled
         vi /etc/passwd              # User information is not found or is commented
@@ -66,7 +74,7 @@
         ps -eaf | grep iptables     # Double check if service is up
         systemctl status ufw        # Firewall service
         systemctl stop ufw          # Temporray stop firewall to check connectivity
-
+        find /var/log -type f -mmin -1       # This will show any log file modified in the last 1 min
         ```
     ??? summary "cd"
         ```BASH
@@ -128,17 +136,48 @@
         # Destination where the file will land should also have read permissions for the group or others
         ```
 
-    ??? summary "Utility"
+    ??? summary "sudo"
         ```BASH
+        grep sudo /etc/group            # Shows users in the sudo group at account setup
         ```
-    ??? summary "Utility"
+
+    ??? summary "nmap"
         ```BASH
+        # Always output the data into a file
+        nmap 10.211.55.6 -O                         # Server's operating system
+        nmap 10.211.55.6 -p-                        # Scans all 65535 TCP ports, helpful for finding services listening on weird, high ports like 12380 in this case.
+        nmap 10.211.55.6 -sC -o /tmp/output.txt     # Runs a set list of default scripts against your target.
+        nmap 10.211.55.6 -sU –top-ports 250         # scan the 250 most common UDP ports
         ```
-    ??? summary "Utility"
+    ??? summary "Docker"
         ```BASH
-        ```
-    ??? summary "Utility"
-        ```BASH
+        # Find running process
+        ps faux | grep 'agent'
+        # For a matched process, look at the environment variables
+        xargs -0 -L1 -a /proc/1099/environ      #1099 is the process id
+
+        # Find sensitive files
+        find / -name authorized_keys 2> /dev/null
+        find / -name id_rsa 2> /dev/null
+        find / -type f -path '*.kube/*' -name 'config' 2> /dev/null
+        find / -type f -path '*.docker/*' -name 'config.json' 2> /dev/null
+        find / -name kubeconfig 2> /dev/null
+        find / -name .gitconfig 2> /dev/null
+
+        # Docker logs on the machine
+        sudo find /var/lib/docker/containers/ -name *.log
+        # CAP_SYS_MODULE
+        # If this capabilitcy is available for user, it can easily load a new module and setup a reverse shell.
+        capsh --print       # shows if enabled
+        # More details on this can be found in https://greencashew.dev/posts/how-to-add-reverseshell-to-host-from-privileged-container
+
+        # Docker or not?
+        # Check /proc/1/group. Inside container it will be /docker/ 
+        cat /proc/1/cgroup
+        cat /proc/self/cgroup
+
+        # Logging agent configuration
+        cat /etc/ryslog.d/<any conf file>   # Check this later
         ```
     ??? summary "Utility"
         ```BASH

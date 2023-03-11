@@ -1,0 +1,6 @@
+# Linux
+netstat -tupan
+
+
+# Windows
+netstat -a

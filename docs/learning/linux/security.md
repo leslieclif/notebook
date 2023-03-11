@@ -435,14 +435,26 @@ find / -nouser
 - Fine grain controls.
 - No need to share passwords.
 - Clear audit trail.
+```BASH
+grep sudo /etc/group            # Shows users in the sudo group at account setup
+# Once the access to root is granted, it is cached for 15 mins on the same terminal.
+sudo -k                         # Invalidates the cache, so next time password is asked again.
+```
 ### Sudoers Format
+- Sudoers configiration is stored in `/etc/sudoers.d` file.
+- Change the default editor used by `visudo` using `sudo update-alternatives --config editor` and select `3` for vim basic.
+- To avoid corrupting this file, open it in `visudo` editor as it validates the configuration before saving the file.
 - User Specification Format: `user host=(run_as) command`
 ```BASH
 # Examples:
+# User Priviledge
 jason webdev01=(root) /sbin/apachectl
+# Group Priviledge (Starts with %)
 %web web*=(root) /sbin/apachectl
 %wheel ALL=(ALL) ALL
 ```
+- The last line in the file, includes permissions for other sudo users to make it maintainable.
+- `@includedir /etc/sudoers.d`
 ### Sudo Authentication
 - Sudo requires a user to authenticate.
 - Default 5 minute grace period (timeout).
@@ -456,21 +468,21 @@ apache web*=(root) NOPASSWD:/sbin/backup-web,                # No password requi
 - Runas_Alias
 - Host_Alias
 - Cmnd_Alias
-- Format: `Alias_Type NAME = item1, item2, ...`
+- Format: `Alias_Type NAME=item1,item2, ...`
 ```BASH
 # Add normal users to group webteam
-User_Alias WEBTEAM = jason, bob
+User_Alias WEBTEAM=jason,bob
 # Give permission to group 
 WEBTEAM web*=(root) /sbin/apachectl
 WEBTEAM web*=(apache) /sbin/apachebackup
 # Run permissions to system accounts
-Runas_Alias WEBUSERS = apache, httpd
+Runas_Alias WEBUSERS=apache,httpd
 WEBTEAM web*=(WEBUSERS) /sbin/apachectl
 # Host permissions to user accounts
-Host_Alias WEBHOSTS = web*, prodweb01
+Host_Alias WEBHOSTS =web*,prodweb01
 WEBTEAM WEBHOSTS=(WEBUSERS) /sbin/apachectl
 # Command permissions
-Cmnd_Alias WEBCMNDS = /sbin/apachectl
+Cmnd_Alias WEBCMNDS=/sbin/apachectl
 WEBTEAM WEBHOSTS=(WEBUSERS) WEBCMNDS
 ```
 ```BASH
@@ -537,7 +549,7 @@ systemctl disable SERVICE
 systemctl stop httpd
 systemctl disable httpd
 ```
-- List Listening Programs with netstat: `netstat -nutlp`
+- List Listening Programs with netstat: `netstat -nutlp` or `netstat -tupan`
 - Port Scanning: `nmap HOSTNAME_OR_IP` or `lsof -i`
 ```BASH
 nmap localhost
@@ -551,6 +563,75 @@ disable = yes
 # To disable xinetd:
 systemctl stop xinetd
 systemctl disable xinetd
+```
+### NMAP
+```BASH
+##########################
+## NMAP
+##########################
+ 
+##** SCAN ONLY YOUR OWN HOSTS AND SERVERS !!! **##
+## Scanning Networks is your own responsibility ##
+ 
+# Syn Scan - Half Open Scanning (root only)
+nmap -sS 192.168.0.1
+ 
+# Connect Scan
+nmap -sT 192.168.0.1
+ 
+# Scanning all ports (0-65535)
+nmap -p- 192.168.0.1
+ 
+# Specifying the ports to scan
+nmap -p 20,22-100,443,1000-2000 192.168.0.1
+ 
+# Scan Version
+nmap -p 22,80 -sV 192.168.0.1
+ 
+# UDP Port scanning
+nmap -sU localhost
+
+# Ping scanning (entire Network)
+nmap -sP 192.168.0.0/24
+ 
+# Treat all hosts as online -- skip host discovery
+nmap -Pn 192.168.0.101
+ 
+# Excluding an IP
+nmap -sS 192.168.0.0/24 --exclude 192.168.0.10
+ 
+# Saving the scanning report to a file
+nmap -oN output.txt 192.168.0.1
+ 
+# OS Detection
+nmap -O 192.168.0.1
+ 
+# Enable OS detection, version detection, script scanning, and traceroute
+nmap -A 192.168.0.1
+ 
+# https://nmap.org/book/performance-timing-templates.html
+ 
+# -T paranoid|sneaky|polite|normal|aggressive|insane (Set a timing template)
+# These templates allow the user to specify how aggressive they wish to be, while leaving Nmap to pick the exact
+# timing values. The templates also make some minor speed adjustments for which fine-grained control options do
+# not currently exist.
+ 
+# -A OS and service detection with faster execution
+nmap -A -T aggressive cloudflare.com
+ 
+# Using decoys to evade scan detection
+nmap -p 22 -sV 192.168.0.101 -D 192.168.0.1,192.168.0.21,192.168.0.100
+# Where decoy IP is local address 192.168.0.1 and so on
+ 
+# reading the targets from a file (ip/name/network seperated by a new line or a whitespace)
+nmap -p 80 -iL hosts.txt 
+# Where hosts.txt will contain 4 host
+192.168.0.100
+192.168.0.1
+8.8.8.8 vulnweb.com         # google and vulnweb servers on the internet
+ 
+# exporting to out output file and disabling reverse DNS
+nmap -n -iL hosts.txt -p 80 -oN output.txt
 ```
 ## Securing SSH
 - SSH = Secure SHell.
@@ -584,6 +665,67 @@ semanage port -l | grep ssh
 man ssh
 man sshd
 man sshd_config
+```
+
+```BASH
+##########################
+## OpenSSH Hardening Example
+##########################
+ 
+# 1. Installing OpenSSH (client and server)
+# Ubuntu
+sudo apt update && sudo apt install openssh-server openssh-client
+ 
+# connecting to the server
+ssh -p 22 username@server_ip        # => Ex: ssh -p 2267 john@192.168.0.100
+ssh -p 22 -l username server_ip
+ssh -v -p 22 username@server_ip     # => verbose
+ 
+# 2. Controlling the SSHd daemon
+# checking its status
+sudo systemctl status ssh       # => Ubuntu
+sudo systemctl status sshd      # => CentOS
+ 
+# stopping the daemon
+sudo systemctl stop ssh       # => Ubuntu
+sudo systemctl stop sshd      # => CentOS
+ 
+# restarting the daemon
+sudo systemctl restart ssh       # => Ubuntu
+sudo systemctl restart sshd      # => CentOS
+ 
+# enabling at boot time 
+sudo systemctl enable ssh       # => Ubuntu
+sudo systemctl enable sshd      # => CentOS
+ 
+sudo systemctl is-enabled ssh       # => Ubuntu
+sudo systemctl is-enabled sshd      # => CentOS
+ 
+# 3. Securing the SSHd daemon
+# change the configuration file (/etc/ssh/sshd_config) and then restart the server
+man sshd_config
+ 
+#a) Change the port
+Port 2278
+ 
+#b) Disable direct root login
+PermitRootLogin no
+ 
+#c) Limit Users’ SSH access
+AllowUsers stud u1 u2 john
+ 
+#d) Filter SSH access at the firewall level (iptables)
+ 
+#e) Activate Public Key Authentication and Disable Password Authentication
+ 
+#f) Use only SSH Protocol version 2
+ 
+#g) Other configurations:
+ClientAliveInterval 300
+ClientAliveCountMax 0
+MaxAuthTries 2
+MaxStartUps 3
+LoginGraceTime 20
 ```
 ## SSH Port Forwarding
 - Expose service (database) to a client not in same network
@@ -916,6 +1058,42 @@ su sam
 vi test                                 # Edit is possible
 setfacl -R -m g:project:rw .            # Add recursively permissions to root-was-here file as well
 ```
+## Cracking Passwords
+```BASH
+# CRACKING PASSWORD HASHES USING JOHN THE RIPPER
+ 
+# Installing JTR
+apt install john
+ 
+# combining /etc/passwd and /etc/shadow in a single file
+unshadow /etc/passwd /etc/shadow > unshadowed.txt
+ 
+# cracking in single mode
+john -single unshadowed.txt
+ 
+# brute-force and dictionary attack
+john --wordlist=/usr/share/john/password.lst --rules unshadowed.txt
+ 
+# dictionary files:
+# /usr/share/dict  
+# /usr/share/metasploit-framework/data/wordlists # -> on Kali Linux
+ 
+# showing cracked hashes  (~/.john/john.pot)
+john --show unshadowed.txt 
+ 
+# to continue an interrupted (ctrl+c) session, run  in the same directory:
+john -restore
+ 
+# cracking only accounts with specific shells (valid shells) 
+john --wordlist=mydict.txt --rules --shell=bash,sh unshadowed.txt
+ 
+# cracking only some accounts
+john --wordlist=mydict.txt --rules --users=admin,mark unshadowed.txt
+ 
+# cracking in incremental mode (/etc/john/john.conf)
+john --incremental unshadowed.txt
+```
+
 ## Rootkits
 - Software used to gain root access and remain undetected.
 - They attempt to hide from system administrators and antivirus software.
@@ -930,7 +1108,7 @@ setfacl -R -m g:project:rw .            # Add recursively permissions to root-wa
 - Halt the system and examine the storage.
 - Use a known good operating system to do the investigation.
 - Use bootable media, for example.
-### Rootkit Hunter / RKHunter
+### Rootkit Hunter / RKHunter /ChkRootKit
 - Shell script that searches for rootkits.
 ```BASH
 rkhunter --update               # Update database
@@ -948,6 +1126,13 @@ crontab -e                      # Create a new cronjob
 # At the end run at modnight everyday 
 # Redirect the output to single file
 0 0 * * * /usr/local/bin/rkhunter --cronjob --update > /var/tmp/rkhunter.cronlog 2>&1 
+
+# installing chkrootkit
+apt install chkrootkit
+ 
+# running a scan
+chkrootkit
+chkrootkit -q       # Reports only warnings
 ```
 ### [OSSEC](http://ossec.github.io/)
 - Host Intrusion Detection System (HIDS)
@@ -960,15 +1145,97 @@ crontab -e                      # Create a new cronjob
 - Reinstall core OS components and start investigating. Not recommended. Easy to make a mistake.
 - Safest is to reinstall the OS from trusted media.
 ### Rootkit Prevention
-- Use good security practices: Physical, Account Network
-- Use file integrity monitoring: AIDE,Tripware, OSSEC
+- Use good security practices: Physical, Account, Network
+- Use file integrity monitoring: AIDE, Tripware, OSSEC
 - Keep your systems patched.
-```BASH
 
+## AIDE - Advanced Intrusion Detection
+- What security incident can AIDE detect?
+- A virus installed in system directory
+- A configuration file that was changed by a hacker
+- A command that was replaced by a hacker
+```BASH
+# installing AIDE
+apt update && apt install aide
+aide -v
+ 
+# getting help
+aide --help
+ 
+/etc/aide/aide.conf # => config file
+ 
+### SEARCHING FOR CHANGES ###
+ 
+# initializing the AIDE database => /var/lib/aide/aide.db.new
+aideinit 
+ 
+# moving the db to the one that will be checked by AIDE
+mv /var/lib/aide/aide.db.new /var/lib/aide/aide.db
+ 
+# creating a runtime config file => /var/lib/aide/aide.conf.autogenerated
+update-aide.conf    # this is a command to run
+ 
+# detecting changes
+aide  -c /var/lib/aide/aide.conf.autogenerated --check > report.txt
+ 
+# updating the db
+aide -c /var/lib/aide/aide.conf.autogenerated --update
+# copying the newly created database as the baseline database
+cp /var/lib/aide/aide.db.new /var/lib/aide/aide.db
+ 
+## CREATING A CUSTOM aide.conf FILE (Example: /root/aide.conf) ##
+database=file:/var/lib/aide/aide.db
+database_out=file:/var/lib/aide/aide.db.new
+MYRULE=u+g+p+n+s+m+sha256
+/etc MYRULE
+/usr MYRULE
+/root MYRULE
+!/usr/.*
+!/usr/share/file$
+ 
+# initializing the new AIDE db
+aide -c /root/aide.conf --init
+ 
+# moving the new db to the baseline db
+mv /var/lib/aide/aide.db.new /var/lib/aide/aide.db
+ 
+# checking for any changes
+aide -c /root/aide.conf --check
+
+# --limit option 
+aide -c /root/aide.conf --limit /etc --check
+# AIDE will check for changes only in /etc directory 
 ```
-
+## Anitvirus - ClamAV
+- Virus is not an issue for Linux, but it can be a host to spread Malware and Virus to Windows machines in the network.
+- To protect Windows machines from themselves, install antivirus solution on Linux.
 ```BASH
-
+# installing clamav
+sudo apt install && sudo apt install clamav clamav-daemon
+ 
+# checking the status
+systemctl status clamav-freshclam
+systemctl status clamav-daemon
+ 
+# starting the clamav daemon
+systemctl start clamav-daemon
+ 
+# enabling the daemon to start and boot
+systemctl enable clamav-daemon
+ 
+# getting a test virus
+wget www.eicar.org/download/eicar.com
+ 
+# scanning a directory using clamdscan
+clamdscan --fdpass /root/
+ 
+# moving found viruses to a quarantine directory
+clamdscan --move=/quarantine --fdpass /root
+ 
+# scanning a directory using clamscan
+clamscan --recursive /etc
+clamscan --recursive --infected /quarantine
+clamscan --recursive --infected --remove /quarantine/
 ```
 
 ```BASH

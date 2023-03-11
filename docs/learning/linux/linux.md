@@ -738,10 +738,12 @@ cat /etc/default/useradd       # shows where the defaults are set
 useradd bob                    # only adds the user, no home directory is created. Once the user logs in, it will get created
 tail -3 /etc/passwd            # shows that bob is added
 useradd –m bob                 # also creates the home directory
+useradd -m -d /home/bob -s /bin/bash    # Creating user and home dir in one command
 tail -3 /etc/shadow            # shows the password for the user
 passwd bob                     # add the password for bob
 passwd –l bob                  # locks the account
 passwd –u bob                  # unlocks the account
+passwd --status bob            # Shows the status of account bob, 2nd column (L - Locked, NP - No Password, P valid password)
 usermod bob –c “Bob Smith”     # adding additional details for the user
 userdel –r bob                 # removes the user and home directory
 ```
@@ -1048,6 +1050,9 @@ netstat –s              # statistics
 netstat –i              # shows interfaces
 netstat –g              # multicast groups
 netstat –nr             # network route tables
+
+# Default checking
+netstat -tupan  | grep ssh  # Shows the pots for ssh
 ```
 ### Show Sockets (ss)
 ```BASH

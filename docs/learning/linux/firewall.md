@@ -1,5 +1,7 @@
 [netstat](https://www.binarytides.com/linux-netstat-command-examples/)
 [nmap](https://www.cyberciti.biz/security/nmap-command-examples-tutorials/)
+[Testing Firewall using tcpdump](https://danielmiessler.com/study/tcpdump/)
+[conntrack - Cnnection Tracking basics](https://blog.cloudflare.com/conntrack-tales-one-thousand-and-one-flows/)
 # Linux Firewall Fundamentals
 - Firewalls control network access.
 - Linux firewall = Netfilter + IPTables
@@ -12,12 +14,14 @@
 - Mangle - Alter packets.
 - Raw - Used to disable connection tracking.
 - Security - Used by SELinux.
+![Netfilter](../../assets/images/netfilter.png)
 ## Default Chains
 - INPUT
 - OUTPUT
 - FORWARD
 - PREROUTING
 - POSTROUTING
+![Routing Decision](../../assets/images/iptables_routing_descision.png)
 ## Rules
 - Rules = Match + Target
 - Match on: Protocol, Source/Dest IP or network, Source/Dest Port, Network Interface
@@ -38,6 +42,7 @@ iptables -t nat -L              # Display the nat table.
 iptables -nL                    # Display using numeric output.
 iptables -vL                    # Display using verbose output.
 iptables --line-numbers -L      # Use line nums.
+iptables -vnL					# Common combination
 ```
 ## Chain Policy / Default Target
 - Set the default TARGET for CHAIN: `iptables -P CHAIN TARGET`
@@ -92,6 +97,44 @@ netfilter-persistent save
 - UFW - Uncomplicated FireWall (Ubuntu)
 - GUFW - Graphical interface to UFW
 - system-configure-firewall - CentOS/RHEL
+## tcpdump for Testing Firewall
+```BASH
+##########################
+## Sniffing traffic using tcpdump
+##########################
+ 
+# listing all interfaces
+ifconfig -a
+ 
+# start sniffing on an interface
+tcpdump -i eth0
+ 
+# sniffing only packets to or form an ip address, domain (dns lookup) or network
+tcpdump -i eth0 host 8.8.8.8 
+tcpdump -i eth0 dst medium.com -n # -n -> do not convert addresses to names
+tcpdump -i eth0 net 192.168.0.0/24
+ 
+# sniffing only packets to or from a specific port
+tcpdump -i eth0 port 443 -vv -n    # -vv -> verbose
+# using the `or` operator
+tcpdump -i eth0 port 80 or port 443
+ 
+# sniffing only packets to a specific port
+tcpdump -i eth0 dst port 53 -vv -n
+ 
+# sniffing only packets from a specific port
+tcpdump -i eth0 dst port 22 -vv -n
+ 
+# -A outputs ascii strings and -X outputs both in ascii and hexadecimal 
+tcpdump -i eth0 port 80 -A -n
+tcpdump -i eth0 port 80 -X -n
+ 
+# writing captured packets to file
+tcpdump port 80 -w web.pcap
+ 
+# reading from a file
+tcpdump -r web.pcap
+```
 ## IP Tables Examples
 ```BASH
 # Allow anyone to connect to webserver, but only internal ips to connect via SSH
@@ -198,7 +241,7 @@ iptables -A OUTPUT -p icmp -j DROP
 # Filter traffic based on interface (LAN, WLAN)
 # dropping ssh traffic that's coming on eth0 interface (suppose it's external)
 iptables -A INPUT -p tcp --dport 22 -i eth0 -j DROP
-# allowing ssh traffic that's coming on eht1 interface (suppose it's internal)
+# allowing ssh traffic that's coming on eth1 interface (suppose it's internal)
 iptables -A INPUT -p tcp --dport 22 -i eth1 -j ACCEPT
 # allowing outgoing https traffic via eth1
 iptables -A OUTPUT -p tcp --dport 443 -o eth1 -j ACCEPT
@@ -441,11 +484,15 @@ nmap -p- 192.168.0.20       # Performs all ports scan (0-65535)
 nmap -p 80,50005 -sV 192.168.0.20   # Specify ports to scan and display the service that is running
 nmap -sP 192.168.0.0/24     # Ping scanning (entire Network)
 nmap -sS 192.168.0.0/24 --exclude 192.168.0.10 # Excluding an IP
+# PRO-TIP: Always output the data into a file
 nmap -oN output.txt 192.168.0.1 # Saving the scanning report to a file
 nmap -A -T aggressive cloudflare.com # -A OS and service detection with faster execution
+nmap 10.211.55.6 -O                         # Server's operating system
+nmap 10.211.55.6 -sC -o /tmp/output.txt     # Runs a set list of default scripts against your target.
+nmap 10.211.55.6 -sU –top-ports 250         # scan the 250 most common UDP ports
 
 # Reject
-# It is efficient to REJECT than DROP targets.
+# PRO-TIP: It is efficient to REJECT than DROP targets.
 iptables -j REJECT --help       # Shows reject-with types
 
 # Reject SSH traffic and test it

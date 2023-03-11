@@ -43,7 +43,7 @@ ansible-galaxy install dev-sec.os-hardening
   roles:
     - dev-sec.os-hardening
 ```
-- The preceding playbook will detect the operating system and perform hardening steps based on the different guidelines. This can be configured as required by updating the default variables values. Refer to https://github.com/dev-sec/ansible-os-hardening for more details about the playbook.
+- The preceding playbook will detect the operating system and perform hardening steps based on the different guidelines. This can be configured as required by updating the default variables values. Refer to https://github.com/dev-sec/ansible-collection-hardening for more details about the playbook.
 # STIGs Ansible role for automated security hardening for Linux hosts
 - OpenStack has an awesome project named [ansible-hardening](https://github.com/openstack/ansible-hardening), which applies the security configuration changes as per the STIGs standards.
 - It performs security hardening for the following domains:
